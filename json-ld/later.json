@@ -1,0 +1,67 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Later",
+  "url": "https://later.com/",
+  "description": "Later is a visual social media scheduling and influencer marketing platform that enables brands, agencies, and creators to plan, schedule, and publish content across Instagram, TikTok, Facebook, Pinterest, LinkedIn, Threads, and YouTube. The platform offers a media library, analytics, Link in Bio tools, social inbox, content approval workflows, and AI-powered scheduling optimization. Later also provides enterprise influencer marketing campaign management and creator network services.",
+  "logo": "https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg",
+  "sameAs": [
+    "https://github.com/latermedia",
+    "https://www.linkedin.com/company/latergram-me",
+    "https://x.com/latermedia"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https://help.later.com/hc/en-us"
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": "https://later.com/pricing/",
+    "description": "Social media scheduling and influencer marketing platform pricing plans"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://later.com/"
+  },
+  "knowsAbout": [
+    "Social Media Scheduling",
+    "Instagram Marketing",
+    "TikTok Marketing",
+    "Facebook Marketing",
+    "Pinterest Marketing",
+    "LinkedIn Marketing",
+    "Influencer Marketing",
+    "Content Management",
+    "Social Media Analytics",
+    "Link in Bio",
+    "Social Commerce",
+    "Creator Economy"
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Later Platform Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "name": "Social Media Scheduling",
+        "description": "Visual content planning and scheduling across Instagram, TikTok, Facebook, Pinterest, LinkedIn, Threads, and YouTube"
+      },
+      {
+        "@type": "Offer",
+        "name": "Influencer Marketing",
+        "description": "Enterprise influencer marketing campaign management and creator network services"
+      },
+      {
+        "@type": "Offer",
+        "name": "Analytics",
+        "description": "Social media analytics and performance reporting"
+      },
+      {
+        "@type": "Offer",
+        "name": "Link in Bio",
+        "description": "Customizable Link in Bio tools for driving traffic from social media"
+      }
+    ]
+  }
+}
