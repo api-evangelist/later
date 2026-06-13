@@ -1,0 +1,40 @@
+name: Later FinOps
+description: Financial operations guidance for managing Later platform costs
+url: https://later.com/pricing/
+cost_optimization:
+  - tip: Choose annual billing to save 25% compared to monthly billing
+  - tip: Start with Starter plan and upgrade as your social set needs grow
+  - tip: Add extra social sets individually rather than upgrading to a higher tier if you only need slightly more profiles
+  - tip: Monitor AI credit usage and add supplemental credits only as needed rather than upgrading plans
+  - tip: Audit user seats quarterly and remove inactive users to avoid paying for unused seats
+billing:
+  billing_cycle:
+    - monthly
+    - annually
+  currency: USD
+  payment_methods:
+    - Credit card
+  annual_discount: 25%
+cost_tracking:
+  base_costs:
+    - item: Plan subscription
+      frequency: monthly or annual
+      variable: false
+  variable_costs:
+    - item: Extra social sets
+      unit_price_monthly: 15.00
+      unit_price_annually: 11.25
+      currency: USD
+    - item: Extra users
+      unit_price_monthly: 5.00
+      unit_price_annually: 3.75
+      currency: USD
+    - item: Extra AI credits (per 100)
+      unit_price_monthly: 5.00
+      unit_price_annually: 3.75
+      currency: USD
+roi_considerations:
+  - Later tracks Link in Bio conversions and social commerce transactions
+  - Platform claims $2B+ in influencer-driven purchases tracked
+  - Analytics help optimize post timing and content to maximize engagement ROI
+  - Influencer marketing managed services available for enterprise brands at custom pricing

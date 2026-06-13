@@ -1,0 +1,78 @@
+name: Later Plans and Pricing
+description: Pricing plans for Later's social media scheduling and influencer marketing platform
+url: https://later.com/pricing/
+plans:
+  - name: Starter
+    description: Basic social media scheduling for individuals and small teams
+    price:
+      monthly: 25.00
+      annually: 18.75
+      currency: USD
+      per: month
+    features:
+      - 1 social set (8 profiles)
+      - 1 user
+      - 30 posts per profile per month
+      - 5 AI credits per month
+      - Analytics up to 3 months
+      - Basic scheduling
+      - Instagram and Facebook best time to post
+      - TikTok best time to post
+  - name: Growth
+    description: Multi-profile scheduling with collaboration for growing teams
+    price:
+      monthly: 50.00
+      annually: 37.50
+      currency: USD
+      per: month
+    features:
+      - 2 social sets (16 profiles)
+      - 2 users
+      - 180 posts per profile per month
+      - 50 AI credits per month
+      - Analytics up to 1 year
+      - Multi-profile scheduling
+      - Collaboration tools
+      - Content approval workflow
+      - Social inbox
+    popular: true
+  - name: Scale
+    description: Advanced analytics and unlimited scheduling for scaling brands
+    price:
+      monthly: 110.00
+      annually: 82.50
+      currency: USD
+      per: month
+    features:
+      - 6 social sets (48 profiles)
+      - 4 users
+      - Unlimited posts
+      - 100 AI credits per month
+      - Analytics up to 2 years
+      - Custom analytics
+      - Competitive benchmarking
+      - Future industry insights
+      - Brand health monitoring
+addons:
+  - name: Extra Social Set
+    price:
+      monthly: 15.00
+      annually: 11.25
+      currency: USD
+      per: social set per month
+  - name: Extra User
+    price:
+      monthly: 5.00
+      annually: 3.75
+      currency: USD
+      per: user per month
+  - name: Extra AI Credits
+    price:
+      monthly: 5.00
+      annually: 3.75
+      currency: USD
+      per: 100 credits per month
+notes:
+  - Annual billing provides 25% discount over monthly billing
+  - Enterprise plans available with custom pricing
+  - Influencer marketing managed services available separately

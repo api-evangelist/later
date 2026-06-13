@@ -1,0 +1,37 @@
+name: Later Rate Limits
+description: Rate limits and usage constraints for Later's social media scheduling platform
+url: https://later.com/pricing/
+notes:
+  - Later does not publish a formal public REST API for third-party developers
+  - Rate limits are applied per plan at the scheduling/post level
+  - Underlying platform rate limits (Instagram, TikTok, etc.) are managed by Later internally
+post_limits:
+  - plan: Starter
+    posts_per_profile_per_month: 30
+    social_sets: 1
+    profiles: 8
+    users: 1
+    ai_credits_per_month: 5
+  - plan: Growth
+    posts_per_profile_per_month: 180
+    social_sets: 2
+    profiles: 16
+    users: 2
+    ai_credits_per_month: 50
+  - plan: Scale
+    posts_per_profile_per_month: unlimited
+    social_sets: 6
+    profiles: 48
+    users: 4
+    ai_credits_per_month: 100
+platform_constraints:
+  - platform: Instagram
+    note: Subject to Instagram Graph API rate limits (200 API calls per hour per account as of 2025)
+  - platform: TikTok
+    note: Subject to TikTok Content Posting API rate limits
+  - platform: Facebook
+    note: Subject to Meta Graph API rate limits
+  - platform: Pinterest
+    note: Subject to Pinterest API rate limits
+  - platform: LinkedIn
+    note: Subject to LinkedIn API rate limits
