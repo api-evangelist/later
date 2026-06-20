@@ -1,7 +1,7 @@
 aid: later
 name: Later
 description: Later is a visual social media scheduling and influencer marketing platform that enables brands, agencies, and creators to plan, schedule, and publish content across Instagram, TikTok, Facebook, Pinterest, LinkedIn, Threads, and YouTube. The platform offers a media library, analytics, Link in Bio tools, social inbox, content approval workflows, and AI-powered scheduling optimization. Later also provides enterprise influencer marketing campaign management and creator network services.
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/later/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -18,7 +18,7 @@ tags:
 apis:
   - name: Later Social Media Platform
     description: Later's social media scheduling and management platform providing visual content planning, scheduling, analytics, and influencer marketing capabilities across major social platforms.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://later.com/
     baseURL: https://app.later.com/
     tags:

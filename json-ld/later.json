@@ -4,7 +4,7 @@
   "name": "Later",
   "url": "https://later.com/",
   "description": "Later is a visual social media scheduling and influencer marketing platform that enables brands, agencies, and creators to plan, schedule, and publish content across Instagram, TikTok, Facebook, Pinterest, LinkedIn, Threads, and YouTube. The platform offers a media library, analytics, Link in Bio tools, social inbox, content approval workflows, and AI-powered scheduling optimization. Later also provides enterprise influencer marketing campaign management and creator network services.",
-  "logo": "https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg",
+  "logo": "https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg",
   "sameAs": [
     "https://github.com/latermedia",
     "https://www.linkedin.com/company/latergram-me",
