@@ -1,123 +1,25 @@
 {
-  "meta": {
-    "source": "https://later.com/blog/",
-    "fetched": "2026-06-13",
-    "provider": "later"
-  },
-  "posts": [
-    {
-      "title": "How 6 fashion brands turned influencer investment into measurable results",
-      "url": "https://later.com/blog/how-6-fashion-brands-turned-influencer-investment-into-measurable-results/",
-      "author": "Sam Lauron",
-      "category": "Influencer Marketing",
-      "read_time": "10 min"
-    },
-    {
-      "title": "The 2026 World Cup creator gap: Why brands are planning big while creators still aren't",
-      "url": "https://later.com/blog/the-2026-world-cup-creator-gap/",
-      "author": "Sam Lauron",
-      "category": "Influencer Marketing",
-      "read_time": "9 min"
-    },
-    {
-      "title": "How to manage multiple social media accounts: a real-world playbook",
-      "url": "https://later.com/blog/how-to-manage-multiple-social-media-accounts/",
-      "author": "Talar Mazloumian",
-      "category": "Social Media Marketing",
-      "read_time": "10 min"
-    },
-    {
-      "title": "A marketer's guide to Cannes Lions 2026",
-      "url": "https://later.com/blog/a-marketers-guide-to-cannes-lions/",
-      "author": "Alana Willis",
-      "category": "Influencer Marketing",
-      "read_time": "11 min"
-    },
-    {
-      "title": "Top takeaways from the strategists behind Teremana and Alo Yoga",
-      "url": "https://later.com/blog/top-takeaways-from-strategists-behind-teremana-alo-yoga/",
-      "author": "Alana Willis",
-      "category": "Influencer Marketing",
-      "read_time": "13 min"
-    },
-    {
-      "title": "Why your Instagram strategy stopped working (and what to do instead)",
-      "url": "https://later.com/blog/instagram-algorithm-strategy/",
-      "author": "Talar Mazloumian",
-      "category": "Small Businesses & Brands",
-      "read_time": "12 min"
-    },
-    {
-      "title": "Why brands need to treat creators like the true entrepreneurs they are",
-      "url": "https://later.com/blog/why-brands-need-to-treat-creators-like-the-true-entrepreneurs-they-are/",
-      "author": "Alana Willis",
-      "category": "Influencer Marketing",
-      "read_time": "9 min"
-    },
-    {
-      "title": "Your ultimate list of upcoming creator economy events (updated quarterly)",
-      "url": "https://later.com/blog/creator-economy-events-list/",
-      "author": "Alana Willis",
-      "category": "Influencer Marketing",
-      "read_time": "3 min"
-    },
-    {
-      "title": "You built this with us",
-      "url": "https://later.com/blog/later-g2-summer-2026/",
-      "author": "Tim Clarke",
-      "category": "Influencer Marketing",
-      "read_time": "13 min"
-    },
-    {
-      "title": "AEO is a creator marketing opportunity most brands are missing",
-      "url": "https://later.com/blog/creator-aeo-marketing/",
-      "author": "Cameron Miskho",
-      "category": "Influencer Marketing",
-      "read_time": "9 min"
-    },
-    {
-      "title": "Later named top G2 leader in influencer marketing platforms for spring 2026",
-      "url": "https://later.com/blog/later-g2-spring-2026/",
-      "author": "Alana Willis",
-      "category": "Product Updates",
-      "read_time": "7 min"
-    },
-    {
-      "title": "Later, rebranded: The story behind our boldest move yet",
-      "url": "https://later.com/blog/later-rebrand-reveal/",
-      "author": "Tim Clarke",
-      "category": "Product Updates",
-      "read_time": "9 min"
-    },
-    {
-      "title": "Introducing Later 360: One View for All Your Influencer Marketing Data",
-      "url": "https://later.com/blog/later-360/",
-      "author": "Alana Willis",
-      "category": "Product Updates",
-      "read_time": "6 min"
-    },
-    {
-      "title": "The top Instagram trends to try this week",
-      "url": "https://later.com/blog/instagram-reels-trends/",
-      "author": "Talar Mazloumian",
-      "category": "Instagram",
-      "read_time": "44 min"
-    },
-    {
-      "title": "The top TikTok trends to try this week",
-      "url": "https://later.com/blog/tiktok-trends/",
-      "author": "Talar Mazloumian",
-      "category": "TikTok",
-      "read_time": "19 min"
-    }
-  ],
   "repo": "later",
   "feeds": [
+    {
+      "source": "https://later.com/blog/",
+      "feed_url": "https://later.com/rss.xml",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
+    },
+    {
+      "source": "https://status.later.com/history.atom",
+      "feed_url": "https://status.later.com/history.atom",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
     {
       "source": "https://status.later.com/",
       "feed_url": "https://status.later.com/history.atom",
       "title": "",
-      "saved": 1,
+      "saved": 0,
       "method": "discovered"
     },
     {
@@ -125,6 +27,6 @@
       "error": "HTTPError"
     }
   ],
-  "post_count": 1,
-  "fetched": "2026-06-14T20:42:17Z"
+  "post_count": 2,
+  "fetched": "2026-06-27T12:03:07Z"
 }
