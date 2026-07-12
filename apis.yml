@@ -42,6 +42,10 @@ apis:
       - type: Blog
         url: https://later.com/blog/
 common:
+  - type: TrustCenter
+    url: security/later-trust-center.yml
+  - type: DomainSecurity
+    url: security/later-domain-security.yml
   - type: Website
     url: https://later.com/
   - type: Documentation
