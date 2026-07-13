@@ -2,11 +2,11 @@
   "repo": "later",
   "feeds": [
     {
-      "source": "https://later.com/blog/",
+      "source": "https://later.com/rss.xml",
       "feed_url": "https://later.com/rss.xml",
       "title": "",
       "saved": 0,
-      "method": "discovered"
+      "method": "feed"
     },
     {
       "source": "https://status.later.com/history.atom",
@@ -27,6 +27,6 @@
       "error": "HTTPError"
     }
   ],
-  "post_count": 2,
-  "fetched": "2026-06-27T12:03:07Z"
+  "post_count": 78,
+  "fetched": "2026-07-11T11:50:51Z"
 }
