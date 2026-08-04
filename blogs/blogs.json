@@ -16,17 +16,20 @@
       "method": "feed"
     },
     {
+      "source": "https://www.linkedin.com/company/latergram-me",
+      "feed_url": "https://www.linkedin.com/company/latergram-me",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    },
+    {
       "source": "https://status.later.com/",
       "feed_url": "https://status.later.com/history.atom",
       "title": "",
       "saved": 0,
       "method": "discovered"
-    },
-    {
-      "source": "https://www.linkedin.com/company/latergram-me",
-      "error": "HTTPError"
     }
   ],
-  "post_count": 78,
-  "fetched": "2026-07-11T11:50:51Z"
+  "post_count": 97,
+  "fetched": "2026-08-01T15:49:00Z"
 }
