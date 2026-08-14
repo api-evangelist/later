@@ -16,7 +16,7 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/later.png
 url: https://raw.githubusercontent.com/api-evangelist/later/refs/heads/main/apis.yml
 created: '2026-06-13'
-modified: '2026-06-13'
+modified: '2026-08-13'
 specificationVersion: '0.19'
 tags:
   - Social Media
@@ -53,6 +53,36 @@ apis:
         url: https://status.later.com/
       - type: Blog
         url: https://later.com/blog/
+  - name: Later Influence API
+    description: 'Later Influence (formerly Mavrck) influencer marketing REST API: campaigns (action groups), influencers and global users, activations, incentives and reward wins, payments (Stripe/PayPal/cash), conversations and messaging, brand suitability, analytics, Shopify and Meta integrations, and the influencer-facing Later Influencer surface. Served from the legacy Mavrck host that Later kept after the January 2024 rebrand.'
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+    humanURL: https://later.com/influencer-marketing-platform/
+    baseURL: https://api.mavrck.co/v1
+    tags:
+      - Influencer Marketing
+      - Campaigns
+      - Creator Payments
+      - Analytics
+      - Webhooks
+    properties:
+      - type: OpenAPI
+        url: openapi/later-influence-api-openapi.json
+      - type: APIReference
+        url: https://api.mavrck.co/api-docs
+      - type: Authentication
+        url: authentication/later-authentication.yml
+      - type: Conventions
+        url: conventions/later-conventions.yml
+      - type: ErrorCatalog
+        url: errors/later-problem-types.yml
+      - type: DataModel
+        url: data-model/later-data-model.yml
+      - type: Webhooks
+        url: asyncapi/later-influence-webhooks.yml
+      - type: Overlay
+        url: overlays/later-influence-api-overlay.yaml
+      - type: Pricing
+        url: https://later.com/influencer-marketing-platform/pricing/
 common:
   - type: TrustCenter
     url: security/later-trust-center.yml
@@ -80,6 +110,57 @@ common:
     url: rate-limits/later-rate-limits.yml
   - type: FinOps
     url: finops/later-finops.yml
+  - type: OpenAPI
+    url: openapi/later-influence-api-openapi.json
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Conformance
+    url: conformance/later-conformance.yml
+  - type: Compliance
+    url: security/later-trust-center.yml
+  - type: Lifecycle
+    url: lifecycle/later-lifecycle.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Overlay
+    url: overlays/later-influence-api-overlay.yaml
+  - type: MCPServer
+    url: mcp/later-mcp.yml
+  - type: AgentSkill
+    url: skills/_index.yml
+  - type: LLMsTxt
+    url: llms/later-llms.txt
+  - type: Packages
+    url: packages/later-packages.yml
+  - type: WellKnown
+    url: well-known/later-well-known.yml
+  - type: SecurityTxt
+    url: well-known/later-security.txt
+  - type: PrivacyPolicy
+    url: https://later.com/privacy/
+  - type: TermsOfService
+    url: https://later.com/terms/
+  - type: SignUp
+    url: https://later.com/r/signup
+  - type: Support
+    url: https://help.later.com/hc/en-us
+  - type: Partners
+    url: https://later.com/partners/
+  - type: About
+    url: https://later.com/about/
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-08-13'
+  status: enriched
+  artifacts_added: 22
+  pass: local-v1
