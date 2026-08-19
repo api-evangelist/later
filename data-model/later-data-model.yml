@@ -1,0 +1,225 @@
+generated: '2026-08-13'
+method: derived
+source: openapi/later-influence-api-openapi.json
+api: Later Influence API
+note: >-
+  Entity-relationship graph derived from the 548 paths, 687 operations and 1,071
+  definitions of the Later Influence (formerly Mavrck) contract at
+  https://api.mavrck.co/api-docs. Relationships are read from path nesting and from
+  id-reference fields on the definitions; nothing is inferred from outside the contract.
+  Later publishes no object reference page, so there are no documented id prefixes or
+  id formats to record — the contract types most ids as `number`/`string` with no format.
+vocabulary_note: >-
+  The contract renames itself mid-flight and a client must know both words. An
+  "action group" IS a campaign — the brand-facing surface calls it /action-groups and the
+  influencer-facing surface calls the same thing /v1/later-influencers/{id}/campaigns.
+  Likewise the contract states in its own descriptions that "brand" and "program" are
+  equivalent: Later Social says brand, Later Influence says program.
+entities:
+- name: Community
+  aka: [instance, program, brand]
+  description: The top-level tenant. Nearly every other entity is scoped to a communityId.
+  operations: [getCommunities, createCommunity, getCommunity]
+  id_field: communityId
+  id_field_occurrences: 75
+- name: ActionGroup
+  aka: [Campaign]
+  description: A campaign — the unit of influencer work, with candidates, statuses,
+    conversations, submissions, activations and budget.
+  id_field: actionGroupId
+  id_field_occurrences: 46
+- name: Action
+  description: An individual task inside an action group, with a tracking link and
+    activations.
+  id_field: actionId
+- name: GlobalUser
+  description: The person record spanning communities — the identity an influencer is
+    matched on.
+  id_field: globalUserId
+  id_field_occurrences: 63
+- name: Influencer
+  description: A community-scoped influencer profile, with points history, reward wins
+    and memberships.
+  id_field: influencerId
+- name: LaterInfluencer
+  description: The influencer-facing self-service surface (45 operations), addressed by
+    influencerIdOrCreatorId, authenticated with a JWT rather than the api-key header.
+  id_field: influencerIdOrCreatorId
+- name: Membership
+  description: An influencer's membership in a community, carrying contact info and points.
+  id_field: membershipId
+  id_field_occurrences: 32
+- name: GlobalUserList
+  aka: [List]
+  description: A curated list of global users; ListMember is the join record.
+  id_field: listId
+- name: ListMember
+  description: Membership of a global user in a list, carrying deliverables, statuses and
+    reward wins.
+  id_field: listMemberId
+- name: Activation
+  description: A recorded activation of an action by an influencer.
+  id_field: activationId
+- name: Incentive
+  description: An offer with claims and winners; winners can be disqualified/requalified.
+  id_field: incentiveId
+- name: RewardWin
+  description: A won reward, the bridge between an incentive and a payment.
+  id_field: rewardWinId
+- name: Concept
+  description: A creative concept an influencer submits against a campaign.
+  id_field: conceptId
+- name: Draft
+  description: Draft content submitted for approval against a campaign.
+  id_field: draftContentId
+- name: Conversation
+  description: Threaded messaging between brand and candidate, with templates and
+    scheduled messages.
+  id_fields: [threadId, messageId]
+- name: PaymentAccount
+  description: The paying account; branches into StripePayments, CashPayments, gift cards
+    and Tipalti payouts.
+  id_field: cashPaymentAppId
+- name: PaymentRecipient
+  description: The influencer-side payee record, onboarded through Stripe Connect links.
+- name: Budget
+  description: Campaign budget with reference ids and balance transfer events.
+  id_field: budgetReferenceId
+- name: BrandSuitability
+  description: Brand-safety scoring of a creator, with its own Harness sub-API (16 + 17
+    operations).
+- name: ShopifyAccount
+  description: Connected Shopify store, with discount codes, products, reviews and the
+    mandated GDPR compliance webhook receivers.
+- name: Analytics
+  aka: [CampaignPerformance, CustomAnalytics, Datapoints]
+  description: Reporting surface over campaigns, communities and creators.
+relationships:
+- from: Community
+  to: ActionGroup
+  type: has_many
+  via: communityId
+- from: Community
+  to: GlobalUser
+  type: has_many
+  via: communityId
+- from: Community
+  to: Membership
+  type: has_many
+  via: communityId
+- from: ActionGroup
+  to: Action
+  type: has_many
+  via: path /action-groups/{actionGroupId}/actions
+- from: ActionGroup
+  to: Candidate
+  type: has_many
+  via: path /action-groups/{id}/candidates
+- from: ActionGroup
+  to: Conversation
+  type: has_many
+  via: path /action-groups/{actionGroupId}/candidates/{globalUserId}/conversations
+- from: ActionGroup
+  to: Submission
+  type: has_many
+  via: path /action-groups/{id}/submissions
+- from: ActionGroup
+  to: Activation
+  type: has_many
+  via: path /action-groups/{actionGroupId}/activations
+- from: ActionGroup
+  to: Budget
+  type: has_one
+  via: budgetReferenceId
+- from: Action
+  to: Activation
+  type: has_many
+  via: path /action/{actionId}/activations
+- from: GlobalUser
+  to: Membership
+  type: has_many
+  via: globalUserId
+- from: GlobalUser
+  to: ListMember
+  type: has_many
+  via: globalUserId
+- from: GlobalUserList
+  to: ListMember
+  type: has_many
+  via: listId
+- from: ListMember
+  to: RewardWin
+  type: has_many
+  via: listMemberId
+- from: ListMember
+  to: Deliverable
+  type: has_many
+  via: path /list-members/{listMemberId}/deliverables
+- from: Influencer
+  to: RewardWin
+  type: has_many
+  via: path /influencers/{influencerId}/reward-wins
+- from: Influencer
+  to: PointsHistory
+  type: has_many
+  via: path /influencers/{membershipId}/points-history
+- from: Incentive
+  to: IncentiveClaim
+  type: has_many
+  via: path /incentives/{incentiveId}/incentive-claims
+- from: Incentive
+  to: Winner
+  type: has_many
+  via: path /incentives/{incentiveId}/winners
+- from: RewardWin
+  to: PaymentRecipient
+  type: belongs_to
+  via: payment operations
+- from: LaterInfluencer
+  to: Campaign
+  type: has_many
+  via: path /v1/later-influencers/{influencerIdOrCreatorId}/campaigns
+- from: Campaign
+  to: Concept
+  type: has_many
+  via: path .../campaigns/{campaignId}/concepts
+- from: Campaign
+  to: Draft
+  type: has_many
+  via: path .../campaigns/{campaignId}/drafts
+- from: Campaign
+  to: Product
+  type: has_many
+  via: path .../campaigns/{campaignId}/products
+- from: Product
+  to: Review
+  type: has_many
+  via: path .../products/{productId}/reviews
+- from: Campaign
+  to: PaymentRecipient
+  type: has_one
+  via: path .../campaigns/{campaignId}/payment-recipient
+- from: ShopifyAccount
+  to: DiscountCode
+  type: has_many
+  via: discountCodeId
+- from: LaterInfluencer
+  to: SocialPresence
+  type: has_many
+  via: path /v1/later-influencers/{influencerIdOrCreatorId}/networks
+counts:
+  paths: 548
+  operations: 687
+  definitions: 1071
+  tags: 170
+deprecation_signal: >-
+  57 definitions carry a literal `Deprecated` suffix in their NAME
+  (ActivationDeprecated, AdministratorDeprecated, ActionGroupDeprecated,
+  IncentiveDeprecated, MembershipContactInfoDeprecated, DataPointDefinitionDeprecated,
+  LinksDeprecated, ActionDeprecated and others) and several are still referenced by live
+  operations. Only ONE operation carries the OpenAPI `deprecated: true` flag. See
+  lifecycle/later-lifecycle.yml.
+gaps:
+- No id formats or prefixes are published; ids are bare numbers or strings.
+- No `$ref`-linked parent/child navigation exists in responses (no HAL/JSON:API links),
+  so relationships must be traversed by path construction.

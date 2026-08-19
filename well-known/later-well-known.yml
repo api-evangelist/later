@@ -1,0 +1,131 @@
+generated: '2026-08-13'
+method: probed
+source: live HTTPS probes of every apis.yml base host, 2026-08-13
+note: >-
+  One real document was served: an RFC 9116 security.txt on app.later.com. It is EXPIRED —
+  its own `Expires` field reads 2024-06-12, more than two years before this probe — which
+  under RFC 9116 section 2.5.5 means the file "MUST NOT be used" as current. It is
+  recorded here as served-and-stale rather than as a healthy surface. later.com answers
+  every /.well-known/* path with a 404 that carries a 570 KB HTML shell; app.later.com
+  301s the rest; api.mavrck.co returns a clean empty 404.
+hosts:
+- host: later.com
+  paths:
+  - path: /.well-known/security.txt
+    status: 404
+    content_type: text/html
+    document: false
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    content_type: text/html
+    document: false
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    content_type: text/html
+    document: false
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    content_type: text/html
+    document: false
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    content_type: text/html
+    document: false
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    content_type: text/html
+    document: false
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    content_type: text/html
+    document: false
+    file: null
+- host: app.later.com
+  paths:
+  - path: /.well-known/security.txt
+    status: 200
+    content_type: text/plain
+    document: true
+    file: well-known/later-security.txt
+    expired: true
+    expires: '2024-06-12T07:00:00.000Z'
+    contact: mailto:security@later.com
+  - path: /.well-known/openid-configuration
+    status: 301
+    document: false
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 301
+    document: false
+    file: null
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+    document: false
+    file: null
+  - path: /.well-known/api-catalog
+    status: 301
+    document: false
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 301
+    document: false
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    document: false
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    document: false
+    file: null
+- host: api.mavrck.co
+  paths:
+  - path: /.well-known/security.txt
+    status: 404
+    document: false
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    document: false
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    document: false
+    file: null
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+    document: false
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    document: false
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    document: false
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    document: false
+    file: null
+- host: www.mavrck.co
+  paths:
+  - path: /.well-known/agent-card.json
+    status: 200
+    content_type: text/html
+    document: false
+    file: null
+    note: >-
+      FALSE POSITIVE, deliberately not saved. The legacy Mavrck WordPress site answers 200
+      with its 8.4 KB HTML homepage for any /.well-known/* path. It is an SPA/CMS catch-all,
+      not an A2A agent card, so no a2a/ artifact and no AgentCard pointer is emitted.
+summary:
+  documents_served: 1
+  hosts_probed: 4
+  paths_probed: 27

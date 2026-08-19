@@ -1,10 +1,51 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://later.com/pricing/ (plan quotas, re-verified 2026-08-13) and
+  openapi/later-influence-api-openapi.json plus live responses from
+  https://api.mavrck.co/v1/* (probed 2026-08-13)
 name: Later Rate Limits
 description: Rate limits and usage constraints for Later's social media scheduling platform
+  and the Later Influence API
 url: https://later.com/pricing/
+limit_count: 0
+headers_published: []
+status_on_exhaustion: 429 on exactly one operation; see api_limits below
+api_limits:
+  api: Later Influence API
+  base_url: https://api.mavrck.co/v1
+  documented_request_rate_limits: none
+  response_headers:
+    x_ratelimit: not present
+    ratelimit: not present
+    retry_after: not present
+    evidence: >-
+      Zero occurrences of X-RateLimit-*, RateLimit-* or Retry-After across all 687
+      operations and 1,071 definitions of the published contract, and none observed on
+      live unauthenticated responses from api.mavrck.co on 2026-08-13. In fact the
+      contract declares NO response headers at all on any operation.
+  declared_429:
+  - operation: exportContent
+    method: POST
+    path: /v1/export/content
+    message: Priority export slot is busy
+    kind: concurrency limit, not a request-rate limit
+    note: >-
+      This is the ONLY 429 declared anywhere in the contract. It signals that a priority
+      export slot is occupied, so exports must be serialized; it says nothing about how
+      many requests per second the API will accept.
+  finding: >-
+    An agent or client integrating the Later Influence API has NO runtime backpressure
+    signal. There is no published limit to plan against and no header to read, so the only
+    strategy available is to back off on 500 — which is declared on 685 of 687 operations
+    and is therefore useless as a discriminator.
 notes:
-  - Later does not publish a formal public REST API for third-party developers
-  - Rate limits are applied per plan at the scheduling/post level
-  - Underlying platform rate limits (Instagram, TikTok, etc.) are managed by Later internally
+  - Later publishes no formal public REST API for the Later Social scheduling product.
+  - The Later Influence (formerly Mavrck) API has a complete public contract but publishes
+    no rate limits.
+  - Plan quotas below are product usage caps, not API rate limits.
+  - Underlying social platform rate limits (Instagram, TikTok, etc.) are managed by Later
+    internally.
 post_limits:
   - plan: Starter
     posts_per_profile_per_month: 30
@@ -12,21 +53,25 @@ post_limits:
     profiles: 8
     users: 1
     ai_credits_per_month: 5
+    analytics_retention: 3 months
   - plan: Growth
     posts_per_profile_per_month: 180
     social_sets: 2
     profiles: 16
     users: 2
     ai_credits_per_month: 50
+    analytics_retention: 1 year
   - plan: Scale
     posts_per_profile_per_month: unlimited
     social_sets: 6
     profiles: 48
     users: 4
     ai_credits_per_month: 100
+    analytics_retention: 2 years
 platform_constraints:
   - platform: Instagram
-    note: Subject to Instagram Graph API rate limits (200 API calls per hour per account as of 2025)
+    note: Subject to Instagram Graph API rate limits (200 API calls per hour per account
+      as of 2025)
   - platform: TikTok
     note: Subject to TikTok Content Posting API rate limits
   - platform: Facebook

@@ -1,0 +1,133 @@
+generated: '2026-08-13'
+method: derived
+source: openapi/later-influence-api-openapi.json
+api: Later Influence API
+base_url: https://api.mavrck.co/v1
+note: >-
+  Cross-cutting runtime semantics for the Later Influence (formerly Mavrck) API, derived
+  from the contract published at https://api.mavrck.co/api-docs and confirmed against live
+  unauthenticated probes on 2026-08-13. Later publishes no developer portal for this API,
+  so every convention below is read out of the contract or observed on the wire — nothing
+  is inferred from a docs page, because there is no docs page.
+authentication:
+  style: api-key header
+  header: api-key
+  secondary: >-
+    A bearer JWT, minted by the token-exchange operations and used on the influencer-facing
+    /v1/later-influencers/* surface. Not declared in securityDefinitions.
+  unauthenticated_status: 403 (not 401) on the brand/admin surface
+  detail: authentication/later-authentication.yml
+idempotency:
+  supported: false
+  evidence: >-
+    Zero occurrences of "Idempotency", "Idempotency-Key" or any idempotency parameter
+    across all 687 operations and 1,071 definitions in the contract. No idempotency
+    guidance is published anywhere on later.com. Unsafe retries of POST operations
+    (activations, payments, incentive claims) are therefore not protected by the API.
+    No `type: Idempotency` pointer is emitted for this provider.
+pagination:
+  style: limit/offset
+  request:
+    limit:
+      in: query
+      type: integer
+      description: Maximum number of items to return
+      used_by_operations: 56
+      default_documented: false
+      maximum_documented: false
+    offset:
+      in: query
+      type: integer
+      description: Number of items to skip
+      used_by_operations: 53
+  response:
+    envelope: '{ meta: { totalCount, offset, limit }, data: [ ... ] }'
+    schema: '#/definitions/PaginatedResponse_LaterInfluencerCampaignListItemDto_'
+    total_count_field: meta.totalCount
+    next_link: none — no cursor, no Link header, no nextPage field
+  gaps:
+  - Only ONE generic paginated envelope is declared in the contract; the majority of
+    list operations take limit/offset but return a bare array, so a client cannot read
+    a total count from them.
+  - No default or maximum page size is published.
+sorting:
+  parameters:
+  - name: orderBy
+    description: Attribute to order by.
+    used_by_operations: 19
+  - name: orderProperty
+    used_by_operations: 19
+  - name: orderDirection
+    enum: [ASC, DESC]
+    used_by_operations: 23
+filtering_and_search:
+  free_text:
+    parameter: q
+    description: Search parameter.
+  structured:
+    parameter: userFilter
+    description: >-
+      Complex filtering of global users, stringified with the jsurl library against the
+      UserSearch definition. This is the API's own words and it is unusual — clients need
+      a jsurl encoder, not standard query-string encoding.
+  common_scopes:
+  - communityId
+  - actionGroupId
+  - campaignId
+  - globalUserId
+  - isArchived
+  - fromDate
+field_expansion:
+  supported: false
+  evidence: No expand/fields/include parameter appears in any operation.
+metadata:
+  supported: false
+  evidence: No generic customer-supplied metadata object is declared on core resources.
+request_tracing:
+  request_id_header: none declared
+  evidence: >-
+    No header parameters are declared on ANY of the 687 operations, and no response
+    headers are declared anywhere in the contract. A client has no documented
+    correlation id to quote in a support request.
+versioning:
+  scheme: URI path
+  current: v1
+  basePath: /v1
+  quirk: >-
+    The contract's declared `basePath` is /v1, yet 40 paths ALSO carry a literal /v1
+    prefix (/v1/later-influencers/...). Probed live 2026-08-13: the /v1-prefixed paths
+    resolve at the host root (https://api.mavrck.co/v1/later-influencers/1 -> 401) while
+    the unprefixed paths resolve under basePath (https://api.mavrck.co/v1/influencers ->
+    403, https://api.mavrck.co/influencers -> 404). A generated client that concatenates
+    basePath + path will double the prefix and 500. Recorded, not corrected — the
+    contract is saved verbatim.
+error_envelope:
+  count: 2
+  primary: '{ type, error, params[], keys[], parent }'
+  secondary: '{ message, details }'
+  rfc9457: false
+  detail: errors/later-problem-types.yml
+rate_limit_signaling:
+  headers: none published
+  status_on_exhaustion: >-
+    No general 429 exists. The only 429 in the entire contract is on
+    POST /v1/export/content ("Priority export slot is busy"), a concurrency limit rather
+    than a request-rate limit.
+  detail: rate-limits/later-rate-limits.yml
+content_types:
+  produces:
+  - application/json
+  consumes: application/json (body parameters); file-upload policies are issued separately
+    via /file-upload-policies operations
+webhooks:
+  outbound: not published
+  inbound: >-
+    The API exposes inbound webhook receivers rather than outbound subscriptions —
+    /webhooks/later/{opt-in,update,opt-out}, /webhooks/sendgrid-events and the Shopify
+    compliance/uninstall receivers. See asyncapi/later-influence-webhooks.yml.
+cross_links:
+  authentication: authentication/later-authentication.yml
+  errors: errors/later-problem-types.yml
+  lifecycle: lifecycle/later-lifecycle.yml
+  rate_limits: rate-limits/later-rate-limits.yml
+  data_model: data-model/later-data-model.yml

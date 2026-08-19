@@ -1,0 +1,182 @@
+generated: '2026-08-13'
+method: derived
+source: openapi/later-influence-api-openapi.json
+api: Later Influence API
+format: vendor-json
+rfc9457: false
+note: >-
+  Derived from every 4xx/5xx/default response declared across the 687 operations in the
+  Later Influence (formerly Mavrck) contract at https://api.mavrck.co/api-docs, plus live
+  unauthenticated probes of https://api.mavrck.co/v1/*. The API does NOT use RFC 9457
+  problem+json — no operation declares application/problem+json and the contract's only
+  media type is application/json. TWO different error envelopes are in play and they are
+  not interchangeable, which is the single most consequential finding here for a client
+  author. Later publishes no public error reference page, so titles and remediation below
+  are read from the contract's own response descriptions and schema enums, never invented.
+envelopes:
+- id: legacy-typed
+  schema: '#/definitions/Error'
+  used_by_responses: 583
+  content_type: application/json
+  shape:
+    type: A key representing the type of error that has occurred (SCREAMING_SNAKE_CASE).
+    error: A static human-readable description of the type of error.
+    params: For parameter errors, an array of the invalid parameter names.
+    keys: Additional error keys.
+    parent: '{type, error} for an error raised by an upstream/external API.'
+  observed_live:
+  - url: https://api.mavrck.co/v1/influencers
+    http_status: 403
+    body: '{"type":"RESOURCE_FORBIDDEN_ERROR","error":"Access to this resource is forbidden."}'
+  - url: https://api.mavrck.co/v1/communities
+    http_status: 500
+    body: '{"type":"SERVER_ERROR","error":"An error has occurred. Please try again later."}'
+- id: framework-message
+  schema: '#/definitions/BadRequestError, ForbiddenError, NotFoundError, ValidateErrorJSON, ConflictError, ServerError, SharedLinkExpiredError, UnprocessableContent (and their Framework.* twins)'
+  used_by_responses: 1965
+  content_type: application/json
+  shape:
+    message: A fixed string, pinned by a single-value enum per error class.
+    details: A free-form object of additional context.
+    httpStatusCode: Present on ConflictError only.
+  observed_live:
+  - url: https://api.mavrck.co/v1/later-influencers/1
+    http_status: 401
+    body: '{"message":"Unauthorized - Unable to verify the signed JWT token."}'
+problem_types:
+- status: 400
+  message: Bad Request
+  schema: BadRequestError
+  occurrences: 169
+  titles_declared:
+  - Missing Parameter
+  - Bad Request
+  - Invalid parameter.
+  - Missing or invalid parameter.
+  remediation: >-
+    Check the `params` array (legacy envelope) or `details` object (framework envelope)
+    for the offending field names before retrying.
+- status: 400
+  message: Validation failed
+  schema: ValidateErrorJSON
+  occurrences: 300
+  titles_declared:
+  - Validation Failed
+  remediation: Correct the request body against the operation's declared schema.
+- status: 400
+  message: Validation error (per-property)
+  schema: ValidationError
+  occurrences: 4
+  fields:
+  - property
+  - message
+  - schema
+  - instance
+  - name
+  - argument
+  remediation: JSON Schema style per-property validation report; fix the named property.
+- status: 401
+  message: Session expired.
+  schema: Error
+  occurrences: 141
+  remediation: >-
+    Re-run one of the token-exchange operations (POST /email-auth/login, POST
+    /api-key/facebook, POST /auto-login, POST /v1/api-key/login) to mint a fresh JWT.
+    See authentication/later-authentication.yml.
+- status: 403
+  message: Access Forbidden
+  schema: ForbiddenError / Error
+  occurrences: 659
+  titles_declared:
+  - Access forbidden
+  - Invalid API Key
+  - Forbidden
+  type_key_observed: RESOURCE_FORBIDDEN_ERROR
+  remediation: >-
+    Supply the `api-key` request header. An absent or wrong key returns 403, NOT 401 —
+    403 is the most common failure code in this API and does not mean "authenticated but
+    unauthorized" the way most REST APIs use it.
+- status: 404
+  message: Resource Not Found
+  schema: NotFoundError / Error
+  occurrences: 536
+  titles_declared:
+  - The resource does not exist
+  - Not Found
+  - Action group not found.
+  remediation: Verify the path id; ids are per-community and do not resolve across accounts.
+- status: 409
+  message: Conflict
+  schema: ConflictError / Error
+  occurrences: 11
+  titles_declared:
+  - Resource conflict.
+  fields:
+  - message
+  - httpStatusCode
+  - details
+  remediation: The resource already exists or is in a state that forbids the transition.
+- status: 410
+  message: This shared link has expired.
+  schema: SharedLinkExpiredError
+  occurrences: 1
+  remediation: Request a new shared link; expired links are not renewable in place.
+- status: 412
+  message: Invalid custom status id.
+  schema: Error
+  occurrences: 1
+  remediation: Use a custom status id that belongs to the target action group.
+- status: 422
+  message: Validation failed / Unprocessable Content
+  schema: ValidateErrorJSON / UnprocessableContent
+  occurrences: 18
+  titles_declared:
+  - Validation Failed
+  - Unprocessable Content, Invalid Query Parameters
+  remediation: Query or body parsed but failed semantic validation.
+- status: 429
+  message: Priority export slot is busy
+  schema: (no schema declared)
+  occurrences: 1
+  operation_scope: exports
+  remediation: >-
+    The ONLY 429 declared anywhere in the contract, and it is a concurrency limit on
+    priority exports rather than a request-rate limit. See rate-limits/later-rate-limits.yml —
+    no published rate-limit headers exist.
+- status: 500
+  message: Server Error
+  schema: ServerError / Error
+  occurrences: 685
+  type_key_observed: SERVER_ERROR
+  remediation: >-
+    Declared on 685 of 687 operations. Retry with backoff. Observed live on
+    GET /v1/communities without credentials, so a 500 here does not necessarily indicate
+    an outage.
+- status: default
+  message: Unexpected error
+  schema: Error
+  occurrences: 39
+  remediation: Fall back to reading `type` and `error` from the legacy envelope.
+coverage:
+  operations_total: 687
+  operations_with_error_responses: 686
+  distinct_status_codes:
+  - 302
+  - 400
+  - 401
+  - 403
+  - 404
+  - 409
+  - 410
+  - 412
+  - 422
+  - 429
+  - 500
+  - default
+gaps:
+- No `type` key enum is published, so the SCREAMING_SNAKE_CASE values in the legacy
+  envelope cannot be enumerated from the contract — RESOURCE_FORBIDDEN_ERROR and
+  SERVER_ERROR are recorded here only because they were observed live.
+- No public error-reference documentation page exists on later.com to enrich these.
+- The two envelopes coexist on the same host with no discriminator; a client must be
+  prepared for both `{type,error}` and `{message,details}`.

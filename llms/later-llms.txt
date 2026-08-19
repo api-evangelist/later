@@ -1,0 +1,92 @@
+# Later
+
+> Later is a social media scheduling and influencer marketing platform. It ships two
+> products with two very different API postures: Later Social (later.com / app.later.com),
+> the scheduling product, which has NO public API; and Later Influence (formerly Mavrck),
+> the enterprise influencer marketing platform, which serves a complete 687-operation
+> Swagger 2.0 contract anonymously at https://api.mavrck.co/api-docs.
+
+Generated 2026-08-13 by the API Evangelist enrichment pipeline. Later publishes no
+llms.txt of its own — https://later.com/llms.txt returns 404 — so this file is generated
+from the provider's own contract and from live probes, not copied from Later.
+
+## What is actually callable
+
+- Base URL: https://api.mavrck.co/v1 (verified live 2026-08-13; an unauthenticated
+  GET returns 403 with `{"type":"RESOURCE_FORBIDDEN_ERROR",...}`)
+- Contract: https://api.mavrck.co/api-docs — Swagger 2.0, 548 paths, 687 operations,
+  1,071 definitions, 170 tags
+- Authentication: an `api-key` request header on the brand/admin surface; a bearer JWT on
+  the influencer-facing `/v1/later-influencers/*` surface (used but NOT declared in the
+  contract)
+- The contract still titles itself "MAVRCK.IO" and names `host: app.splashscore.com`.
+  Mavrck rebranded to Later on 2024-01-17 (https://www.mavrck.co/) and the contract's own
+  operation text refers to "Later Social" and "Later Influence".
+
+## Capability surface
+
+- Campaigns / action groups — the two names are the same object
+- Creators (global users), memberships, curated lists
+- Candidate sourcing, assessment, opt-in and participation
+- Concept and draft content review, feedback and approval
+- Activations with approve / reject / unreject
+- Incentives, winners, reward wins, and payout through Stripe, Tipalti, cash and gift cards
+- Conversations, bulk messaging, scheduled notifications
+- Brand suitability and brand safety screening (33 operations)
+- Campaign performance metrics, audience insights and reporting enrichment
+- Shopify and Meta integrations
+
+## Artifacts in this repo
+
+- openapi/later-influence-api-openapi.json — the contract, saved verbatim
+- openapi/_original/ — the untouched harvest
+- authentication/later-authentication.yml — both credentials, including the undeclared JWT
+- conventions/later-conventions.yml — pagination, versioning, error envelopes, the
+  basePath trap
+- errors/later-problem-types.yml — every 4xx/5xx across 687 operations, two envelopes
+- data-model/later-data-model.yml — the entity graph
+- lifecycle/later-lifecycle.yml — status page, versioning, deprecation posture
+- conformance/later-conformance.yml — what it does and does not conform to
+- asyncapi/later-influence-webhooks.yml — eight inbound webhook receivers, zero outbound
+  events
+- mcp/later-mcp.yml — a CANDIDATE tool list; Later ships no MCP server
+- skills/ — five packaged Agent Skills, every operationId verified against the contract
+- overlays/later-influence-api-overlay.yaml — our enhancements, applied without mutating
+  the harvest
+- security/ — domain security, trust center, vulnerability disclosure
+- plans/, rate-limits/, finops/ — commercial terms for Later Social
+
+## What an agent should know before calling this
+
+- NO IDEMPOTENCY. Not one of the 687 operations accepts an idempotency key. Bulk
+  messaging and reward fulfilment move money and send messages to real creators, and a
+  retry is a duplicate.
+- NO OUTBOUND WEBHOOKS. Nothing pushes. Every state change must be polled.
+- NO RATE LIMIT HEADERS. No X-RateLimit-*, no RateLimit-*, no Retry-After anywhere. The
+  only 429 in the contract is a concurrency limit on POST /v1/export/content.
+- 403, NOT 401, is what a missing credential returns on the brand surface.
+- basePath is /v1, but 40 paths carry their own literal /v1 and resolve at the host root.
+  Concatenating both double-prefixes and fails.
+- Two error envelopes coexist: `{type, error, params}` and `{message, details}`.
+- 57 definitions are named *Deprecated while only ONE operation is flagged deprecated,
+  and no sunset date is published for any of them.
+
+## Later Social (the scheduling product)
+
+- Site: https://later.com/
+- App: https://app.later.com/
+- Help: https://help.later.com/hc/en-us
+- Pricing: https://later.com/pricing/
+- Status: https://status.later.com/ (Atlassian Statuspage, machine-readable at
+  /api/v2/summary.json, 16 components — none of which covers api.mavrck.co)
+- No public API, no developer portal, no API keys. later.com/developers/ and
+  later.com/api/ both return 404.
+
+## Company
+
+- Later, https://later.com/
+- Trust center: https://trust.later.com/ — SOC 2 Type 1 and Type 2, ISO/IEC 27001
+- Security contact: security@later.com (from an EXPIRED security.txt on app.later.com)
+- GitHub: https://github.com/latermedia — no API client libraries; the published gems are
+  2018-2019 infrastructure utilities
+- Blog: https://later.com/blog/

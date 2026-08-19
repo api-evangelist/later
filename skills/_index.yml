@@ -1,0 +1,48 @@
+generated: '2026-08-13'
+method: generated
+source: >-
+  Packaged Agent Skills generated from Later's own published Later Influence contract
+  (https://api.mavrck.co/api-docs, saved verbatim to
+  openapi/later-influence-api-openapi.json). Every operationId in every skill was grepped
+  out of that file and verified verbatim on 2026-08-13 — none is invented. Cross-cutting
+  rules cite ../conventions/, ../errors/, ../authentication/ and ../lifecycle/.
+api: Later Influence API
+base_url: https://api.mavrck.co/v1
+provider_published_skills: none found
+provider_published_agents_md: none found
+skills:
+- file: later-launch-influencer-campaign.md
+  name: Launch an influencer campaign
+  api: openapi/later-influence-api-openapi.json
+  operations: [getCommunities, createCampaign, createActionGroup, getAllActionGroupCandidates,
+    bulkOptIn, confirmActionGroupParticipation, sendBulkMessageForActionGroup, getWorkflowStatusBuckets]
+- file: later-source-and-vet-creators.md
+  name: Source and vet creators
+  api: openapi/later-influence-api-openapi.json
+  operations: [getGlobalUsers, getQueryTotal, get, getAudienceDemographics, getGlobalUserAudienceCountries,
+    generateBrandSuitabilityReport, getBrandSuitabilityReport, addNewInfluencer, createGlobalUserList,
+    createGlobalUserListMember]
+- file: later-review-creator-content.md
+  name: Review and approve creator content
+  api: openapi/later-influence-api-openapi.json
+  operations: [getConceptContentForListMember, updateConceptContentFeedback, updateConceptContentStatus,
+    getDraftContentForListMember, updateDraftContentFeedback, updateDraftContentStatus,
+    getActionGroupActivations, approveApprovalStatus, rejectApprovalStatus, unrejectApprovalStatus]
+- file: later-fulfill-creator-rewards.md
+  name: Fulfill creator rewards and payments
+  api: openapi/later-influence-api-openapi.json
+  operations: [getSummary, getAllRewardWins, getAllInfluencerRewardWins, fulfillRewardWin,
+    bulkFulfillRewardWinsObjects, unfulfillRewardWin, reverseRewardWin, voidTipaltiPayment,
+    getWinners, disqualifyUser, requalifyUser]
+- file: later-report-campaign-performance.md
+  name: Report on campaign performance
+  api: openapi/later-influence-api-openapi.json
+  operations: [getPostMetrics, getInfluencersMetrics, getInfluencersConversions, getAudienceInsights,
+    getAggregatedAudienceInsights, GetEnrichCampaignsData, GetCreatorDetails, GetContentEnrichmentV2,
+    GetInfluencerIncentiveCosts, GetCampaignReviews, exportContent]
+safety_notes:
+- >-
+  Every skill repeats the same warning because it is the defining property of this API —
+  there is NO idempotency key on any of the 687 operations, so bulk messaging and reward
+  fulfilment cannot be safely retried.
+- There are no outbound webhooks. Every skill is poll-based.

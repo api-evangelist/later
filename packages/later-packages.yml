@@ -1,0 +1,80 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  registry.npmjs.org, pypi.org, rubygems.org and github.com/Latermedia, searched
+  2026-08-13
+api_client_packages: []
+package_count: 0
+official_sdk_count: 0
+note: >-
+  Later publishes NO first-party client library for either of its APIs. Searched npm
+  (registry search for "later-api", "mavrck", "later-social", "latergram"; direct lookups
+  of later-sdk, later-client, mavrck-api, @latermedia/mcp — all 404), PyPI (later-api,
+  mavrck, later-sdk — all 404) and RubyGems. The Later Influence contract at
+  https://api.mavrck.co/api-docs ships no SDK link and no code samples. Because there is
+  no official SDK, NO `type: SDKs` pointer is emitted for this provider.
+related_first_party_libraries:
+  note: >-
+    github.com/Latermedia does publish gems, but they are internal infrastructure
+    utilities, NOT clients for Later's own API. They are recorded here as honest evidence
+    of first-party open-source activity and its currency, and are explicitly marked
+    api_client: false so they cannot be mistaken for an SDK.
+  packages:
+  - name: env_helpers
+    registry: rubygems
+    url: https://rubygems.org/gems/env_helpers
+    repository: https://github.com/Latermedia/env_helpers
+    official: true
+    api_client: false
+    purpose: A set of helpers to improve ENV functionality
+    version: 0.1.0
+    published: '2018-11-21'
+  - name: sidekiq_spread
+    registry: rubygems
+    url: https://rubygems.org/gems/sidekiq_spread
+    repository: https://github.com/Latermedia/sidekiq_spread
+    official: true
+    api_client: false
+    purpose: Spread Sidekiq work load out over time
+    version: 0.1.0
+    published: '2018-11-27'
+  - name: sidekiq_simple_delay
+    registry: rubygems
+    url: https://rubygems.org/gems/sidekiq_simple_delay
+    repository: https://github.com/Latermedia/sidekiq_simple_delay
+    official: true
+    api_client: false
+    purpose: Sidekiq delay functionality with restrictions
+    version: 0.2.1
+    published: '2019-01-15'
+  - name: sidekiq_fast_debounce
+    registry: rubygems
+    url: null
+    repository: https://github.com/Latermedia/sidekiq_fast_debounce
+    official: true
+    api_client: false
+    purpose: Fast debounce functionality for Sidekiq jobs
+    version: null
+    published: null
+    note: >-
+      Source is public on GitHub but the gem is not published to RubyGems
+      (rubygems.org/api/v1/gems/sidekiq_fast_debounce.json — "This rubygem could not be
+      found"), so there is no registry version to record.
+  - name: faktory_exporter
+    registry: github-only
+    url: https://github.com/Latermedia/faktory_exporter
+    repository: https://github.com/Latermedia/faktory_exporter
+    official: true
+    api_client: false
+    purpose: Prometheus exporter for Faktory stats
+    version: null
+    published: null
+    note: >-
+      Go source, no module proxy release tag checked successfully (GitHub API rate-limited
+      during this pass); repository last pushed 2026-06-12, the only actively maintained
+      first-party repository in the org.
+  currency_finding: >-
+    Every published first-party gem last shipped in 2018-2019. The Latermedia GitHub
+    org's other 46 repositories are forks of third-party libraries. There is no packaged
+    distribution decay signal for the Later Influence API because there was never a
+    package wrapping it.

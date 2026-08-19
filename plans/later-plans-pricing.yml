@@ -1,7 +1,17 @@
+generated: '2026-08-13'
+method: searched
+source: https://later.com/pricing/
 name: Later Plans and Pricing
 description: Pricing plans for Later's social media scheduling and influencer marketing platform
 url: https://later.com/pricing/
-plans:
+plan_count: 3
+verified: '2026-08-13'
+verification_note: >-
+  Re-read https://later.com/pricing/ on 2026-08-13. The three tiers, their limits and the
+  25% annual discount below are unchanged from the 2026-06-13 capture. The page defaults
+  its display to the ANNUAL price, so the headline figures it shows ($18.75 / $37.50 /
+  $82.50) are the annual-billed monthly rates already recorded here as `annually`.
+
   - name: Starter
     description: Basic social media scheduling for individuals and small teams
     price:
@@ -76,3 +86,27 @@ notes:
   - Annual billing provides 25% discount over monthly billing
   - Enterprise plans available with custom pricing
   - Influencer marketing managed services available separately
+  - The Starter tier does not accept add-ons; extra social sets, users and AI credits are
+    only purchasable on Growth and Scale.
+later_influence:
+  product: Later Influence (formerly Mavrck) — the enterprise influencer marketing platform,
+    and the ONLY Later product with a published API
+  url: https://later.com/influencer-marketing-platform/pricing/
+  method: searched
+  verified: '2026-08-13'
+  published_prices: false
+  plan_count: 3
+  tiers:
+    - name: Platform
+      price: Request Pricing
+    - name: Platform + Services
+      price: Request Pricing
+    - name: Services
+      price: Request Pricing
+  free_trial: false
+  note: >-
+    Three named tiers with no disclosed price of any kind — every one is a "Request
+    Pricing" contact-sales form. The page states plainly: "We don't currently offer a free
+    trial for Later Influence. Instead, we offer three levels of paid plans." So the API
+    that has a real 687-operation contract sits behind a sales gate, while the product
+    with transparent self-serve pricing has no API at all.

@@ -1,14 +1,44 @@
-generated: '2026-07-11'
+generated: '2026-08-13'
 method: searched
 probe: true
 source: https://trust.later.com/
 url: https://trust.later.com/
+vendor: SafeBase (later.portals.safebase.io)
 certifications:
-- SOC 2
-- ISO 27001
+- SOC 2 Type 2
+- SOC 2 Type 1
+- ISO/IEC 27001
+audit_artifacts:
+- SOC 2 Report
+- Penetration test report
+programs:
+- Information Security Policy
+- Asset Management Policy
+- Data Classification Policy
+- Risk Assessment / Risk Management
+- Software Development Lifecycle Policy
+- Business Continuity / Disaster Recovery
+- Incident Response
+- Change Management
+- Continuous Monitoring
+- Security Awareness Training
+- Access Control
+- Endpoint Security
+- Network Security
+- Physical and Environmental controls
+access: >-
+  Reports are gated — the trust center offers documents "upon request" behind an NDA/
+  request flow rather than publishing them.
+gaps:
+- No vulnerability disclosure policy and no bug bounty program is linked from the trust
+  center. The only public security contact is the mailto in the expired security.txt on
+  app.later.com. See security/later-vulnerability-disclosure.yml.
 evidence:
 - source: https://trust.later.com/
+  fetched: '2026-08-13'
   keywords:
-  - soc 2
+  - soc 2 type 2
+  - soc 2 type 1
   - iso/iec 27001
+  - pentest report
   - trust center

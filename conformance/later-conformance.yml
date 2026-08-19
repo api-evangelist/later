@@ -1,0 +1,130 @@
+generated: '2026-08-13'
+method: derived
+source: >-
+  openapi/later-influence-api-openapi.json, https://trust.later.com/,
+  https://app.later.com/.well-known/security.txt, live probes 2026-08-13
+api: Later Influence API
+note: >-
+  Cross-cutting standards assertion. Every `conforms: false` below is a measured absence,
+  not an assumption — the evidence names the file, path or probe that establishes it.
+standards:
+- id: openapi-3
+  name: OpenAPI 3.x
+  conforms: false
+  evidence: >-
+    The published contract at https://api.mavrck.co/api-docs declares `swagger: "2.0"`.
+    It is a real, complete, 687-operation machine-readable contract, but it predates
+    OpenAPI 3 and uses host/basePath/definitions/securityDefinitions rather than
+    servers/components/securitySchemes.
+- id: swagger-2
+  name: Swagger / OpenAPI 2.0
+  conforms: true
+  evidence: >-
+    openapi/later-influence-api-openapi.json declares `swagger: "2.0"` with 548 paths,
+    687 operations and 1071 definitions.
+- id: asyncapi
+  name: AsyncAPI
+  conforms: false
+  evidence: >-
+    /asyncapi.yaml and /asyncapi.json return 404 on later.com and api.mavrck.co (301 on
+    app.later.com). See asyncapi/later-influence-webhooks.yml.
+- id: rfc9457
+  name: RFC 9457 Problem Details for HTTP APIs
+  conforms: false
+  evidence: >-
+    No operation declares application/problem+json; the contract's only produced media
+    type is application/json and it carries two competing vendor error envelopes. See
+    errors/later-problem-types.yml.
+- id: oauth2
+  name: OAuth 2.0
+  conforms: false
+  evidence: >-
+    `securityDefinitions` declares a single apiKey header scheme. No authorization or
+    token endpoint is published; /.well-known/oauth-authorization-server 404s on every
+    host. (The /oauth/tiktok and /auth/facebook operations are OAuth against the SOCIAL
+    NETWORKS, not against Later.)
+- id: oidc
+  name: OpenID Connect
+  conforms: false
+  evidence: /.well-known/openid-configuration returns 404 (later.com, api.mavrck.co) and
+    301 (app.later.com).
+- id: idempotency
+  name: Idempotent request keys (draft-ietf-httpapi-idempotency-key-header)
+  conforms: false
+  evidence: >-
+    Zero occurrences of any idempotency header or parameter across all 687 operations.
+    No `type: Idempotency` pointer is emitted. See conventions/later-conventions.yml.
+- id: rfc8594
+  name: RFC 8594 Sunset header / deprecation signalling
+  conforms: false
+  evidence: >-
+    No Sunset or Deprecation response header is declared anywhere in the contract; in
+    fact NO response headers at all are declared. One operation carries
+    `deprecated: true` while 57 definitions are named *Deprecated. See
+    lifecycle/later-lifecycle.yml.
+- id: rfc9116
+  name: RFC 9116 security.txt
+  conforms: partial
+  evidence: >-
+    Served at https://app.later.com/.well-known/security.txt (HTTP 200) with Contact and
+    Expires, but the Expires date is 2024-06-12 — expired — and there is no Policy field.
+    Under RFC 9116 section 2.5.5 the file MUST NOT be used while expired.
+- id: rate-limit-headers
+  name: RateLimit header fields (draft-ietf-httpapi-ratelimit-headers)
+  conforms: false
+  evidence: >-
+    No X-RateLimit-*, RateLimit-* or Retry-After header appears in the contract, and none
+    was returned on live unauthenticated responses from api.mavrck.co on 2026-08-13.
+- id: pagination
+  name: Consistent collection pagination
+  conforms: partial
+  evidence: >-
+    limit/offset query parameters are used consistently (56 and 53 operations), but only
+    ONE paginated response envelope carrying meta.totalCount is declared, so most list
+    operations return a bare array with no total.
+- id: json-api
+  name: 'JSON:API'
+  conforms: false
+  evidence: No application/vnd.api+json media type and no JSON:API document structure in
+    any response schema.
+- id: odata
+  name: OData
+  conforms: false
+  evidence: No $filter/$select/$expand parameters; filtering uses a bespoke jsurl-encoded
+    `userFilter` parameter.
+- id: cloudevents
+  name: CloudEvents
+  conforms: false
+  evidence: The webhook receivers carry bare vendor payloads with no CloudEvents envelope.
+- id: soc2
+  name: SOC 2 (Type 1 and Type 2)
+  conforms: true
+  evidence: https://trust.later.com/ names SOC 2 Type 2 and SOC 2 Type 1 reports; reports
+    are request-gated.
+- id: iso27001
+  name: ISO/IEC 27001
+  conforms: true
+  evidence: https://trust.later.com/ names ISO/IEC 27001 certification.
+- id: gdpr
+  name: GDPR / data subject rights
+  conforms: partial
+  evidence: >-
+    https://later.com/privacy/ is published (HTTP 200), and the API implements Shopify's
+    mandated GDPR compliance webhooks (shop/redact, customers/redact,
+    customers/data_request). No DPA or subprocessor page is published at
+    later.com/dpa or later.com/subprocessors (both 404).
+- id: pci-dss
+  name: PCI DSS
+  conforms: false
+  evidence: >-
+    Not claimed on the trust center. Creator payouts are delegated to Stripe Connect,
+    Tipalti and gift-card providers rather than handled directly.
+not_applicable:
+- id: fhir
+  reason: not a healthcare API
+- id: fapi
+  reason: not a financial-grade banking API
+- id: scim
+  reason: no identity provisioning surface is published
+- id: psd2
+  reason: not a payments/open-banking API

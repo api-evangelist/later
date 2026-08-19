@@ -1,0 +1,194 @@
+generated: '2026-08-13'
+method: derived
+source: openapi/later-influence-api-openapi.json
+status: candidate
+name: Later Influence (candidate MCP server)
+description: >-
+  A CANDIDATE tool surface derived from Later's own published contract. Later ships no MCP
+  server of any kind — no hosted endpoint and no installable package — so nothing here is
+  callable by an agent today.
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: api-key
+  verified: derived
+search_evidence:
+  note: >-
+    Probed on 2026-08-13. No MCP server exists on any Later or Mavrck host, and no MCP
+    package is published to npm or PyPI.
+  probes:
+  - url: https://later.com/mcp
+    http_status: 404
+  - url: https://app.later.com/mcp
+    http_status: 404
+  - url: https://api.mavrck.co/mcp
+    http_status: 404
+  - url: https://api.mavrck.co/v1/mcp
+    http_status: 404
+  - url: https://mcp.later.com/
+    http_status: 000
+    note: does not resolve in DNS
+  - url: https://mcp.mavrck.co/
+    http_status: 200
+    note: >-
+      SOFT 404 — REJECTED. mavrck.co has wildcard DNS and the origin answers HTTP 200 with
+      the 13-byte body "404 Not Found" for every unknown subdomain (verified identical on
+      zzztest.mavrck.co). A POST of {"jsonrpc":"2.0","id":1,"method":"tools/list"} returns
+      the same "404 Not Found" body under a 200. This is NOT an MCP endpoint and is
+      recorded so a later pass does not credit it as one.
+  registries:
+  - registry: npm
+    query: '@latermedia/mcp, later-sdk, mavrck-api'
+    result: 404
+  - registry: pypi
+    query: later-api, mavrck, later-sdk
+    result: 404
+candidate_tools:
+  note: >-
+    Derived one-to-one from real operationIds in the contract. Each tool would inherit its
+    backing operation's parameters and request body as its inputSchema. Nothing is invented.
+  tools:
+  - name: list_campaigns
+    description: List influencer marketing campaigns for the community.
+    rest: [getAllCampaigns]
+    method: GET
+    path: /v1/campaigns
+  - name: get_campaign
+    description: Retrieve a single campaign by id.
+    rest: [getCampaignById]
+    method: GET
+    path: /v1/campaigns/{id}
+  - name: create_campaign
+    description: Create a new campaign.
+    rest: [createCampaign]
+    method: POST
+    path: /v1/campaigns
+  - name: list_action_groups
+    description: List action groups — the brand-facing name for campaigns.
+    rest: [getAllActionGroups]
+    method: GET
+    path: /action-groups
+  - name: list_campaign_candidates
+    description: List the creators being considered for an action group.
+    rest: [getAllActionGroupCandidates]
+    method: GET
+    path: /action-groups/{id}/candidates
+  - name: assess_candidate
+    description: Record an assessment of a candidate creator on a campaign.
+    rest: [createAssessment]
+    method: POST
+    path: /action-groups/{id}/candidates/{globalUserId}/assessment
+  - name: search_creators
+    description: Search the global user (creator) index.
+    rest: [getGlobalUsers, getQueryTotal]
+    method: GET
+    path: /v1/global-users
+  - name: get_creator
+    description: Retrieve a creator profile.
+    rest: [get]
+    method: GET
+    path: /v1/global-users/{id}
+  - name: add_creator
+    description: Add a new influencer to the community.
+    rest: [addNewInfluencer]
+    method: PUT
+    path: /v1/global-users
+  - name: get_creator_audience_demographics
+    description: Retrieve audience demographics for a creator.
+    rest: [getAudienceDemographics, getGlobalUserAudienceCountries]
+    method: GET
+    path: /v1/global-users/{globalUserId}/audience-demographics
+  - name: get_brand_suitability_report
+    description: Retrieve the brand-safety/suitability report for a creator.
+    rest: [getBrandSuitabilityReport]
+    method: GET
+    path: /v1/global-users/{globalUserId}/brand-suitability
+  - name: generate_brand_suitability_report
+    description: Generate a fresh brand-suitability report for a creator.
+    rest: [generateBrandSuitabilityReport, makeBrandSafetyRequest]
+    method: POST
+    path: /v1/global-users/{globalUserId}/brand-suitability
+  - name: list_activations
+    description: List creator activations.
+    rest: [getActivations, getActionGroupActivations]
+    method: GET
+    path: /activations
+  - name: approve_activation
+    description: Approve a submitted activation.
+    rest: [approveApprovalStatus]
+    method: PUT
+    path: /v1/activations/{activationId}/approveApprovalStatus
+  - name: reject_activation
+    description: Reject a submitted activation.
+    rest: [rejectApprovalStatus]
+    method: PUT
+    path: /v1/activations/{activationId}/rejectApprovalStatus
+  - name: review_draft_content
+    description: Set the status of, and leave feedback on, submitted draft content.
+    rest: [updateDraftContentStatus, updateDraftContentFeedback]
+    method: PUT
+    path: /v1/draft-content/{draftContentId}/status
+  - name: review_concept_content
+    description: Set the status of, and leave feedback on, a submitted creative concept.
+    rest: [updateConceptContentStatus, updateConceptContentFeedback]
+    method: PUT
+    path: /v1/concept-content/{conceptContentId}/status
+  - name: list_conversations
+    description: List brand-to-creator conversations.
+    rest: [getConversations, findAllConversations, countConversations]
+    method: GET
+    path: /conversations
+  - name: send_message
+    description: Send a message to a creator in a conversation.
+    rest: [sendMessage, replyToMessage]
+    method: PUT
+    path: /sendMessage/{messageId}
+  - name: send_bulk_campaign_message
+    description: Send one message to every list member on an action group.
+    rest: [sendBulkMessageForActionGroup]
+    method: POST
+    path: /action-groups/{actionGroupId}/bulk-message
+  - name: list_reward_wins
+    description: List reward wins awaiting fulfilment or payment.
+    rest: [getAllRewardWins, getSummary]
+    method: GET
+    path: /v1/reward-wins
+  - name: fulfill_reward_win
+    description: Mark a reward win as fulfilled.
+    rest: [fulfillRewardWin, bulkFulfillRewardWinsObjects]
+    method: PUT
+    path: /v1/reward-wins/{id}/fulfillment
+  - name: list_incentives
+    description: List incentives and their claims and winners.
+    rest: [getAll, getIncentiveClaims, getWinners]
+    method: GET
+    path: /v1/incentives
+  - name: get_campaign_performance
+    description: Read post, influencer and conversion metrics for campaign performance.
+    rest: [getPostMetrics, getInfluencersMetrics, getInfluencersConversions]
+    method: GET
+    path: /v1/campaign-performance/post-metrics
+  - name: get_audience_insights
+    description: Read aggregated audience insights across a campaign.
+    rest: [getAudienceInsights, getAggregatedAudienceInsights]
+    method: GET
+    path: /v1/campaign-performance/audience-insights
+  - name: manage_creator_lists
+    description: Create, read and update curated creator lists and their members.
+    rest: [getGlobalUserLists, createGlobalUserList, createGlobalUserListMember, moveGlobalUserListMember]
+    method: GET
+    path: /global-user-lists
+authentication_note: >-
+  A real server would send the `api-key` request header on the brand/admin surface, and a
+  bearer JWT on the /v1/later-influencers/* surface. See
+  authentication/later-authentication.yml. No OAuth exists, so no MCP OAuth challenge
+  metadata could be fetched.
+caveats:
+- 'DESTRUCTIVE OPERATIONS: fulfill_reward_win, send_bulk_campaign_message and
+  approve/reject_activation move real money and send real messages to creators. The API
+  publishes no idempotency key (see conventions/later-conventions.yml), so a retried tool
+  call is a duplicate payment or a duplicate blast.'
+- The contract carries no operation-level rate limits and no rate-limit response headers,
+  so a server would have no backpressure signal to expose.

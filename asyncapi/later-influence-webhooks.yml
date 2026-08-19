@@ -1,0 +1,110 @@
+generated: '2026-08-13'
+method: derived
+source: openapi/later-influence-api-openapi.json
+api: Later Influence API
+asyncapi_published: false
+note: >-
+  Later publishes NO AsyncAPI document — probed /asyncapi.yaml and /asyncapi.json on
+  later.com, app.later.com and api.mavrck.co with no hit, and the Latermedia GitHub org
+  carries no event contract. What Later DOES publish, inside its REST contract, is a set of
+  webhook ENDPOINTS. Read the direction carefully before using this: these are RECEIVERS
+  Later exposes for named partners to POST into, not an outbound event-subscription surface
+  a customer can register a callback URL against. There is no subscription API, no event
+  catalog, no signing-secret documentation and no delivery-retry policy published anywhere.
+direction: inbound-receivers
+subscription_management: none published
+signature_verification: none documented
+retry_policy: none documented
+webhooks:
+- name: creator-opt-in
+  direction: inbound
+  method: POST
+  path: /webhooks/later/opt-in
+  operationId: optIn
+  tag: OptIn
+  caller: Later Social (the later.com product) notifying Later Influence
+  payload_schema: '#/definitions/CreatorOptInRequestWithCreatorProfileId'
+  success_status: 204
+  error_statuses: [403, 404, 500]
+- name: creator-opt-in-update
+  direction: inbound
+  method: POST
+  path: /webhooks/later/update
+  operationId: optInUpdate
+  tag: OptIn
+  caller: Later Social
+  payload_schema: '#/definitions/CreatorOptInRequestWithCreatorProfileId'
+  success_status: 204
+  error_statuses: [403, 404, 500]
+- name: creator-opt-out
+  direction: inbound
+  method: POST
+  path: /webhooks/later/opt-out
+  operationId: optInOptOut
+  tag: OptIn
+  caller: Later Social
+  payload_schema: '#/definitions/CreatorOptOutRequest'
+  success_status: 204
+  error_statuses: [403, 404, 500]
+- name: sendgrid-events
+  direction: inbound
+  method: POST
+  path: /webhooks/sendgrid-events
+  operationId: sendgridWebhookEvents
+  caller: SendGrid (email delivery events)
+  payload_schema: array of '#/definitions/SendGridEvent'
+  auth: '`token` query parameter'
+  success_status: 200
+  error_statuses: [400, 403, 404, 500]
+- name: shopify-app-uninstall
+  direction: inbound
+  method: POST
+  path: /v1/shopify-accounts/webhooks/uninstall
+  operationId: uninstallShopifyApp
+  tag: ShopifyAccount
+  caller: Shopify
+  success_status: 204
+  error_statuses: [400, 403, 404, 500]
+- name: shopify-shop-redact
+  direction: inbound
+  method: POST
+  path: /v1/shopify-accounts/webhooks/compliance/shop/redact
+  operationId: shopRedact
+  tag: ShopifyAccount
+  caller: Shopify
+  purpose: Shopify-mandated GDPR compliance webhook
+  success_status: 200
+  error_statuses: [400, 403, 404, 500]
+- name: shopify-customer-redact
+  direction: inbound
+  method: POST
+  path: /v1/shopify-accounts/webhooks/compliance/customers/redact
+  operationId: customerRedact
+  tag: ShopifyAccount
+  caller: Shopify
+  purpose: Shopify-mandated GDPR compliance webhook
+  success_status: 200
+  error_statuses: [400, 403, 404, 500]
+- name: shopify-customer-data-request
+  direction: inbound
+  method: POST
+  path: /v1/shopify-accounts/webhooks/compliance/customers/data_request
+  operationId: customerDataRequest
+  tag: ShopifyAccount
+  caller: Shopify
+  purpose: Shopify-mandated GDPR compliance webhook
+  success_status: 200
+  error_statuses: [400, 403, 404, 500]
+adjacent_notification_surface:
+  note: >-
+    Later Influence also ships an internal notification/messaging surface that is
+    request-response, not event-driven — /scheduled-notifications (create, approve,
+    unapprove), /action-groups/{id}/setup-alerts, and the ScheduledMessages tag. These are
+    listed for completeness; they are not webhooks and do not deliver events to a consumer.
+counts:
+  webhook_endpoints: 8
+  outbound_events: 0
+gaps:
+- No AsyncAPI, CloudEvents or event-catalog document is published.
+- A customer of the Later Influence API cannot subscribe to campaign, activation, draft
+  approval or payment events; the only way to learn that state changed is to poll.

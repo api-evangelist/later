@@ -1,0 +1,103 @@
+generated: '2026-08-13'
+method: probed
+source: >-
+  https://status.later.com/api/v2/summary.json (probed 2026-08-13, HTTP 200) and
+  openapi/later-influence-api-openapi.json
+note: >-
+  Later publishes an operational status page with a machine-readable Statuspage API, but
+  publishes NO API versioning policy, NO deprecation policy, NO sunset-header commitment
+  and NO SLA on any public page. Everything below is either read off a live probe or
+  derived from the contract; nothing is assumed.
+versioning:
+  scheme: uri-path
+  current_version: v1
+  base_url: https://api.mavrck.co/v1
+  policy_published: false
+  policy_url: null
+  note: >-
+    The contract's basePath is /v1 and no other version has ever been published at this
+    host. 40 paths carry a second literal /v1 prefix — see conventions/later-conventions.yml
+    for the probe that separates the two.
+deprecation:
+  policy_published: false
+  sunset_header: not observed
+  deprecation_header: not observed
+  rfc8594_conformant: false
+  spec_flagged_operations:
+  - method: POST
+    path: /v1/global-users/{globalUserId}/content
+    operationId: fetchContent
+    deprecated: true
+  spec_flagged_operation_count: 1
+  naming_convention_signal:
+    count: 57
+    detail: >-
+      57 definitions carry a `Deprecated` suffix in their NAME (BrandDeprecated,
+      ActionGroupDeprecated, GlobalUserDeprecated, MembershipDeprecated,
+      IncentiveDeprecated, InstagramProfileDeprecated, TwitterAccountDeprecated,
+      ConversationTemplateDeprecated and 49 more). Several are still referenced by
+      operations that are NOT flagged `deprecated: true`. That is the deprecation
+      posture in practice: the schema layer says "legacy", the operation layer says
+      nothing, and a client has no dated retirement to plan against.
+    source: openapi/later-influence-api-openapi.json
+status_page:
+  url: https://status.later.com/
+  vendor: Atlassian Statuspage
+  page_id: hwl0tlgv8kg1
+  machine_readable: true
+  api:
+    summary: https://status.later.com/api/v2/summary.json
+    status: https://status.later.com/api/v2/status.json
+    history_rss: https://status.later.com/history.rss
+    history_atom: https://status.later.com/history.atom
+  probed:
+    url: https://status.later.com/api/v2/summary.json
+    http_status: 200
+    fetched: '2026-08-13'
+    indicator: none
+    description: All Systems Operational
+  components_tracked: 16
+  component_groups:
+  - app.later.com
+  - Social Networks
+  components:
+  - General Site
+  - Login/Signup
+  - Scheduling
+  - Media Library
+  - Image Processing
+  - linkin.bio
+  - Instagram
+  - Facebook
+  - Threads
+  - TikTok
+  - Pinterest
+  - Linkedin
+  - Youtube
+  - Snapchat
+  coverage_gap: >-
+    The status page covers the Later Social product (app.later.com) and the social
+    networks it publishes to. NO component covers api.mavrck.co or Later Influence, so
+    the only API with a published contract is the one surface the status page does not
+    report on.
+sla:
+  published: false
+  probed:
+  - url: https://later.com/sla
+    http_status: 404
+  - url: https://later.com/dpa
+    http_status: 404
+support:
+  help_center: https://help.later.com/hc/en-us
+  note: Zendesk help center; returns 403 to automated clients.
+  security_contact: security@later.com (from app.later.com/.well-known/security.txt)
+change_communication:
+  changelog_published: false
+  probed:
+  - url: https://later.com/changelog/
+    http_status: 404
+  - url: https://later.com/whats-new/
+    http_status: 404
+  fallback: >-
+    Product and incident news is published to https://later.com/blog/ and the status page
+    history feed; there is no dated API changelog.

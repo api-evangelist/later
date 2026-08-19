@@ -1,3 +1,6 @@
+generated: '2026-08-13'
+method: derived
+source: plans/later-plans-pricing.yml
 name: Later FinOps
 description: Financial operations guidance for managing Later platform costs
 url: https://later.com/pricing/

@@ -1,0 +1,106 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Later Influence API
+  version: 1.0.0
+x-provenance:
+  generated: '2026-08-13'
+  method: generated
+  source: openapi/later-influence-api-openapi.json
+  note: >-
+    Captures API Evangelist's enhancements to Later's verbatim Swagger 2.0 harvest without
+    mutating it. The harvested contract is stored unchanged at
+    openapi/_original/later-influence-api-openapi-original.json. Every value asserted here
+    was measured on 2026-08-13 against the live host or read out of the contract itself.
+extends: openapi/later-influence-api-openapi.json
+actions:
+- target: $.info
+  description: >-
+    Name the product and the owner. The harvested contract still titles itself MAVRCK.IO,
+    the pre-January-2024 brand, which makes the API unattributable to Later on title alone.
+  update:
+    title: Later Influence API
+    x-brand-history: >-
+      Published as "MAVRCK.IO". Mavrck rebranded to Later on 2024-01-17
+      (https://www.mavrck.co/), and the contract's own operation descriptions refer to
+      "Later Social" and "Later Influence". The LaterInfluencer tag carries 45 operations.
+    x-provider: Later
+    x-provider-site: https://later.com/
+    x-contract-url: https://api.mavrck.co/api-docs
+- target: $
+  description: >-
+    Record the host the contract is actually served and callable from. The harvested
+    `host` is app.splashscore.com — Splashscore Inc. is Mavrck's legal entity — which does
+    not answer as a public API base.
+  update:
+    x-served-from: https://api.mavrck.co/api-docs
+    x-verified-base-url: https://api.mavrck.co/v1
+    x-base-url-evidence:
+    - url: https://api.mavrck.co/v1/influencers
+      http_status: 403
+      body: '{"type":"RESOURCE_FORBIDDEN_ERROR","error":"Access to this resource is forbidden."}'
+    - url: https://api.mavrck.co/influencers
+      http_status: 404
+      note: confirms basePath /v1 is required
+    - url: https://api.mavrck.co/v1/later-influencers/1
+      http_status: 401
+      note: >-
+        the 40 paths that carry their own literal /v1 prefix resolve at the HOST ROOT, not
+        under basePath; concatenating basePath + path double-prefixes and fails
+    x-basepath-inconsistency: true
+- target: $
+  description: Declare the second, undeclared credential the API actually enforces.
+  update:
+    x-additional-security:
+      jwt:
+        type: http
+        scheme: bearer
+        bearerFormat: JWT
+        applies_to: /v1/later-influencers/{influencerIdOrCreatorId}/**
+        minted_by:
+        - POST /email-auth/login
+        - POST /email-auth/signup
+        - POST /api-key/facebook
+        - POST /auto-login
+        - POST /v1/api-key/login
+        evidence:
+          url: https://api.mavrck.co/v1/later-influencers/1
+          http_status: 401
+          body: '{"message":"Unauthorized - Unable to verify the signed JWT token."}'
+- target: $
+  description: Record the runtime semantics the contract does not state.
+  update:
+    x-conventions: conventions/later-conventions.yml
+    x-idempotency-supported: false
+    x-rate-limit-headers: none
+    x-pagination:
+      style: limit-offset
+      envelope: '{ meta: { totalCount, offset, limit }, data: [] }'
+      envelope_coverage: 1 of 548 paths declares the paginated envelope
+    x-error-envelopes: 2
+    x-error-catalog: errors/later-problem-types.yml
+    x-unauthenticated-status: 403
+- target: $
+  description: Record the deprecation posture, which the operation layer does not express.
+  update:
+    x-deprecated-operations: 1
+    x-deprecated-named-definitions: 57
+    x-deprecation-policy-published: false
+    x-lifecycle: lifecycle/later-lifecycle.yml
+- target: $.paths['/v1/global-users/{globalUserId}/content'].post
+  description: Surface the single deprecated operation with a pointer to the lifecycle
+    record, since no sunset date is published for it.
+  update:
+    x-sunset-date-published: false
+    x-lifecycle: lifecycle/later-lifecycle.yml
+- target: $
+  description: Record the webhook receivers as an explicit surface with their direction.
+  update:
+    x-webhooks: asyncapi/later-influence-webhooks.yml
+    x-webhook-direction: inbound-receivers
+    x-outbound-events: 0
+- target: $
+  description: Record the absence of an agent surface, so a consumer does not go looking.
+  update:
+    x-mcp-server: none
+    x-agent-card: none
+    x-agent-skills: skills/_index.yml
