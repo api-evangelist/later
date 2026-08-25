@@ -5,14 +5,14 @@
       "source": "https://later.com/rss.xml",
       "feed_url": "https://later.com/rss.xml",
       "title": "",
-      "saved": 3,
+      "saved": 0,
       "method": "feed"
     },
     {
       "source": "https://status.later.com/history.atom",
       "feed_url": "https://status.later.com/history.atom",
       "title": "",
-      "saved": 3,
+      "saved": 0,
       "method": "feed"
     },
     {
@@ -20,8 +20,7 @@
       "feed_url": "https://www.linkedin.com/company/latergram-me",
       "title": "",
       "saved": 0,
-      "method": "none",
-      "error": "parse_failed"
+      "method": "none"
     },
     {
       "source": "https://status.later.com/",
@@ -31,6 +30,6 @@
       "method": "discovered"
     }
   ],
-  "post_count": 110,
-  "fetched": "2026-08-15T12:11:08Z"
+  "post_count": 111,
+  "fetched": "2026-08-22T20:20:02Z"
 }
