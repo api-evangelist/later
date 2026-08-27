@@ -37,67 +37,4256 @@ tags_raw:
   - Analytics
   - Social Commerce
 apis:
-  - name: Later Social Media Platform
-    description: Later's social media scheduling and management platform providing visual content planning, scheduling, analytics, and influencer marketing capabilities across major social platforms.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://later.com/
-    baseURL: https://app.later.com/
-    tags:
-      - Social Media Scheduling
-      - Content Publishing
-      - Analytics
-      - Influencer Marketing
-    properties:
-      - type: Documentation
-        url: https://help.later.com/hc/en-us
-      - type: Pricing
-        url: https://later.com/pricing/
-      - type: Plans
-        url: plans/later-plans-pricing.yml
-      - type: RateLimits
-        url: rate-limits/later-rate-limits.yml
-      - type: FinOps
-        url: finops/later-finops.yml
-      - type: StatusPage
-        url: https://status.later.com/
-      - type: Blog
-        url: https://later.com/blog/
-  - name: Later Influence API
-    description: 'Later Influence (formerly Mavrck) influencer marketing REST API: campaigns (action groups), influencers and global users, activations, incentives and reward wins, payments (Stripe/PayPal/cash), conversations and messaging, brand suitability, analytics, Shopify and Meta integrations, and the influencer-facing Later Influencer surface. Served from the legacy Mavrck host that Later kept after the January 2024 rebrand.'
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://later.com/influencer-marketing-platform/
-    baseURL: https://api.mavrck.co/v1
-    tags:
-      - Influencer Marketing
-      - Campaigns
-      - Creator Payments
-      - Analytics
-      - Webhook
-    tags_raw:
-      - Influencer Marketing
-      - Campaigns
-      - Creator Payments
-      - Analytics
-      - Webhooks
-    properties:
-      - type: OpenAPI
-        url: openapi/later-influence-api-openapi.json
-      - type: APIReference
-        url: https://api.mavrck.co/api-docs
-      - type: Authentication
-        url: authentication/later-authentication.yml
-      - type: Conventions
-        url: conventions/later-conventions.yml
-      - type: ErrorCatalog
-        url: errors/later-problem-types.yml
-      - type: DataModel
-        url: data-model/later-data-model.yml
-      - type: Webhooks
-        url: asyncapi/later-influence-webhooks.yml
-      - type: Overlay
-        url: overlays/later-influence-api-overlay.yaml
-      - type: Pricing
-        url: https://later.com/influencer-marketing-platform/pricing/
+- name: Later Social Media Platform
+  description: >-
+    Later's social media scheduling and management platform providing visual content planning, scheduling,
+    analytics, and influencer marketing capabilities across major social platforms.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Social Media Scheduling
+  - Content Publishing
+  - Analytics
+  - Influencer Marketing
+  properties:
+  - type: Documentation
+    url: https://help.later.com/hc/en-us
+  - type: Pricing
+    url: https://later.com/pricing/
+  - type: Plans
+    url: plans/later-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/later-rate-limits.yml
+  - type: FinOps
+    url: finops/later-finops.yml
+  - type: StatusPage
+    url: https://status.later.com/
+  - type: Blog
+    url: https://later.com/blog/
+- aid: later:later-accountinvitations-api
+  name: Later Account Invitations API
+  description: The AccountInvitations API from Later — 5 operation(s) for accountinvitations.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - AccountInvitations
+  properties:
+  - type: OpenAPI
+    url: openapi/later-accountinvitations-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-action-groups-api
+  name: Later Action Groups API
+  description: The Action Groups API from Later — 2 operation(s) for action groups.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Action Groups
+  properties:
+  - type: OpenAPI
+    url: openapi/later-action-groups-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-actiongroupbrief-api
+  name: Later Action Group Brief API
+  description: The ActionGroupBrief API from Later — 1 operation(s) for actiongroupbrief.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - ActionGroupBrief
+  properties:
+  - type: OpenAPI
+    url: openapi/later-actiongroupbrief-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-actiongroupbulkscheduledmessages-api
+  name: Later Action Group Bulk Scheduled Messages API
+  description: >-
+    The ActionGroupBulkScheduledMessages API from Later — 1 operation(s) for actiongroupbulkscheduledmessages.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - ActionGroupBulkScheduledMessages
+  properties:
+  - type: OpenAPI
+    url: openapi/later-actiongroupbulkscheduledmessages-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-actiongroupconversationtemplates-api
+  name: Later Action Group Conversation Templates API
+  description: >-
+    The ActionGroupConversationTemplates API from Later — 4 operation(s) for actiongroupconversationtemplates.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - ActionGroupConversationTemplates
+  properties:
+  - type: OpenAPI
+    url: openapi/later-actiongroupconversationtemplates-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-actiongroupcustominfluencerstatuses-api
+  name: Later Action Group Custom Influencer Statuses API
+  description: >-
+    The ActionGroupCustomInfluencerStatuses API from Later — 4 operation(s) for actiongroupcustominfluencerstatuses.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - ActionGroupCustomInfluencerStatuses
+  properties:
+  - type: OpenAPI
+    url: openapi/later-actiongroupcustominfluencerstatuses-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-actiongroupcustomstatuses-api
+  name: Later Action Group Custom Statuses API
+  description: >-
+    The ActionGroupCustomStatuses API from Later — 5 operation(s) for actiongroupcustomstatuses.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - ActionGroupCustomStatuses
+  properties:
+  - type: OpenAPI
+    url: openapi/later-actiongroupcustomstatuses-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-actiongroups-api
+  name: Later Action Groups API
+  description: The ActionGroups API from Later — 14 operation(s) for actiongroups.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - ActionGroups
+  properties:
+  - type: OpenAPI
+    url: openapi/later-actiongroups-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-actiongroupscheduledmessages-api
+  name: Later Action Group Scheduled Messages API
+  description: >-
+    The ActionGroupScheduledMessages API from Later — 3 operation(s) for actiongroupscheduledmessages.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - ActionGroupScheduledMessages
+  properties:
+  - type: OpenAPI
+    url: openapi/later-actiongroupscheduledmessages-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-actiongroupsstatus-api
+  name: Later Action Groups Status API
+  description: The ActionGroupsStatus API from Later — 1 operation(s) for actiongroupsstatus.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - ActionGroupsStatus
+  properties:
+  - type: OpenAPI
+    url: openapi/later-actiongroupsstatus-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-actions-api
+  name: Later Actions API
+  description: The Actions API from Later — 5 operation(s) for actions.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Actions
+  properties:
+  - type: OpenAPI
+    url: openapi/later-actions-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-activations-api
+  name: Later Activations API
+  description: The Activations API from Later — 12 operation(s) for activations.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Activations
+  properties:
+  - type: OpenAPI
+    url: openapi/later-activations-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-activationtags-api
+  name: Later Activation Tags API
+  description: The ActivationTags API from Later — 2 operation(s) for activationtags.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - ActivationTags
+  properties:
+  - type: OpenAPI
+    url: openapi/later-activationtags-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-activationtagsassociations-api
+  name: Later Activation Tags Associations API
+  description: >-
+    The ActivationTagsAssociations API from Later — 2 operation(s) for activationtagsassociations.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - ActivationTagsAssociations
+  properties:
+  - type: OpenAPI
+    url: openapi/later-activationtagsassociations-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-activityhistory-api
+  name: Later Activity History API
+  description: The ActivityHistory API from Later — 1 operation(s) for activityhistory.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - ActivityHistory
+  properties:
+  - type: OpenAPI
+    url: openapi/later-activityhistory-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-administrationaccountslowmigration-api
+  name: Later Administration Account Slow Migration API
+  description: >-
+    The AdministrationAccountSlowMigration API from Later — 1 operation(s) for administrationaccountslowmigration.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - AdministrationAccountSlowMigration
+  properties:
+  - type: OpenAPI
+    url: openapi/later-administrationaccountslowmigration-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-administratoraccounts-api
+  name: Later Administrator Accounts API
+  description: The AdministratorAccounts API from Later — 2 operation(s) for administratoraccounts.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - AdministratorAccounts
+  properties:
+  - type: OpenAPI
+    url: openapi/later-administratoraccounts-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-analytics-api
+  name: Later Analytics API
+  description: The Analytics API from Later — 10 operation(s) for analytics.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Analytics
+  properties:
+  - type: OpenAPI
+    url: openapi/later-analytics-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-anonymouscomments-api
+  name: Later Anonymous Comments API
+  description: The AnonymousComments API from Later — 1 operation(s) for anonymouscomments.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - AnonymousComments
+  properties:
+  - type: OpenAPI
+    url: openapi/later-anonymouscomments-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-anonymousincentiveclaim-api
+  name: Later Anonymous Incentive Claim API
+  description: The AnonymousIncentiveClaim API from Later — 1 operation(s) for anonymousincentiveclaim.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - AnonymousIncentiveClaim
+  properties:
+  - type: OpenAPI
+    url: openapi/later-anonymousincentiveclaim-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-application-api
+  name: Later Application API
+  description: The Application API from Later — 3 operation(s) for application.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Application
+  properties:
+  - type: OpenAPI
+    url: openapi/later-application-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-authentication-api
+  name: Later Authentication API
+  description: The Authentication API from Later — 15 operation(s) for authentication.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/later-authentication-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-backfill-analytics-api
+  name: Later Backfill Analytics API
+  description: The Backfill Analytics API from Later — 2 operation(s) for backfill analytics.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Backfill Analytics
+  properties:
+  - type: OpenAPI
+    url: openapi/later-backfill-analytics-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-batchjobs-api
+  name: Later Batch Jobs API
+  description: The BatchJobs API from Later — 2 operation(s) for batchjobs.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - BatchJobs
+  properties:
+  - type: OpenAPI
+    url: openapi/later-batchjobs-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-bazaarvoice-api
+  name: Later Bazaar Voice API
+  description: The BazaarVoice API from Later — 2 operation(s) for bazaarvoice.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - BazaarVoice
+  properties:
+  - type: OpenAPI
+    url: openapi/later-bazaarvoice-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-blogs-api
+  name: Later Blogs API
+  description: The Blogs API from Later — 2 operation(s) for blogs.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Blogs
+  properties:
+  - type: OpenAPI
+    url: openapi/later-blogs-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-brandsuitability-api
+  name: Later Brand Suitability API
+  description: The BrandSuitability API from Later — 14 operation(s) for brandsuitability.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - BrandSuitability
+  properties:
+  - type: OpenAPI
+    url: openapi/later-brandsuitability-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-brandsuitabilityharness-api
+  name: Later Brand Suitability Harness API
+  description: >-
+    The BrandSuitabilityHarness API from Later — 10 operation(s) for brandsuitabilityharness.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - BrandSuitabilityHarness
+  properties:
+  - type: OpenAPI
+    url: openapi/later-brandsuitabilityharness-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-budgets-api
+  name: Later Budgets API
+  description: The Budgets API from Later — 5 operation(s) for budgets.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Budgets
+  properties:
+  - type: OpenAPI
+    url: openapi/later-budgets-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-bulkassigncustomstatusesrequirements-api
+  name: Later Bulk Assign Custom Statuses Requirements API
+  description: >-
+    The BulkAssignCustomStatusesRequirements API from Later — 1 operation(s) for bulkassigncustomstatusesrequirements.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - BulkAssignCustomStatusesRequirements
+  properties:
+  - type: OpenAPI
+    url: openapi/later-bulkassigncustomstatusesrequirements-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-campaignapplication-api
+  name: Later Campaign Application API
+  description: The CampaignApplication API from Later — 3 operation(s) for campaignapplication.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - CampaignApplication
+  properties:
+  - type: OpenAPI
+    url: openapi/later-campaignapplication-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-campaignperformance-api
+  name: Later Campaign Performance API
+  description: The CampaignPerformance API from Later — 5 operation(s) for campaignperformance.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - CampaignPerformance
+  properties:
+  - type: OpenAPI
+    url: openapi/later-campaignperformance-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-campaignplatformcallback-api
+  name: Later Campaign Platform Callback API
+  description: >-
+    The CampaignPlatformCallback API from Later — 1 operation(s) for campaignplatformcallback.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - CampaignPlatformCallback
+  properties:
+  - type: OpenAPI
+    url: openapi/later-campaignplatformcallback-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-campaigns-api
+  name: Later Campaigns API
+  description: The Campaigns API from Later — 4 operation(s) for campaigns.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Campaigns
+  properties:
+  - type: OpenAPI
+    url: openapi/later-campaigns-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-candidates-api
+  name: Later Candidates API
+  description: The Candidates API from Later — 5 operation(s) for candidates.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Candidates
+  properties:
+  - type: OpenAPI
+    url: openapi/later-candidates-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-cashpayments-api
+  name: Later Cash Payments API
+  description: The CashPayments API from Later — 2 operation(s) for cashpayments.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - CashPayments
+  properties:
+  - type: OpenAPI
+    url: openapi/later-cashpayments-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-comments-api
+  name: Later Comments API
+  description: The Comments API from Later — 3 operation(s) for comments.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Comments
+  properties:
+  - type: OpenAPI
+    url: openapi/later-comments-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-communities-api
+  name: Later Communities API
+  description: The Communities API from Later — 4 operation(s) for communities.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Communities
+  properties:
+  - type: OpenAPI
+    url: openapi/later-communities-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-community-api
+  name: Later Community API
+  description: The Community API from Later — 3 operation(s) for community.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Community
+  properties:
+  - type: OpenAPI
+    url: openapi/later-community-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-communitybenchmarks-api
+  name: Later Community Benchmarks API
+  description: The CommunityBenchmarks API from Later — 1 operation(s) for communitybenchmarks.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - CommunityBenchmarks
+  properties:
+  - type: OpenAPI
+    url: openapi/later-communitybenchmarks-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-communitymetrics-api
+  name: Later Community Metrics API
+  description: The CommunityMetrics API from Later — 2 operation(s) for communitymetrics.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - CommunityMetrics
+  properties:
+  - type: OpenAPI
+    url: openapi/later-communitymetrics-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-concepts-api
+  name: Later Concepts API
+  description: The Concepts API from Later — 9 operation(s) for concepts.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Concepts
+  properties:
+  - type: OpenAPI
+    url: openapi/later-concepts-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-content-api
+  name: Later Content API
+  description: The Content API from Later — 1 operation(s) for content.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Content
+  properties:
+  - type: OpenAPI
+    url: openapi/later-content-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-conversations-api
+  name: Later Conversations API
+  description: The Conversations API from Later — 17 operation(s) for conversations.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Conversations
+  properties:
+  - type: OpenAPI
+    url: openapi/later-conversations-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-conversationtemplates-api
+  name: Later Conversation Templates API
+  description: The ConversationTemplates API from Later — 2 operation(s) for conversationtemplates.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - ConversationTemplates
+  properties:
+  - type: OpenAPI
+    url: openapi/later-conversationtemplates-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-conversions-api
+  name: Later Conversions API
+  description: The Conversions API from Later — 1 operation(s) for conversions.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Conversions
+  properties:
+  - type: OpenAPI
+    url: openapi/later-conversions-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-conversiontags-api
+  name: Later Conversion Tags API
+  description: The ConversionTags API from Later — 2 operation(s) for conversiontags.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - ConversionTags
+  properties:
+  - type: OpenAPI
+    url: openapi/later-conversiontags-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-creatorprofileupsert-api
+  name: Later Creator Profile Upsert API
+  description: The CreatorProfileUpsert API from Later — 1 operation(s) for creatorprofileupsert.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - CreatorProfileUpsert
+  properties:
+  - type: OpenAPI
+    url: openapi/later-creatorprofileupsert-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-creatorsummary-api
+  name: Later Creator Summary API
+  description: The CreatorSummary API from Later — 1 operation(s) for creatorsummary.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - CreatorSummary
+  properties:
+  - type: OpenAPI
+    url: openapi/later-creatorsummary-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-custom-analytics-admin-api
+  name: Later Custom Analytics Admin API
+  description: The Custom Analytics Admin API from Later — 4 operation(s) for custom analytics admin.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Custom Analytics Admin
+  properties:
+  - type: OpenAPI
+    url: openapi/later-custom-analytics-admin-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-custom-analytics-controller-api
+  name: Later Custom Analytics Controller API
+  description: >-
+    The Custom Analytics Controller API from Later — 2 operation(s) for custom analytics controller.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Custom Analytics Controller
+  properties:
+  - type: OpenAPI
+    url: openapi/later-custom-analytics-controller-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-datapoints-api
+  name: Later Datapoints API
+  description: The Datapoints API from Later — 3 operation(s) for datapoints.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Datapoints
+  properties:
+  - type: OpenAPI
+    url: openapi/later-datapoints-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-datasubjectrequest-api
+  name: Later Data Subject Request API
+  description: The DataSubjectRequest API from Later — 1 operation(s) for datasubjectrequest.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - DataSubjectRequest
+  properties:
+  - type: OpenAPI
+    url: openapi/later-datasubjectrequest-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-dbinfluenceragreementhistoryfields-api
+  name: Later DB Influencer Agreement History Fields API
+  description: >-
+    The DBInfluencerAgreementHistoryFields API from Later — 1 operation(s) for dbinfluenceragreementhistoryfields.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - DBInfluencerAgreementHistoryFields
+  properties:
+  - type: OpenAPI
+    url: openapi/later-dbinfluenceragreementhistoryfields-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-draftcontentviewed-api
+  name: Later Draft Content Viewed API
+  description: The DraftContentViewed API from Later — 1 operation(s) for draftcontentviewed.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - DraftContentViewed
+  properties:
+  - type: OpenAPI
+    url: openapi/later-draftcontentviewed-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-drafts-api
+  name: Later Drafts API
+  description: The Drafts API from Later — 9 operation(s) for drafts.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Drafts
+  properties:
+  - type: OpenAPI
+    url: openapi/later-drafts-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-earnedmediavalue-api
+  name: Later Earned Media Value API
+  description: The EarnedMediaValue API from Later — 2 operation(s) for earnedmediavalue.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - EarnedMediaValue
+  properties:
+  - type: OpenAPI
+    url: openapi/later-earnedmediavalue-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-elasticsearch-api
+  name: Later Elasticsearch API
+  description: The Elasticsearch API from Later — 2 operation(s) for elasticsearch.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Elasticsearch
+  properties:
+  - type: OpenAPI
+    url: openapi/later-elasticsearch-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-elasticsearchoptions-api
+  name: Later Elasticsearch Options API
+  description: The ElasticsearchOptions API from Later — 1 operation(s) for elasticsearchoptions.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - ElasticsearchOptions
+  properties:
+  - type: OpenAPI
+    url: openapi/later-elasticsearchoptions-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-email-suppressions-api
+  name: Later Email Suppressions API
+  description: The Email Suppressions API from Later — 1 operation(s) for email suppressions.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Email Suppressions
+  properties:
+  - type: OpenAPI
+    url: openapi/later-email-suppressions-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-emailsettings-api
+  name: Later Email Settings API
+  description: The EmailSettings API from Later — 3 operation(s) for emailsettings.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - EmailSettings
+  properties:
+  - type: OpenAPI
+    url: openapi/later-emailsettings-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-entitlements-api
+  name: Later Entitlements API
+  description: The Entitlements API from Later — 2 operation(s) for entitlements.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Entitlements
+  properties:
+  - type: OpenAPI
+    url: openapi/later-entitlements-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-eventlogs-api
+  name: Later Event Logs API
+  description: The EventLogs API from Later — 1 operation(s) for eventlogs.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - EventLogs
+  properties:
+  - type: OpenAPI
+    url: openapi/later-eventlogs-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-exchangerates-api
+  name: Later Exchange Rates API
+  description: The ExchangeRates API from Later — 1 operation(s) for exchangerates.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - ExchangeRates
+  properties:
+  - type: OpenAPI
+    url: openapi/later-exchangerates-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-expiringaccesstokens-api
+  name: Later Expiring Access Tokens API
+  description: The ExpiringAccessTokens API from Later — 1 operation(s) for expiringaccesstokens.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - ExpiringAccessTokens
+  properties:
+  - type: OpenAPI
+    url: openapi/later-expiringaccesstokens-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-exports-api
+  name: Later Exports API
+  description: The Exports API from Later — 4 operation(s) for exports.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Exports
+  properties:
+  - type: OpenAPI
+    url: openapi/later-exports-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-externalclients-api
+  name: Later External Clients API
+  description: The ExternalClients API from Later — 5 operation(s) for externalclients.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - ExternalClients
+  properties:
+  - type: OpenAPI
+    url: openapi/later-externalclients-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-facebookprofile-api
+  name: Later Facebook Profile API
+  description: The FacebookProfile API from Later — 1 operation(s) for facebookprofile.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - FacebookProfile
+  properties:
+  - type: OpenAPI
+    url: openapi/later-facebookprofile-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-facebookprofiles-api
+  name: Later Facebook Profiles API
+  description: The FacebookProfiles API from Later — 2 operation(s) for facebookprofiles.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - FacebookProfiles
+  properties:
+  - type: OpenAPI
+    url: openapi/later-facebookprofiles-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-features-api
+  name: Later Features API
+  description: The Features API from Later — 2 operation(s) for features.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Features
+  properties:
+  - type: OpenAPI
+    url: openapi/later-features-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-giftcards-api
+  name: Later Gift Cards API
+  description: The GiftCards API from Later — 3 operation(s) for giftcards.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - GiftCards
+  properties:
+  - type: OpenAPI
+    url: openapi/later-giftcards-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-globaluser-api
+  name: Later Global User API
+  description: The GlobalUser API from Later — 22 operation(s) for globaluser.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - GlobalUser
+  properties:
+  - type: OpenAPI
+    url: openapi/later-globaluser-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-globaluseraudience-api
+  name: Later Global User Audience API
+  description: The GlobalUserAudience API from Later — 2 operation(s) for globaluseraudience.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - GlobalUserAudience
+  properties:
+  - type: OpenAPI
+    url: openapi/later-globaluseraudience-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-globaluserlists-api
+  name: Later Global User Lists API
+  description: The GlobalUserLists API from Later — 8 operation(s) for globaluserlists.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - GlobalUserLists
+  properties:
+  - type: OpenAPI
+    url: openapi/later-globaluserlists-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-globalusermerge-api
+  name: Later Global User Merge API
+  description: The GlobalUserMerge API from Later — 2 operation(s) for globalusermerge.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - GlobalUserMerge
+  properties:
+  - type: OpenAPI
+    url: openapi/later-globalusermerge-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-globalusers-api
+  name: Later Global Users API
+  description: The GlobalUsers API from Later — 2 operation(s) for globalusers.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - GlobalUsers
+  properties:
+  - type: OpenAPI
+    url: openapi/later-globalusers-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-grouphigh-api
+  name: Later Group High API
+  description: The GroupHigh API from Later — 1 operation(s) for grouphigh.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - GroupHigh
+  properties:
+  - type: OpenAPI
+    url: openapi/later-grouphigh-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-images-api
+  name: Later Images API
+  description: The Images API from Later — 1 operation(s) for images.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Images
+  properties:
+  - type: OpenAPI
+    url: openapi/later-images-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-incentives-api
+  name: Later Incentives API
+  description: The Incentives API from Later — 8 operation(s) for incentives.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Incentives
+  properties:
+  - type: OpenAPI
+    url: openapi/later-incentives-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-influencer-polling-api
+  name: Later Influencer Polling API
+  description: The Influencer Polling API from Later — 1 operation(s) for influencer polling.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Influencer Polling
+  properties:
+  - type: OpenAPI
+    url: openapi/later-influencer-polling-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-influencercampaign-api
+  name: Later Influencer Campaign API
+  description: The InfluencerCampaign API from Later — 2 operation(s) for influencercampaign.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - InfluencerCampaign
+  properties:
+  - type: OpenAPI
+    url: openapi/later-influencercampaign-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-influencercontractcampaigntemplates-api
+  name: Later Influencer Contract Campaign Templates API
+  description: >-
+    The InfluencerContractCampaignTemplates API from Later — 2 operation(s) for influencercontractcampaigntemplates.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - InfluencerContractCampaignTemplates
+  properties:
+  - type: OpenAPI
+    url: openapi/later-influencercontractcampaigntemplates-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-influencercontractcommunitytemplates-api
+  name: Later Influencer Contract Community Templates API
+  description: >-
+    The InfluencerContractCommunityTemplates API from Later — 2 operation(s) for influencercontractcommunitytemplates.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - InfluencerContractCommunityTemplates
+  properties:
+  - type: OpenAPI
+    url: openapi/later-influencercontractcommunitytemplates-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-influencerlinks-api
+  name: Later Influencer Links API
+  description: The InfluencerLinks API from Later — 1 operation(s) for influencerlinks.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - InfluencerLinks
+  properties:
+  - type: OpenAPI
+    url: openapi/later-influencerlinks-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-influencerlist-api
+  name: Later Influencer List API
+  description: The InfluencerList API from Later — 1 operation(s) for influencerlist.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - InfluencerList
+  properties:
+  - type: OpenAPI
+    url: openapi/later-influencerlist-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-influencerreviewdeliverable-api
+  name: Later Influencer Review Deliverable API
+  description: >-
+    The InfluencerReviewDeliverable API from Later — 2 operation(s) for influencerreviewdeliverable.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - InfluencerReviewDeliverable
+  properties:
+  - type: OpenAPI
+    url: openapi/later-influencerreviewdeliverable-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-influencers-api
+  name: Later Influencers API
+  description: The Influencers API from Later — 1 operation(s) for influencers.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Influencers
+  properties:
+  - type: OpenAPI
+    url: openapi/later-influencers-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-influencertopics-api
+  name: Later Influencer Topics API
+  description: The InfluencerTopics API from Later — 1 operation(s) for influencertopics.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - InfluencerTopics
+  properties:
+  - type: OpenAPI
+    url: openapi/later-influencertopics-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-instagramaccount-api
+  name: Later Instagram Account API
+  description: The InstagramAccount API from Later — 2 operation(s) for instagramaccount.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - InstagramAccount
+  properties:
+  - type: OpenAPI
+    url: openapi/later-instagramaccount-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-instance-user-materialized-view-api
+  name: Later Instance User Materialized View API
+  description: >-
+    The Instance User Materialized View API from Later — 1 operation(s) for instance user materialized
+    view.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Instance User Materialized View
+  properties:
+  - type: OpenAPI
+    url: openapi/later-instance-user-materialized-view-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-instancebrands-api
+  name: Later Instance Brands API
+  description: The InstanceBrands API from Later — 1 operation(s) for instancebrands.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - InstanceBrands
+  properties:
+  - type: OpenAPI
+    url: openapi/later-instancebrands-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-instancedeactivation-api
+  name: Later Instance Deactivation API
+  description: The InstanceDeactivation API from Later — 2 operation(s) for instancedeactivation.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - InstanceDeactivation
+  properties:
+  - type: OpenAPI
+    url: openapi/later-instancedeactivation-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-instancereactivation-api
+  name: Later Instance Reactivation API
+  description: The InstanceReactivation API from Later — 1 operation(s) for instancereactivation.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - InstanceReactivation
+  properties:
+  - type: OpenAPI
+    url: openapi/later-instancereactivation-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-instances-api
+  name: Later Instances API
+  description: The Instances API from Later — 2 operation(s) for instances.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Instances
+  properties:
+  - type: OpenAPI
+    url: openapi/later-instances-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-laterinfluencer-api
+  name: Later Later Influencer API
+  description: The LaterInfluencer API from Later — 37 operation(s) for laterinfluencer.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - LaterInfluencer
+  properties:
+  - type: OpenAPI
+    url: openapi/later-laterinfluencer-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-links-api
+  name: Later Links API
+  description: The Links API from Later — 2 operation(s) for links.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Links
+  properties:
+  - type: OpenAPI
+    url: openapi/later-links-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-listdeliverables-api
+  name: Later List Deliverables API
+  description: The ListDeliverables API from Later — 2 operation(s) for listdeliverables.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - ListDeliverables
+  properties:
+  - type: OpenAPI
+    url: openapi/later-listdeliverables-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-listmember-api
+  name: Later List Member API
+  description: The ListMember API from Later — 2 operation(s) for listmember.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - ListMember
+  properties:
+  - type: OpenAPI
+    url: openapi/later-listmember-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-listmemberdeliverables-api
+  name: Later List Member Deliverables API
+  description: The ListMemberDeliverables API from Later — 5 operation(s) for listmemberdeliverables.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - ListMemberDeliverables
+  properties:
+  - type: OpenAPI
+    url: openapi/later-listmemberdeliverables-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-listmembermavelyprofiles-api
+  name: Later List Member Mavely Profiles API
+  description: >-
+    The ListMemberMavelyProfiles API from Later — 3 operation(s) for listmembermavelyprofiles.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - ListMemberMavelyProfiles
+  properties:
+  - type: OpenAPI
+    url: openapi/later-listmembermavelyprofiles-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-listmemberrewardwin-api
+  name: Later List Member Reward Win API
+  description: The ListMemberRewardWin API from Later — 6 operation(s) for listmemberrewardwin.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - ListMemberRewardWin
+  properties:
+  - type: OpenAPI
+    url: openapi/later-listmemberrewardwin-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-listmembers-api
+  name: Later List Members API
+  description: The ListMembers API from Later — 1 operation(s) for listmembers.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - ListMembers
+  properties:
+  - type: OpenAPI
+    url: openapi/later-listmembers-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-lists-api
+  name: Later Lists API
+  description: The Lists API from Later — 1 operation(s) for lists.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Lists
+  properties:
+  - type: OpenAPI
+    url: openapi/later-lists-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-marketerfilterpreferences-api
+  name: Later Marketer Filter Preferences API
+  description: >-
+    The MarketerFilterPreferences API from Later — 1 operation(s) for marketerfilterpreferences.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - MarketerFilterPreferences
+  properties:
+  - type: OpenAPI
+    url: openapi/later-marketerfilterpreferences-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-marketernotifications-api
+  name: Later Marketer Notifications API
+  description: The MarketerNotifications API from Later — 2 operation(s) for marketernotifications.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - MarketerNotifications
+  properties:
+  - type: OpenAPI
+    url: openapi/later-marketernotifications-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-mavelytransfers-api
+  name: Later Mavely Transfers API
+  description: The MavelyTransfers API from Later — 1 operation(s) for mavelytransfers.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - MavelyTransfers
+  properties:
+  - type: OpenAPI
+    url: openapi/later-mavelytransfers-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-membership-api
+  name: Later Membership API
+  description: The Membership API from Later — 7 operation(s) for membership.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Membership
+  properties:
+  - type: OpenAPI
+    url: openapi/later-membership-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-membershipdatapoints-api
+  name: Later Membership Data Points API
+  description: The MembershipDataPoints API from Later — 2 operation(s) for membershipdatapoints.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - MembershipDataPoints
+  properties:
+  - type: OpenAPI
+    url: openapi/later-membershipdatapoints-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-membershippurchases-api
+  name: Later Membership Purchases API
+  description: The MembershipPurchases API from Later — 1 operation(s) for membershippurchases.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - MembershipPurchases
+  properties:
+  - type: OpenAPI
+    url: openapi/later-membershippurchases-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-mergetagscatalog-api
+  name: Later Merge Tags Catalog API
+  description: The MergeTagsCatalog API from Later — 1 operation(s) for mergetagscatalog.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - MergeTagsCatalog
+  properties:
+  - type: OpenAPI
+    url: openapi/later-mergetagscatalog-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-meta-ad-admin-api
+  name: Later Meta Ad Admin API
+  description: The Meta Ad Admin API from Later — 5 operation(s) for meta ad admin.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Meta Ad Admin
+  properties:
+  - type: OpenAPI
+    url: openapi/later-meta-ad-admin-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-meta-business-assets-api
+  name: Later Meta Business Assets API
+  description: The Meta Business Assets API from Later — 2 operation(s) for meta business assets.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Meta Business Assets
+  properties:
+  - type: OpenAPI
+    url: openapi/later-meta-business-assets-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-meta-business-integrations-api
+  name: Later Meta Business Integrations API
+  description: >-
+    The Meta Business Integrations API from Later — 2 operation(s) for meta business integrations.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Meta Business Integrations
+  properties:
+  - type: OpenAPI
+    url: openapi/later-meta-business-integrations-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-meta-business-portfolios-api
+  name: Later Meta Business Portfolios API
+  description: >-
+    The Meta Business Portfolios API from Later — 2 operation(s) for meta business portfolios.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Meta Business Portfolios
+  properties:
+  - type: OpenAPI
+    url: openapi/later-meta-business-portfolios-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-meta-post-partnerships-api
+  name: Later Meta Post Partnerships API
+  description: The Meta Post Partnerships API from Later — 1 operation(s) for meta post partnerships.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Meta Post Partnerships
+  properties:
+  - type: OpenAPI
+    url: openapi/later-meta-post-partnerships-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-networks-api
+  name: Later Networks API
+  description: The Networks API from Later — 1 operation(s) for networks.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Networks
+  properties:
+  - type: OpenAPI
+    url: openapi/later-networks-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-notifications-api
+  name: Later Notifications API
+  description: The Notifications API from Later — 4 operation(s) for notifications.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Notifications
+  properties:
+  - type: OpenAPI
+    url: openapi/later-notifications-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-openaisearch-api
+  name: Later Open AI Search API
+  description: The OpenAISearch API from Later — 1 operation(s) for openaisearch.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - OpenAISearch
+  properties:
+  - type: OpenAPI
+    url: openapi/later-openaisearch-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-optin-api
+  name: Later Opt In API
+  description: The OptIn API from Later — 3 operation(s) for optin.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - OptIn
+  properties:
+  - type: OpenAPI
+    url: openapi/later-optin-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-paymentaccount-api
+  name: Later Payment Account API
+  description: The PaymentAccount API from Later — 9 operation(s) for paymentaccount.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - PaymentAccount
+  properties:
+  - type: OpenAPI
+    url: openapi/later-paymentaccount-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-paymentappadmins-api
+  name: Later Payment App Admins API
+  description: The PaymentAppAdmins API from Later — 1 operation(s) for paymentappadmins.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - PaymentAppAdmins
+  properties:
+  - type: OpenAPI
+    url: openapi/later-paymentappadmins-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-paymentprovider-api
+  name: Later Payment Provider API
+  description: The PaymentProvider API from Later — 2 operation(s) for paymentprovider.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - PaymentProvider
+  properties:
+  - type: OpenAPI
+    url: openapi/later-paymentprovider-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-paymentrecipient-api
+  name: Later Payment Recipient API
+  description: The PaymentRecipient API from Later — 9 operation(s) for paymentrecipient.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - PaymentRecipient
+  properties:
+  - type: OpenAPI
+    url: openapi/later-paymentrecipient-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-paymentsledger-api
+  name: Later Payments Ledger API
+  description: The PaymentsLedger API from Later — 3 operation(s) for paymentsledger.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - PaymentsLedger
+  properties:
+  - type: OpenAPI
+    url: openapi/later-paymentsledger-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-paypalaccount-api
+  name: Later Pay Pal Account API
+  description: The PayPalAccount API from Later — 1 operation(s) for paypalaccount.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - PayPalAccount
+  properties:
+  - type: OpenAPI
+    url: openapi/later-paypalaccount-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-pendingbatchjobs-api
+  name: Later Pending Batch Jobs API
+  description: The PendingBatchJobs API from Later — 1 operation(s) for pendingbatchjobs.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - PendingBatchJobs
+  properties:
+  - type: OpenAPI
+    url: openapi/later-pendingbatchjobs-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-pinterestauth-api
+  name: Later Pinterest Auth API
+  description: The PinterestAuth API from Later — 2 operation(s) for pinterestauth.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - PinterestAuth
+  properties:
+  - type: OpenAPI
+    url: openapi/later-pinterestauth-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-points-api
+  name: Later Points API
+  description: The Points API from Later — 1 operation(s) for points.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Points
+  properties:
+  - type: OpenAPI
+    url: openapi/later-points-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-pointsadmin-api
+  name: Later Points Admin API
+  description: The PointsAdmin API from Later — 2 operation(s) for pointsadmin.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - PointsAdmin
+  properties:
+  - type: OpenAPI
+    url: openapi/later-pointsadmin-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-polling-queue-management-api
+  name: Later Polling Queue Management API
+  description: >-
+    The Polling Queue Management API from Later — 3 operation(s) for polling queue management.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Polling Queue Management
+  properties:
+  - type: OpenAPI
+    url: openapi/later-polling-queue-management-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-powerreviewsapp-api
+  name: Later Power Reviews App API
+  description: The PowerReviewsApp API from Later — 1 operation(s) for powerreviewsapp.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - PowerReviewsApp
+  properties:
+  - type: OpenAPI
+    url: openapi/later-powerreviewsapp-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-previewposts-api
+  name: Later Preview Posts API
+  description: The PreviewPosts API from Later — 1 operation(s) for previewposts.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - PreviewPosts
+  properties:
+  - type: OpenAPI
+    url: openapi/later-previewposts-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-product-api
+  name: Later Product API
+  description: The Product API from Later — 1 operation(s) for product.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Product
+  properties:
+  - type: OpenAPI
+    url: openapi/later-product-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-products-api
+  name: Later Products API
+  description: The Products API from Later — 2 operation(s) for products.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Products
+  properties:
+  - type: OpenAPI
+    url: openapi/later-products-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-program-api
+  name: Later Program API
+  description: The Program API from Later — 1 operation(s) for program.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Program
+  properties:
+  - type: OpenAPI
+    url: openapi/later-program-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-programs-api
+  name: Later Programs API
+  description: The Programs API from Later — 1 operation(s) for programs.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Programs
+  properties:
+  - type: OpenAPI
+    url: openapi/later-programs-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-public-api
+  name: Later Public API
+  description: The public API from Later — 1 operation(s) for public.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - public
+  properties:
+  - type: OpenAPI
+    url: openapi/later-public-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-referralprogram-api
+  name: Later Referral Program API
+  description: The ReferralProgram API from Later — 1 operation(s) for referralprogram.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - ReferralProgram
+  properties:
+  - type: OpenAPI
+    url: openapi/later-referralprogram-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-reports-api
+  name: Later Reports API
+  description: The Reports API from Later — 1 operation(s) for reports.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/later-reports-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-reviewform-api
+  name: Later Review Form API
+  description: The ReviewForm API from Later — 1 operation(s) for reviewform.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - ReviewForm
+  properties:
+  - type: OpenAPI
+    url: openapi/later-reviewform-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-reviewformresponse-api
+  name: Later Review Form Response API
+  description: The ReviewFormResponse API from Later — 1 operation(s) for reviewformresponse.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - ReviewFormResponse
+  properties:
+  - type: OpenAPI
+    url: openapi/later-reviewformresponse-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-reviewformresponses-api
+  name: Later Review Form Responses API
+  description: The ReviewFormResponses API from Later — 2 operation(s) for reviewformresponses.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - ReviewFormResponses
+  properties:
+  - type: OpenAPI
+    url: openapi/later-reviewformresponses-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-reviews-api
+  name: Later Reviews API
+  description: The Reviews API from Later — 1 operation(s) for reviews.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Reviews
+  properties:
+  - type: OpenAPI
+    url: openapi/later-reviews-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-rewardwins-api
+  name: Later Reward Wins API
+  description: The RewardWins API from Later — 16 operation(s) for rewardwins.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - RewardWins
+  properties:
+  - type: OpenAPI
+    url: openapi/later-rewardwins-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-shareablelinksvisitors-api
+  name: Later Shareable Links Visitors API
+  description: The ShareableLinksVisitors API from Later — 1 operation(s) for shareablelinksvisitors.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - ShareableLinksVisitors
+  properties:
+  - type: OpenAPI
+    url: openapi/later-shareablelinksvisitors-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-sharedcipher-api
+  name: Later Shared Cipher API
+  description: The SharedCipher API from Later — 3 operation(s) for sharedcipher.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - SharedCipher
+  properties:
+  - type: OpenAPI
+    url: openapi/later-sharedcipher-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-shopifyaccount-api
+  name: Later Shopify Account API
+  description: The ShopifyAccount API from Later — 9 operation(s) for shopifyaccount.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - ShopifyAccount
+  properties:
+  - type: OpenAPI
+    url: openapi/later-shopifyaccount-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-shopifyadminapi-api
+  name: Later Shopify Admin API
+  description: The ShopifyAdminApi API from Later — 2 operation(s) for shopifyadminapi.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - ShopifyAdminApi
+  properties:
+  - type: OpenAPI
+    url: openapi/later-shopifyadminapi-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-snapchatcontent-api
+  name: Later Snapchat Content API
+  description: The SnapchatContent API from Later — 2 operation(s) for snapchatcontent.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - SnapchatContent
+  properties:
+  - type: OpenAPI
+    url: openapi/later-snapchatcontent-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-social-account-ingestion-api
+  name: Later Social Account Ingestion API
+  description: >-
+    The Social Account Ingestion API from Later — 1 operation(s) for social account ingestion.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Social Account Ingestion
+  properties:
+  - type: OpenAPI
+    url: openapi/later-social-account-ingestion-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-socialpresencecreate-api
+  name: Later Social Presence Create API
+  description: The SocialPresenceCreate API from Later — 1 operation(s) for socialpresencecreate.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - SocialPresenceCreate
+  properties:
+  - type: OpenAPI
+    url: openapi/later-socialpresencecreate-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-socialprofileupdates-api
+  name: Later Social Profile Updates API
+  description: The SocialProfileUpdates API from Later — 1 operation(s) for socialprofileupdates.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - SocialProfileUpdates
+  properties:
+  - type: OpenAPI
+    url: openapi/later-socialprofileupdates-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-specs-api
+  name: Later Specs API
+  description: The Specs API from Later — 3 operation(s) for specs.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Specs
+  properties:
+  - type: OpenAPI
+    url: openapi/later-specs-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-stripepayments-api
+  name: Later Stripe Payments API
+  description: The StripePayments API from Later — 9 operation(s) for stripepayments.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - StripePayments
+  properties:
+  - type: OpenAPI
+    url: openapi/later-stripepayments-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-subscribers-api
+  name: Later Subscribers API
+  description: The Subscribers API from Later — 3 operation(s) for subscribers.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Subscribers
+  properties:
+  - type: OpenAPI
+    url: openapi/later-subscribers-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-surveyresponse-api
+  name: Later Survey Response API
+  description: The SurveyResponse API from Later — 2 operation(s) for surveyresponse.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - SurveyResponse
+  properties:
+  - type: OpenAPI
+    url: openapi/later-surveyresponse-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-surveys-api
+  name: Later Surveys API
+  description: The Surveys API from Later — 1 operation(s) for surveys.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Surveys
+  properties:
+  - type: OpenAPI
+    url: openapi/later-surveys-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-tiktok-activations-api
+  name: Later Tiktok Activations API
+  description: The Tiktok Activations API from Later — 1 operation(s) for tiktok activations.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Tiktok Activations
+  properties:
+  - type: OpenAPI
+    url: openapi/later-tiktok-activations-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-tiktok-ttcm-api
+  name: Later TikTok TTCM API
+  description: The TikTok TTCM API from Later — 2 operation(s) for tiktok ttcm.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - TikTok TTCM
+  properties:
+  - type: OpenAPI
+    url: openapi/later-tiktok-ttcm-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-tiktokcampaignfields-api
+  name: Later Tik Tok Campaign Fields API
+  description: The TikTokCampaignFields API from Later — 1 operation(s) for tiktokcampaignfields.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - TikTokCampaignFields
+  properties:
+  - type: OpenAPI
+    url: openapi/later-tiktokcampaignfields-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-tipaltipayee-api
+  name: Later Tipalti Payee API
+  description: The TipaltiPayee API from Later — 1 operation(s) for tipaltipayee.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - TipaltiPayee
+  properties:
+  - type: OpenAPI
+    url: openapi/later-tipaltipayee-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-tipaltitransfers-api
+  name: Later Tipalti Transfers API
+  description: The TipaltiTransfers API from Later — 1 operation(s) for tipaltitransfers.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - TipaltiTransfers
+  properties:
+  - type: OpenAPI
+    url: openapi/later-tipaltitransfers-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-topics-api
+  name: Later Topics API
+  description: The Topics API from Later — 1 operation(s) for topics.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Topics
+  properties:
+  - type: OpenAPI
+    url: openapi/later-topics-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-tracking-link-api
+  name: Later Tracking Link API
+  description: The Tracking Link API from Later — 1 operation(s) for tracking link.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Tracking Link
+  properties:
+  - type: OpenAPI
+    url: openapi/later-tracking-link-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-trackinglinks-api
+  name: Later Tracking Links API
+  description: The TrackingLinks API from Later — 2 operation(s) for trackinglinks.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - TrackingLinks
+  properties:
+  - type: OpenAPI
+    url: openapi/later-trackinglinks-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-translations-api
+  name: Later Translations API
+  description: The Translations API from Later — 1 operation(s) for translations.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Translations
+  properties:
+  - type: OpenAPI
+    url: openapi/later-translations-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-uploadpolicy-api
+  name: Later Upload Policy API
+  description: The uploadPolicy API from Later — 1 operation(s) for uploadpolicy.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - uploadPolicy
+  properties:
+  - type: OpenAPI
+    url: openapi/later-uploadpolicy-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-urlmetadata-api
+  name: Later URL Metadata API
+  description: The URLMetadata API from Later — 1 operation(s) for urlmetadata.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - URLMetadata
+  properties:
+  - type: OpenAPI
+    url: openapi/later-urlmetadata-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-useraccount-api
+  name: Later User Account API
+  description: The UserAccount API from Later — 3 operation(s) for useraccount.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - UserAccount
+  properties:
+  - type: OpenAPI
+    url: openapi/later-useraccount-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-webhooks-api
+  name: Later Webhooks API
+  description: The Webhooks API from Later — 1 operation(s) for webhooks.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/later-webhooks-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-webpluginwidgets-api
+  name: Later Web Plugin Widgets API
+  description: The WebPluginWidgets API from Later — 1 operation(s) for webpluginwidgets.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - WebPluginWidgets
+  properties:
+  - type: OpenAPI
+    url: openapi/later-webpluginwidgets-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-workflow-api
+  name: Later Workflow API
+  description: The Workflow API from Later — 8 operation(s) for workflow.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Workflow
+  properties:
+  - type: OpenAPI
+    url: openapi/later-workflow-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-yotpo-api
+  name: Later Yotpo API
+  description: The Yotpo API from Later — 1 operation(s) for yotpo.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - Yotpo
+  properties:
+  - type: OpenAPI
+    url: openapi/later-yotpo-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-ytbcactiongroupchannels-api
+  name: Later Ytbc Action Group Channels API
+  description: The YtbcActionGroupChannels API from Later — 2 operation(s) for ytbcactiongroupchannels.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - YtbcActionGroupChannels
+  properties:
+  - type: OpenAPI
+    url: openapi/later-ytbcactiongroupchannels-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
+- aid: later:later-ytbcbrandchannels-api
+  name: Later Ytbc Brand Channels API
+  description: The YtbcBrandChannels API from Later — 2 operation(s) for ytbcbrandchannels.
+  humanURL: https://later.com/
+  baseURL: https://app.later.com/
+  tags:
+  - YtbcBrandChannels
+  properties:
+  - type: OpenAPI
+    url: openapi/later-ytbcbrandchannels-api-openapi.yml
+  - type: APIReference
+    url: https://api.mavrck.co/api-docs
+  - type: Authentication
+    url: authentication/later-authentication.yml
+  - type: Conventions
+    url: conventions/later-conventions.yml
+  - type: ErrorCatalog
+    url: errors/later-problem-types.yml
+  - type: DataModel
+    url: data-model/later-data-model.yml
+  - type: Webhooks
+    url: asyncapi/later-influence-webhooks.yml
+  - type: Pricing
+    url: https://later.com/influencer-marketing-platform/pricing/
 common:
   - type: TrustCenter
     url: security/later-trust-center.yml
