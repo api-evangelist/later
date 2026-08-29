@@ -1,6 +1,18 @@
 aid: later
 name: Later
 description: Later is a visual social media scheduling and influencer marketing platform that enables brands, agencies, and creators to plan, schedule, and publish content across Instagram, TikTok, Facebook, Pinterest, LinkedIn, Threads, and YouTube. The platform offers a media library, analytics, Link in Bio tools, social inbox, content approval workflows, and AI-powered scheduling optimization. Later also provides enterprise influencer marketing campaign management and creator network services.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: unknown
@@ -4288,6 +4300,9 @@ apis:
   - type: Pricing
     url: https://later.com/influencer-marketing-platform/pricing/
 common:
+  - type: CapabilityMap
+    url: capabilities/later-capability-edges.yml
+    name: Later Business Capability Map
   - type: TrustCenter
     url: security/later-trust-center.yml
   - type: DomainSecurity
