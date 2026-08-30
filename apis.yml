@@ -254,6 +254,8 @@ apis:
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
+  - Action Groups
+  tags_raw:
   - ActionGroups
   properties:
   - type: OpenAPI
@@ -641,6 +643,8 @@ apis:
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
+  - Batch Jobs
+  tags_raw:
   - BatchJobs
   properties:
   - type: OpenAPI
@@ -689,6 +693,8 @@ apis:
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
+  - Blog
+  tags_raw:
   - Blogs
   properties:
   - type: OpenAPI
@@ -713,6 +719,8 @@ apis:
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
+  - Brand Suitability
+  tags_raw:
   - BrandSuitability
   properties:
   - type: OpenAPI
@@ -835,6 +843,8 @@ apis:
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
+  - Campaign Performance
+  tags_raw:
   - CampaignPerformance
   properties:
   - type: OpenAPI
@@ -932,6 +942,8 @@ apis:
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
+  - Cash Payments
+  tags_raw:
   - CashPayments
   properties:
   - type: OpenAPI
@@ -1341,6 +1353,8 @@ apis:
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
+  - data-subject-request
+  tags_raw:
   - DataSubjectRequest
   properties:
   - type: OpenAPI
@@ -1534,6 +1548,8 @@ apis:
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
+  - Email Settings
+  tags_raw:
   - EmailSettings
   properties:
   - type: OpenAPI
@@ -1582,6 +1598,8 @@ apis:
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
+  - Event Logs
+  tags_raw:
   - EventLogs
   properties:
   - type: OpenAPI
@@ -1606,6 +1624,8 @@ apis:
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
+  - Exchange Rates
+  tags_raw:
   - ExchangeRates
   properties:
   - type: OpenAPI
@@ -1630,6 +1650,8 @@ apis:
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
+  - Expiring Access Tokens
+  tags_raw:
   - ExpiringAccessTokens
   properties:
   - type: OpenAPI
@@ -1654,6 +1676,8 @@ apis:
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
+  - Export
+  tags_raw:
   - Exports
   properties:
   - type: OpenAPI
@@ -1678,6 +1702,8 @@ apis:
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
+  - External Clients
+  tags_raw:
   - ExternalClients
   properties:
   - type: OpenAPI
@@ -1774,6 +1800,8 @@ apis:
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
+  - Gift Cards
+  tags_raw:
   - GiftCards
   properties:
   - type: OpenAPI
@@ -1942,6 +1970,8 @@ apis:
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
+  - Image
+  tags_raw:
   - Images
   properties:
   - type: OpenAPI
@@ -2548,6 +2578,8 @@ apis:
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
+  - List
+  tags_raw:
   - Lists
   properties:
   - type: OpenAPI
@@ -2887,6 +2919,8 @@ apis:
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
+  - Notification
+  tags_raw:
   - Notifications
   properties:
   - type: OpenAPI
@@ -2935,6 +2969,8 @@ apis:
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
+  - Opt-In
+  tags_raw:
   - OptIn
   properties:
   - type: OpenAPI
@@ -2959,6 +2995,8 @@ apis:
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
+  - Payment Account
+  tags_raw:
   - PaymentAccount
   properties:
   - type: OpenAPI
@@ -3296,6 +3334,8 @@ apis:
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
+  - Product
+  tags_raw:
   - Products
   properties:
   - type: OpenAPI
@@ -3368,6 +3408,8 @@ apis:
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
+  - Public
+  tags_raw:
   - public
   properties:
   - type: OpenAPI
@@ -3777,6 +3819,8 @@ apis:
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
+  - Stripe Payments
+  tags_raw:
   - StripePayments
   properties:
   - type: OpenAPI
@@ -4041,6 +4085,8 @@ apis:
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
+  - Tracking Links
+  tags_raw:
   - TrackingLinks
   properties:
   - type: OpenAPI
@@ -4088,7 +4134,8 @@ apis:
   description: The uploadPolicy API from Later — 1 operation(s) for uploadpolicy.
   humanURL: https://later.com/
   baseURL: https://app.later.com/
-  tags:
+  tags: []
+  tags_raw:
   - uploadPolicy
   properties:
   - type: OpenAPI
@@ -4113,6 +4160,8 @@ apis:
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
+  - URL Metadata
+  tags_raw:
   - URLMetadata
   properties:
   - type: OpenAPI
@@ -4137,6 +4186,8 @@ apis:
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
+  - User Account
+  tags_raw:
   - UserAccount
   properties:
   - type: OpenAPI
@@ -4161,6 +4212,8 @@ apis:
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
@@ -4209,6 +4262,8 @@ apis:
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
+  - Workflows
+  tags_raw:
   - Workflow
   properties:
   - type: OpenAPI
