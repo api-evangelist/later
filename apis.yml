@@ -4366,7 +4366,7 @@ common:
 - type: FinOps
   url: finops/later-finops.yml
 - type: OpenAPI
-  url: openapi/later-influence-api-openapi.json
+  url: openapi/_original/later-influence-api-openapi.json
 - type: APIReference
   url: https://api.mavrck.co/api-docs
 - type: Authentication
