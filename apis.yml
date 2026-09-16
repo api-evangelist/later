@@ -1,6 +1,10 @@
 aid: later
 name: Later
-description: Later is a visual social media scheduling and influencer marketing platform that enables brands, agencies, and creators to plan, schedule, and publish content across Instagram, TikTok, Facebook, Pinterest, LinkedIn, Threads, and YouTube. The platform offers a media library, analytics, Link in Bio tools, social inbox, content approval workflows, and AI-powered scheduling optimization. Later also provides enterprise influencer marketing campaign management and creator network services.
+description: Later is a visual social media scheduling and influencer marketing platform that enables
+  brands, agencies, and creators to plan, schedule, and publish content across Instagram, TikTok, Facebook,
+  Pinterest, LinkedIn, Threads, and YouTube. The platform offers a media library, analytics, Link in Bio
+  tools, social inbox, content approval workflows, and AI-powered scheduling optimization. Later also
+  provides enterprise influencer marketing campaign management and creator network services.
 deliveryModel:
   model: saas
   open_source: false
@@ -28,31 +32,30 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/later.png
 url: https://raw.githubusercontent.com/api-evangelist/later/refs/heads/main/apis.yml
 created: '2026-06-13'
-modified: '2026-08-13'
+modified: '2026-09-16'
 specificationVersion: '0.23'
 tags:
-  - Social-Media
-  - Scheduling
-  - Instagram
-  - TikTok
-  - Influencer Marketing
-  - Content Management
-  - Analytics
-  - Social Commerce
+- Social-Media
+- Scheduling
+- Instagram
+- TikTok
+- Influencer Marketing
+- Content Management
+- Analytics
+- Social Commerce
 tags_raw:
-  - Social Media
-  - Scheduling
-  - Instagram
-  - TikTok
-  - Influencer Marketing
-  - Content Management
-  - Analytics
-  - Social Commerce
+- Social Media
+- Scheduling
+- Instagram
+- TikTok
+- Influencer Marketing
+- Content Management
+- Analytics
+- Social Commerce
 apis:
 - name: Later Social Media Platform
-  description: >-
-    Later's social media scheduling and management platform providing visual content planning, scheduling,
-    analytics, and influencer marketing capabilities across major social platforms.
+  description: Later's social media scheduling and management platform providing visual content planning,
+    scheduling, analytics, and influencer marketing capabilities across major social platforms.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://later.com/
   baseURL: https://app.later.com/
@@ -150,8 +153,7 @@ apis:
     url: https://later.com/influencer-marketing-platform/pricing/
 - aid: later:later-actiongroupbulkscheduledmessages-api
   name: Later Action Group Bulk Scheduled Messages API
-  description: >-
-    The ActionGroupBulkScheduledMessages API from Later — 1 operation(s) for actiongroupbulkscheduledmessages.
+  description: The ActionGroupBulkScheduledMessages API from Later — 1 operation(s) for actiongroupbulkscheduledmessages.
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
@@ -175,8 +177,7 @@ apis:
     url: https://later.com/influencer-marketing-platform/pricing/
 - aid: later:later-actiongroupconversationtemplates-api
   name: Later Action Group Conversation Templates API
-  description: >-
-    The ActionGroupConversationTemplates API from Later — 4 operation(s) for actiongroupconversationtemplates.
+  description: The ActionGroupConversationTemplates API from Later — 4 operation(s) for actiongroupconversationtemplates.
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
@@ -200,8 +201,7 @@ apis:
     url: https://later.com/influencer-marketing-platform/pricing/
 - aid: later:later-actiongroupcustominfluencerstatuses-api
   name: Later Action Group Custom Influencer Statuses API
-  description: >-
-    The ActionGroupCustomInfluencerStatuses API from Later — 4 operation(s) for actiongroupcustominfluencerstatuses.
+  description: The ActionGroupCustomInfluencerStatuses API from Later — 4 operation(s) for actiongroupcustominfluencerstatuses.
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
@@ -225,8 +225,7 @@ apis:
     url: https://later.com/influencer-marketing-platform/pricing/
 - aid: later:later-actiongroupcustomstatuses-api
   name: Later Action Group Custom Statuses API
-  description: >-
-    The ActionGroupCustomStatuses API from Later — 5 operation(s) for actiongroupcustomstatuses.
+  description: The ActionGroupCustomStatuses API from Later — 5 operation(s) for actiongroupcustomstatuses.
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
@@ -276,8 +275,7 @@ apis:
     url: https://later.com/influencer-marketing-platform/pricing/
 - aid: later:later-actiongroupscheduledmessages-api
   name: Later Action Group Scheduled Messages API
-  description: >-
-    The ActionGroupScheduledMessages API from Later — 3 operation(s) for actiongroupscheduledmessages.
+  description: The ActionGroupScheduledMessages API from Later — 3 operation(s) for actiongroupscheduledmessages.
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
@@ -397,8 +395,7 @@ apis:
     url: https://later.com/influencer-marketing-platform/pricing/
 - aid: later:later-activationtagsassociations-api
   name: Later Activation Tags Associations API
-  description: >-
-    The ActivationTagsAssociations API from Later — 2 operation(s) for activationtagsassociations.
+  description: The ActivationTagsAssociations API from Later — 2 operation(s) for activationtagsassociations.
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
@@ -446,8 +443,7 @@ apis:
     url: https://later.com/influencer-marketing-platform/pricing/
 - aid: later:later-administrationaccountslowmigration-api
   name: Later Administration Account Slow Migration API
-  description: >-
-    The AdministrationAccountSlowMigration API from Later — 1 operation(s) for administrationaccountslowmigration.
+  description: The AdministrationAccountSlowMigration API from Later — 1 operation(s) for administrationaccountslowmigration.
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
@@ -741,8 +737,7 @@ apis:
     url: https://later.com/influencer-marketing-platform/pricing/
 - aid: later:later-brandsuitabilityharness-api
   name: Later Brand Suitability Harness API
-  description: >-
-    The BrandSuitabilityHarness API from Later — 10 operation(s) for brandsuitabilityharness.
+  description: The BrandSuitabilityHarness API from Later — 10 operation(s) for brandsuitabilityharness.
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
@@ -790,8 +785,7 @@ apis:
     url: https://later.com/influencer-marketing-platform/pricing/
 - aid: later:later-bulkassigncustomstatusesrequirements-api
   name: Later Bulk Assign Custom Statuses Requirements API
-  description: >-
-    The BulkAssignCustomStatusesRequirements API from Later — 1 operation(s) for bulkassigncustomstatusesrequirements.
+  description: The BulkAssignCustomStatusesRequirements API from Later — 1 operation(s) for bulkassigncustomstatusesrequirements.
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
@@ -865,8 +859,7 @@ apis:
     url: https://later.com/influencer-marketing-platform/pricing/
 - aid: later:later-campaignplatformcallback-api
   name: Later Campaign Platform Callback API
-  description: >-
-    The CampaignPlatformCallback API from Later — 1 operation(s) for campaignplatformcallback.
+  description: The CampaignPlatformCallback API from Later — 1 operation(s) for campaignplatformcallback.
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
@@ -1300,8 +1293,7 @@ apis:
     url: https://later.com/influencer-marketing-platform/pricing/
 - aid: later:later-custom-analytics-controller-api
   name: Later Custom Analytics Controller API
-  description: >-
-    The Custom Analytics Controller API from Later — 2 operation(s) for custom analytics controller.
+  description: The Custom Analytics Controller API from Later — 2 operation(s) for custom analytics controller.
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
@@ -1375,8 +1367,7 @@ apis:
     url: https://later.com/influencer-marketing-platform/pricing/
 - aid: later:later-dbinfluenceragreementhistoryfields-api
   name: Later DB Influencer Agreement History Fields API
-  description: >-
-    The DBInfluencerAgreementHistoryFields API from Later — 1 operation(s) for dbinfluenceragreementhistoryfields.
+  description: The DBInfluencerAgreementHistoryFields API from Later — 1 operation(s) for dbinfluenceragreementhistoryfields.
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
@@ -2064,8 +2055,7 @@ apis:
     url: https://later.com/influencer-marketing-platform/pricing/
 - aid: later:later-influencercontractcampaigntemplates-api
   name: Later Influencer Contract Campaign Templates API
-  description: >-
-    The InfluencerContractCampaignTemplates API from Later — 2 operation(s) for influencercontractcampaigntemplates.
+  description: The InfluencerContractCampaignTemplates API from Later — 2 operation(s) for influencercontractcampaigntemplates.
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
@@ -2089,8 +2079,7 @@ apis:
     url: https://later.com/influencer-marketing-platform/pricing/
 - aid: later:later-influencercontractcommunitytemplates-api
   name: Later Influencer Contract Community Templates API
-  description: >-
-    The InfluencerContractCommunityTemplates API from Later — 2 operation(s) for influencercontractcommunitytemplates.
+  description: The InfluencerContractCommunityTemplates API from Later — 2 operation(s) for influencercontractcommunitytemplates.
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
@@ -2162,8 +2151,7 @@ apis:
     url: https://later.com/influencer-marketing-platform/pricing/
 - aid: later:later-influencerreviewdeliverable-api
   name: Later Influencer Review Deliverable API
-  description: >-
-    The InfluencerReviewDeliverable API from Later — 2 operation(s) for influencerreviewdeliverable.
+  description: The InfluencerReviewDeliverable API from Later — 2 operation(s) for influencerreviewdeliverable.
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
@@ -2259,8 +2247,7 @@ apis:
     url: https://later.com/influencer-marketing-platform/pricing/
 - aid: later:later-instance-user-materialized-view-api
   name: Later Instance User Materialized View API
-  description: >-
-    The Instance User Materialized View API from Later — 1 operation(s) for instance user materialized
+  description: The Instance User Materialized View API from Later — 1 operation(s) for instance user materialized
     view.
   humanURL: https://later.com/
   baseURL: https://app.later.com/
@@ -2380,7 +2367,7 @@ apis:
   - type: Pricing
     url: https://later.com/influencer-marketing-platform/pricing/
 - aid: later:later-laterinfluencer-api
-  name: Later Later Influencer API
+  name: Later Influencer API
   description: The LaterInfluencer API from Later — 37 operation(s) for laterinfluencer.
   humanURL: https://later.com/
   baseURL: https://app.later.com/
@@ -2501,8 +2488,7 @@ apis:
     url: https://later.com/influencer-marketing-platform/pricing/
 - aid: later:later-listmembermavelyprofiles-api
   name: Later List Member Mavely Profiles API
-  description: >-
-    The ListMemberMavelyProfiles API from Later — 3 operation(s) for listmembermavelyprofiles.
+  description: The ListMemberMavelyProfiles API from Later — 3 operation(s) for listmembermavelyprofiles.
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
@@ -2600,8 +2586,7 @@ apis:
     url: https://later.com/influencer-marketing-platform/pricing/
 - aid: later:later-marketerfilterpreferences-api
   name: Later Marketer Filter Preferences API
-  description: >-
-    The MarketerFilterPreferences API from Later — 1 operation(s) for marketerfilterpreferences.
+  description: The MarketerFilterPreferences API from Later — 1 operation(s) for marketerfilterpreferences.
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
@@ -2817,8 +2802,7 @@ apis:
     url: https://later.com/influencer-marketing-platform/pricing/
 - aid: later:later-meta-business-integrations-api
   name: Later Meta Business Integrations API
-  description: >-
-    The Meta Business Integrations API from Later — 2 operation(s) for meta business integrations.
+  description: The Meta Business Integrations API from Later — 2 operation(s) for meta business integrations.
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
@@ -2842,8 +2826,7 @@ apis:
     url: https://later.com/influencer-marketing-platform/pricing/
 - aid: later:later-meta-business-portfolios-api
   name: Later Meta Business Portfolios API
-  description: >-
-    The Meta Business Portfolios API from Later — 2 operation(s) for meta business portfolios.
+  description: The Meta Business Portfolios API from Later — 2 operation(s) for meta business portfolios.
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
@@ -3233,8 +3216,7 @@ apis:
     url: https://later.com/influencer-marketing-platform/pricing/
 - aid: later:later-polling-queue-management-api
   name: Later Polling Queue Management API
-  description: >-
-    The Polling Queue Management API from Later — 3 operation(s) for polling queue management.
+  description: The Polling Queue Management API from Later — 3 operation(s) for polling queue management.
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
@@ -3718,8 +3700,7 @@ apis:
     url: https://later.com/influencer-marketing-platform/pricing/
 - aid: later:later-social-account-ingestion-api
   name: Later Social Account Ingestion API
-  description: >-
-    The Social Account Ingestion API from Later — 1 operation(s) for social account ingestion.
+  description: The Social Account Ingestion API from Later — 1 operation(s) for social account ingestion.
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
@@ -4355,85 +4336,88 @@ apis:
   - type: Pricing
     url: https://later.com/influencer-marketing-platform/pricing/
 common:
-  - type: CapabilityMap
-    url: capabilities/later-capability-edges.yml
-    name: Later Business Capability Map
-  - type: TrustCenter
-    url: security/later-trust-center.yml
-  - type: DomainSecurity
-    url: security/later-domain-security.yml
-  - type: Website
-    url: https://later.com/
-  - type: Documentation
-    url: https://help.later.com/hc/en-us
-  - type: GitHubOrg
-    url: https://github.com/latermedia
-  - type: LinkedIn
-    url: https://www.linkedin.com/company/latergram-me
-  - type: Blog
-    url: https://later.com/blog/
-  - type: Pricing
-    url: https://later.com/pricing/
-  - type: StatusPage
-    url: https://status.later.com/
-  - type: X
-    url: https://x.com/latermedia
-  - type: Plans
-    url: plans/later-plans-pricing.yml
-  - type: RateLimits
-    url: rate-limits/later-rate-limits.yml
-  - type: FinOps
-    url: finops/later-finops.yml
-  - type: OpenAPI
-    url: openapi/later-influence-api-openapi.json
-  - type: APIReference
-    url: https://api.mavrck.co/api-docs
-  - type: Authentication
-    url: authentication/later-authentication.yml
-  - type: Conventions
-    url: conventions/later-conventions.yml
-  - type: ErrorCatalog
-    url: errors/later-problem-types.yml
-  - type: DataModel
-    url: data-model/later-data-model.yml
-  - type: Conformance
-    url: conformance/later-conformance.yml
-  - type: Compliance
-    url: security/later-trust-center.yml
-  - type: Lifecycle
-    url: lifecycle/later-lifecycle.yml
-  - type: Webhooks
-    url: asyncapi/later-influence-webhooks.yml
-  - type: Overlay
-    url: overlays/later-influence-api-overlay.yaml
-  - type: X-MCPServerCandidate
-    url: mcp/later-mcp.yml
-    note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
-  - type: AgentSkill
-    url: skills/_index.yml
-  - type: LLMsTxt
-    url: llms/later-llms.txt
-  - type: Packages
-    url: packages/later-packages.yml
-  - type: WellKnown
-    url: well-known/later-well-known.yml
-  - type: SecurityTxt
-    url: well-known/later-security.txt
-  - type: PrivacyPolicy
-    url: https://later.com/privacy/
-  - type: TermsOfService
-    url: https://later.com/terms/
-  - type: SignUp
-    url: https://later.com/r/signup
-  - type: Support
-    url: https://help.later.com/hc/en-us
-  - type: Partners
-    url: https://later.com/partners/
-  - type: About
-    url: https://later.com/about/
+- type: CapabilityMap
+  url: capabilities/later-capability-edges.yml
+  name: Later Business Capability Map
+- type: TrustCenter
+  url: security/later-trust-center.yml
+- type: DomainSecurity
+  url: security/later-domain-security.yml
+- type: Website
+  url: https://later.com/
+- type: Documentation
+  url: https://help.later.com/hc/en-us
+- type: GitHubOrg
+  url: https://github.com/latermedia
+- type: LinkedIn
+  url: https://www.linkedin.com/company/latergram-me
+- type: Blog
+  url: https://later.com/blog/
+- type: Pricing
+  url: https://later.com/pricing/
+- type: StatusPage
+  url: https://status.later.com/
+- type: X
+  url: https://x.com/latermedia
+- type: Plans
+  url: plans/later-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/later-rate-limits.yml
+- type: FinOps
+  url: finops/later-finops.yml
+- type: OpenAPI
+  url: openapi/later-influence-api-openapi.json
+- type: APIReference
+  url: https://api.mavrck.co/api-docs
+- type: Authentication
+  url: authentication/later-authentication.yml
+- type: Conventions
+  url: conventions/later-conventions.yml
+- type: ErrorCatalog
+  url: errors/later-problem-types.yml
+- type: DataModel
+  url: data-model/later-data-model.yml
+- type: Conformance
+  url: conformance/later-conformance.yml
+- type: Compliance
+  url: security/later-trust-center.yml
+- type: Lifecycle
+  url: lifecycle/later-lifecycle.yml
+- type: Webhooks
+  url: asyncapi/later-influence-webhooks.yml
+- type: Overlay
+  url: overlays/later-influence-api-overlay.yaml
+- type: X-MCPServerCandidate
+  url: mcp/later-mcp.yml
+  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate
+    — a tool list derived from the published API contracts, not an existing server. The scorer already
+    read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type
+    surfaces with a server that does not exist.'
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/later-llms.txt
+- type: Packages
+  url: packages/later-packages.yml
+- type: WellKnown
+  url: well-known/later-well-known.yml
+- type: SecurityTxt
+  url: well-known/later-security.txt
+- type: PrivacyPolicy
+  url: https://later.com/privacy/
+- type: TermsOfService
+  url: https://later.com/terms/
+- type: SignUp
+  url: https://later.com/r/signup
+- type: Support
+  url: https://help.later.com/hc/en-us
+- type: Partners
+  url: https://later.com/partners/
+- type: About
+  url: https://later.com/about/
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
 x-enrichment:
   date: '2026-08-13'
   status: enriched
