@@ -1,0 +1,77 @@
+slug: later
+provider: Later
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Media, Entertainment & Telecom Content
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 6
+edges:
+- tag: DataSubjectRequest
+  spec_file: later-datasubjectrequest-api-openapi.yml
+  capability_id: BC-130.50
+  capability_id_l1: BC-130
+  capability_name: Privacy & Data Protection Management
+  confidence: 0.85
+  evidence: POST /data-subject-request/ create "Creates or updates a data subject request"
+  reason: A data subject request endpoint is the canonical GDPR/privacy rights mechanism, which is Privacy
+    & Data Protection Management. The many deprecated domain schemas are incidental to the request payload.
+- tag: ExternalClients
+  spec_file: later-externalclients-api-openapi.yml
+  capability_id: BC-4270.40
+  capability_id_l1: BC-4270
+  capability_name: Developer Identity & Credential Management
+  confidence: 0.75
+  evidence: POST /v1/admin/external-clients createExternalClient; POST /v1/admin/external-clients/{clientId}/secrets
+    regenerateExternalClientSecret; schema RegenerateSecretResponse
+  reason: Issuance, association and revocation of external API client credentials and secrets for integrating
+    third parties — developer identity and credential management on the platform's API surface.
+- tag: ActionGroups
+  spec_file: later-actiongroups-api-openapi.yml
+  capability_id: BC-400
+  capability_id_l1: BC-400
+  capability_name: Marketing Management
+  confidence: 0.7
+  evidence: POST /action-groups createActionGroup  "Create an action group"; GET /action-groups/{id}/setup-alerts  "If
+    necessary, return campaign setup alert to marketer"
+  reason: CRUD and operation of influencer marketing campaigns (called action groups, explicitly described
+    as 'campaign' addressed to a 'marketer'), including bulk messaging to candidates — marketing campaign
+    management; ambiguous between demand generation and digital/social marketing sub-capabilities.
+- tag: Activations
+  spec_file: later-activations-api-openapi.yml
+  capability_id: BC-400.60
+  capability_id_l1: BC-400
+  capability_name: Digital Marketing Management
+  confidence: 0.7
+  evidence: '"Create an activation when an action is completed by a user"; "Create manual activation for
+    action"; schemas Campaign, ActivationContentNetwork, BonusTier'
+  reason: 'Core influencer-marketing surface: activating creators/customers to post content on social
+    networks as part of campaigns. That is social/digital marketing execution; the specific sub-capability
+    (digital vs content marketing) is somewhat ambiguous, hence 0.7.'
+- tag: Entitlements
+  spec_file: later-entitlements-api-openapi.yml
+  capability_id: BC-4240
+  capability_id_l1: BC-4240
+  capability_name: Subscription Lifecycle Management
+  confidence: 0.7
+  evidence: GET /v1/entitlements getEntitlements; PUT /v1/entitlements/bulk bulkUpdateEntitlements; schemas
+    Entitlement, FeatureId, EntitlementGroup
+  reason: Reads and updates feature entitlement records governing what an account may access — subscription/entitlement
+    lifecycle. Ambiguous between entitlement design and runtime enforcement, so no L2 asserted.
+- tag: LaterInfluencer
+  spec_file: later-laterinfluencer-api-openapi.yml
+  capability_id: BC-400
+  capability_id_l1: BC-400
+  capability_name: Marketing Management
+  confidence: 0.7
+  evidence: GET /v1/later-influencers/{influencerIdOrCreatorId}/campaigns getCampaigns; POST .../drafts
+    submitDraft; POST .../decline-invitation declineCampaignInvitation; schemas Campaign, Activation
+  reason: Large surface for running influencer campaigns — membership/invitations, concept and draft submission,
+    activations — i.e. brand marketing campaign execution with social creators. L1 marketing is clear;
+    evidence spans digital, content and demand-generation sub-capabilities so no single L2 is asserted.
