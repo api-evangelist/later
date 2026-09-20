@@ -11,7 +11,7 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 6
+edge_count: 9
 edges:
 - tag: DataSubjectRequest
   spec_file: later-data-subject-request-api-openapi.yml
@@ -23,6 +23,18 @@ edges:
   evidence: POST /data-subject-request/ create "Creates or updates a data subject request"
   reason: A data subject request endpoint is the canonical GDPR/privacy rights mechanism, which is Privacy
     & Data Protection Management. The many deprecated domain schemas are incidental to the request payload.
+- tag: Drafts
+  spec_file: later-drafts-api-openapi.yml
+  capability_id: BC-400.70
+  capability_id_l1: BC-400
+  capability_name: Content Marketing Management
+  confidence: 0.8
+  evidence: createDraftContent, updateDraftContentStatus, updateDraftContentFeedback, createDraftContentComment,
+    GET /v1/influencer-draft-content/{actionGroupId}
+  reason: 'Full lifecycle of influencer draft content with status, feedback and comments — i.e. content
+    production and approval workflow for social marketing content, matching Content Marketing Management.
+    Not a generic document store: the schemas are influencer/administrator-account specific.'
+  recovered_from: sweep-20260828T235257Z-edges.json
 - tag: ExternalClients
   spec_file: later-external-clients-api-openapi.yml
   reanchored_from: later-externalclients-api-openapi.yml
@@ -34,6 +46,18 @@ edges:
     regenerateExternalClientSecret; schema RegenerateSecretResponse
   reason: Issuance, association and revocation of external API client credentials and secrets for integrating
     third parties — developer identity and credential management on the platform's API surface.
+- tag: MembershipPurchases
+  spec_file: later-membershippurchases-api-openapi.yml
+  capability_id: BC-420.40
+  capability_id_l1: BC-420
+  capability_name: Loyalty & Retention Management
+  confidence: 0.75
+  evidence: POST /v1/membership-points-for-purchase  awardPointsForPurchase, PostMembershipPurchaseBody
+  reason: Awarding points to a member for a purchase is a loyalty/rewards programme mechanic, consistent
+    with the vendor's advocacy platform description ('Identify your most influential customers and activate
+    them'). Slight residual ambiguity about whether points feed an influencer-reward rather than a consumer
+    loyalty scheme.
+  recovered_from: sweep-20260828T235257Z-edges.json
 - tag: ActionGroups
   spec_file: later-action-groups-api-openapi.yml
   reanchored_from: later-actiongroups-api-openapi.yml
@@ -67,6 +91,17 @@ edges:
     Entitlement, FeatureId, EntitlementGroup
   reason: Reads and updates feature entitlement records governing what an account may access — subscription/entitlement
     lifecycle. Ambiguous between entitlement design and runtime enforcement, so no L2 asserted.
+- tag: Instances
+  spec_file: later-instances-api-openapi.yml
+  capability_id: BC-4230.20
+  capability_id_l1: BC-4230
+  capability_name: Tenant Configuration Management
+  confidence: 0.7
+  evidence: getInstanceBranding / updateInstanceBranding / deleteInstanceBranding, schema 'UpdateInstanceBrandingBody',
+    'S4instanceBrandingResponse'
+  reason: CRUD over per-instance branding records is per-tenant configuration/branding above the shared
+    product baseline, not corporate brand strategy.
+  recovered_from: sweep-20260828T235257Z-edges.json
 - tag: LaterInfluencer
   spec_file: later-laterinfluencer-api-openapi.yml
   capability_id: BC-400
