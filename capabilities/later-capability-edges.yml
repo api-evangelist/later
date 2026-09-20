@@ -14,7 +14,8 @@ capability_model:
 edge_count: 6
 edges:
 - tag: DataSubjectRequest
-  spec_file: later-datasubjectrequest-api-openapi.yml
+  spec_file: later-data-subject-request-api-openapi.yml
+  reanchored_from: later-datasubjectrequest-api-openapi.yml
   capability_id: BC-130.50
   capability_id_l1: BC-130
   capability_name: Privacy & Data Protection Management
@@ -23,7 +24,8 @@ edges:
   reason: A data subject request endpoint is the canonical GDPR/privacy rights mechanism, which is Privacy
     & Data Protection Management. The many deprecated domain schemas are incidental to the request payload.
 - tag: ExternalClients
-  spec_file: later-externalclients-api-openapi.yml
+  spec_file: later-external-clients-api-openapi.yml
+  reanchored_from: later-externalclients-api-openapi.yml
   capability_id: BC-4270.40
   capability_id_l1: BC-4270
   capability_name: Developer Identity & Credential Management
@@ -33,7 +35,8 @@ edges:
   reason: Issuance, association and revocation of external API client credentials and secrets for integrating
     third parties — developer identity and credential management on the platform's API surface.
 - tag: ActionGroups
-  spec_file: later-actiongroups-api-openapi.yml
+  spec_file: later-action-groups-api-openapi.yml
+  reanchored_from: later-actiongroups-api-openapi.yml
   capability_id: BC-400
   capability_id_l1: BC-400
   capability_name: Marketing Management
