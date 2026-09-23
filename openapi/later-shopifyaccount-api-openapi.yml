@@ -47,6 +47,8 @@ paths:
                 $ref: '#/components/schemas/ServerError'
       tags:
       - ShopifyAccount
+      summary: Get instance shopify account
+      x-summary-source: derived
     post:
       operationId: createShopifyAccount
       responses:
@@ -88,6 +90,8 @@ paths:
             schema:
               $ref: '#/components/schemas/CreateShopifyAccountData'
         required: true
+      summary: Create shopify account
+      x-summary-source: derived
   /v1/shopify-accounts/uninstall:
     post:
       operationId: uninstallShopifyAccount
@@ -126,6 +130,8 @@ paths:
             schema:
               $ref: '#/components/schemas/UninstallShopifyRequest'
         required: true
+      summary: Uninstall shopify account
+      x-summary-source: derived
   /v1/shopify-accounts/install:
     get:
       operationId: shopifyInstall
@@ -158,6 +164,8 @@ paths:
                 $ref: '#/components/schemas/ServerError'
       tags:
       - ShopifyAccount
+      summary: Shopify install
+      x-summary-source: derived
   /v1/shopify-accounts/auth:
     get:
       operationId: shopifyAuth
@@ -190,6 +198,8 @@ paths:
                 $ref: '#/components/schemas/ServerError'
       tags:
       - ShopifyAccount
+      summary: Shopify auth
+      x-summary-source: derived
   /v1/shopify-accounts/connect:
     post:
       operationId: connectShopifyApp
@@ -232,6 +242,8 @@ paths:
             schema:
               $ref: '#/components/schemas/ConnectShopifyAccountBody'
         required: true
+      summary: Connect shopify app
+      x-summary-source: derived
   /v1/shopify-accounts/webhooks/uninstall:
     post:
       operationId: uninstallShopifyApp
@@ -270,6 +282,8 @@ paths:
             schema:
               type: object
         required: true
+      summary: Uninstall shopify app
+      x-summary-source: derived
   /v1/shopify-accounts/webhooks/compliance/shop/redact:
     post:
       operationId: shopRedact
@@ -308,6 +322,8 @@ paths:
             schema:
               type: object
         required: true
+      summary: Shop redact
+      x-summary-source: derived
   /v1/shopify-accounts/webhooks/compliance/customers/redact:
     post:
       operationId: customerRedact
@@ -340,6 +356,8 @@ paths:
                 $ref: '#/components/schemas/ServerError'
       tags:
       - ShopifyAccount
+      summary: Customer redact
+      x-summary-source: derived
   /v1/shopify-accounts/webhooks/compliance/customers/data_request:
     post:
       operationId: customerDataRequest
@@ -372,14 +390,25 @@ paths:
                 $ref: '#/components/schemas/ServerError'
       tags:
       - ShopifyAccount
+      summary: Customer data request
+      x-summary-source: derived
 components:
   schemas:
-    ServerError:
+    UninstallShopifyRequest:
+      properties:
+        shopId:
+          type: number
+          format: double
+      required:
+      - shopId
+      type: object
+      additionalProperties: false
+    NotFoundError:
       properties:
         message:
           type: string
           enum:
-          - Server Error
+          - Resource Not Found
         details:
           properties: {}
           additionalProperties:
@@ -404,6 +433,17 @@ components:
       - communityId
       - shopName
       - shopifyAccessToken
+      type: object
+      additionalProperties: false
+    ConnectShopifyAccountBody:
+      properties:
+        token:
+          type: string
+        shop:
+          type: string
+      required:
+      - token
+      - shop
       type: object
       additionalProperties: false
     BadRequestError:
@@ -437,42 +477,6 @@ components:
       - details
       type: object
       additionalProperties: false
-    NotFoundError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Resource Not Found
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    UninstallShopifyRequest:
-      properties:
-        shopId:
-          type: number
-          format: double
-      required:
-      - shopId
-      type: object
-      additionalProperties: false
-    ConnectShopifyAccountBody:
-      properties:
-        token:
-          type: string
-        shop:
-          type: string
-      required:
-      - token
-      - shop
-      type: object
-      additionalProperties: false
     ShopifyAccountResponse:
       properties:
         updatedAt:
@@ -498,6 +502,22 @@ components:
       - communityId
       - id
       type: object
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
   securitySchemes:
     apiKey:
       type: apiKey

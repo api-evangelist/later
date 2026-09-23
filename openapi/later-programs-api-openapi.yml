@@ -86,6 +86,8 @@ paths:
                 $ref: '#/components/schemas/Error'
       tags:
       - Programs
+      summary: Get referral program incentive for referee
+      x-summary-source: derived
 components:
   schemas:
     Error:

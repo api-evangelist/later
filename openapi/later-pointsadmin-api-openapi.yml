@@ -47,6 +47,8 @@ paths:
                 $ref: '#/components/schemas/ServerError'
       tags:
       - PointsAdmin
+      summary: Get community action objective definitions
+      x-summary-source: derived
     put:
       operationId: setCommunityActionObjectiveDefinition
       responses:
@@ -88,6 +90,8 @@ paths:
             schema:
               $ref: '#/components/schemas/CommunityActionObjectiveDefinition'
         required: true
+      summary: Set community action objective definition
+      x-summary-source: derived
   /v1/points-admin/engagement-point-mapping:
     get:
       operationId: getEngagementPointMapping
@@ -124,6 +128,8 @@ paths:
                 $ref: '#/components/schemas/ServerError'
       tags:
       - PointsAdmin
+      summary: Get engagement point mapping
+      x-summary-source: derived
     put:
       operationId: setEngagementPointMapping
       responses:
@@ -165,54 +171,26 @@ paths:
             schema:
               $ref: '#/components/schemas/CommunityEngagementPointMapping'
         required: true
+      summary: Set engagement point mapping
+      x-summary-source: derived
 components:
   schemas:
+    GetCommunityActionObjectiveResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/CommunityActionObjectiveDefinition'
+          type: array
+      required:
+      - data
+      type: object
+      additionalProperties: false
     ServerError:
       properties:
         message:
           type: string
           enum:
           - Server Error
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    CommunityEngagementPointMapping:
-      properties:
-        ratio:
-          type: number
-          format: double
-        maxPointsCap:
-          type: number
-          format: double
-        stepAmount:
-          type: number
-          format: double
-      type: object
-    CommunityActionObjectiveDefinition:
-      properties:
-        points:
-          type: number
-          format: double
-        objectiveId:
-          type: number
-          format: double
-      required:
-      - points
-      - objectiveId
-      type: object
-    ForbiddenError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Access Forbidden
         details:
           properties: {}
           additionalProperties:
@@ -255,26 +233,56 @@ components:
       - details
       type: object
       additionalProperties: false
-    GetCommunityActionObjectiveResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/CommunityActionObjectiveDefinition'
-          type: array
-      required:
-      - data
+    TSOAEmptyObject:
+      properties: {}
       type: object
       additionalProperties: false
+    CommunityEngagementPointMapping:
+      properties:
+        ratio:
+          type: number
+          format: double
+        maxPointsCap:
+          type: number
+          format: double
+        stepAmount:
+          type: number
+          format: double
+      type: object
+    ForbiddenError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Access Forbidden
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    CommunityActionObjectiveDefinition:
+      properties:
+        points:
+          type: number
+          format: double
+        objectiveId:
+          type: number
+          format: double
+      required:
+      - points
+      - objectiveId
+      type: object
     GetCommunityEngagementPointMappingResponse:
       properties:
         data:
           $ref: '#/components/schemas/CommunityEngagementPointMapping'
       required:
       - data
-      type: object
-      additionalProperties: false
-    TSOAEmptyObject:
-      properties: {}
       type: object
       additionalProperties: false
   securitySchemes:

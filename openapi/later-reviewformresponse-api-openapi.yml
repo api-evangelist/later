@@ -64,14 +64,32 @@ paths:
         required: false
         schema:
           type: string
+      summary: Export by community id and campaign id
+      x-summary-source: derived
 components:
   schemas:
-    ServerError:
+    NotFoundError:
       properties:
         message:
           type: string
           enum:
-          - Server Error
+          - Resource Not Found
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    ValidateErrorJSON:
+      properties:
+        message:
+          type: string
+          enum:
+          - Validation failed
         details:
           properties: {}
           additionalProperties:
@@ -113,28 +131,12 @@ components:
       - details
       type: object
       additionalProperties: false
-    NotFoundError:
+    ServerError:
       properties:
         message:
           type: string
           enum:
-          - Resource Not Found
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ValidateErrorJSON:
-      properties:
-        message:
-          type: string
-          enum:
-          - Validation failed
+          - Server Error
         details:
           properties: {}
           additionalProperties:

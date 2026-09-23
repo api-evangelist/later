@@ -53,67 +53,28 @@ paths:
             schema:
               $ref: '#/components/schemas/WebPluginConversionBody'
         required: true
+      summary: Create conversion
+      x-summary-source: derived
 components:
   schemas:
-    ServerError:
+    WebPluginConversionBody:
       properties:
-        message:
+        orderId:
           type: string
-          enum:
-          - Server Error
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ResponseBody_WebPluginConversionResponse-Array_:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/WebPluginConversionResponse'
-          type: array
-        meta:
-          $ref: '#/components/schemas/ResponseMeta'
-      required:
-      - data
-      type: object
-      additionalProperties: false
-    ResponseMeta:
-      properties:
-        limit:
-          type: number
-          format: double
-        offset:
-          type: number
-          format: double
-        totalCount:
-          type: number
-          format: double
-      type: object
-      additionalProperties: false
-    ForbiddenError:
-      properties:
-        message:
+        promoCode:
           type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
+        conversionValue:
+          type: number
+          format: double
+        conversionCode:
+          type: string
+        communityId:
+          type: string
       required:
-      - message
-      - details
+      - conversionValue
+      - conversionCode
+      - communityId
       type: object
-      additionalProperties: false
-    WebPluginConversionResponse:
-      $ref: '#/components/schemas/Omit_WebPluginConversionBody.promoCode-or-orderId_'
     Omit_WebPluginConversionBody.promoCode-or-orderId_:
       $ref: '#/components/schemas/Pick_WebPluginConversionBody.Exclude_keyofWebPluginConversionBody.promoCode-or-orderId__'
       description: Construct a type with the properties of T except for those in type K.
@@ -149,6 +110,49 @@ components:
       - details
       type: object
       additionalProperties: false
+    WebPluginConversionResponse:
+      $ref: '#/components/schemas/Omit_WebPluginConversionBody.promoCode-or-orderId_'
+    ResponseMeta:
+      properties:
+        limit:
+          type: number
+          format: double
+        offset:
+          type: number
+          format: double
+        totalCount:
+          type: number
+          format: double
+      type: object
+      additionalProperties: false
+    ForbiddenError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Access Forbidden
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    ResponseBody_WebPluginConversionResponse-Array_:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/WebPluginConversionResponse'
+          type: array
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+      required:
+      - data
+      type: object
+      additionalProperties: false
     Pick_WebPluginConversionBody.Exclude_keyofWebPluginConversionBody.promoCode-or-orderId__:
       properties:
         communityId:
@@ -164,24 +168,22 @@ components:
       - conversionCode
       type: object
       description: From T, pick a set of properties whose keys are in the union K
-    WebPluginConversionBody:
+    ServerError:
       properties:
-        orderId:
+        message:
           type: string
-        promoCode:
-          type: string
-        conversionValue:
-          type: number
-          format: double
-        conversionCode:
-          type: string
-        communityId:
-          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
       required:
-      - conversionValue
-      - conversionCode
-      - communityId
+      - message
+      - details
       type: object
+      additionalProperties: false
   securitySchemes:
     apiKey:
       type: apiKey

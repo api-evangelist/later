@@ -19,7 +19,7 @@ paths:
       x-handler: facebook_profiles/facebook_profile_controller.js
       x-access:
       - influencer
-      summary: Retrieve Facebook profiles.
+      summary: Retrieve Facebook profiles
       responses:
         '200':
           description: Collection of Facebook profiles.
@@ -60,7 +60,7 @@ paths:
       x-handler: facebook_profiles/active_facebook_profile_controller.js
       x-access:
       - influencer
-      summary: Designate a Facebook profile as active.
+      summary: Designate a Facebook profile as active
       parameters:
       - name: facebookProfileId
         in: path
@@ -106,6 +106,21 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    LinksDeprecated:
+      type: object
+      x-access:
+      - anonymous
+      - influencer
+      properties:
+        normal:
+          type: string
+          description: A normal link to an entity.
+        deep:
+          type: string
+          description: A deep link to the entity.
+    EmptyObject:
+      type: object
+      properties: {}
     FacebookProfileDeprecated:
       type: object
       properties:
@@ -192,21 +207,6 @@ components:
             error:
               type: string
               description: A static description of the parent error.
-    LinksDeprecated:
-      type: object
-      x-access:
-      - anonymous
-      - influencer
-      properties:
-        normal:
-          type: string
-          description: A normal link to an entity.
-        deep:
-          type: string
-          description: A deep link to the entity.
-    EmptyObject:
-      type: object
-      properties: {}
   securitySchemes:
     apiKey:
       type: apiKey

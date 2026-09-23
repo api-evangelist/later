@@ -9,12 +9,12 @@ servers:
 security:
 - apiKey: []
 tags:
-- name: BatchJobs
+- name: Batch Jobs
 paths:
   /batch-jobs/{listId}/status:
     get:
       tags:
-      - BatchJobs
+      - Batch Jobs
       x-handler: batch_jobs/batch_jobs_controller.js
       x-access:
       - administrator
@@ -68,10 +68,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+      summary: Get progress for batch jobs with list id
+      x-summary-source: derived
   /batch-jobs/{communityId}/summary:
     get:
       tags:
-      - BatchJobs
+      - Batch Jobs
       x-handler: batch_jobs/batch_jobs_controller.js
       x-access:
       - administrator
@@ -125,33 +127,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+      summary: Get batch jobs summary
+      x-summary-source: derived
 components:
   schemas:
-    BatchJob:
-      type: object
-      properties:
-        status:
-          type: string
-        name:
-          type: string
-        createdAt:
-          type: string
-        beganProcessingAt:
-          type: string
-        completedAt:
-          type: string
-        failedAt:
-          type: string
-        requester:
-          type: string
-        messagesProcessed:
-          type: integer
-        params:
-          type: string
-        total:
-          type: integer
-        type:
-          type: string
     Error:
       type: object
       properties:
@@ -213,6 +192,31 @@ components:
         deep:
           type: string
           description: A deep link to the entity.
+    BatchJob:
+      type: object
+      properties:
+        status:
+          type: string
+        name:
+          type: string
+        createdAt:
+          type: string
+        beganProcessingAt:
+          type: string
+        completedAt:
+          type: string
+        failedAt:
+          type: string
+        requester:
+          type: string
+        messagesProcessed:
+          type: integer
+        params:
+          type: string
+        total:
+          type: integer
+        type:
+          type: string
   securitySchemes:
     apiKey:
       type: apiKey

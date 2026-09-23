@@ -53,6 +53,8 @@ paths:
             schema:
               $ref: '#/components/schemas/BackfillFollowersAtPostRequest'
         required: true
+      summary: Backfill followers at post
+      x-summary-source: derived
   /v1/backfill-analytics/update-content-activation-summary:
     post:
       operationId: updateContentActivationSummary
@@ -95,40 +97,35 @@ paths:
             schema:
               $ref: '#/components/schemas/UpdateContentActivationSummaryRequest'
         required: true
+      summary: Update content activation summary
+      x-summary-source: derived
 components:
   schemas:
-    ServerError:
+    BackfillFollowersAtPostRequest:
       properties:
-        message:
+        batchSize:
+          type: number
+          format: double
+        network:
           type: string
-          enum:
-          - Server Error
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
+        endDate:
+          type: string
+        startDate:
+          type: string
       required:
-      - message
-      - details
+      - network
+      - endDate
+      - startDate
       type: object
-      additionalProperties: false
-    ForbiddenError:
+    UpdateContentActivationSummaryRequest:
       properties:
-        message:
-          type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
+        entities:
+          items:
+            $ref: '#/components/schemas/UpdateContentActivationSummaryEntity'
+          type: array
       required:
-      - message
-      - details
+      - entities
       type: object
-      additionalProperties: false
     BackfillFollowersAtPostResponse:
       properties:
         message:
@@ -142,38 +139,6 @@ components:
       required:
       - message
       - processedBatches
-      - updatedRecords
-      type: object
-    UpdateContentActivationSummaryResponse:
-      properties:
-        message:
-          type: string
-        errors:
-          items:
-            properties:
-              error:
-                type: string
-              activationId:
-                type: number
-                format: double
-            required:
-            - error
-            type: object
-          type: array
-        skippedEntities:
-          type: number
-          format: double
-        processedEntities:
-          type: number
-          format: double
-        updatedRecords:
-          type: number
-          format: double
-      required:
-      - message
-      - errors
-      - skippedEntities
-      - processedEntities
       - updatedRecords
       type: object
     NotFoundError:
@@ -208,6 +173,54 @@ components:
       - details
       type: object
       additionalProperties: false
+    ForbiddenError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Access Forbidden
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    UpdateContentActivationSummaryResponse:
+      properties:
+        message:
+          type: string
+        errors:
+          items:
+            properties:
+              error:
+                type: string
+              activationId:
+                type: number
+                format: double
+            required:
+            - error
+            type: object
+          type: array
+        skippedEntities:
+          type: number
+          format: double
+        processedEntities:
+          type: number
+          format: double
+        updatedRecords:
+          type: number
+          format: double
+      required:
+      - message
+      - errors
+      - skippedEntities
+      - processedEntities
+      - updatedRecords
+      type: object
     UpdateContentActivationSummaryEntity:
       properties:
         activationId:
@@ -218,31 +231,22 @@ components:
       required:
       - activationId
       type: object
-    BackfillFollowersAtPostRequest:
+    ServerError:
       properties:
-        batchSize:
-          type: number
-          format: double
-        network:
+        message:
           type: string
-        endDate:
-          type: string
-        startDate:
-          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
       required:
-      - network
-      - endDate
-      - startDate
+      - message
+      - details
       type: object
-    UpdateContentActivationSummaryRequest:
-      properties:
-        entities:
-          items:
-            $ref: '#/components/schemas/UpdateContentActivationSummaryEntity'
-          type: array
-      required:
-      - entities
-      type: object
+      additionalProperties: false
   securitySchemes:
     apiKey:
       type: apiKey

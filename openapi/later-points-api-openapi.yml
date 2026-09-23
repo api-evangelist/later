@@ -19,7 +19,7 @@ paths:
       x-handler: points/influencer_points_history_controller.js
       x-access:
       - administrator
-      summary: Retrieve the points history for an influencer.
+      summary: Retrieve the points history for an influencer
       parameters:
       - $ref: '#/components/parameters/orderByParam'
       - $ref: '#/components/parameters/limitParam'
@@ -74,7 +74,7 @@ paths:
       x-handler: points/influencer_points_history_controller.js
       x-access:
       - administrator
-      summary: Grant points for an influencer in a manual entry.
+      summary: Grant points for an influencer in a manual entry
       parameters:
       - name: membershipId
         in: path
@@ -132,26 +132,58 @@ paths:
                 reason:
                   type: string
 components:
-  parameters:
-    orderByParam:
-      in: query
-      description: Attribute to order by.
-      name: orderBy
-      schema:
-        type: string
-    offsetParam:
-      in: query
-      description: Number of items to skip
-      name: offset
-      schema:
-        type: integer
-    limitParam:
-      in: query
-      description: Maximum number of items to return
-      name: limit
-      schema:
-        type: integer
   schemas:
+    LinksDeprecated:
+      type: object
+      x-access:
+      - anonymous
+      - influencer
+      properties:
+        normal:
+          type: string
+          description: A normal link to an entity.
+        deep:
+          type: string
+          description: A deep link to the entity.
+    PointGrantURI:
+      type: object
+      required:
+      - sourceId
+      properties:
+        sourceId:
+          type: integer
+          description: Unique identifier representing the source of the point granted.
+    PointTransaction:
+      type: object
+      properties:
+        sourceType:
+          type: string
+          description: The origination of the point transaction.
+        actionId:
+          type: integer
+          description: ID of associated action.
+        actionType:
+          type: string
+          description: Type of associated action.
+        pointGrantTime:
+          type: string
+          format: date
+          description: Datetime points were granted.
+        amount:
+          type: integer
+          description: Amount of points in this transaction.
+        activationId:
+          type: integer
+          description: Activation ID associated.
+        conversionDatapointId:
+          type: integer
+          description: Conversion data point id associated.
+        description:
+          type: string
+          description: A description provided for this points transaction e.g. action group name, incentive name, reason for manual entry.
+        incentiveClaimId:
+          type: integer
+          description: Incentive claim ID associated.
     ResponseMetadata:
       properties:
         limit:
@@ -201,57 +233,25 @@ components:
             error:
               type: string
               description: A static description of the parent error.
-    PointGrantURI:
-      type: object
-      required:
-      - sourceId
-      properties:
-        sourceId:
-          type: integer
-          description: Unique identifier representing the source of the point granted.
-    LinksDeprecated:
-      type: object
-      x-access:
-      - anonymous
-      - influencer
-      properties:
-        normal:
-          type: string
-          description: A normal link to an entity.
-        deep:
-          type: string
-          description: A deep link to the entity.
-    PointTransaction:
-      type: object
-      properties:
-        sourceType:
-          type: string
-          description: The origination of the point transaction.
-        actionId:
-          type: integer
-          description: ID of associated action.
-        actionType:
-          type: string
-          description: Type of associated action.
-        pointGrantTime:
-          type: string
-          format: date
-          description: Datetime points were granted.
-        amount:
-          type: integer
-          description: Amount of points in this transaction.
-        activationId:
-          type: integer
-          description: Activation ID associated.
-        conversionDatapointId:
-          type: integer
-          description: Conversion data point id associated.
-        description:
-          type: string
-          description: A description provided for this points transaction e.g. action group name, incentive name, reason for manual entry.
-        incentiveClaimId:
-          type: integer
-          description: Incentive claim ID associated.
+  parameters:
+    limitParam:
+      in: query
+      description: Maximum number of items to return
+      name: limit
+      schema:
+        type: integer
+    orderByParam:
+      in: query
+      description: Attribute to order by.
+      name: orderBy
+      schema:
+        type: string
+    offsetParam:
+      in: query
+      description: Number of items to skip
+      name: offset
+      schema:
+        type: integer
   securitySchemes:
     apiKey:
       type: apiKey

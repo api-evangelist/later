@@ -16,7 +16,7 @@ paths:
       x-handler: tracking_links/tracking_link_controller.js
       x-access:
       - influencer
-      summary: Retrieve a tracking link for an action.
+      summary: Retrieve a tracking link for an action
       operationId: getActionTrackingLink
       parameters:
       - name: id

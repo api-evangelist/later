@@ -47,6 +47,8 @@ paths:
             schema:
               $ref: '#/components/schemas/ActivationTagPostRequestBody'
         required: true
+      summary: Create tag
+      x-summary-source: derived
     get:
       operationId: getTags
       responses:
@@ -96,6 +98,8 @@ paths:
           type: number
           format: double
           default: 0
+      summary: Get tags
+      x-summary-source: derived
   /v1/activation-tags/{name}:
     delete:
       operationId: deleteTag
@@ -128,24 +132,18 @@ paths:
         required: true
         schema:
           type: string
+      summary: Delete tag
+      x-summary-source: derived
 components:
   schemas:
-    ServerError:
+    Pick_ActivationTag.name_:
       properties:
-        message:
+        name:
           type: string
-          enum:
-          - Server Error
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
       required:
-      - message
-      - details
+      - name
       type: object
-      additionalProperties: false
+      description: From T, pick a set of properties whose keys are in the union K
     ActivationTagsGetResponse:
       properties:
         data:
@@ -174,32 +172,6 @@ components:
       type: object
       additionalProperties: false
     ActivationTagPostResponse:
-      $ref: '#/components/schemas/Pick_ActivationTag.name_'
-    Pick_ActivationTag.name_:
-      properties:
-        name:
-          type: string
-      required:
-      - name
-      type: object
-      description: From T, pick a set of properties whose keys are in the union K
-    ForbiddenError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ActivationTagPostRequestBody:
       $ref: '#/components/schemas/Pick_ActivationTag.name_'
     ValidateErrorJSON:
       properties:
@@ -234,6 +206,40 @@ components:
       - createdAt
       - id
       - name
+      type: object
+      additionalProperties: false
+    ActivationTagPostRequestBody:
+      $ref: '#/components/schemas/Pick_ActivationTag.name_'
+    ForbiddenError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Access Forbidden
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
       type: object
       additionalProperties: false
   securitySchemes:

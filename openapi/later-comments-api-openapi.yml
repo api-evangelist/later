@@ -76,6 +76,8 @@ paths:
         schema:
           type: number
           format: double
+      summary: Get global user comments
+      x-summary-source: derived
     post:
       operationId: createGlobalUserComment
       responses:
@@ -118,6 +120,8 @@ paths:
             schema:
               $ref: '#/components/schemas/GlobalUserCommentPostBody'
         required: true
+      summary: Create global user comment
+      x-summary-source: derived
   /v1/global-users/{globalUserId}/comments/{commentId}:
     patch:
       operationId: updateGlobalUserComment
@@ -167,6 +171,8 @@ paths:
             schema:
               $ref: '#/components/schemas/GlobalUserCommentPatchBody'
         required: true
+      summary: Update global user comment
+      x-summary-source: derived
   /v1/notification_comments:
     get:
       operationId: getNotificationComments
@@ -236,6 +242,8 @@ paths:
         required: false
         schema:
           type: string
+      summary: Get notification comments
+      x-summary-source: derived
     post:
       operationId: createNotificationComment
       responses:
@@ -277,6 +285,8 @@ paths:
             schema:
               $ref: '#/components/schemas/NotificationCommentPostBody'
         required: true
+      summary: Create notification comment
+      x-summary-source: derived
 components:
   schemas:
     Pick_NotificationComment.text-or-resourceType-or-resourceId_:
@@ -293,68 +303,15 @@ components:
       - resourceId
       type: object
       description: From T, pick a set of properties whose keys are in the union K
-    GlobalUserCommentPatchBody:
-      properties:
-        pinned:
-          type: boolean
-      required:
-      - pinned
-      type: object
-      additionalProperties: false
-    ServerError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Server Error
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    Comment:
-      properties:
-        author:
-          $ref: '#/components/schemas/Administrator'
-        createdAt:
-          type: string
-        id:
-          type: number
-          format: double
-        text:
-          type: string
-        pinned:
-          type: boolean
-      type: object
-      additionalProperties: false
-    NotificationComment:
+    NotificationCommentPostBody:
+      $ref: '#/components/schemas/Pick_NotificationComment.text-or-resourceType-or-resourceId_'
+    IdObject:
       properties:
         id:
           type: number
           format: double
-        occurredAt:
-          type: string
-        author:
-          type: string
-        authorImage:
-          type: string
-        resourceType:
-          type: string
-        resourceId:
-          type: string
-        text:
-          type: string
       required:
       - id
-      - occurredAt
-      - resourceType
-      - resourceId
-      - text
       type: object
       additionalProperties: false
     Administrator:
@@ -378,75 +335,6 @@ components:
           type: boolean
         createdAt:
           type: string
-      type: object
-      additionalProperties: false
-    ResponseBody_NotificationComment-Array_:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/NotificationComment'
-          type: array
-        meta:
-          $ref: '#/components/schemas/ResponseMeta'
-      required:
-      - data
-      type: object
-      additionalProperties: false
-    ResponseMeta:
-      properties:
-        limit:
-          type: number
-          format: double
-        offset:
-          type: number
-          format: double
-        totalCount:
-          type: number
-          format: double
-      type: object
-      additionalProperties: false
-    GlobalUserCommentPostBody:
-      properties:
-        text:
-          type: string
-        resource:
-          properties:
-            type:
-              type: string
-              enum:
-              - ActionGroup
-            id:
-              type: number
-              format: double
-          required:
-          - type
-          - id
-          type: object
-      required:
-      - text
-      type: object
-      additionalProperties: false
-    Pick_Comment.id_:
-      properties:
-        id:
-          type: number
-          format: double
-      type: object
-      description: From T, pick a set of properties whose keys are in the union K
-    ForbiddenError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
       type: object
       additionalProperties: false
     NotFoundError:
@@ -481,15 +369,137 @@ components:
       - details
       type: object
       additionalProperties: false
-    NotificationCommentPostBody:
-      $ref: '#/components/schemas/Pick_NotificationComment.text-or-resourceType-or-resourceId_'
-    IdObject:
+    GlobalUserCommentPostBody:
+      properties:
+        text:
+          type: string
+        resource:
+          properties:
+            type:
+              type: string
+              enum:
+              - ActionGroup
+            id:
+              type: number
+              format: double
+          required:
+          - type
+          - id
+          type: object
+      required:
+      - text
+      type: object
+      additionalProperties: false
+    ResponseBody_NotificationComment-Array_:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/NotificationComment'
+          type: array
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+      required:
+      - data
+      type: object
+      additionalProperties: false
+    NotificationComment:
       properties:
         id:
           type: number
           format: double
+        occurredAt:
+          type: string
+        author:
+          type: string
+        authorImage:
+          type: string
+        resourceType:
+          type: string
+        resourceId:
+          type: string
+        text:
+          type: string
       required:
       - id
+      - occurredAt
+      - resourceType
+      - resourceId
+      - text
+      type: object
+      additionalProperties: false
+    Pick_Comment.id_:
+      properties:
+        id:
+          type: number
+          format: double
+      type: object
+      description: From T, pick a set of properties whose keys are in the union K
+    ResponseMeta:
+      properties:
+        limit:
+          type: number
+          format: double
+        offset:
+          type: number
+          format: double
+        totalCount:
+          type: number
+          format: double
+      type: object
+      additionalProperties: false
+    GlobalUserCommentPatchBody:
+      properties:
+        pinned:
+          type: boolean
+      required:
+      - pinned
+      type: object
+      additionalProperties: false
+    ForbiddenError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Access Forbidden
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    Comment:
+      properties:
+        author:
+          $ref: '#/components/schemas/Administrator'
+        createdAt:
+          type: string
+        id:
+          type: number
+          format: double
+        text:
+          type: string
+        pinned:
+          type: boolean
+      type: object
+      additionalProperties: false
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
       type: object
       additionalProperties: false
   securitySchemes:

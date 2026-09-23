@@ -55,6 +55,8 @@ paths:
         schema:
           type: number
           format: double
+      summary: Harness creator context
+      x-summary-source: derived
     post:
       operationId: harnessSaveCreatorContext
       responses:
@@ -104,6 +106,8 @@ paths:
             schema:
               $ref: '#/components/schemas/SaveCreatorContextRequest'
         required: true
+      summary: Harness save creator context
+      x-summary-source: derived
   /v1/brand-suitability/harness/global-users/{globalUserId}/creator-context/stored:
     get:
       operationId: harnessGetStoredCreatorContext
@@ -148,6 +152,8 @@ paths:
         schema:
           type: number
           format: double
+      summary: Harness get stored creator context
+      x-summary-source: derived
     patch:
       operationId: harnessUpdateCreatorContext
       responses:
@@ -197,6 +203,8 @@ paths:
             schema:
               $ref: '#/components/schemas/UpdateCreatorContextRequest'
         required: true
+      summary: Harness update creator context
+      x-summary-source: derived
     delete:
       operationId: harnessDeleteCreatorContext
       responses:
@@ -240,6 +248,8 @@ paths:
         schema:
           type: number
           format: double
+      summary: Harness delete creator context
+      x-summary-source: derived
   /v1/brand-suitability/harness/brand-context:
     get:
       operationId: harnessBrandContext
@@ -282,6 +292,8 @@ paths:
         required: false
         schema:
           type: string
+      summary: Harness brand context
+      x-summary-source: derived
     post:
       operationId: harnessSaveBrandContext
       responses:
@@ -330,6 +342,8 @@ paths:
             schema:
               $ref: '#/components/schemas/SaveBrandContextRequest'
         required: true
+      summary: Harness save brand context
+      x-summary-source: derived
   /v1/brand-suitability/harness/brand-context/stored:
     get:
       operationId: harnessGetStoredBrandContext
@@ -373,6 +387,8 @@ paths:
         required: false
         schema:
           type: string
+      summary: Harness get stored brand context
+      x-summary-source: derived
     patch:
       operationId: harnessUpdateBrandContext
       responses:
@@ -421,6 +437,8 @@ paths:
             schema:
               $ref: '#/components/schemas/UpdateBrandContextRequest'
         required: true
+      summary: Harness update brand context
+      x-summary-source: derived
     delete:
       operationId: harnessDeleteBrandContext
       responses:
@@ -463,6 +481,8 @@ paths:
         required: false
         schema:
           type: string
+      summary: Harness delete brand context
+      x-summary-source: derived
   /v1/brand-suitability/harness/campaigns/{campaignId}/campaign-context:
     get:
       operationId: harnessCampaignContext
@@ -506,6 +526,8 @@ paths:
         schema:
           type: number
           format: double
+      summary: Harness campaign context
+      x-summary-source: derived
   /v1/brand-suitability/harness/research:
     post:
       operationId: harnessResearch
@@ -553,6 +575,8 @@ paths:
             schema:
               $ref: '#/components/schemas/ResearchRequest'
         required: true
+      summary: Harness research
+      x-summary-source: derived
   /v1/brand-suitability/harness/verify-sources:
     post:
       operationId: harnessVerifySources
@@ -600,6 +624,8 @@ paths:
             schema:
               $ref: '#/components/schemas/VerifySourcesRequest'
         required: true
+      summary: Harness verify sources
+      x-summary-source: derived
   /v1/brand-suitability/harness/global-users/{globalUserId}/reverify:
     post:
       operationId: harnessReverify
@@ -654,6 +680,8 @@ paths:
             schema:
               $ref: '#/components/schemas/ReverifyRequest'
         required: true
+      summary: Harness reverify
+      x-summary-source: derived
   /v1/brand-suitability/harness/assess:
     post:
       operationId: harnessAssessMetric
@@ -696,6 +724,8 @@ paths:
             schema:
               $ref: '#/components/schemas/AssessMetricRequest'
         required: true
+      summary: Harness assess metric
+      x-summary-source: derived
   /v1/brand-suitability/harness/assess-full:
     post:
       operationId: harnessAssessFull
@@ -741,39 +771,158 @@ paths:
             schema:
               $ref: '#/components/schemas/AssessFullRequest'
         required: true
+      summary: Harness assess full
+      x-summary-source: derived
 components:
   schemas:
-    ServerError:
+    PartialCreatorProfile:
       properties:
-        message:
-          type: string
-          enum:
-          - Server Error
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
+        name:
+          type:
+          - string
+          - 'null'
+        firstName:
+          type:
+          - string
+          - 'null'
+        lastName:
+          type:
+          - string
+          - 'null'
+        location:
+          type:
+          - string
+          - 'null'
+        gender:
+          type:
+          - string
+          - 'null'
+        age:
+          type:
+          - number
+          - 'null'
+          format: double
+        socialProfiles:
+          properties:
+            blog:
+              $ref: '#/components/schemas/SocialProfileInfo'
+            snapchat:
+              $ref: '#/components/schemas/SocialProfileInfo'
+            facebook:
+              $ref: '#/components/schemas/SocialProfileInfo'
+            pinterest:
+              $ref: '#/components/schemas/SocialProfileInfo'
+            youtube:
+              $ref: '#/components/schemas/SocialProfileInfo'
+            twitter:
+              $ref: '#/components/schemas/SocialProfileInfo'
+            tiktok:
+              $ref: '#/components/schemas/SocialProfileInfo'
+            instagram:
+              $ref: '#/components/schemas/SocialProfileInfo'
           type: object
       required:
-      - message
-      - details
+      - name
+      - firstName
+      - lastName
+      - location
+      - gender
+      - age
+      - socialProfiles
       type: object
       additionalProperties: false
-    DataSourceDTO:
+    AssessMetricRequest:
       properties:
-        attribute:
+        metric:
           type: string
-          enum:
-          - risk
-          - brandRelevance
-        url:
-          type: string
+        globalUserId:
+          type: number
+          format: double
+        creatorContext:
+          additionalProperties: false
+          type: object
+        findings:
+          items:
+            $ref: '#/components/schemas/StoredFinding'
+          type: array
+      required:
+      - metric
+      type: object
+      additionalProperties: false
+    MetricWeight:
+      properties:
+        weight:
+          type: number
+          format: double
         reason:
           type: string
       required:
-      - attribute
-      - url
+      - weight
       - reason
+      type: object
+      additionalProperties: false
+    VerifySourcesRequest:
+      properties:
+        globalUserId:
+          type: number
+          format: double
+        creatorContext:
+          additionalProperties: false
+          type: object
+        sources:
+          items:
+            properties:
+              credibility:
+                type: string
+                enum:
+                - high
+                - medium
+                - low
+              sentiment:
+                type: string
+                enum:
+                - negative
+                - neutral
+                - positive
+              sourceDate:
+                type:
+                - string
+                - 'null'
+              keyQuotes:
+                items:
+                  type: string
+                type: array
+              detailedSummary:
+                type: string
+              url:
+                type: string
+            required:
+            - url
+            type: object
+          type: array
+      required:
+      - sources
+      type: object
+      additionalProperties: false
+    KnownSocialNetworkDTO:
+      properties:
+        platform:
+          type: string
+        handle:
+          type: string
+        url:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+      required:
+      - platform
+      - handle
+      - url
+      - description
       type: object
       additionalProperties: false
     DataScoreLevelDTO:
@@ -786,6 +935,100 @@ components:
       - LOW
       - NONE
       type: string
+    CreatorContextDTO:
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        aliases:
+          items:
+            type: string
+          type: array
+        description:
+          type:
+          - string
+          - 'null'
+        gender:
+          type:
+          - string
+          - 'null'
+        industry:
+          type:
+          - string
+          - 'null'
+        approximateAge:
+          type:
+          - number
+          - 'null'
+          format: double
+        approximateLocation:
+          type:
+          - string
+          - 'null'
+        knownSocialNetworks:
+          items:
+            $ref: '#/components/schemas/KnownSocialNetworkDTO'
+          type: array
+        dataSources:
+          items:
+            $ref: '#/components/schemas/DataSourceDTO'
+          type: array
+      required:
+      - name
+      - aliases
+      - description
+      - gender
+      - industry
+      - approximateAge
+      - approximateLocation
+      - knownSocialNetworks
+      - dataSources
+      type: object
+      additionalProperties: false
+    HarnessResponse_any.any_:
+      properties:
+        input:
+          additionalProperties: true
+        output:
+          additionalProperties: true
+      required:
+      - input
+      - output
+      type: object
+      additionalProperties: false
+    NotFoundError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Resource Not Found
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    ValidateErrorJSON:
+      properties:
+        message:
+          type: string
+          enum:
+          - Validation failed
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
     AssessFullRequest:
       properties:
         globalUserId:
@@ -809,6 +1052,22 @@ components:
           items:
             $ref: '#/components/schemas/StoredFinding'
           type: array
+      type: object
+      additionalProperties: false
+    ForbiddenError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Access Forbidden
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
       type: object
       additionalProperties: false
     SocialProfileInsights:
@@ -873,6 +1132,34 @@ components:
           description: Other languages the content appears in, each with its share of that content.
       type: object
       additionalProperties: false
+    Record_AssessmentMetricsEnum.MetricWeight_:
+      properties:
+        brandAuthenticity:
+          $ref: '#/components/schemas/MetricWeight'
+        controversyScandals:
+          $ref: '#/components/schemas/MetricWeight'
+        adultContent:
+          $ref: '#/components/schemas/MetricWeight'
+        vulgarityProfanity:
+          $ref: '#/components/schemas/MetricWeight'
+        brandConflicts:
+          $ref: '#/components/schemas/MetricWeight'
+        politicalContent:
+          $ref: '#/components/schemas/MetricWeight'
+        socialClimate:
+          $ref: '#/components/schemas/MetricWeight'
+        misinformation:
+          $ref: '#/components/schemas/MetricWeight'
+        hateSpeech:
+          $ref: '#/components/schemas/MetricWeight'
+        violenceContent:
+          $ref: '#/components/schemas/MetricWeight'
+        substanceAbuse:
+          $ref: '#/components/schemas/MetricWeight'
+        competitorConflicts:
+          $ref: '#/components/schemas/MetricWeight'
+      type: object
+      description: Construct a type with a set of properties K of type T
     Partial_BrandContextDTO_:
       properties:
         dataConfidence:
@@ -909,173 +1196,54 @@ components:
           $ref: '#/components/schemas/MetricRelevanceWeights'
       type: object
       description: Make all properties in T optional
-    BrandContextDTO:
+    ExtractedAttributes:
       properties:
-        dataConfidence:
-          $ref: '#/components/schemas/DataConfidenceDTO'
-        brandName:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-        industry:
-          type:
-          - string
-          - 'null'
-        targetAudience:
-          type:
-          - string
-          - 'null'
-        brandValues:
-          type:
-          - string
-          - 'null'
-        riskTolerance:
-          $ref: '#/components/schemas/DataScoreLevelDTO'
-        potentialCompetitors:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-        metricRelevanceWeights:
-          $ref: '#/components/schemas/MetricRelevanceWeights'
-      required:
-      - dataConfidence
-      - brandName
-      - description
-      - industry
-      - targetAudience
-      - brandValues
-      - riskTolerance
-      - potentialCompetitors
-      - metricRelevanceWeights
-      type: object
-      additionalProperties: false
-    VerifySourcesRequest:
-      properties:
-        globalUserId:
-          type: number
-          format: double
-        creatorContext:
-          additionalProperties: false
-          type: object
-        sources:
-          items:
-            properties:
-              credibility:
-                type: string
-                enum:
-                - high
-                - medium
-                - low
-              sentiment:
-                type: string
-                enum:
-                - negative
-                - neutral
-                - positive
-              sourceDate:
-                type:
-                - string
-                - 'null'
-              keyQuotes:
-                items:
-                  type: string
-                type: array
-              detailedSummary:
-                type: string
-              url:
-                type: string
-            required:
-            - url
-            type: object
-          type: array
-      required:
-      - sources
-      type: object
-      additionalProperties: false
-    MetricRelevanceWeights:
-      $ref: '#/components/schemas/Record_AssessmentMetricsEnum.MetricWeight_'
-    AssessMetricRequest:
-      properties:
-        metric:
-          type: string
-        globalUserId:
-          type: number
-          format: double
-        creatorContext:
-          additionalProperties: false
-          type: object
-        findings:
-          items:
-            $ref: '#/components/schemas/StoredFinding'
-          type: array
-      required:
-      - metric
-      type: object
-      additionalProperties: false
-    Partial_CreatorContextDTO_:
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-        aliases:
+        names:
           items:
             type: string
           type: array
-        description:
-          type:
-          - string
-          - 'null'
-        gender:
-          type:
-          - string
-          - 'null'
-        industry:
-          type:
-          - string
-          - 'null'
-        approximateAge:
-          type:
-          - number
-          - 'null'
-          format: double
-        approximateLocation:
-          type:
-          - string
-          - 'null'
-        knownSocialNetworks:
+        handles:
           items:
-            $ref: '#/components/schemas/KnownSocialNetworkDTO'
+            type: string
           type: array
-        dataSources:
+        urls:
           items:
-            $ref: '#/components/schemas/DataSourceDTO'
+            type: string
           type: array
-      type: object
-      description: Make all properties in T optional
-    HarnessResponse_any.any_:
-      properties:
-        input:
-          additionalProperties: true
-        output:
-          additionalProperties: true
+        profession:
+          type:
+          - string
+          - 'null'
+        location:
+          type:
+          - string
+          - 'null'
+        topics:
+          items:
+            type: string
+          type: array
       required:
-      - input
-      - output
+      - names
+      - handles
+      - urls
+      - profession
+      - location
+      - topics
       type: object
       additionalProperties: false
-    SaveCreatorContextRequest:
+    ReverifyRequest:
+      properties:
+        creatorContext:
+          additionalProperties: false
+          type: object
+      type: object
+      additionalProperties: false
+    SaveBrandContextRequest:
       properties:
         input:
-          $ref: '#/components/schemas/PartialCreatorProfile'
+          $ref: '#/components/schemas/Record_string.unknown_'
         output:
-          $ref: '#/components/schemas/CreatorContextDTO'
+          $ref: '#/components/schemas/BrandContextDTO'
       type: object
       additionalProperties: false
     SocialProfileInfo:
@@ -1125,69 +1293,24 @@ components:
       - bio
       type: object
       additionalProperties: false
-    ReverifyRequest:
+    DataConfidenceDTO:
       properties:
-        creatorContext:
-          additionalProperties: false
-          type: object
-      type: object
-      additionalProperties: false
-    UpdateCreatorContextRequest:
-      properties:
-        patch:
-          $ref: '#/components/schemas/Partial_CreatorContextDTO_'
-      required:
-      - patch
-      type: object
-      additionalProperties: false
-    NotFoundError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Resource Not Found
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ResearchRequest:
-      properties:
-        globalUserId:
+        confidence:
+          $ref: '#/components/schemas/DataScoreLevelDTO'
+        score:
           type: number
           format: double
-        creatorContext:
-          additionalProperties: false
-          type: object
-      type: object
-      additionalProperties: false
-    KnownSocialNetworkDTO:
-      properties:
-        platform:
+        reason:
           type: string
-        handle:
-          type: string
-        url:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
       required:
-      - platform
-      - handle
-      - url
-      - description
+      - confidence
+      - score
+      - reason
       type: object
       additionalProperties: false
-    CreatorContextDTO:
+    MetricRelevanceWeights:
+      $ref: '#/components/schemas/Record_AssessmentMetricsEnum.MetricWeight_'
+    Partial_CreatorContextDTO_:
       properties:
         name:
           type:
@@ -1226,55 +1349,70 @@ components:
           items:
             $ref: '#/components/schemas/DataSourceDTO'
           type: array
-      required:
-      - name
-      - aliases
-      - description
-      - gender
-      - industry
-      - approximateAge
-      - approximateLocation
-      - knownSocialNetworks
-      - dataSources
+      type: object
+      description: Make all properties in T optional
+    SaveCreatorContextRequest:
+      properties:
+        input:
+          $ref: '#/components/schemas/PartialCreatorProfile'
+        output:
+          $ref: '#/components/schemas/CreatorContextDTO'
       type: object
       additionalProperties: false
-    Record_string.unknown_:
-      properties: {}
-      type: object
-      description: Construct a type with a set of properties K of type T
-    ExtractedAttributes:
+    ResearchRequest:
       properties:
-        names:
-          items:
-            type: string
-          type: array
-        handles:
-          items:
-            type: string
-          type: array
-        urls:
-          items:
-            type: string
-          type: array
-        profession:
+        globalUserId:
+          type: number
+          format: double
+        creatorContext:
+          additionalProperties: false
+          type: object
+      type: object
+      additionalProperties: false
+    BrandContextDTO:
+      properties:
+        dataConfidence:
+          $ref: '#/components/schemas/DataConfidenceDTO'
+        brandName:
           type:
           - string
           - 'null'
-        location:
+        description:
           type:
           - string
           - 'null'
-        topics:
+        industry:
+          type:
+          - string
+          - 'null'
+        targetAudience:
+          type:
+          - string
+          - 'null'
+        brandValues:
+          type:
+          - string
+          - 'null'
+        riskTolerance:
+          $ref: '#/components/schemas/DataScoreLevelDTO'
+        potentialCompetitors:
           items:
             type: string
-          type: array
+          type:
+          - array
+          - 'null'
+        metricRelevanceWeights:
+          $ref: '#/components/schemas/MetricRelevanceWeights'
       required:
-      - names
-      - handles
-      - urls
-      - profession
-      - location
-      - topics
+      - dataConfidence
+      - brandName
+      - description
+      - industry
+      - targetAudience
+      - brandValues
+      - riskTolerance
+      - potentialCompetitors
+      - metricRelevanceWeights
       type: object
       additionalProperties: false
     StoredFinding:
@@ -1320,163 +1458,57 @@ components:
           type: boolean
       type: object
       additionalProperties: false
-    Record_AssessmentMetricsEnum.MetricWeight_:
-      properties:
-        brandAuthenticity:
-          $ref: '#/components/schemas/MetricWeight'
-        controversyScandals:
-          $ref: '#/components/schemas/MetricWeight'
-        adultContent:
-          $ref: '#/components/schemas/MetricWeight'
-        vulgarityProfanity:
-          $ref: '#/components/schemas/MetricWeight'
-        brandConflicts:
-          $ref: '#/components/schemas/MetricWeight'
-        politicalContent:
-          $ref: '#/components/schemas/MetricWeight'
-        socialClimate:
-          $ref: '#/components/schemas/MetricWeight'
-        misinformation:
-          $ref: '#/components/schemas/MetricWeight'
-        hateSpeech:
-          $ref: '#/components/schemas/MetricWeight'
-        violenceContent:
-          $ref: '#/components/schemas/MetricWeight'
-        substanceAbuse:
-          $ref: '#/components/schemas/MetricWeight'
-        competitorConflicts:
-          $ref: '#/components/schemas/MetricWeight'
-      type: object
-      description: Construct a type with a set of properties K of type T
-    SaveBrandContextRequest:
-      properties:
-        input:
-          $ref: '#/components/schemas/Record_string.unknown_'
-        output:
-          $ref: '#/components/schemas/BrandContextDTO'
-      type: object
-      additionalProperties: false
-    PartialCreatorProfile:
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-        firstName:
-          type:
-          - string
-          - 'null'
-        lastName:
-          type:
-          - string
-          - 'null'
-        location:
-          type:
-          - string
-          - 'null'
-        gender:
-          type:
-          - string
-          - 'null'
-        age:
-          type:
-          - number
-          - 'null'
-          format: double
-        socialProfiles:
-          properties:
-            blog:
-              $ref: '#/components/schemas/SocialProfileInfo'
-            snapchat:
-              $ref: '#/components/schemas/SocialProfileInfo'
-            facebook:
-              $ref: '#/components/schemas/SocialProfileInfo'
-            pinterest:
-              $ref: '#/components/schemas/SocialProfileInfo'
-            youtube:
-              $ref: '#/components/schemas/SocialProfileInfo'
-            twitter:
-              $ref: '#/components/schemas/SocialProfileInfo'
-            tiktok:
-              $ref: '#/components/schemas/SocialProfileInfo'
-            instagram:
-              $ref: '#/components/schemas/SocialProfileInfo'
-          type: object
-      required:
-      - name
-      - firstName
-      - lastName
-      - location
-      - gender
-      - age
-      - socialProfiles
-      type: object
-      additionalProperties: false
-    ForbiddenError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ValidateErrorJSON:
-      properties:
-        message:
-          type: string
-          enum:
-          - Validation failed
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    MetricWeight:
-      properties:
-        weight:
-          type: number
-          format: double
-        reason:
-          type: string
-      required:
-      - weight
-      - reason
-      type: object
-      additionalProperties: false
-    DataConfidenceDTO:
-      properties:
-        confidence:
-          $ref: '#/components/schemas/DataScoreLevelDTO'
-        score:
-          type: number
-          format: double
-        reason:
-          type: string
-      required:
-      - confidence
-      - score
-      - reason
-      type: object
-      additionalProperties: false
     UpdateBrandContextRequest:
       properties:
         patch:
           $ref: '#/components/schemas/Partial_BrandContextDTO_'
       required:
       - patch
+      type: object
+      additionalProperties: false
+    Record_string.unknown_:
+      properties: {}
+      type: object
+      description: Construct a type with a set of properties K of type T
+    UpdateCreatorContextRequest:
+      properties:
+        patch:
+          $ref: '#/components/schemas/Partial_CreatorContextDTO_'
+      required:
+      - patch
+      type: object
+      additionalProperties: false
+    DataSourceDTO:
+      properties:
+        attribute:
+          type: string
+          enum:
+          - risk
+          - brandRelevance
+        url:
+          type: string
+        reason:
+          type: string
+      required:
+      - attribute
+      - url
+      - reason
+      type: object
+      additionalProperties: false
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
       type: object
       additionalProperties: false
   securitySchemes:

@@ -47,24 +47,10 @@ paths:
             schema:
               $ref: '#/components/schemas/ActionGroupStatusQueryRequest'
         required: true
+      summary: Get action group statuses
+      x-summary-source: derived
 components:
   schemas:
-    ServerError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Server Error
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
     ActionGroupStatusQueryRequest:
       properties:
         actionGroupIds:
@@ -79,6 +65,11 @@ components:
       - actionGroupIds
       type: object
       additionalProperties: false
+    ActionGroupStatusMap:
+      properties: {}
+      type: object
+      additionalProperties:
+        type: string
     BadRequestError:
       properties:
         details:
@@ -110,11 +101,22 @@ components:
       - details
       type: object
       additionalProperties: false
-    ActionGroupStatusMap:
-      properties: {}
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
       type: object
-      additionalProperties:
-        type: string
+      additionalProperties: false
   securitySchemes:
     apiKey:
       type: apiKey

@@ -49,6 +49,8 @@ paths:
                 $ref: '#/components/schemas/ServerError'
       tags:
       - Subscribers
+      summary: Get subscribers
+      x-summary-source: derived
     post:
       operationId: createSubscriber
       responses:
@@ -90,6 +92,8 @@ paths:
             schema:
               $ref: '#/components/schemas/CreateSubscriberBody'
         required: true
+      summary: Create subscriber
+      x-summary-source: derived
   /v1/subscribers/{id}:
     put:
       operationId: updateSubscriber
@@ -134,6 +138,8 @@ paths:
             schema:
               $ref: '#/components/schemas/UpdateSubscriberBody'
         required: true
+      summary: Update subscriber
+      x-summary-source: derived
   /v1/subscribers/{id}/ping:
     get:
       operationId: pingSubscriber
@@ -176,22 +182,28 @@ paths:
         required: true
         schema:
           type: string
+      summary: Ping subscriber
+      x-summary-source: derived
 components:
   schemas:
-    ServerError:
+    Subscriber:
       properties:
-        message:
+        id:
           type: string
-          enum:
-          - Server Error
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
+        instanceKeyname:
+          type: string
+        isEnabled:
+          type: boolean
+        token:
+          type: string
+        url:
+          type: string
       required:
-      - message
-      - details
+      - id
+      - instanceKeyname
+      - isEnabled
+      - token
+      - url
       type: object
       additionalProperties: false
     UpdateSubscriberBody:
@@ -200,22 +212,6 @@ components:
           type: boolean
       required:
       - isEnabled
-      type: object
-      additionalProperties: false
-    ForbiddenError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
       type: object
       additionalProperties: false
     NotFoundError:
@@ -250,26 +246,6 @@ components:
       - details
       type: object
       additionalProperties: false
-    Subscriber:
-      properties:
-        id:
-          type: string
-        instanceKeyname:
-          type: string
-        isEnabled:
-          type: boolean
-        token:
-          type: string
-        url:
-          type: string
-      required:
-      - id
-      - instanceKeyname
-      - isEnabled
-      - token
-      - url
-      type: object
-      additionalProperties: false
     SubscriberPingResponse:
       properties:
         testResult:
@@ -289,6 +265,38 @@ components:
           type: string
       required:
       - url
+      type: object
+      additionalProperties: false
+    ForbiddenError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Access Forbidden
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
       type: object
       additionalProperties: false
   securitySchemes:

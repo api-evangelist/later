@@ -154,6 +154,8 @@ paths:
         required: false
         schema:
           type: string
+      summary: Get payments ledger V2
+      x-summary-source: derived
   /v1/payments-ledgerV2/{rewardWinId}:
     get:
       operationId: getMostRecentLedgerRecordForRewardWin
@@ -197,6 +199,8 @@ paths:
         schema:
           type: number
           format: double
+      summary: Get most recent ledger record for reward win
+      x-summary-source: derived
   /v1/payments-ledgerV2/stripe/{rewardWinId}:
     get:
       operationId: getMostRecentLedgerRecordForStripeRewardWin
@@ -240,87 +244,10 @@ paths:
         schema:
           type: number
           format: double
+      summary: Get most recent ledger record for stripe reward win
+      x-summary-source: derived
 components:
   schemas:
-    PaymentAppProvider:
-      enum:
-      - PAYPAL
-      - STRIPE
-      - TANGO_CARDS
-      - MAVELY
-      - TIPALTI
-      type: string
-    PaymentsLedgerQueryResponse:
-      properties:
-        meta:
-          $ref: '#/components/schemas/PaymentsLedgerMetadata'
-        data:
-          items:
-            $ref: '#/components/schemas/PaymentsLedger'
-          type: array
-      required:
-      - meta
-      - data
-      type: object
-      additionalProperties: false
-    ServerError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Server Error
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    PaymentsLedgerMetadata:
-      properties:
-        totalCount:
-          type: number
-          format: double
-        limit:
-          type: number
-          format: double
-        offset:
-          type: number
-          format: double
-      required:
-      - totalCount
-      - limit
-      - offset
-      type: object
-      additionalProperties: false
-    DBRewardWinType:
-      enum:
-      - OTHER
-      - CASH
-      - PRODUCT
-      - PROMO_CODE
-      - GIFT_CARD
-      - SHOPIFY_DISCOUNT
-      type: string
-    ForbiddenError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
     TaxLineItemType:
       type: string
       enum:
@@ -330,43 +257,6 @@ components:
       - PST
       - QST
       - RST
-    PaymentAccountType:
-      enum:
-      - CASH
-      - GIFT_CARD
-      type: string
-    NotFoundError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Resource Not Found
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ValidateErrorJSON:
-      properties:
-        message:
-          type: string
-          enum:
-          - Validation failed
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
     PaymentsLedger:
       properties:
         transactionDateTime:
@@ -553,6 +443,82 @@ components:
       - budgetReferenceIdType
       type: object
       additionalProperties: false
+    PaymentAccountType:
+      enum:
+      - CASH
+      - GIFT_CARD
+      type: string
+    PaymentsLedgerMetadata:
+      properties:
+        totalCount:
+          type: number
+          format: double
+        limit:
+          type: number
+          format: double
+        offset:
+          type: number
+          format: double
+      required:
+      - totalCount
+      - limit
+      - offset
+      type: object
+      additionalProperties: false
+    NotFoundError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Resource Not Found
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    ValidateErrorJSON:
+      properties:
+        message:
+          type: string
+          enum:
+          - Validation failed
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    PaymentsLedgerQueryResponse:
+      properties:
+        meta:
+          $ref: '#/components/schemas/PaymentsLedgerMetadata'
+        data:
+          items:
+            $ref: '#/components/schemas/PaymentsLedger'
+          type: array
+      required:
+      - meta
+      - data
+      type: object
+      additionalProperties: false
+    DBRewardWinType:
+      enum:
+      - OTHER
+      - CASH
+      - PRODUCT
+      - PROMO_CODE
+      - GIFT_CARD
+      - SHOPIFY_DISCOUNT
+      type: string
     TaxLineItem:
       properties:
         amount:
@@ -564,6 +530,46 @@ components:
       - amount
       - type
       type: object
+    PaymentAppProvider:
+      enum:
+      - PAYPAL
+      - STRIPE
+      - TANGO_CARDS
+      - MAVELY
+      - TIPALTI
+      type: string
+    ForbiddenError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Access Forbidden
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
   securitySchemes:
     apiKey:
       type: apiKey

@@ -61,6 +61,8 @@ paths:
           type: string
       x-sharedCipherParameters:
         actionGroupId: actionGroupId
+      summary: Get audience insights
+      x-summary-source: derived
   /v1/campaign-performance/audience-insights/aggregate:
     get:
       operationId: getAggregatedAudienceInsights
@@ -132,6 +134,8 @@ paths:
           items:
             type: number
             format: double
+      summary: Get aggregated audience insights
+      x-summary-source: derived
   /v1/campaign-performance/post-metrics:
     get:
       operationId: getPostMetrics
@@ -234,6 +238,8 @@ paths:
           default: DESC
       x-sharedCipherParameters:
         actionGroupId: actionGroupId
+      summary: Get post metrics
+      x-summary-source: derived
   /v1/campaign-performance/influencers-metrics:
     get:
       operationId: getInfluencersMetrics
@@ -337,6 +343,8 @@ paths:
           default: DESC
       x-sharedCipherParameters:
         actionGroupId: actionGroupId
+      summary: Get influencers metrics
+      x-summary-source: derived
   /v1/campaign-performance/influencers-conversions:
     get:
       operationId: getInfluencersConversions
@@ -438,22 +446,177 @@ paths:
           default: DESC
       x-sharedCipherParameters:
         actionGroupId: actionGroupId
+      summary: Get influencers conversions
+      x-summary-source: derived
 components:
   schemas:
-    ServerError:
+    CampaignAudienceInsights:
       properties:
-        message:
-          type: string
-          enum:
-          - Server Error
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
+        age:
+          items:
+            $ref: '#/components/schemas/Age'
+          type: array
+        cities:
+          items:
+            $ref: '#/components/schemas/City'
+          type: array
+        countries:
+          items:
+            $ref: '#/components/schemas/Country'
+          type: array
+        gender:
+          $ref: '#/components/schemas/GenderImpressions'
+        totalAudienceImpressions:
+          type: number
+          format: double
       required:
-      - message
-      - details
+      - age
+      - cities
+      - countries
+      - gender
+      - totalAudienceImpressions
+      type: object
+      additionalProperties: false
+    TopInfluencerConversions:
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        profilePhoto:
+          type:
+          - string
+          - 'null'
+        instagramHandle:
+          type:
+          - string
+          - 'null'
+        igProfilePhoto:
+          type:
+          - string
+          - 'null'
+        facebookAvatar:
+          type:
+          - string
+          - 'null'
+        globalUserId:
+          type: number
+          format: double
+        membershipId:
+          type: number
+          format: double
+        clicks:
+          type: number
+          format: double
+        conversions:
+          type: number
+          format: double
+        conversionsValue:
+          type: number
+          format: double
+      required:
+      - firstName
+      - lastName
+      - profilePhoto
+      - instagramHandle
+      - igProfilePhoto
+      - facebookAvatar
+      - globalUserId
+      - membershipId
+      - clicks
+      - conversions
+      - conversionsValue
+      type: object
+      additionalProperties: false
+    TopInfluencerMetrics:
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        profilePhoto:
+          type:
+          - string
+          - 'null'
+        instagramHandle:
+          type:
+          - string
+          - 'null'
+        igProfilePhoto:
+          type:
+          - string
+          - 'null'
+        facebookAvatar:
+          type:
+          - string
+          - 'null'
+        globalUserId:
+          type: number
+          format: double
+        membershipId:
+          type: number
+          format: double
+        impressions:
+          type: number
+          format: double
+        engagements:
+          type: number
+          format: double
+        impressionsEngagementRate:
+          type: number
+          format: double
+        content:
+          type: number
+          format: double
+        emvValue:
+          type: number
+          format: double
+        roiValue:
+          type:
+          - number
+          - 'null'
+          format: double
+      required:
+      - firstName
+      - lastName
+      - profilePhoto
+      - instagramHandle
+      - igProfilePhoto
+      - facebookAvatar
+      - globalUserId
+      - membershipId
+      - impressions
+      - engagements
+      - impressionsEngagementRate
+      - content
+      - emvValue
+      type: object
+      additionalProperties: false
+    Country:
+      properties:
+        country:
+          type: string
+        impressions:
+          type: number
+          format: double
+      required:
+      - country
+      - impressions
+      type: object
+      additionalProperties: false
+    City:
+      properties:
+        city:
+          type: string
+        cityState:
+          type: string
+        impressions:
+          type: number
+          format: double
+      required:
+      - city
+      - cityState
+      - impressions
       type: object
       additionalProperties: false
     GenderImpressions:
@@ -473,6 +636,38 @@ components:
       - totalImpressions
       type: object
       additionalProperties: false
+    NotFoundError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Resource Not Found
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    ValidateErrorJSON:
+      properties:
+        message:
+          type: string
+          enum:
+          - Validation failed
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
     BadRequestError:
       properties:
         details:
@@ -486,6 +681,34 @@ components:
           - Bad Request
       required:
       - message
+      type: object
+      additionalProperties: false
+    Age:
+      properties:
+        age:
+          type: string
+        percent:
+          type: number
+          format: double
+      required:
+      - age
+      - percent
+      type: object
+      additionalProperties: false
+    ForbiddenError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Access Forbidden
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
       type: object
       additionalProperties: false
     PostMetric:
@@ -555,12 +778,12 @@ components:
       - emvValue
       type: object
       additionalProperties: false
-    ForbiddenError:
+    ServerError:
       properties:
         message:
           type: string
           enum:
-          - Access Forbidden
+          - Server Error
         details:
           properties: {}
           additionalProperties:
@@ -569,219 +792,6 @@ components:
       required:
       - message
       - details
-      type: object
-      additionalProperties: false
-    NotFoundError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Resource Not Found
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    Country:
-      properties:
-        country:
-          type: string
-        impressions:
-          type: number
-          format: double
-      required:
-      - country
-      - impressions
-      type: object
-      additionalProperties: false
-    Age:
-      properties:
-        age:
-          type: string
-        percent:
-          type: number
-          format: double
-      required:
-      - age
-      - percent
-      type: object
-      additionalProperties: false
-    TopInfluencerConversions:
-      properties:
-        firstName:
-          type: string
-        lastName:
-          type: string
-        profilePhoto:
-          type:
-          - string
-          - 'null'
-        instagramHandle:
-          type:
-          - string
-          - 'null'
-        igProfilePhoto:
-          type:
-          - string
-          - 'null'
-        facebookAvatar:
-          type:
-          - string
-          - 'null'
-        globalUserId:
-          type: number
-          format: double
-        membershipId:
-          type: number
-          format: double
-        clicks:
-          type: number
-          format: double
-        conversions:
-          type: number
-          format: double
-        conversionsValue:
-          type: number
-          format: double
-      required:
-      - firstName
-      - lastName
-      - profilePhoto
-      - instagramHandle
-      - igProfilePhoto
-      - facebookAvatar
-      - globalUserId
-      - membershipId
-      - clicks
-      - conversions
-      - conversionsValue
-      type: object
-      additionalProperties: false
-    ValidateErrorJSON:
-      properties:
-        message:
-          type: string
-          enum:
-          - Validation failed
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    City:
-      properties:
-        city:
-          type: string
-        cityState:
-          type: string
-        impressions:
-          type: number
-          format: double
-      required:
-      - city
-      - cityState
-      - impressions
-      type: object
-      additionalProperties: false
-    TopInfluencerMetrics:
-      properties:
-        firstName:
-          type: string
-        lastName:
-          type: string
-        profilePhoto:
-          type:
-          - string
-          - 'null'
-        instagramHandle:
-          type:
-          - string
-          - 'null'
-        igProfilePhoto:
-          type:
-          - string
-          - 'null'
-        facebookAvatar:
-          type:
-          - string
-          - 'null'
-        globalUserId:
-          type: number
-          format: double
-        membershipId:
-          type: number
-          format: double
-        impressions:
-          type: number
-          format: double
-        engagements:
-          type: number
-          format: double
-        impressionsEngagementRate:
-          type: number
-          format: double
-        content:
-          type: number
-          format: double
-        emvValue:
-          type: number
-          format: double
-        roiValue:
-          type:
-          - number
-          - 'null'
-          format: double
-      required:
-      - firstName
-      - lastName
-      - profilePhoto
-      - instagramHandle
-      - igProfilePhoto
-      - facebookAvatar
-      - globalUserId
-      - membershipId
-      - impressions
-      - engagements
-      - impressionsEngagementRate
-      - content
-      - emvValue
-      type: object
-      additionalProperties: false
-    CampaignAudienceInsights:
-      properties:
-        age:
-          items:
-            $ref: '#/components/schemas/Age'
-          type: array
-        cities:
-          items:
-            $ref: '#/components/schemas/City'
-          type: array
-        countries:
-          items:
-            $ref: '#/components/schemas/Country'
-          type: array
-        gender:
-          $ref: '#/components/schemas/GenderImpressions'
-        totalAudienceImpressions:
-          type: number
-          format: double
-      required:
-      - age
-      - cities
-      - countries
-      - gender
-      - totalAudienceImpressions
       type: object
       additionalProperties: false
   securitySchemes:

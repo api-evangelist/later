@@ -63,6 +63,8 @@ paths:
         schema:
           type: number
           format: double
+      summary: Get administrator accounts
+      x-summary-source: derived
   /v1/administrator_accounts/{username}:
     get:
       operationId: getAdministratorAccount
@@ -93,6 +95,8 @@ paths:
         required: true
         schema:
           type: string
+      summary: Get administrator account
+      x-summary-source: derived
     post:
       operationId: validateAdministratorAccount
       responses:
@@ -124,6 +128,8 @@ paths:
             schema:
               $ref: '#/components/schemas/ValidatePasswordBody'
         required: true
+      summary: Validate administrator account
+      x-summary-source: derived
 components:
   schemas:
     Role:
@@ -139,22 +145,13 @@ components:
       - id
       - description
       type: object
-    ServerError:
+    ValidatePasswordBody:
       properties:
-        message:
+        password:
           type: string
-          enum:
-          - Server Error
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
       required:
-      - message
-      - details
+      - password
       type: object
-      additionalProperties: false
     AdministratorAccountGetResponse:
       properties:
         lastName:
@@ -176,35 +173,17 @@ components:
       - email
       - attributes
       type: object
-    ResponseMeta:
+    CommunityRole:
       properties:
-        limit:
+        roleId:
           type: number
           format: double
-        offset:
-          type: number
-          format: double
-        totalCount:
-          type: number
-          format: double
-      type: object
-      additionalProperties: false
-    ForbiddenError:
-      properties:
-        message:
+        communityId:
           type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
       required:
-      - message
-      - details
+      - roleId
+      - communityId
       type: object
-      additionalProperties: false
     AdministratorAccount:
       properties:
         email:
@@ -233,6 +212,19 @@ components:
       - id
       type: object
       additionalProperties: false
+    ResponseMeta:
+      properties:
+        limit:
+          type: number
+          format: double
+        offset:
+          type: number
+          format: double
+        totalCount:
+          type: number
+          format: double
+      type: object
+      additionalProperties: false
     ResponseBody_AdministratorAccount-Array_:
       properties:
         data:
@@ -245,24 +237,38 @@ components:
       - data
       type: object
       additionalProperties: false
-    ValidatePasswordBody:
+    ForbiddenError:
       properties:
-        password:
+        message:
           type: string
+          enum:
+          - Access Forbidden
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
       required:
-      - password
+      - message
+      - details
       type: object
-    CommunityRole:
+      additionalProperties: false
+    ServerError:
       properties:
-        roleId:
-          type: number
-          format: double
-        communityId:
+        message:
           type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
       required:
-      - roleId
-      - communityId
+      - message
+      - details
       type: object
+      additionalProperties: false
   securitySchemes:
     apiKey:
       type: apiKey

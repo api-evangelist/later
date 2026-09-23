@@ -37,6 +37,8 @@ paths:
         required: true
       tags:
       - Instance User Materialized View
+      summary: Put
+      x-summary-source: derived
 components:
   schemas:
     InstanceUserMaterializedViewRequestBody:
@@ -48,22 +50,6 @@ components:
       required:
       - data
       type: object
-    ServerError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Server Error
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
     ViewQueryParam:
       properties:
         globalUserId:
@@ -91,6 +77,22 @@ components:
           type: string
           enum:
           - Validation failed
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
         details:
           properties: {}
           additionalProperties:

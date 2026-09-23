@@ -53,24 +53,15 @@ paths:
         required: true
         schema:
           type: string
+      summary: Get tipalti transfer
+      x-summary-source: derived
 components:
   schemas:
-    ServerError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Server Error
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
+    TipaltiTransferWithStatusHistoryResponse:
+      $ref: '#/components/schemas/CreateTipaltiTransferResponse'
+      description: 'GET /v1/tipalti/transfers/{rewardWinId} — the most recent attempt for a reward win with its
+
+        status history. Same shape as the create response (payment-service TipaltiPaymentView).'
     TipaltiPaymentStatusHistoryItem:
       type: object
       properties:
@@ -88,20 +79,6 @@ components:
           type: string
         updatedAt:
           type: string
-    TipaltiPaymentStatus:
-      type: string
-      enum:
-      - INITIATED
-      - SUBMITTING
-      - SUBMITTED
-      - SUBMITTED_UNCONFIRMED
-      - PAYMENT_APPROVED
-      - PROCESSING
-      - SUCCESS
-      - FAILED
-      - PAYMENT_CANCELED
-      - VOIDED
-      - DEFERRED
     TipaltiSupportedCurrencyCodes:
       type: string
       enum:
@@ -109,22 +86,6 @@ components:
       - EUR
       - GBP
       - CAD
-    ForbiddenError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
     NotFoundError:
       properties:
         message:
@@ -157,6 +118,20 @@ components:
       - details
       type: object
       additionalProperties: false
+    TipaltiPaymentStatus:
+      type: string
+      enum:
+      - INITIATED
+      - SUBMITTING
+      - SUBMITTED
+      - SUBMITTED_UNCONFIRMED
+      - PAYMENT_APPROVED
+      - PROCESSING
+      - SUCCESS
+      - FAILED
+      - PAYMENT_CANCELED
+      - VOIDED
+      - DEFERRED
     CreateTipaltiTransferResponse:
       description: Mirrors the payment-service TipaltiPaymentView returned by POST /tipalti-payments/register.
       properties:
@@ -229,11 +204,38 @@ components:
       - statusHistory
       type: object
       additionalProperties: false
-    TipaltiTransferWithStatusHistoryResponse:
-      $ref: '#/components/schemas/CreateTipaltiTransferResponse'
-      description: 'GET /v1/tipalti/transfers/{rewardWinId} — the most recent attempt for a reward win with its
-
-        status history. Same shape as the create response (payment-service TipaltiPaymentView).'
+    ForbiddenError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Access Forbidden
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
   securitySchemes:
     apiKey:
       type: apiKey

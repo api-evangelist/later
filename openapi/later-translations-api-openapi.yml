@@ -37,22 +37,19 @@ paths:
                 $ref: '#/components/schemas/ServerError'
       tags:
       - Translations
+      summary: Fetch available locales
+      x-summary-source: derived
 components:
   schemas:
-    ServerError:
+    Locale:
       properties:
-        message:
+        language:
           type: string
-          enum:
-          - Server Error
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
+        code:
+          type: string
       required:
-      - message
-      - details
+      - language
+      - code
       type: object
       additionalProperties: false
     ValidateErrorJSON:
@@ -71,15 +68,20 @@ components:
       - details
       type: object
       additionalProperties: false
-    Locale:
+    ServerError:
       properties:
-        language:
+        message:
           type: string
-        code:
-          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
       required:
-      - language
-      - code
+      - message
+      - details
       type: object
       additionalProperties: false
   securitySchemes:

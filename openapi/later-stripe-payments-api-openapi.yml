@@ -9,7 +9,7 @@ servers:
 security:
 - apiKey: []
 tags:
-- name: StripePayments
+- name: Stripe Payments
 paths:
   /v1/stripe/payment-providers/bulk-enable:
     post:
@@ -46,13 +46,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/ServerError'
       tags:
-      - StripePayments
+      - Stripe Payments
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/ConfigureStripeProviderAppToInstanceBody'
         required: true
+      summary: Configure stripe provider app to instances
+      x-summary-source: derived
   /v1/stripe/accounts/create/{globalUserId}:
     post:
       operationId: createStripeConnectedAccount
@@ -84,7 +86,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ServerError'
       tags:
-      - StripePayments
+      - Stripe Payments
       parameters:
       - in: path
         name: globalUserId
@@ -97,6 +99,8 @@ paths:
         required: false
         schema:
           type: string
+      summary: Create stripe connected account
+      x-summary-source: derived
   /v1/stripe/accounts/notification:
     post:
       operationId: sendStripeOnboardingReminder
@@ -128,13 +132,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/ServerError'
       tags:
-      - StripePayments
+      - Stripe Payments
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/OnboardingReminderRequestBody'
         required: true
+      summary: Send stripe onboarding reminder
+      x-summary-source: derived
   /v1/stripe/accounts/{globalUserIds}:
     get:
       operationId: getStripeAccountsByGlobalUserIds
@@ -172,13 +178,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/ServerError'
       tags:
-      - StripePayments
+      - Stripe Payments
       parameters:
       - in: path
         name: globalUserIds
         required: true
         schema:
           type: string
+      summary: Get stripe accounts by global user ids
+      x-summary-source: derived
   /v1/stripe/accounts/account/{globalUserId}:
     get:
       operationId: getStripeAccountByGlobalUserId
@@ -214,7 +222,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ServerError'
       tags:
-      - StripePayments
+      - Stripe Payments
       parameters:
       - in: path
         name: globalUserId
@@ -222,6 +230,8 @@ paths:
         schema:
           type: number
           format: double
+      summary: Get stripe account by global user id
+      x-summary-source: derived
   /v1/stripe/accounts/{globalUserId}/disconnect:
     delete:
       operationId: disconnectStripeAccountByGlobalUserId
@@ -253,7 +263,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ServerError'
       tags:
-      - StripePayments
+      - Stripe Payments
       parameters:
       - in: path
         name: globalUserId
@@ -266,6 +276,8 @@ paths:
         required: false
         schema:
           type: string
+      summary: Disconnect stripe account by global user id
+      x-summary-source: derived
   /v1/stripe/accounts/{globalUserId}/delete:
     delete:
       operationId: deleteStripeAccountByGlobalUserId
@@ -297,7 +309,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ServerError'
       tags:
-      - StripePayments
+      - Stripe Payments
       parameters:
       - in: path
         name: globalUserId
@@ -310,6 +322,8 @@ paths:
         required: false
         schema:
           type: string
+      summary: Delete stripe account by global user id
+      x-summary-source: derived
   /v1/exchange-rates/stripe:
     get:
       operationId: getStripeExchangeRates
@@ -345,7 +359,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/ServerError'
       tags:
-      - StripePayments
+      - Stripe Payments
+      summary: Get stripe exchange rates
+      x-summary-source: derived
   /v1/stripe/transfers/{uniqueTransferId}:
     get:
       operationId: getStripeTransfer
@@ -381,57 +397,45 @@ paths:
               schema:
                 $ref: '#/components/schemas/ServerError'
       tags:
-      - StripePayments
+      - Stripe Payments
       parameters:
       - in: path
         name: uniqueTransferId
         required: true
         schema:
           type: string
+      summary: Get stripe transfer
+      x-summary-source: derived
 components:
   schemas:
-    StripeConnectAccountInfo:
-      properties:
-        name:
-          type: string
-        email:
-          type: string
-      required:
-      - name
-      - email
+    StripeOnboardingStatus:
+      enum:
+      - COMPLETE
+      - NO_ACCOUNT
+      - NOT_STARTED
+      - PENDING
+      - REJECTED
+      - RESTRICTED
+      - RESTRICTED_SOON
+      - STARTED
+      type: string
+    StripeTransferStatusRecord:
       type: object
-      additionalProperties: false
-    StripeExchangeRate:
       properties:
         id:
-          $ref: '#/components/schemas/StripeSupportedCurrencyCodes'
-        rates:
-          properties: {}
-          additionalProperties:
-            type: number
-            format: double
-          type: object
-      required:
-      - id
-      - rates
-      type: object
-      additionalProperties: false
-    ServerError:
-      properties:
-        message:
+          type: number
+          format: double
+        transferId:
+          type: number
+          format: double
+        providerStatusCode:
           type: string
-          enum:
-          - Server Error
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
+        providerStatusMessage:
+          type: string
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
     StripeAccount:
       properties:
         accountId:
@@ -506,78 +510,17 @@ components:
       - actionGroupId
       type: object
       additionalProperties: false
-    StripeTransferStatusRecord:
-      type: object
-      properties:
-        id:
-          type: number
-          format: double
-        transferId:
-          type: number
-          format: double
-        providerStatusCode:
-          type: string
-        providerStatusMessage:
-          type: string
-        createdAt:
-          type: string
-        updatedAt:
-          type: string
-    StripeOnboardingStatus:
-      enum:
-      - COMPLETE
-      - NO_ACCOUNT
-      - NOT_STARTED
-      - PENDING
-      - REJECTED
-      - RESTRICTED
-      - RESTRICTED_SOON
-      - STARTED
-      type: string
-    ConfigureStripeProviderAppToInstanceBody:
-      properties:
-        instanceIds:
-          items:
-            type: string
-          type: array
-      required:
-      - instanceIds
-      type: object
-      additionalProperties: false
-    ForbiddenError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    StripeTransferWithStatusHistoryResponse:
+    FailedInstanceForEnablingStripeProvider:
       properties:
         instanceId:
           type: string
-        actionGroupId:
-          type: number
-          format: double
-        stripeConnectAccount:
-          $ref: '#/components/schemas/StripeConnectAccountInfo'
-        statusHistory:
-          items:
-            $ref: '#/components/schemas/StripeTransferStatusRecord'
-          type: array
+        error:
+          type: string
       required:
       - instanceId
-      - actionGroupId
-      - statusHistory
+      - error
       type: object
+      additionalProperties: false
     NotFoundError:
       properties:
         message:
@@ -592,6 +535,17 @@ components:
       required:
       - message
       - details
+      type: object
+      additionalProperties: false
+    StripeConnectAccountInfo:
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+      required:
+      - name
+      - email
       type: object
       additionalProperties: false
     ValidateErrorJSON:
@@ -610,15 +564,68 @@ components:
       - details
       type: object
       additionalProperties: false
-    FailedInstanceForEnablingStripeProvider:
+    StripeSupportedCurrencyCodes:
+      type: string
+      enum:
+      - USD
+      - EUR
+      - GBP
+      - AUD
+      - CAD
+    StripeExchangeRate:
       properties:
-        instanceId:
-          type: string
-        error:
-          type: string
+        id:
+          $ref: '#/components/schemas/StripeSupportedCurrencyCodes'
+        rates:
+          properties: {}
+          additionalProperties:
+            type: number
+            format: double
+          type: object
       required:
-      - instanceId
-      - error
+      - id
+      - rates
+      type: object
+      additionalProperties: false
+    ConfigureStripeProviderAppToInstanceResponse:
+      properties:
+        failedInstances:
+          items:
+            $ref: '#/components/schemas/FailedInstanceForEnablingStripeProvider'
+          type: array
+        succesfulInstances:
+          items:
+            type: string
+          type: array
+      required:
+      - failedInstances
+      - succesfulInstances
+      type: object
+      additionalProperties: false
+    ForbiddenError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Access Forbidden
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    ConfigureStripeProviderAppToInstanceBody:
+      properties:
+        instanceIds:
+          items:
+            type: string
+          type: array
+      required:
+      - instanceIds
       type: object
       additionalProperties: false
     StripeAccountStatusResponse:
@@ -639,29 +646,40 @@ components:
       - onboardingStatus
       type: object
       additionalProperties: false
-    ConfigureStripeProviderAppToInstanceResponse:
+    StripeTransferWithStatusHistoryResponse:
       properties:
-        failedInstances:
+        instanceId:
+          type: string
+        actionGroupId:
+          type: number
+          format: double
+        stripeConnectAccount:
+          $ref: '#/components/schemas/StripeConnectAccountInfo'
+        statusHistory:
           items:
-            $ref: '#/components/schemas/FailedInstanceForEnablingStripeProvider'
-          type: array
-        succesfulInstances:
-          items:
-            type: string
+            $ref: '#/components/schemas/StripeTransferStatusRecord'
           type: array
       required:
-      - failedInstances
-      - succesfulInstances
+      - instanceId
+      - actionGroupId
+      - statusHistory
+      type: object
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
       type: object
       additionalProperties: false
-    StripeSupportedCurrencyCodes:
-      type: string
-      enum:
-      - USD
-      - EUR
-      - GBP
-      - AUD
-      - CAD
   securitySchemes:
     apiKey:
       type: apiKey

@@ -71,7 +71,7 @@ paths:
                 $ref: '#/components/schemas/Error'
   /global-users/{globalUserId}/audience-cities:
     get:
-      summary: Retrieve cities of the user's audience.
+      summary: Retrieve cities of the user's audience
       tags:
       - GlobalUserAudience
       operationId: getGlobalUserAudienceCities
@@ -146,6 +146,18 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    LinksDeprecated:
+      type: object
+      x-access:
+      - anonymous
+      - influencer
+      properties:
+        normal:
+          type: string
+          description: A normal link to an entity.
+        deep:
+          type: string
+          description: A deep link to the entity.
     ResponseMetadata:
       properties:
         limit:
@@ -195,25 +207,7 @@ components:
             error:
               type: string
               description: A static description of the parent error.
-    LinksDeprecated:
-      type: object
-      x-access:
-      - anonymous
-      - influencer
-      properties:
-        normal:
-          type: string
-          description: A normal link to an entity.
-        deep:
-          type: string
-          description: A deep link to the entity.
   parameters:
-    offsetParam:
-      in: query
-      description: Number of items to skip
-      name: offset
-      schema:
-        type: integer
     orderDirection:
       in: query
       description: Select the direction by which the data will be ordered, ascending or descending.
@@ -227,6 +221,12 @@ components:
       in: query
       description: Maximum number of items to return
       name: limit
+      schema:
+        type: integer
+    offsetParam:
+      in: query
+      description: Number of items to skip
+      name: offset
       schema:
         type: integer
   securitySchemes:

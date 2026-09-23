@@ -49,6 +49,8 @@ paths:
             schema:
               $ref: '#/components/schemas/ExportBody'
         required: true
+      summary: Start async
+      x-summary-source: derived
   /v1/export/activations-content:
     post:
       operationId: exportActivationContent
@@ -87,6 +89,8 @@ paths:
             schema:
               $ref: '#/components/schemas/ContentExportBody'
         required: true
+      summary: Export activation content
+      x-summary-source: derived
   /v1/export/content:
     post:
       operationId: exportContent
@@ -127,6 +131,8 @@ paths:
             schema:
               $ref: '#/components/schemas/ContentExportBody'
         required: true
+      summary: Export content
+      x-summary-source: derived
   /v1/export/download:
     get:
       operationId: downloadExportContent
@@ -165,6 +171,8 @@ paths:
         required: true
         schema:
           type: string
+      summary: Download export content
+      x-summary-source: derived
 components:
   schemas:
     ServerError:
@@ -173,22 +181,6 @@ components:
           type: string
           enum:
           - Server Error
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ForbiddenError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Access Forbidden
         details:
           properties: {}
           additionalProperties:
@@ -231,6 +223,22 @@ components:
       - details
       type: object
       additionalProperties: false
+    ForbiddenError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Access Forbidden
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
     ExportBody:
       properties:
         type:
@@ -252,6 +260,12 @@ components:
       - type
       type: object
       additionalProperties: false
+    ExportType:
+      enum:
+      - ACTIONGROUPINFLUENCERS
+      - MEMBERINFLUENCERS
+      - PROGRAMPERFORMANCECAMPAIGN
+      type: string
     ContentExportBody:
       properties:
         actionGroupId:
@@ -304,12 +318,6 @@ components:
       - postsWithUGC
       type: object
       additionalProperties: false
-    ExportType:
-      enum:
-      - ACTIONGROUPINFLUENCERS
-      - MEMBERINFLUENCERS
-      - PROGRAMPERFORMANCECAMPAIGN
-      type: string
   securitySchemes:
     apiKey:
       type: apiKey

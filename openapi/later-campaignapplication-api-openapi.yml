@@ -43,6 +43,8 @@ paths:
             schema:
               $ref: '#/components/schemas/ExternalCampaignApplicationRequest'
         required: true
+      summary: Submit campaign application
+      x-summary-source: derived
   /v1/external-campaign-application/connect-mavely:
     get:
       operationId: linkMavely
@@ -80,6 +82,8 @@ paths:
         required: true
         schema:
           type: string
+      summary: Link mavely
+      x-summary-source: derived
   /v1/external-campaign-application/connect-mavely/url:
     get:
       operationId: connectMavelyUrl
@@ -122,24 +126,80 @@ paths:
         required: true
         schema:
           type: string
+      summary: Connect mavely url
+      x-summary-source: derived
 components:
   schemas:
-    ServerError:
+    CreatorOptInRequestSocialMedias:
       properties:
-        message:
-          type: string
-          enum:
-          - Server Error
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
+        twitter:
+          $ref: '#/components/schemas/CreatorOptInTwitter'
+        tiktok:
+          $ref: '#/components/schemas/CreatorOptInTikTok'
+        pinterest:
+          $ref: '#/components/schemas/CreatorOptInPinterest'
+        facebook:
+          $ref: '#/components/schemas/CreatorOptInFacebook'
+        instagram:
+          $ref: '#/components/schemas/CreatorOptInInstagram'
       type: object
-      additionalProperties: false
+    InstagramAudienceCity:
+      properties:
+        state:
+          type: string
+        percentage:
+          type: number
+          format: double
+        end_time:
+          $ref: '#/components/schemas/DateOrTimestamp'
+        count:
+          type: number
+          format: double
+        city_state:
+          type: string
+        city_name:
+          type: string
+      type: object
+    InstagramAudienceLocale:
+      properties:
+        percentage:
+          type: number
+          format: double
+        locale_code:
+          type: string
+        end_time:
+          $ref: '#/components/schemas/DateOrTimestamp'
+        count:
+          type: number
+          format: double
+      type: object
+    ExternalCampaignApplicationRequest:
+      properties:
+        quote:
+          type: number
+          format: double
+          minimum: 0
+        payment_recipient_uuid:
+          type: string
+        mavely_profile_id:
+          type: string
+        influencer:
+          $ref: '#/components/schemas/CreatorOptInRequest'
+        creator_profile_id:
+          type: string
+        concept:
+          type: string
+          minLength: 1
+          maxLength: 10000
+        application_answers:
+          $ref: '#/components/schemas/QuestionAnswers'
+        action_group_id:
+          type: integer
+          format: int32
+      required:
+      - creator_profile_id
+      - action_group_id
+      type: object
     CreatorOptInFacebook:
       properties:
         verified:
@@ -203,12 +263,94 @@ components:
       required:
       - profile_url
       type: object
-    CreatorOptInRequest:
+    NotFoundError:
       properties:
-        social_medias:
-          $ref: '#/components/schemas/CreatorOptInRequestSocialMedias'
+        message:
+          type: string
+          enum:
+          - Resource Not Found
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
       type: object
       additionalProperties: false
+    InstagramAudience:
+      properties:
+        predominant_country:
+          type: string
+        predominant_city:
+          type: string
+        predominant_age_range:
+          type: string
+        locales:
+          items:
+            $ref: '#/components/schemas/InstagramAudienceLocale'
+          type: array
+        gender_percentages:
+          properties:
+            F:
+              type: number
+              format: double
+            M:
+              type: number
+              format: double
+            U:
+              type: number
+              format: double
+          type: object
+        countries:
+          items:
+            $ref: '#/components/schemas/InstagramAudienceCountry'
+          type: array
+        cities:
+          items:
+            $ref: '#/components/schemas/InstagramAudienceCity'
+          type: array
+        age_percentages:
+          properties:
+            65+:
+              type: number
+              format: double
+            55-64:
+              type: number
+              format: double
+            45-54:
+              type: number
+              format: double
+            35-44:
+              type: number
+              format: double
+            25-34:
+              type: number
+              format: double
+            18-24:
+              type: number
+              format: double
+            13-17:
+              type: number
+              format: double
+          type: object
+      type: object
+    InstagramAudienceCountry:
+      properties:
+        percentage:
+          type: number
+          format: double
+        iso_code:
+          type: string
+        end_time:
+          $ref: '#/components/schemas/DateOrTimestamp'
+        country_name:
+          type: string
+        count:
+          type: number
+          format: double
+      type: object
     CreatorOptInTwitter:
       properties:
         verified:
@@ -263,62 +405,61 @@ components:
       - twitter_external_id
       - handle
       type: object
-    ExternalCampaignApplicationRequest:
+    CreatorOptInInstagram:
       properties:
-        quote:
+        website:
+          type: string
+        source_detail:
+          type: string
+        profile_type:
+          type: string
+          description: 'TODO: Redefine ''profile_type'' as an enumeration: ''BUSINESS'' | ''MEDIA_CREATOR'' | ''PERSONAL''
+
+            Basic Display API: https://developers.facebook.com/docs/instagram-basic-display-api/reference/user#fields
+
+            Graph API: https://developers.facebook.com/docs/instagram-api/reference/ig-user#fields'
+        profile_picture:
+          type: string
+        media_count:
           type: number
           format: double
-          minimum: 0
-        payment_recipient_uuid:
+        is_private:
+          type: boolean
+        is_female_percentage:
+          type: number
+          format: double
+        is_business:
+          type: boolean
+        instagram_external_id:
           type: string
-        mavely_profile_id:
+          description: 'ID generated by Instagram Graph API.
+
+            As of December 2023, Later and Mavrck use API v12.0, and ID is not app-scoped.'
+        handle:
           type: string
-        influencer:
-          $ref: '#/components/schemas/CreatorOptInRequest'
-        creator_profile_id:
+        full_name:
           type: string
-        concept:
+        following_count:
+          type: number
+          format: double
+        followers_count:
+          type: number
+          format: double
+        derived_language:
           type: string
-          minLength: 1
-          maxLength: 10000
-        application_answers:
-          $ref: '#/components/schemas/QuestionAnswers'
-        action_group_id:
-          type: integer
-          format: int32
+        bio:
+          type: string
+        audience:
+          $ref: '#/components/schemas/InstagramAudience'
       required:
-      - creator_profile_id
-      - action_group_id
+      - instagram_external_id
+      - handle
       type: object
-    CreatorOptInRequestSocialMedias:
-      properties:
-        twitter:
-          $ref: '#/components/schemas/CreatorOptInTwitter'
-        tiktok:
-          $ref: '#/components/schemas/CreatorOptInTikTok'
-        pinterest:
-          $ref: '#/components/schemas/CreatorOptInPinterest'
-        facebook:
-          $ref: '#/components/schemas/CreatorOptInFacebook'
-        instagram:
-          $ref: '#/components/schemas/CreatorOptInInstagram'
-      type: object
-    ForbiddenError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
+      description: 'Represents a Professional Instagram account.
+
+        Professional accounts include Business and Creator accounts.
+
+        Personal accounts are not yet supported.'
     CreatorOptInPinterest:
       properties:
         username:
@@ -359,66 +500,10 @@ components:
       required:
       - username
       type: object
-    NotFoundError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Resource Not Found
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    InstagramAudienceLocale:
-      properties:
-        percentage:
-          type: number
-          format: double
-        locale_code:
-          type: string
-        end_time:
-          $ref: '#/components/schemas/DateOrTimestamp'
-        count:
-          type: number
-          format: double
-      type: object
-    InstagramAudienceCity:
-      properties:
-        state:
-          type: string
-        percentage:
-          type: number
-          format: double
-        end_time:
-          $ref: '#/components/schemas/DateOrTimestamp'
-        count:
-          type: number
-          format: double
-        city_state:
-          type: string
-        city_name:
-          type: string
-      type: object
-    InstagramAudienceCountry:
-      properties:
-        percentage:
-          type: number
-          format: double
-        iso_code:
-          type: string
-        end_time:
-          $ref: '#/components/schemas/DateOrTimestamp'
-        country_name:
-          type: string
-        count:
-          type: number
-          format: double
+    QuestionAnswers:
+      properties: {}
+      additionalProperties:
+        type: object
       type: object
     CreatorOptInTikTok:
       properties:
@@ -509,125 +594,46 @@ components:
       - profile_image
       - handle_name
       type: object
-    CreatorOptInInstagram:
-      properties:
-        website:
-          type: string
-        source_detail:
-          type: string
-        profile_type:
-          type: string
-          description: 'TODO: Redefine ''profile_type'' as an enumeration: ''BUSINESS'' | ''MEDIA_CREATOR'' | ''PERSONAL''
-
-            Basic Display API: https://developers.facebook.com/docs/instagram-basic-display-api/reference/user#fields
-
-            Graph API: https://developers.facebook.com/docs/instagram-api/reference/ig-user#fields'
-        profile_picture:
-          type: string
-        media_count:
-          type: number
-          format: double
-        is_private:
-          type: boolean
-        is_female_percentage:
-          type: number
-          format: double
-        is_business:
-          type: boolean
-        instagram_external_id:
-          type: string
-          description: 'ID generated by Instagram Graph API.
-
-            As of December 2023, Later and Mavrck use API v12.0, and ID is not app-scoped.'
-        handle:
-          type: string
-        full_name:
-          type: string
-        following_count:
-          type: number
-          format: double
-        followers_count:
-          type: number
-          format: double
-        derived_language:
-          type: string
-        bio:
-          type: string
-        audience:
-          $ref: '#/components/schemas/InstagramAudience'
-      required:
-      - instagram_external_id
-      - handle
-      type: object
-      description: 'Represents a Professional Instagram account.
-
-        Professional accounts include Business and Creator accounts.
-
-        Personal accounts are not yet supported.'
     DateOrTimestamp:
       type: object
-    InstagramAudience:
+    ForbiddenError:
       properties:
-        predominant_country:
+        message:
           type: string
-        predominant_city:
-          type: string
-        predominant_age_range:
-          type: string
-        locales:
-          items:
-            $ref: '#/components/schemas/InstagramAudienceLocale'
-          type: array
-        gender_percentages:
-          properties:
-            F:
-              type: number
-              format: double
-            M:
-              type: number
-              format: double
-            U:
-              type: number
-              format: double
+          enum:
+          - Access Forbidden
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
           type: object
-        countries:
-          items:
-            $ref: '#/components/schemas/InstagramAudienceCountry'
-          type: array
-        cities:
-          items:
-            $ref: '#/components/schemas/InstagramAudienceCity'
-          type: array
-        age_percentages:
-          properties:
-            65+:
-              type: number
-              format: double
-            55-64:
-              type: number
-              format: double
-            45-54:
-              type: number
-              format: double
-            35-44:
-              type: number
-              format: double
-            25-34:
-              type: number
-              format: double
-            18-24:
-              type: number
-              format: double
-            13-17:
-              type: number
-              format: double
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    CreatorOptInRequest:
+      properties:
+        social_medias:
+          $ref: '#/components/schemas/CreatorOptInRequestSocialMedias'
+      type: object
+      additionalProperties: false
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
           type: object
+      required:
+      - message
+      - details
       type: object
-    QuestionAnswers:
-      properties: {}
-      additionalProperties:
-        type: object
-      type: object
+      additionalProperties: false
   securitySchemes:
     apiKey:
       type: apiKey

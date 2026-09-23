@@ -1,0 +1,25 @@
+# Front Door AI Index — later — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: later
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: later.com
+  final_host: later.com
+  ownership: own
+  owner: later
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 8
+  host_score: 8
+  density: 6.23
+  words: 1285
+  tiers:
+    agentic: 0
+    core: 8
+    model: 0
+  ambiguous: 0
+  top_terms:
+    AI: 8

@@ -9,7 +9,7 @@ servers:
 security:
 - apiKey: []
 tags:
-- name: EmailSettings
+- name: Email Settings
 paths:
   /v1/smtp-email:
     get:
@@ -46,7 +46,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/ServerError'
       tags:
-      - EmailSettings
+      - Email Settings
+      summary: Get current email settings
+      x-summary-source: derived
   /v1/smtp-email/{fromName}/{fromEmail}:
     put:
       operationId: updateEmailSettings
@@ -82,7 +84,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ServerError'
       tags:
-      - EmailSettings
+      - Email Settings
       parameters:
       - in: path
         name: fromName
@@ -94,6 +96,8 @@ paths:
         required: true
         schema:
           type: string
+      summary: Update email settings
+      x-summary-source: derived
   /v1/email-settings:
     get:
       operationId: get
@@ -129,13 +133,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/ServerError'
       tags:
-      - EmailSettings
+      - Email Settings
       parameters:
       - in: query
         name: id
         required: false
         schema:
           type: string
+      summary: Get
+      x-summary-source: derived
     post:
       operationId: post
       responses:
@@ -171,69 +177,17 @@ paths:
               schema:
                 $ref: '#/components/schemas/ServerError'
       tags:
-      - EmailSettings
+      - Email Settings
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/PostEmailSettingsRequest'
         required: true
+      summary: Post
+      x-summary-source: derived
 components:
   schemas:
-    ServerError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Server Error
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ForbiddenError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    EmailSmtpDTO:
-      properties:
-        id:
-          type: number
-          format: double
-        communityId:
-          type: string
-        fromEmail:
-          type: string
-        fromName:
-          type: string
-      required:
-      - id
-      - communityId
-      - fromEmail
-      - fromName
-      type: object
-      additionalProperties: false
-    PostEmailSettingsResponse:
-      properties: {}
-      type: object
-      additionalProperties: false
     ValidationError:
       properties:
         property:
@@ -257,15 +211,40 @@ components:
       - argument
       type: object
       additionalProperties: false
-    PostEmailSettingsRequest:
+    GetEmailSettingsResponse:
       properties:
-        id:
-          type: string
-        subscribed:
+        isMember:
+          type: boolean
+        isSubscribed:
+          type: boolean
+        isGloballyDeleted:
           type: boolean
       required:
+      - isMember
+      - isSubscribed
+      - isGloballyDeleted
+      type: object
+      additionalProperties: false
+    EmailSmtpDTO:
+      properties:
+        id:
+          type: number
+          format: double
+        communityId:
+          type: string
+        fromEmail:
+          type: string
+        fromName:
+          type: string
+      required:
       - id
-      - subscribed
+      - communityId
+      - fromEmail
+      - fromName
+      type: object
+      additionalProperties: false
+    PostEmailSettingsResponse:
+      properties: {}
       type: object
       additionalProperties: false
     NotFoundError:
@@ -300,18 +279,47 @@ components:
       - details
       type: object
       additionalProperties: false
-    GetEmailSettingsResponse:
+    ForbiddenError:
       properties:
-        isMember:
-          type: boolean
-        isSubscribed:
-          type: boolean
-        isGloballyDeleted:
+        message:
+          type: string
+          enum:
+          - Access Forbidden
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    PostEmailSettingsRequest:
+      properties:
+        id:
+          type: string
+        subscribed:
           type: boolean
       required:
-      - isMember
-      - isSubscribed
-      - isGloballyDeleted
+      - id
+      - subscribed
+      type: object
+      additionalProperties: false
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
       type: object
       additionalProperties: false
   securitySchemes:

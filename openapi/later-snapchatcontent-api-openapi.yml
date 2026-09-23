@@ -37,6 +37,8 @@ paths:
                 $ref: '#/components/schemas/ServerError'
       tags:
       - SnapchatContent
+      summary: Trigger snapchat content refresh job
+      x-summary-source: derived
   /v1/snapchat-content-refresh-jobs/{creatorProfileId}:
     post:
       operationId: refreshContentForProfile
@@ -73,6 +75,8 @@ paths:
         required: true
         schema:
           type: string
+      summary: Refresh content for profile
+      x-summary-source: derived
 components:
   schemas:
     ForbiddenError:
@@ -81,22 +85,6 @@ components:
           type: string
           enum:
           - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ServerError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Server Error
         details:
           properties: {}
           additionalProperties:
@@ -120,6 +108,22 @@ components:
           type: string
           enum:
           - Validation failed
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
         details:
           properties: {}
           additionalProperties:

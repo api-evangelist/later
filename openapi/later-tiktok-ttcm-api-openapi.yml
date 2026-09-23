@@ -51,6 +51,8 @@ paths:
           - media-binder
           - media-updater
           - creator-updater
+      summary: Purge tik tok queue
+      x-summary-source: derived
   /v1/ttcm/management/queues/stats:
     get:
       operationId: getTikTokQueueStats
@@ -81,38 +83,18 @@ paths:
                 $ref: '#/components/schemas/ServerError'
       tags:
       - TikTok TTCM
+      summary: Get tik tok queue stats
+      x-summary-source: derived
 components:
   schemas:
-    ServerError:
+    Components.Schemas.PurgeQueueResponse:
       properties:
+        success:
+          type: boolean
+        queueName:
+          type: string
         message:
           type: string
-          enum:
-          - Server Error
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ForbiddenError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
       type: object
       additionalProperties: false
     Components.Schemas.QueueStatsResponse:
@@ -161,14 +143,36 @@ components:
       - details
       type: object
       additionalProperties: false
-    Components.Schemas.PurgeQueueResponse:
+    ForbiddenError:
       properties:
-        success:
-          type: boolean
-        queueName:
-          type: string
         message:
           type: string
+          enum:
+          - Access Forbidden
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
       type: object
       additionalProperties: false
   securitySchemes:

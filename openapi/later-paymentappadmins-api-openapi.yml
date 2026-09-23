@@ -47,8 +47,45 @@ paths:
                 $ref: '#/components/schemas/ServerError'
       tags:
       - PaymentAppAdmins
+      summary: Get payment app admin
+      x-summary-source: derived
 components:
   schemas:
+    PaymentAppAdmin:
+      properties:
+        s4AccountId:
+          type: number
+          format: double
+        cashPaymentPermissions:
+          items:
+            $ref: '#/components/schemas/CashPaymentPermission'
+          type: array
+        giftCardPermissions:
+          items:
+            $ref: '#/components/schemas/GiftCardPaymentPermission'
+          type: array
+      required:
+      - s4AccountId
+      - cashPaymentPermissions
+      - giftCardPermissions
+      type: object
+      additionalProperties: false
+    NotFoundError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Resource Not Found
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
     GiftCardPaymentPermission:
       properties:
         canAddTransactions:
@@ -61,12 +98,12 @@ components:
       - giftCardAppId
       type: object
       additionalProperties: false
-    ServerError:
+    ValidateErrorJSON:
       properties:
         message:
           type: string
           enum:
-          - Server Error
+          - Validation failed
         details:
           properties: {}
           additionalProperties:
@@ -89,25 +126,6 @@ components:
       - cashPaymentAppId
       type: object
       additionalProperties: false
-    PaymentAppAdmin:
-      properties:
-        s4AccountId:
-          type: number
-          format: double
-        cashPaymentPermissions:
-          items:
-            $ref: '#/components/schemas/CashPaymentPermission'
-          type: array
-        giftCardPermissions:
-          items:
-            $ref: '#/components/schemas/GiftCardPaymentPermission'
-          type: array
-      required:
-      - s4AccountId
-      - cashPaymentPermissions
-      - giftCardPermissions
-      type: object
-      additionalProperties: false
     ForbiddenError:
       properties:
         message:
@@ -124,28 +142,12 @@ components:
       - details
       type: object
       additionalProperties: false
-    NotFoundError:
+    ServerError:
       properties:
         message:
           type: string
           enum:
-          - Resource Not Found
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ValidateErrorJSON:
-      properties:
-        message:
-          type: string
-          enum:
-          - Validation failed
+          - Server Error
         details:
           properties: {}
           additionalProperties:

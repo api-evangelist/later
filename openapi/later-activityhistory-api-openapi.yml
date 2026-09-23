@@ -19,7 +19,7 @@ paths:
       x-handler: activity_history/activity_history_controller.js
       x-access:
       - administrator
-      summary: Retrieve a history.
+      summary: Retrieve a history
       parameters:
       - $ref: '#/components/parameters/limitParam'
       - $ref: '#/components/parameters/offsetParam'
@@ -88,6 +88,18 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    LinksDeprecated:
+      type: object
+      x-access:
+      - anonymous
+      - influencer
+      properties:
+        normal:
+          type: string
+          description: A normal link to an entity.
+        deep:
+          type: string
+          description: A deep link to the entity.
     Attachment:
       type: object
       properties:
@@ -106,6 +118,52 @@ components:
         uri:
           type: string
         contentId:
+          type: string
+    ActivityHistory:
+      type: object
+      properties:
+        eventType:
+          type: string
+        eventId:
+          type: string
+        activationId:
+          type: integer
+        title:
+          type: string
+        description:
+          type: string
+        eventAt:
+          type: string
+        actorType:
+          type: string
+        tiktokCampaignCode:
+          type: string
+        inviteLink:
+          type: string
+        actorName:
+          type: string
+        attachments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attachment'
+        markedAsUnread:
+          type: boolean
+        isArchived:
+          type: boolean
+        count:
+          type: integer
+        influencerInitiated:
+          type: boolean
+        scheduledFor:
+          type: string
+          format: date-time
+        scheduledMessageId:
+          type: integer
+        hasScheduledReply:
+          type: boolean
+        rate:
+          type: string
+        concept:
           type: string
     ResponseMetadata:
       properties:
@@ -156,71 +214,7 @@ components:
             error:
               type: string
               description: A static description of the parent error.
-    LinksDeprecated:
-      type: object
-      x-access:
-      - anonymous
-      - influencer
-      properties:
-        normal:
-          type: string
-          description: A normal link to an entity.
-        deep:
-          type: string
-          description: A deep link to the entity.
-    ActivityHistory:
-      type: object
-      properties:
-        eventType:
-          type: string
-        eventId:
-          type: string
-        activationId:
-          type: integer
-        title:
-          type: string
-        description:
-          type: string
-        eventAt:
-          type: string
-        actorType:
-          type: string
-        tiktokCampaignCode:
-          type: string
-        inviteLink:
-          type: string
-        actorName:
-          type: string
-        attachments:
-          type: array
-          items:
-            $ref: '#/components/schemas/Attachment'
-        markedAsUnread:
-          type: boolean
-        isArchived:
-          type: boolean
-        count:
-          type: integer
-        influencerInitiated:
-          type: boolean
-        scheduledFor:
-          type: string
-          format: date-time
-        scheduledMessageId:
-          type: integer
-        hasScheduledReply:
-          type: boolean
-        rate:
-          type: string
-        concept:
-          type: string
   parameters:
-    offsetParam:
-      in: query
-      description: Number of items to skip
-      name: offset
-      schema:
-        type: integer
     orderDirection:
       in: query
       description: Select the direction by which the data will be ordered, ascending or descending.
@@ -234,6 +228,12 @@ components:
       in: query
       description: Maximum number of items to return
       name: limit
+      schema:
+        type: integer
+    offsetParam:
+      in: query
+      description: Number of items to skip
+      name: offset
       schema:
         type: integer
   securitySchemes:

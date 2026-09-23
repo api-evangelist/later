@@ -53,6 +53,8 @@ paths:
         required: false
         schema:
           type: string
+      summary: Get omni analytics dashboard
+      x-summary-source: derived
   /v1/custom-analytics/dashboard-types:
     get:
       operationId: getDashboardTypes
@@ -95,40 +97,22 @@ paths:
         required: true
         schema:
           type: string
+      summary: Get dashboard types
+      x-summary-source: derived
 components:
   schemas:
-    ServerError:
+    DashboardTypesResponse:
       properties:
-        message:
+        dashboardTypes:
+          items:
+            type: string
+          type: array
+        instanceId:
           type: string
-          enum:
-          - Server Error
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
       required:
-      - message
-      - details
+      - dashboardTypes
+      - instanceId
       type: object
-      additionalProperties: false
-    ForbiddenError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
     NotFoundError:
       properties:
         message:
@@ -168,18 +152,38 @@ components:
       required:
       - embed_url
       type: object
-    DashboardTypesResponse:
+    ForbiddenError:
       properties:
-        dashboardTypes:
-          items:
-            type: string
-          type: array
-        instanceId:
+        message:
           type: string
+          enum:
+          - Access Forbidden
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
       required:
-      - dashboardTypes
-      - instanceId
+      - message
+      - details
       type: object
+      additionalProperties: false
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
   securitySchemes:
     apiKey:
       type: apiKey

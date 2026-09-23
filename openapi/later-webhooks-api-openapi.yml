@@ -57,55 +57,10 @@ paths:
         required: true
       tags:
       - Webhooks
+      summary: Sendgrid webhook events
+      x-summary-source: derived
 components:
   schemas:
-    ServerError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Server Error
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    SendGridMailerEventStatus:
-      enum:
-      - account_status_change
-      - bounce
-      - click
-      - deferred
-      - delivered
-      - dropped
-      - group_resubscribe
-      - group_unsubscribe
-      - open
-      - processed
-      - spamreport
-      - unsubscribe
-      type: string
-    ForbiddenError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
     NotFoundError:
       properties:
         message:
@@ -165,6 +120,53 @@ components:
       - sg_event_id
       - event
       - timestamp
+      type: object
+      additionalProperties: false
+    SendGridMailerEventStatus:
+      enum:
+      - account_status_change
+      - bounce
+      - click
+      - deferred
+      - delivered
+      - dropped
+      - group_resubscribe
+      - group_unsubscribe
+      - open
+      - processed
+      - spamreport
+      - unsubscribe
+      type: string
+    ForbiddenError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Access Forbidden
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
       type: object
       additionalProperties: false
   securitySchemes:

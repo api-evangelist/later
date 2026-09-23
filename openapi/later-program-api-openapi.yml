@@ -80,6 +80,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+      summary: Get referral program
+      x-summary-source: derived
 components:
   schemas:
     Error:

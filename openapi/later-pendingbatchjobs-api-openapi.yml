@@ -59,14 +59,45 @@ paths:
         required: true
         schema:
           type: string
+      summary: Get pending batch jobs
+      x-summary-source: derived
 components:
   schemas:
-    ServerError:
+    GetPendingBatchJobsResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/PendingBatchJob'
+          type: array
+      required:
+      - data
+      type: object
+      additionalProperties: false
+    PendingBatchJob:
+      properties:
+        id:
+          type: number
+          format: double
+        name:
+          type: string
+        status:
+          type: string
+          enum:
+          - CREATED
+          - COMPLETED
+          - FAILED
+          - PROCESSING
+      required:
+      - id
+      - name
+      type: object
+      additionalProperties: false
+    NotFoundError:
       properties:
         message:
           type: string
           enum:
-          - Server Error
+          - Resource Not Found
         details:
           properties: {}
           additionalProperties:
@@ -108,12 +139,12 @@ components:
       - details
       type: object
       additionalProperties: false
-    NotFoundError:
+    ServerError:
       properties:
         message:
           type: string
           enum:
-          - Resource Not Found
+          - Server Error
         details:
           properties: {}
           additionalProperties:
@@ -122,35 +153,6 @@ components:
       required:
       - message
       - details
-      type: object
-      additionalProperties: false
-    GetPendingBatchJobsResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/PendingBatchJob'
-          type: array
-      required:
-      - data
-      type: object
-      additionalProperties: false
-    PendingBatchJob:
-      properties:
-        id:
-          type: number
-          format: double
-        name:
-          type: string
-        status:
-          type: string
-          enum:
-          - CREATED
-          - COMPLETED
-          - FAILED
-          - PROCESSING
-      required:
-      - id
-      - name
       type: object
       additionalProperties: false
   securitySchemes:

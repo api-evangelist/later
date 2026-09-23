@@ -54,6 +54,8 @@ paths:
                 $ref: '#/components/schemas/ServerError'
       tags:
       - Meta Business Portfolios
+      summary: Get business portfolios
+      x-summary-source: derived
   /v2/marketers/meta/business/portfolios/{id}:
     patch:
       operationId: updateBusinessPortfolio
@@ -103,21 +105,48 @@ paths:
             schema:
               $ref: '#/components/schemas/UpdateBusinessPortfolioRequestBody'
         required: true
+      summary: Update business portfolio
+      x-summary-source: derived
 components:
   schemas:
-    UpdateBusinessPortfolioRequestBody:
+    MetaBusinessPortfolioAuthorizationDto:
       properties:
+        id:
+          type: number
+          format: double
+        name:
+          type: string
         selected:
           type: boolean
+        pictureUrl:
+          type: string
+        externalId:
+          type: string
+        communityId:
+          type: string
+        integrationId:
+          type: number
+          format: double
+        administratorId:
+          type: number
+          format: double
       required:
+      - id
+      - name
       - selected
+      - pictureUrl
+      - externalId
+      - communityId
+      - integrationId
+      - administratorId
       type: object
-    ServerError:
+      additionalProperties: false
+    NotFoundError:
       properties:
         message:
           type: string
           enum:
-          - Server Error
+          - Resource Not Found
         details:
           properties: {}
           additionalProperties:
@@ -159,12 +188,19 @@ components:
       - details
       type: object
       additionalProperties: false
-    NotFoundError:
+    UpdateBusinessPortfolioRequestBody:
+      properties:
+        selected:
+          type: boolean
+      required:
+      - selected
+      type: object
+    ServerError:
       properties:
         message:
           type: string
           enum:
-          - Resource Not Found
+          - Server Error
         details:
           properties: {}
           additionalProperties:
@@ -173,38 +209,6 @@ components:
       required:
       - message
       - details
-      type: object
-      additionalProperties: false
-    MetaBusinessPortfolioAuthorizationDto:
-      properties:
-        id:
-          type: number
-          format: double
-        name:
-          type: string
-        selected:
-          type: boolean
-        pictureUrl:
-          type: string
-        externalId:
-          type: string
-        communityId:
-          type: string
-        integrationId:
-          type: number
-          format: double
-        administratorId:
-          type: number
-          format: double
-      required:
-      - id
-      - name
-      - selected
-      - pictureUrl
-      - externalId
-      - communityId
-      - integrationId
-      - administratorId
       type: object
       additionalProperties: false
   securitySchemes:

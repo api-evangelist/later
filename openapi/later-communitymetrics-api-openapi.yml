@@ -171,15 +171,30 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    CommunityMetric:
+    LinksDeprecated:
+      type: object
+      x-access:
+      - anonymous
+      - influencer
+      properties:
+        normal:
+          type: string
+          description: A normal link to an entity.
+        deep:
+          type: string
+          description: A deep link to the entity.
+    Metric:
       type: object
       properties:
-        metricId:
+        id:
           type: integer
-        enabled:
-          type: boolean
-        metric:
-          $ref: '#/components/schemas/Metric'
+        displayName:
+          type: string
+        name:
+          type: string
+    EmptyObject:
+      type: object
+      properties: {}
     ResponseMetadata:
       properties:
         limit:
@@ -229,30 +244,15 @@ components:
             error:
               type: string
               description: A static description of the parent error.
-    Metric:
+    CommunityMetric:
       type: object
       properties:
-        id:
+        metricId:
           type: integer
-        displayName:
-          type: string
-        name:
-          type: string
-    LinksDeprecated:
-      type: object
-      x-access:
-      - anonymous
-      - influencer
-      properties:
-        normal:
-          type: string
-          description: A normal link to an entity.
-        deep:
-          type: string
-          description: A deep link to the entity.
-    EmptyObject:
-      type: object
-      properties: {}
+        enabled:
+          type: boolean
+        metric:
+          $ref: '#/components/schemas/Metric'
   securitySchemes:
     apiKey:
       type: apiKey

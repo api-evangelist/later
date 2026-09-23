@@ -59,71 +59,33 @@ paths:
         schema:
           type: number
           format: double
+      summary: Get merge tags catalog
+      x-summary-source: derived
 components:
   schemas:
-    ServerError:
+    CatalogResponseGroup:
       properties:
-        message:
-          type: string
-          enum:
-          - Server Error
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    MergeTagsCatalogResponse:
-      properties:
-        groups:
+        tags:
           items:
-            $ref: '#/components/schemas/CatalogResponseGroup'
+            $ref: '#/components/schemas/CatalogResponseTag'
           type: array
-      required:
-      - groups
-      type: object
-    ForbiddenError:
-      properties:
-        message:
+        emptyTextI18nKey:
           type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
+        titleI18nKey:
+          type: string
+        key:
+          type: string
       required:
-      - message
-      - details
+      - tags
+      - titleI18nKey
+      - key
       type: object
-      additionalProperties: false
     NotFoundError:
       properties:
         message:
           type: string
           enum:
           - Resource Not Found
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ValidateErrorJSON:
-      properties:
-        message:
-          type: string
-          enum:
-          - Validation failed
         details:
           properties: {}
           additionalProperties:
@@ -155,23 +117,63 @@ components:
       - kind
       - key
       type: object
-    CatalogResponseGroup:
+    ValidateErrorJSON:
       properties:
-        tags:
-          items:
-            $ref: '#/components/schemas/CatalogResponseTag'
-          type: array
-        emptyTextI18nKey:
+        message:
           type: string
-        titleI18nKey:
-          type: string
-        key:
-          type: string
+          enum:
+          - Validation failed
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
       required:
-      - tags
-      - titleI18nKey
-      - key
+      - message
+      - details
       type: object
+      additionalProperties: false
+    ForbiddenError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Access Forbidden
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    MergeTagsCatalogResponse:
+      properties:
+        groups:
+          items:
+            $ref: '#/components/schemas/CatalogResponseGroup'
+          type: array
+      required:
+      - groups
+      type: object
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
   securitySchemes:
     apiKey:
       type: apiKey

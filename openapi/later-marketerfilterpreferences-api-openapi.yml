@@ -63,6 +63,8 @@ paths:
         schema:
           type: number
           format: double
+      summary: Get marketer filter preferences
+      x-summary-source: derived
     put:
       operationId: setMarketerFilterPreferences
       responses:
@@ -100,14 +102,55 @@ paths:
             schema:
               $ref: '#/components/schemas/MarketerFilterPreferenceBody'
         required: true
+      summary: Set marketer filter preferences
+      x-summary-source: derived
 components:
   schemas:
-    ServerError:
+    ReportingGranularity:
+      type: string
+      enum:
+      - year
+      - quarter
+      - month
+      - week
+      - day
+    MarketerFilterPreferenceBody:
+      properties:
+        filters:
+          properties:
+            reportsFilters:
+              $ref: '#/components/schemas/ReportsFilters'
+            actionGroupIds:
+              items:
+                type: number
+                format: double
+              type: array
+            sortDirection:
+              type: string
+            sortColumn:
+              type: string
+            fromDate:
+              type: string
+            toDate:
+              type: string
+          type: object
+        communityId:
+          type: string
+        s4AccountId:
+          type: number
+          format: double
+      required:
+      - filters
+      - communityId
+      - s4AccountId
+      type: object
+      additionalProperties: false
+    NotFoundError:
       properties:
         message:
           type: string
           enum:
-          - Server Error
+          - Resource Not Found
         details:
           properties: {}
           additionalProperties:
@@ -180,36 +223,15 @@ components:
           type: boolean
       type: object
       additionalProperties: false
-    ForbiddenError:
+    ReportsTableSortModel:
       properties:
-        message:
+        id:
           type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
+        desc:
+          type: boolean
       required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    NotFoundError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Resource Not Found
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
+      - id
+      - desc
       type: object
       additionalProperties: false
     ValidateErrorJSON:
@@ -228,45 +250,6 @@ components:
       - details
       type: object
       additionalProperties: false
-    MarketerFilterPreferenceBody:
-      properties:
-        filters:
-          properties:
-            reportsFilters:
-              $ref: '#/components/schemas/ReportsFilters'
-            actionGroupIds:
-              items:
-                type: number
-                format: double
-              type: array
-            sortDirection:
-              type: string
-            sortColumn:
-              type: string
-            fromDate:
-              type: string
-            toDate:
-              type: string
-          type: object
-        communityId:
-          type: string
-        s4AccountId:
-          type: number
-          format: double
-      required:
-      - filters
-      - communityId
-      - s4AccountId
-      type: object
-      additionalProperties: false
-    ReportingGranularity:
-      type: string
-      enum:
-      - year
-      - quarter
-      - month
-      - week
-      - day
     MarketerFiltersItem:
       properties:
         filters:
@@ -291,15 +274,36 @@ components:
       - filters
       type: object
       additionalProperties: false
-    ReportsTableSortModel:
+    ForbiddenError:
       properties:
-        id:
+        message:
           type: string
-        desc:
-          type: boolean
+          enum:
+          - Access Forbidden
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
       required:
-      - id
-      - desc
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
       type: object
       additionalProperties: false
   securitySchemes:

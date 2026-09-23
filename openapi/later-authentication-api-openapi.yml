@@ -16,7 +16,7 @@ paths:
       tags:
       - Authentication
       x-handler: auth/facebook_controller.js
-      summary: Pass Facebook access grant information in exchange for a JWT to include in the header of requests.
+      summary: Pass Facebook access grant information in exchange for a JWT to include in the…
       parameters:
       - name: ^mdp_.+$
         in: query
@@ -103,12 +103,14 @@ paths:
                 shouldAddPages:
                   type: boolean
         required: true
+      operationId: postApiKeyFacebook
+      x-operation-id-source: derived
   /auto-login:
     post:
       tags:
       - Authentication
       x-handler: auth/influencer_auto_login/influencer_auto_login_controller.js
-      summary: Pass encrypted user key in exchange for a JWT to include in the header of requests.
+      summary: Pass encrypted user key in exchange for a JWT to include in the header of…
       responses:
         '200':
           description: User info
@@ -157,12 +159,14 @@ paths:
                 actionGroupId:
                   type: integer
         required: true
+      operationId: postAutoLogin
+      x-operation-id-source: derived
   /connected-account/instagram-business:
     post:
       tags:
       - Authentication
       x-handler: auth/instagram_business_controller.js
-      summary: Pass Facebook access grant information in exchange for a JWT to include in the header of requests.
+      summary: Pass Facebook access grant information in exchange for a JWT to include in the…
       x-access:
       - influencer
       responses:
@@ -223,12 +227,14 @@ paths:
                   items:
                     type: string
         required: true
+      operationId: postConnectedAccountInstagramBusiness
+      x-operation-id-source: derived
   /email-auth/lookup:
     post:
       tags:
       - Authentication
       x-handler: email_auth/email_auth_lookup_controller.js
-      summary: Pass an email and check if it needs verification or existing login credentials submitted in order to proceed
+      summary: Pass an email and check if it needs verification or existing login credentials…
       parameters:
       - name: ^mdp_.+$
         in: query
@@ -303,12 +309,14 @@ paths:
                 utmCampaign:
                   type: string
         required: true
+      operationId: postEmailAuthLookup
+      x-operation-id-source: derived
   /email-auth/signup:
     post:
       tags:
       - Authentication
       x-handler: email_auth/email_auth_signup_controller.js
-      summary: Pass an email verification request key and new password in exchange for a JWT to include in the header of requests.
+      summary: Pass an email verification request key and new password in exchange for a JWT…
       responses:
         '200':
           description: User Info.
@@ -369,12 +377,14 @@ paths:
                 password:
                   type: string
         required: true
+      operationId: postEmailAuthSignup
+      x-operation-id-source: derived
   /email-auth/login:
     post:
       tags:
       - Authentication
       x-handler: email_auth/email_auth_login_controller.js
-      summary: Pass an email and password in exchange for a JWT to include in the header of requests.
+      summary: Pass an email and password in exchange for a JWT to include in the header of…
       parameters:
       - name: ^mdp_.+$
         in: query
@@ -437,6 +447,8 @@ paths:
                 password:
                   type: string
         required: true
+      operationId: postEmailAuthLogin
+      x-operation-id-source: derived
   /email-auth/forgot-password:
     post:
       tags:
@@ -484,12 +496,14 @@ paths:
                 actionGroupId:
                   type: integer
         required: true
+      operationId: postEmailAuthForgotPassword
+      x-operation-id-source: derived
   /email-auth/reset-password:
     post:
       tags:
       - Authentication
       x-handler: email_auth/email_auth_reset_password_controller.js
-      summary: Pass an email reset password request key and new password in exchange for a JWT to include in the header of requests.
+      summary: Pass an email reset password request key and new password in exchange for a JWT…
       responses:
         '200':
           description: User Info.
@@ -536,12 +550,14 @@ paths:
                 password:
                   type: string
         required: true
+      operationId: postEmailAuthResetPassword
+      x-operation-id-source: derived
   /email-verification-request/validate:
     post:
       tags:
       - Authentication
       x-handler: email_verification_request/email_verification_request_validate_controller.js
-      summary: Validate an email verification request.
+      summary: Validate an email verification request
       responses:
         '200':
           description: Email verification request is valid.
@@ -609,6 +625,8 @@ paths:
                 key:
                   type: string
         required: true
+      operationId: postEmailVerificationRequestValidate
+      x-operation-id-source: derived
   /email-verification-request/create:
     post:
       tags:
@@ -661,6 +679,8 @@ paths:
                 actionGroupId:
                   type: integer
         required: true
+      operationId: postEmailVerificationRequestCreate
+      x-operation-id-source: derived
   /login-credentials/update:
     put:
       tags:
@@ -668,7 +688,7 @@ paths:
       x-handler: login_credentials/login_credentials_controller.js
       x-access:
       - influencer
-      summary: Update existing influencer login credentials.
+      summary: Update existing influencer login credentials
       responses:
         '200':
           description: User Info.
@@ -716,6 +736,8 @@ paths:
                 newPassword:
                   type: string
         required: true
+      operationId: putLoginCredentialsUpdate
+      x-operation-id-source: derived
   /v1/api-key/login:
     post:
       operationId: loginAdmin
@@ -758,6 +780,8 @@ paths:
             schema:
               $ref: '#/components/schemas/BasicAuthPostRequest'
         required: true
+      summary: Login admin
+      x-summary-source: derived
   /v1/auth/facebook/exchange-code-for-token:
     post:
       operationId: exchangeCodeForToken
@@ -822,6 +846,8 @@ paths:
             schema:
               $ref: '#/components/schemas/FacebookAccessCodeExchangeRequest'
         required: true
+      summary: Exchange code for token
+      x-summary-source: derived
   /v1/api-key/swap-app:
     post:
       operationId: swapCommunity
@@ -858,6 +884,8 @@ paths:
             schema:
               $ref: '#/components/schemas/SwapAppRequestBody'
         required: true
+      summary: Swap community
+      x-summary-source: derived
   /v1/reset-password:
     get:
       operationId: getResetKey
@@ -905,6 +933,8 @@ paths:
         required: false
         schema:
           type: string
+      summary: Get reset key
+      x-summary-source: derived
     post:
       operationId: resetPassword
       responses:
@@ -946,91 +976,20 @@ paths:
             schema:
               $ref: '#/components/schemas/PostRequestBody'
         required: true
+      summary: Reset password
+      x-summary-source: derived
 components:
   schemas:
-    MembershipRejection:
-      type: object
-      description: Passed when an influencer does not meet the entrance criteria for the community.
+    BasicAuthPostResponse:
       properties:
-        redirectLink:
+        token:
           type: string
-        rejectReason:
-          type: string
-        missingCriteria:
-          type: array
-          items:
-            type: string
-    ServerError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Server Error
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    InstagramConnectionInfo:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Instagram Profile Id
-        primaryAccount:
-          type: boolean
-        expiresAt:
-          type: string
-          format: date-time
-          description: The date by which the client should re-prompt the either reconnection flow.
-        platformExpiresAt:
-          type: string
-          format: date-time
-          description: The date by which the client should re-prompt the Instagram Platform connection flow.
-        businessExpiresAt:
-          type: string
-          format: date-time
-          description: The date by which the client should re-prompt the Instagram Business connection flow.
-        handle:
-          type: string
-          description: Client's Instagram account handle
-        profilePicture:
-          type: string
-          description: Client's Instagram profile picture
-    PostRequestBody:
-      properties:
-        email:
-          type: string
-        password:
-          type: string
-        resetKey:
-          type: string
-      required:
-      - email
-      - password
-      - resetKey
-      type: object
-      additionalProperties: false
-    SwapAppRequestBody:
-      properties:
         communityId:
           type: string
       required:
+      - token
       - communityId
       type: object
-      additionalProperties: false
-    EmptyObject:
-      type: object
-      properties: {}
-    TSOAEmptyObject:
-      properties: {}
-      type: object
-      additionalProperties: false
     Blog:
       properties:
         globalUserId:
@@ -1056,6 +1015,208 @@ components:
           - 'null'
       type: object
       additionalProperties: false
+    PostRequestBody:
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+        resetKey:
+          type: string
+      required:
+      - email
+      - password
+      - resetKey
+      type: object
+      additionalProperties: false
+    PinterestConnectionInfo:
+      type: object
+      properties:
+        expiresAt:
+          type: string
+          format: date-time
+          description: The date by which the client should re-prompt the Pinterest connection flow.
+        handle:
+          type: string
+          description: Client's Pinterest account handle
+        profilePicture:
+          type: string
+          description: Client's Pinterest profile picture
+    TSOAEmptyObject:
+      properties: {}
+      type: object
+      additionalProperties: false
+    SwapAppPostResponse:
+      properties:
+        token:
+          type: string
+      required:
+      - token
+      type: object
+      additionalProperties: false
+    BasicAuthPostRequest:
+      properties:
+        password:
+          type: string
+        email:
+          type: string
+      required:
+      - password
+      - email
+      type: object
+    FacebookAccessCodeExchangeRequest:
+      properties:
+        redirectUri:
+          type: string
+        code:
+          type: string
+      required:
+      - redirectUri
+      - code
+      type: object
+    MembershipRejection:
+      type: object
+      description: Passed when an influencer does not meet the entrance criteria for the community.
+      properties:
+        redirectLink:
+          type: string
+        rejectReason:
+          type: string
+        missingCriteria:
+          type: array
+          items:
+            type: string
+    NotFoundError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Resource Not Found
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    ValidateErrorJSON:
+      properties:
+        message:
+          type: string
+          enum:
+          - Validation failed
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    FacebookConnectionInfo:
+      $ref: '#/components/schemas/FacebookProfileDeprecated'
+    FacebookProfileDeprecated:
+      type: object
+      properties:
+        id:
+          type: integer
+        facebookExternalId:
+          type: string
+        name:
+          type: string
+        link:
+          type: string
+        picture:
+          type: string
+        reach:
+          type: integer
+        averageLikes:
+          type: integer
+        averageComments:
+          type: integer
+        averageEngagements:
+          type: integer
+        engagementRate:
+          type: number
+        type:
+          type: string
+        available:
+          type: boolean
+        active:
+          type: boolean
+        expiresAt:
+          type: string
+          format: date-time
+        facebookUser:
+          type: object
+          properties:
+            isExpired:
+              type: boolean
+    ForbiddenError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Access Forbidden
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    EmailAccount:
+      type: object
+      properties:
+        email:
+          type: string
+    TikTokConnectionInfo:
+      type: object
+      properties:
+        primaryAccount:
+          type: boolean
+        expiresAt:
+          type: string
+          format: date-time
+          description: The date by which the client should re-prompt the TikTok connection flow.
+        handle:
+          type: string
+          description: Client's TikTok account handle
+        profilePicture:
+          type: string
+          description: Client's TikTok profile picture
+    SwapAppRequestBody:
+      properties:
+        communityId:
+          type: string
+      required:
+      - communityId
+      type: object
+      additionalProperties: false
+    EmptyObject:
+      type: object
+      properties: {}
+    TwitterConnectionInfoDeprecated:
+      type: object
+      properties:
+        expiresAt:
+          type: string
+          format: date-time
+          description: The date by which the client should re-prompt the Twitter connection flow.
+        handle:
+          type: string
+          description: Client's Twitter account handle
+        profilePicture:
+          type: string
+          description: Client's Twitter profile picture
     Profile:
       type: object
       properties:
@@ -1129,52 +1290,6 @@ components:
                 type: string
               ethnicGroupDescription:
                 type: string
-    TikTokConnectionInfo:
-      type: object
-      properties:
-        primaryAccount:
-          type: boolean
-        expiresAt:
-          type: string
-          format: date-time
-          description: The date by which the client should re-prompt the TikTok connection flow.
-        handle:
-          type: string
-          description: Client's TikTok account handle
-        profilePicture:
-          type: string
-          description: Client's TikTok profile picture
-    SwapAppPostResponse:
-      properties:
-        token:
-          type: string
-      required:
-      - token
-      type: object
-      additionalProperties: false
-    PinterestConnectionInfo:
-      type: object
-      properties:
-        expiresAt:
-          type: string
-          format: date-time
-          description: The date by which the client should re-prompt the Pinterest connection flow.
-        handle:
-          type: string
-          description: Client's Pinterest account handle
-        profilePicture:
-          type: string
-          description: Client's Pinterest profile picture
-    FacebookAccessCodeExchangeRequest:
-      properties:
-        redirectUri:
-          type: string
-        code:
-          type: string
-      required:
-      - redirectUri
-      - code
-      type: object
     Error:
       type: object
       properties:
@@ -1206,106 +1321,6 @@ components:
             error:
               type: string
               description: A static description of the parent error.
-    NotFoundError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Resource Not Found
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    FacebookConnectionInfo:
-      $ref: '#/components/schemas/FacebookProfileDeprecated'
-    FacebookProfileDeprecated:
-      type: object
-      properties:
-        id:
-          type: integer
-        facebookExternalId:
-          type: string
-        name:
-          type: string
-        link:
-          type: string
-        picture:
-          type: string
-        reach:
-          type: integer
-        averageLikes:
-          type: integer
-        averageComments:
-          type: integer
-        averageEngagements:
-          type: integer
-        engagementRate:
-          type: number
-        type:
-          type: string
-        available:
-          type: boolean
-        active:
-          type: boolean
-        expiresAt:
-          type: string
-          format: date-time
-        facebookUser:
-          type: object
-          properties:
-            isExpired:
-              type: boolean
-    TwitterConnectionInfoDeprecated:
-      type: object
-      properties:
-        expiresAt:
-          type: string
-          format: date-time
-          description: The date by which the client should re-prompt the Twitter connection flow.
-        handle:
-          type: string
-          description: Client's Twitter account handle
-        profilePicture:
-          type: string
-          description: Client's Twitter profile picture
-    ForbiddenError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ValidateErrorJSON:
-      properties:
-        message:
-          type: string
-          enum:
-          - Validation failed
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
     LinksDeprecated:
       type: object
       x-access:
@@ -1318,31 +1333,48 @@ components:
         deep:
           type: string
           description: A deep link to the entity.
-    BasicAuthPostResponse:
+    InstagramConnectionInfo:
+      type: object
       properties:
-        token:
+        id:
+          type: integer
+          description: Instagram Profile Id
+        primaryAccount:
+          type: boolean
+        expiresAt:
           type: string
-        communityId:
+          format: date-time
+          description: The date by which the client should re-prompt the either reconnection flow.
+        platformExpiresAt:
           type: string
+          format: date-time
+          description: The date by which the client should re-prompt the Instagram Platform connection flow.
+        businessExpiresAt:
+          type: string
+          format: date-time
+          description: The date by which the client should re-prompt the Instagram Business connection flow.
+        handle:
+          type: string
+          description: Client's Instagram account handle
+        profilePicture:
+          type: string
+          description: Client's Instagram profile picture
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
       required:
-      - token
-      - communityId
+      - message
+      - details
       type: object
-    BasicAuthPostRequest:
-      properties:
-        password:
-          type: string
-        email:
-          type: string
-      required:
-      - password
-      - email
-      type: object
-    EmailAccount:
-      type: object
-      properties:
-        email:
-          type: string
+      additionalProperties: false
   securitySchemes:
     apiKey:
       type: apiKey

@@ -19,7 +19,7 @@ paths:
       x-handler: paypal/paypal_account_controller.js
       x-access:
       - administrator
-      summary: Get a PayPal account for a member.
+      summary: Get a PayPal account for a member
       parameters:
       - name: membershipId
         in: path
@@ -75,7 +75,7 @@ paths:
       x-handler: paypal/paypal_account_controller.js
       x-access:
       - administrator
-      summary: Upsert a PayPal account for a member.
+      summary: Upsert a PayPal account for a member
       parameters:
       - name: membershipId
         in: path
