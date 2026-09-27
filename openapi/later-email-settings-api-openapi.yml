@@ -188,6 +188,51 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    PostEmailSettingsResponse:
+      properties: {}
+      type: object
+      additionalProperties: false
+    GetEmailSettingsResponse:
+      properties:
+        isMember:
+          type: boolean
+        isSubscribed:
+          type: boolean
+        isGloballyDeleted:
+          type: boolean
+      required:
+      - isMember
+      - isSubscribed
+      - isGloballyDeleted
+      type: object
+      additionalProperties: false
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    PostEmailSettingsRequest:
+      properties:
+        id:
+          type: string
+        subscribed:
+          type: boolean
+      required:
+      - id
+      - subscribed
+      type: object
+      additionalProperties: false
     ValidationError:
       properties:
         property:
@@ -211,18 +256,20 @@ components:
       - argument
       type: object
       additionalProperties: false
-    GetEmailSettingsResponse:
+    NotFoundError:
       properties:
-        isMember:
-          type: boolean
-        isSubscribed:
-          type: boolean
-        isGloballyDeleted:
-          type: boolean
+        message:
+          type: string
+          enum:
+          - Resource Not Found
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
       required:
-      - isMember
-      - isSubscribed
-      - isGloballyDeleted
+      - message
+      - details
       type: object
       additionalProperties: false
     EmailSmtpDTO:
@@ -241,26 +288,6 @@ components:
       - communityId
       - fromEmail
       - fromName
-      type: object
-      additionalProperties: false
-    PostEmailSettingsResponse:
-      properties: {}
-      type: object
-      additionalProperties: false
-    NotFoundError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Resource Not Found
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
       type: object
       additionalProperties: false
     ValidateErrorJSON:
@@ -285,33 +312,6 @@ components:
           type: string
           enum:
           - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    PostEmailSettingsRequest:
-      properties:
-        id:
-          type: string
-        subscribed:
-          type: boolean
-      required:
-      - id
-      - subscribed
-      type: object
-      additionalProperties: false
-    ServerError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Server Error
         details:
           properties: {}
           additionalProperties:

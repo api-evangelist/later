@@ -194,13 +194,22 @@ components:
       required:
       - enabled
       type: object
-    MetaConnectBusinessIntegrationRequestBody:
+    ServerError:
       properties:
-        code:
+        message:
           type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
       required:
-      - code
+      - message
+      - details
       type: object
+      additionalProperties: false
     NotFoundError:
       properties:
         message:
@@ -254,28 +263,19 @@ components:
       - enabled
       type: object
       additionalProperties: false
+    MetaConnectBusinessIntegrationRequestBody:
+      properties:
+        code:
+          type: string
+      required:
+      - code
+      type: object
     ForbiddenError:
       properties:
         message:
           type: string
           enum:
           - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ServerError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Server Error
         details:
           properties: {}
           additionalProperties:

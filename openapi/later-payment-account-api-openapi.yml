@@ -538,75 +538,8 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    PaymentAccountType:
-      enum:
-      - CASH
-      - GIFT_CARD
-      type: string
-    AccountingTransactionCreateDetails:
-      properties:
-        budgetReferenceIdType:
-          type: object
-        budgetReferenceId:
-          type:
-          - string
-          - 'null'
-        targetPaymentAccountId:
-          type: number
-          format: double
-        transactionType:
-          $ref: '#/components/schemas/AccountingTransactionType'
-        description:
-          type: string
-        amount:
-          type: number
-          format: double
-        paymentAccountId:
-          type: number
-          format: double
-      required:
-      - transactionType
-      - description
-      - amount
-      - paymentAccountId
-      type: object
     TSOAEmptyObject:
       properties: {}
-      type: object
-      additionalProperties: false
-    BadRequestError:
-      properties:
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-        message:
-          type: string
-          enum:
-          - Bad Request
-      required:
-      - message
-      type: object
-      additionalProperties: false
-    DBPaymentAccountWithAssociations:
-      type: object
-      properties: {}
-    AccountingTransactionType:
-      type: string
-      enum:
-      - BALANCE_INCREASE
-      - BALANCE_DECREASE
-      - BALANCE_TRANSFER
-    PaymentAccountSupportedCurrenciesRequestBody:
-      properties:
-        instanceId:
-          type: string
-        internationalCurrencies:
-          type: string
-      required:
-      - instanceId
-      - internationalCurrencies
       type: object
       additionalProperties: false
     TaxUpdateRequestDTO:
@@ -643,82 +576,6 @@ components:
       - details
       type: object
       additionalProperties: false
-    TaxLineItem:
-      properties:
-        amount:
-          type: number
-          format: double
-        type:
-          $ref: '#/components/schemas/TaxLineItemType'
-      required:
-      - amount
-      - type
-      type: object
-    ForbiddenError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    StripeSupportedCurrencies:
-      items:
-        $ref: '#/components/schemas/StripeInternationalCurrency'
-      type: array
-    UpdatePaymentAccountTransactionRequestDTO:
-      properties:
-        budgetReferenceId:
-          type:
-          - string
-          - 'null'
-        budgetReferenceIdType:
-          type: object
-        taxId:
-          type:
-          - string
-          - 'null'
-        invoiceNumber:
-          type:
-          - string
-          - 'null'
-        taxLineItems:
-          items:
-            $ref: '#/components/schemas/TaxLineItem'
-          type:
-          - array
-          - 'null'
-        communityId:
-          type: string
-      type: object
-      additionalProperties: false
-    TaxLineItemType:
-      type: string
-      enum:
-      - GST
-      - HST
-      - VAT
-      - PST
-      - QST
-      - RST
-    Partial_PaymentAccountSupportedCurrencies_:
-      properties:
-        instanceId:
-          type: string
-        internationalCurrencies:
-          type:
-          - string
-          - 'null'
-      type: object
-      description: Make all properties in T optional
     StripeInternationalCurrency:
       properties:
         country:
@@ -736,39 +593,37 @@ components:
       - symbol
       type: object
       additionalProperties: false
-    PaymentAccountNetDeposits:
+    PaymentAccountType:
+      enum:
+      - CASH
+      - GIFT_CARD
+      type: string
+    AccountingTransactionCreateDetails:
       properties:
-        paymentAccountId:
-          type: number
-          format: double
-        currencyCode:
+        budgetReferenceIdType:
+          type: object
+        budgetReferenceId:
           type:
           - string
           - 'null'
-        netDeposits:
+        targetPaymentAccountId:
           type: number
           format: double
-        earliestTransactionDate:
+        transactionType:
+          $ref: '#/components/schemas/AccountingTransactionType'
+        description:
           type: string
-          format: date-time
+        amount:
+          type: number
+          format: double
+        paymentAccountId:
+          type: number
+          format: double
       required:
+      - transactionType
+      - description
+      - amount
       - paymentAccountId
-      - currencyCode
-      - netDeposits
-      - earliestTransactionDate
-      type: object
-      additionalProperties: false
-    CreatePaymentAccountData:
-      properties:
-        currencyCode:
-          type: object
-        communityId:
-          type: string
-        cashPaymentAppId:
-          type: number
-          format: double
-      required:
-      - communityId
       type: object
     DBPaymentAccount:
       properties:
@@ -806,12 +661,157 @@ components:
       - balance
       - id
       type: object
+    CreatePaymentAccountData:
+      properties:
+        currencyCode:
+          type: object
+        communityId:
+          type: string
+        cashPaymentAppId:
+          type: number
+          format: double
+      required:
+      - communityId
+      type: object
+    StripeSupportedCurrencies:
+      items:
+        $ref: '#/components/schemas/StripeInternationalCurrency'
+      type: array
+    TaxLineItemType:
+      type: string
+      enum:
+      - GST
+      - HST
+      - VAT
+      - PST
+      - QST
+      - RST
+    BadRequestError:
+      properties:
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+        message:
+          type: string
+          enum:
+          - Bad Request
+      required:
+      - message
+      type: object
+      additionalProperties: false
+    DBPaymentAccountWithAssociations:
+      type: object
+      properties: {}
+    Partial_PaymentAccountSupportedCurrencies_:
+      properties:
+        instanceId:
+          type: string
+        internationalCurrencies:
+          type:
+          - string
+          - 'null'
+      type: object
+      description: Make all properties in T optional
     ServerError:
       properties:
         message:
           type: string
           enum:
           - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    TaxLineItem:
+      properties:
+        amount:
+          type: number
+          format: double
+        type:
+          $ref: '#/components/schemas/TaxLineItemType'
+      required:
+      - amount
+      - type
+      type: object
+    UpdatePaymentAccountTransactionRequestDTO:
+      properties:
+        budgetReferenceId:
+          type:
+          - string
+          - 'null'
+        budgetReferenceIdType:
+          type: object
+        taxId:
+          type:
+          - string
+          - 'null'
+        invoiceNumber:
+          type:
+          - string
+          - 'null'
+        taxLineItems:
+          items:
+            $ref: '#/components/schemas/TaxLineItem'
+          type:
+          - array
+          - 'null'
+        communityId:
+          type: string
+      type: object
+      additionalProperties: false
+    PaymentAccountNetDeposits:
+      properties:
+        paymentAccountId:
+          type: number
+          format: double
+        currencyCode:
+          type:
+          - string
+          - 'null'
+        netDeposits:
+          type: number
+          format: double
+        earliestTransactionDate:
+          type: string
+          format: date-time
+      required:
+      - paymentAccountId
+      - currencyCode
+      - netDeposits
+      - earliestTransactionDate
+      type: object
+      additionalProperties: false
+    PaymentAccountSupportedCurrenciesRequestBody:
+      properties:
+        instanceId:
+          type: string
+        internationalCurrencies:
+          type: string
+      required:
+      - instanceId
+      - internationalCurrencies
+      type: object
+      additionalProperties: false
+    AccountingTransactionType:
+      type: string
+      enum:
+      - BALANCE_INCREASE
+      - BALANCE_DECREASE
+      - BALANCE_TRANSFER
+    ForbiddenError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Access Forbidden
         details:
           properties: {}
           additionalProperties:

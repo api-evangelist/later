@@ -176,6 +176,109 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    Spec:
+      properties:
+        id:
+          type: number
+          format: double
+        title:
+          type: string
+        destinationUrl:
+          type: string
+        laterInfluenceCampaignId:
+          type: number
+          format: double
+        provider:
+          type: string
+        isDeleted:
+          type: boolean
+        deletedAt:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - title
+      - destinationUrl
+      - laterInfluenceCampaignId
+      - provider
+      - isDeleted
+      - deletedAt
+      type: object
+      additionalProperties: false
+    ResponseMetadata:
+      properties:
+        limit:
+          type: number
+          format: double
+        offset:
+          type: number
+          format: double
+        status:
+          type: string
+          enum:
+          - failure
+          - success
+        totalCount:
+          type: number
+          format: double
+      type: object
+      additionalProperties: false
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    LinksPostResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/Link'
+      type: object
+      additionalProperties: false
+    LinkPostRequest:
+      properties:
+        mavelyProfileId:
+          type: string
+        specId:
+          type: number
+          format: double
+        destinationUrl:
+          type: string
+        title:
+          type: string
+        provider:
+          type: string
+        laterInfluenceCampaignName:
+          type: string
+      required:
+      - mavelyProfileId
+      - destinationUrl
+      - title
+      - provider
+      - laterInfluenceCampaignName
+      type: object
+      additionalProperties: false
+    LinkPutRequest:
+      properties:
+        title:
+          type: string
+        destinationUrl:
+          type: string
+      required:
+      - title
+      type: object
+      additionalProperties: false
     Link:
       properties:
         id:
@@ -217,46 +320,6 @@ components:
       - deletedAt
       type: object
       additionalProperties: false
-    LinksGetResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/Link'
-          type: array
-        meta:
-          $ref: '#/components/schemas/ResponseMetadata'
-      type: object
-      additionalProperties: false
-    Spec:
-      properties:
-        id:
-          type: number
-          format: double
-        title:
-          type: string
-        destinationUrl:
-          type: string
-        laterInfluenceCampaignId:
-          type: number
-          format: double
-        provider:
-          type: string
-        isDeleted:
-          type: boolean
-        deletedAt:
-          type:
-          - string
-          - 'null'
-      required:
-      - id
-      - title
-      - destinationUrl
-      - laterInfluenceCampaignId
-      - provider
-      - isDeleted
-      - deletedAt
-      type: object
-      additionalProperties: false
     LinkMetrics:
       properties:
         clicksCount:
@@ -279,6 +342,16 @@ components:
       - commission
       type: object
       additionalProperties: false
+    LinksGetResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/Link'
+          type: array
+        meta:
+          $ref: '#/components/schemas/ResponseMetadata'
+      type: object
+      additionalProperties: false
     MavelyURLData:
       properties:
         details:
@@ -287,85 +360,12 @@ components:
           type: object
       type: object
       additionalProperties: false
-    LinkPutRequest:
-      properties:
-        title:
-          type: string
-        destinationUrl:
-          type: string
-      required:
-      - title
-      type: object
-      additionalProperties: false
-    LinksPostResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/Link'
-      type: object
-      additionalProperties: false
-    LinkPostRequest:
-      properties:
-        mavelyProfileId:
-          type: string
-        specId:
-          type: number
-          format: double
-        destinationUrl:
-          type: string
-        title:
-          type: string
-        provider:
-          type: string
-        laterInfluenceCampaignName:
-          type: string
-      required:
-      - mavelyProfileId
-      - destinationUrl
-      - title
-      - provider
-      - laterInfluenceCampaignName
-      type: object
-      additionalProperties: false
-    ResponseMetadata:
-      properties:
-        limit:
-          type: number
-          format: double
-        offset:
-          type: number
-          format: double
-        status:
-          type: string
-          enum:
-          - failure
-          - success
-        totalCount:
-          type: number
-          format: double
-      type: object
-      additionalProperties: false
     ForbiddenError:
       properties:
         message:
           type: string
           enum:
           - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ServerError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Server Error
         details:
           properties: {}
           additionalProperties:

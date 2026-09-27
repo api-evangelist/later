@@ -51,18 +51,20 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    CreateInfluencerAgreementHistoryFieldsBody:
+    ServerError:
       properties:
-        actionGroupId:
-          type: number
-          format: double
-        communityId:
+        message:
           type: string
-        name:
-          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
       required:
-      - actionGroupId
-      - communityId
+      - message
+      - details
       type: object
       additionalProperties: false
     BadRequestError:
@@ -80,20 +82,18 @@ components:
       - message
       type: object
       additionalProperties: false
-    ForbiddenError:
+    CreateInfluencerAgreementHistoryFieldsBody:
       properties:
-        message:
+        actionGroupId:
+          type: number
+          format: double
+        communityId:
           type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
+        name:
+          type: string
       required:
-      - message
-      - details
+      - actionGroupId
+      - communityId
       type: object
       additionalProperties: false
     DBInfluencerAgreementHistoryFields:
@@ -162,12 +162,12 @@ components:
       - globalUserId
       - id
       type: object
-    ServerError:
+    ForbiddenError:
       properties:
         message:
           type: string
           enum:
-          - Server Error
+          - Access Forbidden
         details:
           properties: {}
           additionalProperties:

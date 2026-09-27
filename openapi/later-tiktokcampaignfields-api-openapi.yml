@@ -96,8 +96,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    TikTokCampaignOrBrandInfoFieldsResponse:
-      $ref: '#/components/schemas/TikTokBrandFields'
     TikTokBrandFields:
       properties:
         brandDescription:
@@ -105,6 +103,26 @@ components:
         brandName:
           type: string
       type: object
+    CreateTikTokCampaignFieldsOrBrandInfoBody:
+      $ref: '#/components/schemas/TikTokBrandFields'
+    TikTokCampaignOrBrandInfoFieldsResponse:
+      $ref: '#/components/schemas/TikTokBrandFields'
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
     BadRequestError:
       properties:
         details:
@@ -120,30 +138,12 @@ components:
       - message
       type: object
       additionalProperties: false
-    CreateTikTokCampaignFieldsOrBrandInfoBody:
-      $ref: '#/components/schemas/TikTokBrandFields'
     ForbiddenError:
       properties:
         message:
           type: string
           enum:
           - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ServerError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Server Error
         details:
           properties: {}
           additionalProperties:

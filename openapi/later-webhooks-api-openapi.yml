@@ -61,6 +61,22 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
     NotFoundError:
       properties:
         message:
@@ -77,22 +93,21 @@ components:
       - details
       type: object
       additionalProperties: false
-    ValidateErrorJSON:
-      properties:
-        message:
-          type: string
-          enum:
-          - Validation failed
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
+    SendGridMailerEventStatus:
+      enum:
+      - account_status_change
+      - bounce
+      - click
+      - deferred
+      - delivered
+      - dropped
+      - group_resubscribe
+      - group_unsubscribe
+      - open
+      - processed
+      - spamreport
+      - unsubscribe
+      type: string
     SendGridEvent:
       properties:
         messageId:
@@ -122,27 +137,12 @@ components:
       - timestamp
       type: object
       additionalProperties: false
-    SendGridMailerEventStatus:
-      enum:
-      - account_status_change
-      - bounce
-      - click
-      - deferred
-      - delivered
-      - dropped
-      - group_resubscribe
-      - group_unsubscribe
-      - open
-      - processed
-      - spamreport
-      - unsubscribe
-      type: string
-    ForbiddenError:
+    ValidateErrorJSON:
       properties:
         message:
           type: string
           enum:
-          - Access Forbidden
+          - Validation failed
         details:
           properties: {}
           additionalProperties:
@@ -153,12 +153,12 @@ components:
       - details
       type: object
       additionalProperties: false
-    ServerError:
+    ForbiddenError:
       properties:
         message:
           type: string
           enum:
-          - Server Error
+          - Access Forbidden
         details:
           properties: {}
           additionalProperties:

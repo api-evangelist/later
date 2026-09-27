@@ -35,7 +35,7 @@ created: '2026-06-13'
 modified: '2026-09-16'
 specificationVersion: '0.23'
 tags:
-- Social-Media
+- Social Media
 - Scheduling
 - Instagram
 - TikTok
@@ -52,6 +52,7 @@ tags_raw:
 - Content Management
 - Analytics
 - Social Commerce
+- Social-Media
 apis:
 - name: Later Social Media Platform
   description: >-
@@ -920,6 +921,8 @@ apis:
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
+  - Community
+  tags_raw:
   - Communities
   properties:
   - type: OpenAPI
@@ -3958,8 +3961,6 @@ apis:
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
-  - AccountInvitations
-  tags_raw:
   - Account Invitations
   properties:
   - type: OpenAPI
@@ -4224,8 +4225,6 @@ apis:
   humanURL: https://later.com/
   baseURL: https://app.later.com/
   tags:
-  - ReferralProgram
-  tags_raw:
   - Referral Program
   properties:
   - type: OpenAPI

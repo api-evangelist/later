@@ -51,12 +51,20 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    NotFoundError:
+    FileUploadPoliciesPostBody:
+      properties:
+        fileName:
+          type: string
+      required:
+      - fileName
+      type: object
+      additionalProperties: false
+    ServerError:
       properties:
         message:
           type: string
           enum:
-          - Resource Not Found
+          - Server Error
         details:
           properties: {}
           additionalProperties:
@@ -67,20 +75,12 @@ components:
       - details
       type: object
       additionalProperties: false
-    FileUploadPoliciesPostBody:
-      properties:
-        fileName:
-          type: string
-      required:
-      - fileName
-      type: object
-      additionalProperties: false
-    ForbiddenError:
+    NotFoundError:
       properties:
         message:
           type: string
           enum:
-          - Access Forbidden
+          - Resource Not Found
         details:
           properties: {}
           additionalProperties:
@@ -107,12 +107,12 @@ components:
       - bucket
       - awsKey
       type: object
-    ServerError:
+    ForbiddenError:
       properties:
         message:
           type: string
           enum:
-          - Server Error
+          - Access Forbidden
         details:
           properties: {}
           additionalProperties:

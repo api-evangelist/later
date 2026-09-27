@@ -61,34 +61,20 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 components:
+  parameters:
+    offsetParam:
+      in: query
+      description: Number of items to skip
+      name: offset
+      schema:
+        type: integer
+    limitParam:
+      in: query
+      description: Maximum number of items to return
+      name: limit
+      schema:
+        type: integer
   schemas:
-    LinksDeprecated:
-      type: object
-      x-access:
-      - anonymous
-      - influencer
-      properties:
-        normal:
-          type: string
-          description: A normal link to an entity.
-        deep:
-          type: string
-          description: A deep link to the entity.
-    InfluencerPreview:
-      type: object
-      properties:
-        id:
-          type: integer
-        globalUserId:
-          type: integer
-        profilePic:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        email:
-          type: string
     ResponseMetadata:
       properties:
         limit:
@@ -107,6 +93,18 @@ components:
           format: double
       type: object
       additionalProperties: false
+    LinksDeprecated:
+      type: object
+      x-access:
+      - anonymous
+      - influencer
+      properties:
+        normal:
+          type: string
+          description: A normal link to an entity.
+        deep:
+          type: string
+          description: A deep link to the entity.
     Error:
       type: object
       properties:
@@ -138,19 +136,21 @@ components:
             error:
               type: string
               description: A static description of the parent error.
-  parameters:
-    limitParam:
-      in: query
-      description: Maximum number of items to return
-      name: limit
-      schema:
-        type: integer
-    offsetParam:
-      in: query
-      description: Number of items to skip
-      name: offset
-      schema:
-        type: integer
+    InfluencerPreview:
+      type: object
+      properties:
+        id:
+          type: integer
+        globalUserId:
+          type: integer
+        profilePic:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
   securitySchemes:
     apiKey:
       type: apiKey

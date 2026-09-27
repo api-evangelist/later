@@ -408,17 +408,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    StripeOnboardingStatus:
-      enum:
-      - COMPLETE
-      - NO_ACCOUNT
-      - NOT_STARTED
-      - PENDING
-      - REJECTED
-      - RESTRICTED
-      - RESTRICTED_SOON
-      - STARTED
-      type: string
     StripeTransferStatusRecord:
       type: object
       properties:
@@ -436,6 +425,41 @@ components:
           type: string
         updatedAt:
           type: string
+    StripeExchangeRate:
+      properties:
+        id:
+          $ref: '#/components/schemas/StripeSupportedCurrencyCodes'
+        rates:
+          properties: {}
+          additionalProperties:
+            type: number
+            format: double
+          type: object
+      required:
+      - id
+      - rates
+      type: object
+      additionalProperties: false
+    OnboardingReminderRequestBody:
+      description: 'Domain types for payment-recipient creator notifications (onboarding reminder + payment
+
+        confirmation). These mirror the Stripe notification payloads but are provider-agnostic: the
+
+        creator only ever sees generic "payment information" copy, while the code refers to the
+
+        internal "payment recipient" concept.'
+      properties:
+        globalUserId:
+          type: number
+          format: double
+        actionGroupId:
+          type: number
+          format: double
+      required:
+      - globalUserId
+      - actionGroupId
+      type: object
+      additionalProperties: false
     StripeAccount:
       properties:
         accountId:
@@ -490,35 +514,20 @@ components:
       - updatedAt
       type: object
       additionalProperties: false
-    OnboardingReminderRequestBody:
-      description: 'Domain types for payment-recipient creator notifications (onboarding reminder + payment
-
-        confirmation). These mirror the Stripe notification payloads but are provider-agnostic: the
-
-        creator only ever sees generic "payment information" copy, while the code refers to the
-
-        internal "payment recipient" concept.'
+    ServerError:
       properties:
-        globalUserId:
-          type: number
-          format: double
-        actionGroupId:
-          type: number
-          format: double
-      required:
-      - globalUserId
-      - actionGroupId
-      type: object
-      additionalProperties: false
-    FailedInstanceForEnablingStripeProvider:
-      properties:
-        instanceId:
+        message:
           type: string
-        error:
-          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
       required:
-      - instanceId
-      - error
+      - message
+      - details
       type: object
       additionalProperties: false
     NotFoundError:
@@ -535,97 +544,6 @@ components:
       required:
       - message
       - details
-      type: object
-      additionalProperties: false
-    StripeConnectAccountInfo:
-      properties:
-        name:
-          type: string
-        email:
-          type: string
-      required:
-      - name
-      - email
-      type: object
-      additionalProperties: false
-    ValidateErrorJSON:
-      properties:
-        message:
-          type: string
-          enum:
-          - Validation failed
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    StripeSupportedCurrencyCodes:
-      type: string
-      enum:
-      - USD
-      - EUR
-      - GBP
-      - AUD
-      - CAD
-    StripeExchangeRate:
-      properties:
-        id:
-          $ref: '#/components/schemas/StripeSupportedCurrencyCodes'
-        rates:
-          properties: {}
-          additionalProperties:
-            type: number
-            format: double
-          type: object
-      required:
-      - id
-      - rates
-      type: object
-      additionalProperties: false
-    ConfigureStripeProviderAppToInstanceResponse:
-      properties:
-        failedInstances:
-          items:
-            $ref: '#/components/schemas/FailedInstanceForEnablingStripeProvider'
-          type: array
-        succesfulInstances:
-          items:
-            type: string
-          type: array
-      required:
-      - failedInstances
-      - succesfulInstances
-      type: object
-      additionalProperties: false
-    ForbiddenError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ConfigureStripeProviderAppToInstanceBody:
-      properties:
-        instanceIds:
-          items:
-            type: string
-          type: array
-      required:
-      - instanceIds
       type: object
       additionalProperties: false
     StripeAccountStatusResponse:
@@ -646,6 +564,88 @@ components:
       - onboardingStatus
       type: object
       additionalProperties: false
+    StripeOnboardingStatus:
+      enum:
+      - COMPLETE
+      - NO_ACCOUNT
+      - NOT_STARTED
+      - PENDING
+      - REJECTED
+      - RESTRICTED
+      - RESTRICTED_SOON
+      - STARTED
+      type: string
+    ConfigureStripeProviderAppToInstanceResponse:
+      properties:
+        failedInstances:
+          items:
+            $ref: '#/components/schemas/FailedInstanceForEnablingStripeProvider'
+          type: array
+        succesfulInstances:
+          items:
+            type: string
+          type: array
+      required:
+      - failedInstances
+      - succesfulInstances
+      type: object
+      additionalProperties: false
+    StripeConnectAccountInfo:
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+      required:
+      - name
+      - email
+      type: object
+      additionalProperties: false
+    StripeSupportedCurrencyCodes:
+      type: string
+      enum:
+      - USD
+      - EUR
+      - GBP
+      - AUD
+      - CAD
+    FailedInstanceForEnablingStripeProvider:
+      properties:
+        instanceId:
+          type: string
+        error:
+          type: string
+      required:
+      - instanceId
+      - error
+      type: object
+      additionalProperties: false
+    ValidateErrorJSON:
+      properties:
+        message:
+          type: string
+          enum:
+          - Validation failed
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    ConfigureStripeProviderAppToInstanceBody:
+      properties:
+        instanceIds:
+          items:
+            type: string
+          type: array
+      required:
+      - instanceIds
+      type: object
+      additionalProperties: false
     StripeTransferWithStatusHistoryResponse:
       properties:
         instanceId:
@@ -664,12 +664,12 @@ components:
       - actionGroupId
       - statusHistory
       type: object
-    ServerError:
+    ForbiddenError:
       properties:
         message:
           type: string
           enum:
-          - Server Error
+          - Access Forbidden
         details:
           properties: {}
           additionalProperties:

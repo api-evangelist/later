@@ -128,6 +128,21 @@ paths:
         required: true
 components:
   schemas:
+    EmptyObject:
+      type: object
+      properties: {}
+    LinksDeprecated:
+      type: object
+      x-access:
+      - anonymous
+      - influencer
+      properties:
+        normal:
+          type: string
+          description: A normal link to an entity.
+        deep:
+          type: string
+          description: A deep link to the entity.
     Error:
       type: object
       properties:
@@ -159,21 +174,6 @@ components:
             error:
               type: string
               description: A static description of the parent error.
-    EmptyObject:
-      type: object
-      properties: {}
-    LinksDeprecated:
-      type: object
-      x-access:
-      - anonymous
-      - influencer
-      properties:
-        normal:
-          type: string
-          description: A normal link to an entity.
-        deep:
-          type: string
-          description: A deep link to the entity.
   securitySchemes:
     apiKey:
       type: apiKey

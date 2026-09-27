@@ -175,6 +175,10 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    TSOAEmptyObject:
+      properties: {}
+      type: object
+      additionalProperties: false
     GetCommunityActionObjectiveResponse:
       properties:
         data:
@@ -185,6 +189,18 @@ components:
       - data
       type: object
       additionalProperties: false
+    CommunityActionObjectiveDefinition:
+      properties:
+        points:
+          type: number
+          format: double
+        objectiveId:
+          type: number
+          format: double
+      required:
+      - points
+      - objectiveId
+      type: object
     ServerError:
       properties:
         message:
@@ -217,6 +233,26 @@ components:
       - details
       type: object
       additionalProperties: false
+    CommunityEngagementPointMapping:
+      properties:
+        ratio:
+          type: number
+          format: double
+        maxPointsCap:
+          type: number
+          format: double
+        stepAmount:
+          type: number
+          format: double
+      type: object
+    GetCommunityEngagementPointMappingResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/CommunityEngagementPointMapping'
+      required:
+      - data
+      type: object
+      additionalProperties: false
     ValidateErrorJSON:
       properties:
         message:
@@ -233,22 +269,6 @@ components:
       - details
       type: object
       additionalProperties: false
-    TSOAEmptyObject:
-      properties: {}
-      type: object
-      additionalProperties: false
-    CommunityEngagementPointMapping:
-      properties:
-        ratio:
-          type: number
-          format: double
-        maxPointsCap:
-          type: number
-          format: double
-        stepAmount:
-          type: number
-          format: double
-      type: object
     ForbiddenError:
       properties:
         message:
@@ -263,26 +283,6 @@ components:
       required:
       - message
       - details
-      type: object
-      additionalProperties: false
-    CommunityActionObjectiveDefinition:
-      properties:
-        points:
-          type: number
-          format: double
-        objectiveId:
-          type: number
-          format: double
-      required:
-      - points
-      - objectiveId
-      type: object
-    GetCommunityEngagementPointMappingResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/CommunityEngagementPointMapping'
-      required:
-      - data
       type: object
       additionalProperties: false
   securitySchemes:

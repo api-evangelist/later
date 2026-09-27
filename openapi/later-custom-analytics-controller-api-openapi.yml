@@ -101,17 +101,28 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    DashboardTypesResponse:
+    ServerError:
       properties:
-        dashboardTypes:
-          items:
-            type: string
-          type: array
-        instanceId:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    EmbedUrlResponse:
+      properties:
+        embed_url:
           type: string
       required:
-      - dashboardTypes
-      - instanceId
+      - embed_url
       type: object
     NotFoundError:
       properties:
@@ -145,12 +156,17 @@ components:
       - details
       type: object
       additionalProperties: false
-    EmbedUrlResponse:
+    DashboardTypesResponse:
       properties:
-        embed_url:
+        dashboardTypes:
+          items:
+            type: string
+          type: array
+        instanceId:
           type: string
       required:
-      - embed_url
+      - dashboardTypes
+      - instanceId
       type: object
     ForbiddenError:
       properties:
@@ -158,22 +174,6 @@ components:
           type: string
           enum:
           - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ServerError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Server Error
         details:
           properties: {}
           additionalProperties:

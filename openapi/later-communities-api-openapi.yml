@@ -396,6 +396,19 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    TSOAEmptyObject:
+      properties: {}
+      type: object
+      additionalProperties: false
+    IdObject:
+      properties:
+        id:
+          type: number
+          format: double
+      required:
+      - id
+      type: object
+      additionalProperties: false
     LinksDeprecated:
       type: object
       x-access:
@@ -408,12 +421,64 @@ components:
         deep:
           type: string
           description: A deep link to the entity.
-    ForbiddenError:
+    AddToCommunityPostBody:
+      properties:
+        accountId:
+          type: number
+          format: double
+      required:
+      - accountId
+      type: object
+      additionalProperties: false
+    Community:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        logo:
+          type: string
+        retired:
+          type: boolean
+    ResponseMetadata:
+      properties:
+        limit:
+          type: number
+          format: double
+        offset:
+          type: number
+          format: double
+        status:
+          type: string
+          enum:
+          - failure
+          - success
+        totalCount:
+          type: number
+          format: double
+      type: object
+      additionalProperties: false
+    UpdateEntitlementFields:
+      properties:
+        communityId:
+          type: string
+        label:
+          type: string
+        featureId:
+          $ref: '#/components/schemas/FeatureId'
+        featureEnabled:
+          type: boolean
+      required:
+      - featureId
+      - featureEnabled
+      type: object
+    ServerError:
       properties:
         message:
           type: string
           enum:
-          - Access Forbidden
+          - Server Error
         details:
           properties: {}
           additionalProperties:
@@ -422,15 +487,6 @@ components:
       required:
       - message
       - details
-      type: object
-      additionalProperties: false
-    IdObject:
-      properties:
-        id:
-          type: number
-          format: double
-      required:
-      - id
       type: object
       additionalProperties: false
     NotFoundError:
@@ -449,55 +505,6 @@ components:
       - details
       type: object
       additionalProperties: false
-    UpdateAccountPutBody:
-      properties:
-        newRoleId:
-          type: number
-          format: double
-      required:
-      - newRoleId
-      type: object
-      additionalProperties: false
-    AddToCommunityPostBody:
-      properties:
-        accountId:
-          type: number
-          format: double
-      required:
-      - accountId
-      type: object
-      additionalProperties: false
-    ValidateErrorJSON:
-      properties:
-        message:
-          type: string
-          enum:
-          - Validation failed
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    TSOAEmptyObject:
-      properties: {}
-      type: object
-      additionalProperties: false
-    Community:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        logo:
-          type: string
-        retired:
-          type: boolean
     FeatureId:
       type: string
       enum:
@@ -597,50 +604,6 @@ components:
       - use_new_opensearch_index
       - webhook_setup
       - ytbc_deal_reporting_enabled
-    ResponseMetadata:
-      properties:
-        limit:
-          type: number
-          format: double
-        offset:
-          type: number
-          format: double
-        status:
-          type: string
-          enum:
-          - failure
-          - success
-        totalCount:
-          type: number
-          format: double
-      type: object
-      additionalProperties: false
-    CommunityAdministratorAccount:
-      properties:
-        email:
-          type: string
-        communityId:
-          type: string
-        id:
-          type: object
-        roleId:
-          type: number
-          format: double
-        firstName:
-          type: string
-        lastName:
-          type: string
-        image:
-          type:
-          - string
-          - 'null'
-      required:
-      - email
-      - communityId
-      - id
-      - roleId
-      type: object
-      additionalProperties: false
     Error:
       type: object
       properties:
@@ -672,26 +635,63 @@ components:
             error:
               type: string
               description: A static description of the parent error.
-    UpdateEntitlementFields:
+    UpdateAccountPutBody:
       properties:
+        newRoleId:
+          type: number
+          format: double
+      required:
+      - newRoleId
+      type: object
+      additionalProperties: false
+    CommunityAdministratorAccount:
+      properties:
+        email:
+          type: string
         communityId:
           type: string
-        label:
+        id:
+          type: object
+        roleId:
+          type: number
+          format: double
+        firstName:
           type: string
-        featureId:
-          $ref: '#/components/schemas/FeatureId'
-        featureEnabled:
-          type: boolean
+        lastName:
+          type: string
+        image:
+          type:
+          - string
+          - 'null'
       required:
-      - featureId
-      - featureEnabled
+      - email
+      - communityId
+      - id
+      - roleId
       type: object
-    ServerError:
+      additionalProperties: false
+    ValidateErrorJSON:
       properties:
         message:
           type: string
           enum:
-          - Server Error
+          - Validation failed
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    ForbiddenError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Access Forbidden
         details:
           properties: {}
           additionalProperties:
@@ -703,10 +703,10 @@ components:
       type: object
       additionalProperties: false
   parameters:
-    limitParam:
+    offsetParam:
       in: query
-      description: Maximum number of items to return
-      name: limit
+      description: Number of items to skip
+      name: offset
       schema:
         type: integer
     orderByParam:
@@ -715,10 +715,10 @@ components:
       name: orderBy
       schema:
         type: string
-    offsetParam:
+    limitParam:
       in: query
-      description: Number of items to skip
-      name: offset
+      description: Maximum number of items to return
+      name: limit
       schema:
         type: integer
   securitySchemes:

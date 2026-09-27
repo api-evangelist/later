@@ -87,6 +87,28 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 components:
+  parameters:
+    offsetParam:
+      in: query
+      description: Number of items to skip
+      name: offset
+      schema:
+        type: integer
+    orderDirection:
+      in: query
+      description: Select the direction by which the data will be ordered, ascending or descending.
+      name: orderDirection
+      schema:
+        type: string
+        enum:
+        - ASC
+        - DESC
+    limitParam:
+      in: query
+      description: Maximum number of items to return
+      name: limit
+      schema:
+        type: integer
   schemas:
     LinksDeprecated:
       type: object
@@ -100,25 +122,6 @@ components:
         deep:
           type: string
           description: A deep link to the entity.
-    Attachment:
-      type: object
-      properties:
-        originalName:
-          type: string
-        encoding:
-          type: string
-        buffer:
-          type: string
-        mimeType:
-          type: string
-        disposition:
-          type: string
-        size:
-          type: integer
-        uri:
-          type: string
-        contentId:
-          type: string
     ActivityHistory:
       type: object
       properties:
@@ -183,6 +186,25 @@ components:
           format: double
       type: object
       additionalProperties: false
+    Attachment:
+      type: object
+      properties:
+        originalName:
+          type: string
+        encoding:
+          type: string
+        buffer:
+          type: string
+        mimeType:
+          type: string
+        disposition:
+          type: string
+        size:
+          type: integer
+        uri:
+          type: string
+        contentId:
+          type: string
     Error:
       type: object
       properties:
@@ -214,28 +236,6 @@ components:
             error:
               type: string
               description: A static description of the parent error.
-  parameters:
-    orderDirection:
-      in: query
-      description: Select the direction by which the data will be ordered, ascending or descending.
-      name: orderDirection
-      schema:
-        type: string
-        enum:
-        - ASC
-        - DESC
-    limitParam:
-      in: query
-      description: Maximum number of items to return
-      name: limit
-      schema:
-        type: integer
-    offsetParam:
-      in: query
-      description: Number of items to skip
-      name: offset
-      schema:
-        type: integer
   securitySchemes:
     apiKey:
       type: apiKey

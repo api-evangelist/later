@@ -144,6 +144,24 @@ components:
       - name
       type: object
       description: From T, pick a set of properties whose keys are in the union K
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    ActivationTagPostResponse:
+      $ref: '#/components/schemas/Pick_ActivationTag.name_'
     ActivationTagsGetResponse:
       properties:
         data:
@@ -171,24 +189,6 @@ components:
       - meta
       type: object
       additionalProperties: false
-    ActivationTagPostResponse:
-      $ref: '#/components/schemas/Pick_ActivationTag.name_'
-    ValidateErrorJSON:
-      properties:
-        message:
-          type: string
-          enum:
-          - Validation failed
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
     ActivationTag:
       properties:
         communityId:
@@ -210,12 +210,12 @@ components:
       additionalProperties: false
     ActivationTagPostRequestBody:
       $ref: '#/components/schemas/Pick_ActivationTag.name_'
-    ForbiddenError:
+    ValidateErrorJSON:
       properties:
         message:
           type: string
           enum:
-          - Access Forbidden
+          - Validation failed
         details:
           properties: {}
           additionalProperties:
@@ -226,12 +226,12 @@ components:
       - details
       type: object
       additionalProperties: false
-    ServerError:
+    ForbiddenError:
       properties:
         message:
           type: string
           enum:
-          - Server Error
+          - Access Forbidden
         details:
           properties: {}
           additionalProperties:

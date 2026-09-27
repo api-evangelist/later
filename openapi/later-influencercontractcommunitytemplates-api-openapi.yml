@@ -124,25 +124,6 @@ components:
         deep:
           type: string
           description: A deep link to the entity.
-    AdministratorAccountsDeprecated:
-      type: object
-      properties:
-        first_name:
-          type: string
-        last_name:
-          type: string
-        email:
-          type: string
-        communityId:
-          type: string
-        id:
-          type: string
-        image:
-          type: string
-        roles:
-          type: array
-          items:
-            $ref: '#/components/schemas/RoleDeprecated'
     InfluencerContractCommunityTemplate:
       type: object
       properties:
@@ -163,15 +144,6 @@ components:
           format: date-time
         updatedBy:
           $ref: '#/components/schemas/AdministratorAccountsDeprecated'
-    RoleDeprecated:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
     Error:
       type: object
       properties:
@@ -203,6 +175,34 @@ components:
             error:
               type: string
               description: A static description of the parent error.
+    RoleDeprecated:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+    AdministratorAccountsDeprecated:
+      type: object
+      properties:
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+        communityId:
+          type: string
+        id:
+          type: string
+        image:
+          type: string
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/RoleDeprecated'
   parameters:
     InfluencerContractCommunityTemplate:
       name: data

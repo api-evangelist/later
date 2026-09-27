@@ -106,6 +106,73 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    ReportsTableSortModel:
+      properties:
+        id:
+          type: string
+        desc:
+          type: boolean
+      required:
+      - id
+      - desc
+      type: object
+      additionalProperties: false
+    MarketerFiltersItem:
+      properties:
+        filters:
+          properties:
+            reportsFilters:
+              $ref: '#/components/schemas/ReportsFilters'
+            actionGroupIds:
+              items:
+                type: number
+                format: double
+              type: array
+            sortDirection:
+              type: string
+            sortColumn:
+              type: string
+            fromDate:
+              type: string
+            toDate:
+              type: string
+          type: object
+      required:
+      - filters
+      type: object
+      additionalProperties: false
+    NotFoundError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Resource Not Found
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
     ReportingGranularity:
       type: string
       enum:
@@ -145,12 +212,12 @@ components:
       - s4AccountId
       type: object
       additionalProperties: false
-    NotFoundError:
+    ValidateErrorJSON:
       properties:
         message:
           type: string
           enum:
-          - Resource Not Found
+          - Validation failed
         details:
           properties: {}
           additionalProperties:
@@ -223,79 +290,12 @@ components:
           type: boolean
       type: object
       additionalProperties: false
-    ReportsTableSortModel:
-      properties:
-        id:
-          type: string
-        desc:
-          type: boolean
-      required:
-      - id
-      - desc
-      type: object
-      additionalProperties: false
-    ValidateErrorJSON:
-      properties:
-        message:
-          type: string
-          enum:
-          - Validation failed
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    MarketerFiltersItem:
-      properties:
-        filters:
-          properties:
-            reportsFilters:
-              $ref: '#/components/schemas/ReportsFilters'
-            actionGroupIds:
-              items:
-                type: number
-                format: double
-              type: array
-            sortDirection:
-              type: string
-            sortColumn:
-              type: string
-            fromDate:
-              type: string
-            toDate:
-              type: string
-          type: object
-      required:
-      - filters
-      type: object
-      additionalProperties: false
     ForbiddenError:
       properties:
         message:
           type: string
           enum:
           - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ServerError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Server Error
         details:
           properties: {}
           additionalProperties:

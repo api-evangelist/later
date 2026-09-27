@@ -394,13 +394,31 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    UninstallShopifyRequest:
+    ConnectShopifyAccountBody:
       properties:
-        shopId:
-          type: number
-          format: double
+        token:
+          type: string
+        shop:
+          type: string
       required:
-      - shopId
+      - token
+      - shop
+      type: object
+      additionalProperties: false
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
       type: object
       additionalProperties: false
     NotFoundError:
@@ -419,33 +437,6 @@ components:
       - details
       type: object
       additionalProperties: false
-    CreateShopifyAccountData:
-      properties:
-        communityId:
-          type: string
-        shopName:
-          type: string
-        apiKey:
-          type: string
-        shopifyAccessToken:
-          type: string
-      required:
-      - communityId
-      - shopName
-      - shopifyAccessToken
-      type: object
-      additionalProperties: false
-    ConnectShopifyAccountBody:
-      properties:
-        token:
-          type: string
-        shop:
-          type: string
-      required:
-      - token
-      - shop
-      type: object
-      additionalProperties: false
     BadRequestError:
       properties:
         details:
@@ -461,20 +452,13 @@ components:
       - message
       type: object
       additionalProperties: false
-    ForbiddenError:
+    UninstallShopifyRequest:
       properties:
-        message:
-          type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
+        shopId:
+          type: number
+          format: double
       required:
-      - message
-      - details
+      - shopId
       type: object
       additionalProperties: false
     ShopifyAccountResponse:
@@ -502,12 +486,28 @@ components:
       - communityId
       - id
       type: object
-    ServerError:
+    CreateShopifyAccountData:
+      properties:
+        communityId:
+          type: string
+        shopName:
+          type: string
+        apiKey:
+          type: string
+        shopifyAccessToken:
+          type: string
+      required:
+      - communityId
+      - shopName
+      - shopifyAccessToken
+      type: object
+      additionalProperties: false
+    ForbiddenError:
       properties:
         message:
           type: string
           enum:
-          - Server Error
+          - Access Forbidden
         details:
           properties: {}
           additionalProperties:

@@ -52,6 +52,26 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    Readonly_any_:
+      properties: {}
+      type: object
+      description: Make all properties in T readonly
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
     UnprocessableContent:
       properties:
         details:
@@ -73,26 +93,6 @@ components:
           type: string
           enum:
           - Resource Not Found
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    Readonly_any_:
-      properties: {}
-      type: object
-      description: Make all properties in T readonly
-    ServerError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Server Error
         details:
           properties: {}
           additionalProperties:

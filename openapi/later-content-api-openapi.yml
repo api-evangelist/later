@@ -84,6 +84,75 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    ContentMediaSize:
+      properties:
+        unit:
+          type: string
+          enum:
+          - CENTIMETERS
+          - MILLIMETERS
+          - INCHES
+          - PIXELS
+          - PERCENT
+          - POINTS
+        height:
+          type: number
+          format: double
+        width:
+          type: number
+          format: double
+      required:
+      - unit
+      type: object
+    ContentInfo:
+      properties:
+        dateCreated:
+          type: number
+          format: double
+        urlCanonical:
+          type: string
+        url:
+          type: string
+        text:
+          type: string
+        media:
+          $ref: '#/components/schemas/ContentMedia'
+        engagements:
+          $ref: '#/components/schemas/ContentEngagements'
+        status:
+          type: string
+          enum:
+          - DRAFT
+          - PUBLISHED
+        type:
+          type: string
+        profile:
+          type: object
+        externalId:
+          $ref: '#/components/schemas/ContentExternalIdentity'
+      required:
+      - media
+      - type
+      - profile
+      type: object
+    ResponseMetadata:
+      properties:
+        limit:
+          type: number
+          format: double
+        offset:
+          type: number
+          format: double
+        status:
+          type: string
+          enum:
+          - failure
+          - success
+        totalCount:
+          type: number
+          format: double
+      type: object
+      additionalProperties: false
     ContentEngagements:
       properties:
         avgWatchTime:
@@ -195,6 +264,22 @@ components:
           - array
           - 'null'
       type: object
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
     NotFoundError:
       properties:
         message:
@@ -211,116 +296,6 @@ components:
       - details
       type: object
       additionalProperties: false
-    ContentExternalIdentity:
-      properties:
-        alternativeIds:
-          items:
-            $ref: '#/components/schemas/ContentExternalIdentity'
-          type: array
-        type:
-          type: string
-        id:
-          type: string
-      required:
-      - id
-      type: object
-    ContentInfo:
-      properties:
-        dateCreated:
-          type: number
-          format: double
-        urlCanonical:
-          type: string
-        url:
-          type: string
-        text:
-          type: string
-        media:
-          $ref: '#/components/schemas/ContentMedia'
-        engagements:
-          $ref: '#/components/schemas/ContentEngagements'
-        status:
-          type: string
-          enum:
-          - DRAFT
-          - PUBLISHED
-        type:
-          type: string
-        profile:
-          type: object
-        externalId:
-          $ref: '#/components/schemas/ContentExternalIdentity'
-      required:
-      - media
-      - type
-      - profile
-      type: object
-    ContentMedia:
-      properties:
-        videos:
-          items:
-            properties:
-              duration:
-                type: number
-                format: double
-              size:
-                $ref: '#/components/schemas/ContentMediaSize'
-              url:
-                type: string
-            required:
-            - url
-            type: object
-          type: array
-        images:
-          items:
-            properties:
-              size:
-                $ref: '#/components/schemas/ContentMediaSize'
-              url:
-                type: string
-            required:
-            - url
-            type: object
-          type: array
-      type: object
-    ResponseMetadata:
-      properties:
-        limit:
-          type: number
-          format: double
-        offset:
-          type: number
-          format: double
-        status:
-          type: string
-          enum:
-          - failure
-          - success
-        totalCount:
-          type: number
-          format: double
-      type: object
-      additionalProperties: false
-    ContentMediaSize:
-      properties:
-        unit:
-          type: string
-          enum:
-          - CENTIMETERS
-          - MILLIMETERS
-          - INCHES
-          - PIXELS
-          - PERCENT
-          - POINTS
-        height:
-          type: number
-          format: double
-        width:
-          type: number
-          format: double
-      required:
-      - unit
-      type: object
     BadRequestError:
       properties:
         details:
@@ -336,22 +311,19 @@ components:
       - message
       type: object
       additionalProperties: false
-    ForbiddenError:
+    ContentExternalIdentity:
       properties:
-        message:
+        alternativeIds:
+          items:
+            $ref: '#/components/schemas/ContentExternalIdentity'
+          type: array
+        type:
           type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
+        id:
+          type: string
       required:
-      - message
-      - details
+      - id
       type: object
-      additionalProperties: false
     Content:
       properties:
         content:
@@ -448,12 +420,40 @@ components:
       - meta
       - data
       type: object
-    ServerError:
+    ContentMedia:
+      properties:
+        videos:
+          items:
+            properties:
+              duration:
+                type: number
+                format: double
+              size:
+                $ref: '#/components/schemas/ContentMediaSize'
+              url:
+                type: string
+            required:
+            - url
+            type: object
+          type: array
+        images:
+          items:
+            properties:
+              size:
+                $ref: '#/components/schemas/ContentMediaSize'
+              url:
+                type: string
+            required:
+            - url
+            type: object
+          type: array
+      type: object
+    ForbiddenError:
       properties:
         message:
           type: string
           enum:
-          - Server Error
+          - Access Forbidden
         details:
           properties: {}
           additionalProperties:

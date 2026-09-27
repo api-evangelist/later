@@ -140,38 +140,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ForbiddenError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    NotFoundError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Resource Not Found
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
     EventLog:
       properties:
         communityId:
@@ -210,6 +178,47 @@ components:
       - communityId
       - eventType
       - resourceType
+      type: object
+      additionalProperties: false
+    NotFoundError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Resource Not Found
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    EventLogPostRequestBody:
+      properties:
+        resourceId:
+          type: number
+          format: double
+      required:
+      - resourceId
       type: object
       additionalProperties: false
     BadRequestError:
@@ -251,21 +260,12 @@ components:
       - data
       - meta
       type: object
-    EventLogPostRequestBody:
-      properties:
-        resourceId:
-          type: number
-          format: double
-      required:
-      - resourceId
-      type: object
-      additionalProperties: false
-    ServerError:
+    ForbiddenError:
       properties:
         message:
           type: string
           enum:
-          - Server Error
+          - Access Forbidden
         details:
           properties: {}
           additionalProperties:

@@ -377,101 +377,30 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    SocialPresenceInput:
-      properties:
-        platform:
-          type: string
-        username:
-          type: string
-      required:
-      - platform
-      - username
-      type: object
-      additionalProperties: false
-    UpdateMembershipProfileInfo:
-      properties:
-        data:
-          $ref: '#/components/schemas/MembershipProfileInfo'
-      required:
-      - data
-      type: object
-      additionalProperties: false
-    updateMembershipBody:
-      properties:
-        blacklisted:
-          type: boolean
-        status:
-          type: string
-          enum:
-          - USER
-          - REJECTED
-        membershipType:
-          type: string
-          enum:
-          - EMPLOYEE
-          - CUSTOMER
-          - NORMAL
-      type: object
-      additionalProperties: false
     TSOAEmptyObject:
       properties: {}
       type: object
       additionalProperties: false
-    updateSignatureBody:
+    Gender:
+      enum:
+      - describe
+      - female
+      - male
+      - non_bin
+      - other
+      type: string
+    Pick_UpdateMemberContactInfoData.gender-or-genderDescription_:
       properties:
-        signedTermsAndConditions:
-          type: boolean
-      type: object
-      additionalProperties: false
-    _MembershipContactInfo:
-      properties:
-        age:
-          type: number
-          format: double
-        apt:
-          type: string
-        birthday:
-          type: object
-        city:
-          type: string
-        country:
-          type: string
-        email:
-          type: string
-        emailIsVerified:
-          type: boolean
-        firstName:
-          type: string
-        fullName:
-          type: string
         gender:
           $ref: '#/components/schemas/Gender'
         genderDescription:
           type: string
-        lastName:
-          type: string
-        phone:
-          type: string
-        state:
-          type: string
-        street:
-          type: string
-        zip:
-          type: string
-        talentManagerEmail:
-          type: string
       type: object
-      additionalProperties: false
-    removeMembershipBody:
+      description: From T, pick a set of properties whose keys are in the union K
+    updateSignatureBody:
       properties:
-        activityId:
-          type: number
-          format: double
-        globalUserIds:
-          items:
-            type: number
-            format: double
-          type: array
+        signedTermsAndConditions:
+          type: boolean
       type: object
       additionalProperties: false
     NotFoundError:
@@ -488,87 +417,6 @@ components:
       required:
       - message
       - details
-      type: object
-      additionalProperties: false
-    ValidateErrorJSON:
-      properties:
-        message:
-          type: string
-          enum:
-          - Validation failed
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    MembershipProfileInfo:
-      properties:
-        membershipContactInfo:
-          $ref: '#/components/schemas/Pick_UpdateMemberContactInfoData.gender-or-genderDescription_'
-        memberSelectedEthnicities:
-          items:
-            $ref: '#/components/schemas/MembershipEthnicity'
-          type: array
-      type: object
-      additionalProperties: false
-    ForbiddenError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    MembershipContactInfoDeprecated:
-      properties:
-        age:
-          type: number
-          format: double
-        apt:
-          type: string
-        birthday:
-          type: object
-        city:
-          type: string
-        country:
-          type: string
-        email:
-          type: string
-        emailIsVerified:
-          type: boolean
-        firstName:
-          type: string
-        fullName:
-          type: string
-        gender:
-          $ref: '#/components/schemas/Gender'
-        genderDescription:
-          type: string
-        lastName:
-          type: string
-        phone:
-          type: string
-        state:
-          type: string
-        street:
-          type: string
-        zip:
-          type: string
-        talentManagerEmail:
-          type: string
       type: object
       additionalProperties: false
     GetMembershipResponse:
@@ -667,6 +515,27 @@ components:
           type: array
       type: object
       additionalProperties: false
+    MembershipProfileInfo:
+      properties:
+        membershipContactInfo:
+          $ref: '#/components/schemas/Pick_UpdateMemberContactInfoData.gender-or-genderDescription_'
+        memberSelectedEthnicities:
+          items:
+            $ref: '#/components/schemas/MembershipEthnicity'
+          type: array
+      type: object
+      additionalProperties: false
+    SocialPresenceInput:
+      properties:
+        platform:
+          type: string
+        username:
+          type: string
+      required:
+      - platform
+      - username
+      type: object
+      additionalProperties: false
     GetMembershipSummaryResponse:
       properties:
         totalPoints:
@@ -680,17 +549,14 @@ components:
       - totalActivations
       type: object
       additionalProperties: false
-    EthnicGroup:
-      enum:
-      - American Indian or Alaska Native
-      - Asian
-      - Black or African American
-      - Hispanic, Latinx, or Spanish origin
-      - Other
-      - Pacific Islander
-      - Prefer not to say
-      - White
-      type: string
+    UpdateMembershipProfileInfo:
+      properties:
+        data:
+          $ref: '#/components/schemas/MembershipProfileInfo'
+      required:
+      - data
+      type: object
+      additionalProperties: false
     MembershipEthnicity:
       properties:
         ethnicGroup:
@@ -702,28 +568,162 @@ components:
       - ethnicGroupDescription
       type: object
       additionalProperties: false
-    Gender:
-      enum:
-      - describe
-      - female
-      - male
-      - non_bin
-      - other
-      type: string
-    Pick_UpdateMemberContactInfoData.gender-or-genderDescription_:
+    updateMembershipBody:
       properties:
-        gender:
-          $ref: '#/components/schemas/Gender'
-        genderDescription:
+        blacklisted:
+          type: boolean
+        status:
           type: string
+          enum:
+          - USER
+          - REJECTED
+        membershipType:
+          type: string
+          enum:
+          - EMPLOYEE
+          - CUSTOMER
+          - NORMAL
       type: object
-      description: From T, pick a set of properties whose keys are in the union K
+      additionalProperties: false
+    EthnicGroup:
+      enum:
+      - American Indian or Alaska Native
+      - Asian
+      - Black or African American
+      - Hispanic, Latinx, or Spanish origin
+      - Other
+      - Pacific Islander
+      - Prefer not to say
+      - White
+      type: string
+    removeMembershipBody:
+      properties:
+        activityId:
+          type: number
+          format: double
+        globalUserIds:
+          items:
+            type: number
+            format: double
+          type: array
+      type: object
+      additionalProperties: false
     ServerError:
       properties:
         message:
           type: string
           enum:
           - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    MembershipContactInfoDeprecated:
+      properties:
+        age:
+          type: number
+          format: double
+        apt:
+          type: string
+        birthday:
+          type: object
+        city:
+          type: string
+        country:
+          type: string
+        email:
+          type: string
+        emailIsVerified:
+          type: boolean
+        firstName:
+          type: string
+        fullName:
+          type: string
+        gender:
+          $ref: '#/components/schemas/Gender'
+        genderDescription:
+          type: string
+        lastName:
+          type: string
+        phone:
+          type: string
+        state:
+          type: string
+        street:
+          type: string
+        zip:
+          type: string
+        talentManagerEmail:
+          type: string
+      type: object
+      additionalProperties: false
+    ValidateErrorJSON:
+      properties:
+        message:
+          type: string
+          enum:
+          - Validation failed
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    _MembershipContactInfo:
+      properties:
+        age:
+          type: number
+          format: double
+        apt:
+          type: string
+        birthday:
+          type: object
+        city:
+          type: string
+        country:
+          type: string
+        email:
+          type: string
+        emailIsVerified:
+          type: boolean
+        firstName:
+          type: string
+        fullName:
+          type: string
+        gender:
+          $ref: '#/components/schemas/Gender'
+        genderDescription:
+          type: string
+        lastName:
+          type: string
+        phone:
+          type: string
+        state:
+          type: string
+        street:
+          type: string
+        zip:
+          type: string
+        talentManagerEmail:
+          type: string
+      type: object
+      additionalProperties: false
+    ForbiddenError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Access Forbidden
         details:
           properties: {}
           additionalProperties:

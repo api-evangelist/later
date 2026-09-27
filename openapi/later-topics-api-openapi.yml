@@ -74,17 +74,46 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    GetTopicsResponse:
+    Topic:
       properties:
-        data:
-          items:
-            $ref: '#/components/schemas/Topic'
-          type: array
-        meta:
-          $ref: '#/components/schemas/ResponseMetadataModel'
+        id:
+          type: string
+        name:
+          type: string
+        slug:
+          type: string
+      type: object
+      additionalProperties: false
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
       required:
-      - data
-      - meta
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    NotFoundError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Resource Not Found
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
       type: object
       additionalProperties: false
     ResponseMetadataModel:
@@ -105,30 +134,17 @@ components:
           format: double
       type: object
       additionalProperties: false
-    NotFoundError:
+    GetTopicsResponse:
       properties:
-        message:
-          type: string
-          enum:
-          - Resource Not Found
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
+        data:
+          items:
+            $ref: '#/components/schemas/Topic'
+          type: array
+        meta:
+          $ref: '#/components/schemas/ResponseMetadataModel'
       required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    Topic:
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        slug:
-          type: string
+      - data
+      - meta
       type: object
       additionalProperties: false
     ValidateErrorJSON:
@@ -153,22 +169,6 @@ components:
           type: string
           enum:
           - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ServerError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Server Error
         details:
           properties: {}
           additionalProperties:

@@ -132,6 +132,62 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    ResponseMetadata:
+      properties:
+        limit:
+          type: number
+          format: double
+        offset:
+          type: number
+          format: double
+        status:
+          type: string
+          enum:
+          - failure
+          - success
+        totalCount:
+          type: number
+          format: double
+      type: object
+      additionalProperties: false
+    SurveyResponseSummary:
+      properties:
+        id:
+          type: number
+          format: double
+        questionText:
+          type: string
+        order:
+          type: number
+          format: double
+        total:
+          type: number
+          format: double
+        options:
+          items:
+            properties:
+              percentage:
+                type: number
+                format: double
+              count:
+                type: number
+                format: double
+              value:
+                type: string
+            required:
+            - percentage
+            - count
+            - value
+            type: object
+          type: array
+      required:
+      - id
+      - questionText
+      - order
+      - total
+      - options
+      type: object
+      additionalProperties: false
     SurveyResponse:
       properties:
         age:
@@ -210,42 +266,20 @@ components:
       - zip
       type: object
       additionalProperties: false
-    SurveyResponseSummary:
+    ServerError:
       properties:
-        id:
-          type: number
-          format: double
-        questionText:
+        message:
           type: string
-        order:
-          type: number
-          format: double
-        total:
-          type: number
-          format: double
-        options:
-          items:
-            properties:
-              percentage:
-                type: number
-                format: double
-              count:
-                type: number
-                format: double
-              value:
-                type: string
-            required:
-            - percentage
-            - count
-            - value
-            type: object
-          type: array
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
       required:
-      - id
-      - questionText
-      - order
-      - total
-      - options
+      - message
+      - details
       type: object
       additionalProperties: false
     NotFoundError:
@@ -284,46 +318,12 @@ components:
       - details
       type: object
       additionalProperties: false
-    ResponseMetadata:
-      properties:
-        limit:
-          type: number
-          format: double
-        offset:
-          type: number
-          format: double
-        status:
-          type: string
-          enum:
-          - failure
-          - success
-        totalCount:
-          type: number
-          format: double
-      type: object
-      additionalProperties: false
     ForbiddenError:
       properties:
         message:
           type: string
           enum:
           - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ServerError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Server Error
         details:
           properties: {}
           additionalProperties:

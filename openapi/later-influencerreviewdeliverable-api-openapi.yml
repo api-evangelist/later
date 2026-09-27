@@ -94,12 +94,12 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    NotFoundError:
+    ServerError:
       properties:
         message:
           type: string
           enum:
-          - Resource Not Found
+          - Server Error
         details:
           properties: {}
           additionalProperties:
@@ -110,12 +110,12 @@ components:
       - details
       type: object
       additionalProperties: false
-    ValidateErrorJSON:
+    NotFoundError:
       properties:
         message:
           type: string
           enum:
-          - Validation failed
+          - Resource Not Found
         details:
           properties: {}
           additionalProperties:
@@ -139,12 +139,12 @@ components:
       - listId
       type: object
       additionalProperties: false
-    ForbiddenError:
+    ValidateErrorJSON:
       properties:
         message:
           type: string
           enum:
-          - Access Forbidden
+          - Validation failed
         details:
           properties: {}
           additionalProperties:
@@ -155,12 +155,12 @@ components:
       - details
       type: object
       additionalProperties: false
-    ServerError:
+    ForbiddenError:
       properties:
         message:
           type: string
           enum:
-          - Server Error
+          - Access Forbidden
         details:
           properties: {}
           additionalProperties:

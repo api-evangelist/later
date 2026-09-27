@@ -64,6 +64,30 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    CreateDraftContentViewed:
+      properties:
+        email:
+          type: string
+      required:
+      - email
+      type: object
+      additionalProperties: false
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
     NotFoundError:
       properties:
         message:
@@ -95,30 +119,6 @@ components:
       - message
       type: object
       additionalProperties: false
-    ForbiddenError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    CreateDraftContentViewed:
-      properties:
-        email:
-          type: string
-      required:
-      - email
-      type: object
-      additionalProperties: false
     DraftContentViewed:
       properties:
         email:
@@ -135,12 +135,12 @@ components:
       - viewedAt
       type: object
       additionalProperties: false
-    ServerError:
+    ForbiddenError:
       properties:
         message:
           type: string
           enum:
-          - Server Error
+          - Access Forbidden
         details:
           properties: {}
           additionalProperties:

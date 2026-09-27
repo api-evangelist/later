@@ -132,6 +132,25 @@ paths:
                 reason:
                   type: string
 components:
+  parameters:
+    offsetParam:
+      in: query
+      description: Number of items to skip
+      name: offset
+      schema:
+        type: integer
+    limitParam:
+      in: query
+      description: Maximum number of items to return
+      name: limit
+      schema:
+        type: integer
+    orderByParam:
+      in: query
+      description: Attribute to order by.
+      name: orderBy
+      schema:
+        type: string
   schemas:
     LinksDeprecated:
       type: object
@@ -145,45 +164,6 @@ components:
         deep:
           type: string
           description: A deep link to the entity.
-    PointGrantURI:
-      type: object
-      required:
-      - sourceId
-      properties:
-        sourceId:
-          type: integer
-          description: Unique identifier representing the source of the point granted.
-    PointTransaction:
-      type: object
-      properties:
-        sourceType:
-          type: string
-          description: The origination of the point transaction.
-        actionId:
-          type: integer
-          description: ID of associated action.
-        actionType:
-          type: string
-          description: Type of associated action.
-        pointGrantTime:
-          type: string
-          format: date
-          description: Datetime points were granted.
-        amount:
-          type: integer
-          description: Amount of points in this transaction.
-        activationId:
-          type: integer
-          description: Activation ID associated.
-        conversionDatapointId:
-          type: integer
-          description: Conversion data point id associated.
-        description:
-          type: string
-          description: A description provided for this points transaction e.g. action group name, incentive name, reason for manual entry.
-        incentiveClaimId:
-          type: integer
-          description: Incentive claim ID associated.
     ResponseMetadata:
       properties:
         limit:
@@ -233,25 +213,45 @@ components:
             error:
               type: string
               description: A static description of the parent error.
-  parameters:
-    limitParam:
-      in: query
-      description: Maximum number of items to return
-      name: limit
-      schema:
-        type: integer
-    orderByParam:
-      in: query
-      description: Attribute to order by.
-      name: orderBy
-      schema:
-        type: string
-    offsetParam:
-      in: query
-      description: Number of items to skip
-      name: offset
-      schema:
-        type: integer
+    PointTransaction:
+      type: object
+      properties:
+        sourceType:
+          type: string
+          description: The origination of the point transaction.
+        actionId:
+          type: integer
+          description: ID of associated action.
+        actionType:
+          type: string
+          description: Type of associated action.
+        pointGrantTime:
+          type: string
+          format: date
+          description: Datetime points were granted.
+        amount:
+          type: integer
+          description: Amount of points in this transaction.
+        activationId:
+          type: integer
+          description: Activation ID associated.
+        conversionDatapointId:
+          type: integer
+          description: Conversion data point id associated.
+        description:
+          type: string
+          description: A description provided for this points transaction e.g. action group name, incentive name, reason for manual entry.
+        incentiveClaimId:
+          type: integer
+          description: Incentive claim ID associated.
+    PointGrantURI:
+      type: object
+      required:
+      - sourceId
+      properties:
+        sourceId:
+          type: integer
+          description: Unique identifier representing the source of the point granted.
   securitySchemes:
     apiKey:
       type: apiKey

@@ -132,6 +132,69 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    ForbiddenError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Access Forbidden
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    ResponseMeta:
+      properties:
+        limit:
+          type: number
+          format: double
+        offset:
+          type: number
+          format: double
+        totalCount:
+          type: number
+          format: double
+      type: object
+      additionalProperties: false
+    ValidatePasswordBody:
+      properties:
+        password:
+          type: string
+      required:
+      - password
+      type: object
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    CommunityRole:
+      properties:
+        roleId:
+          type: number
+          format: double
+        communityId:
+          type: string
+      required:
+      - roleId
+      - communityId
+      type: object
     Role:
       properties:
         name:
@@ -144,13 +207,6 @@ components:
       - name
       - id
       - description
-      type: object
-    ValidatePasswordBody:
-      properties:
-        password:
-          type: string
-      required:
-      - password
       type: object
     AdministratorAccountGetResponse:
       properties:
@@ -172,17 +228,6 @@ components:
       - firstName
       - email
       - attributes
-      type: object
-    CommunityRole:
-      properties:
-        roleId:
-          type: number
-          format: double
-        communityId:
-          type: string
-      required:
-      - roleId
-      - communityId
       type: object
     AdministratorAccount:
       properties:
@@ -212,19 +257,6 @@ components:
       - id
       type: object
       additionalProperties: false
-    ResponseMeta:
-      properties:
-        limit:
-          type: number
-          format: double
-        offset:
-          type: number
-          format: double
-        totalCount:
-          type: number
-          format: double
-      type: object
-      additionalProperties: false
     ResponseBody_AdministratorAccount-Array_:
       properties:
         data:
@@ -235,38 +267,6 @@ components:
           $ref: '#/components/schemas/ResponseMeta'
       required:
       - data
-      type: object
-      additionalProperties: false
-    ForbiddenError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ServerError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Server Error
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
       type: object
       additionalProperties: false
   securitySchemes:

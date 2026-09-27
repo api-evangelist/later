@@ -94,14 +94,21 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ResponseBody_TopicIdSet_:
+    ResponseMeta:
       properties:
-        data:
-          $ref: '#/components/schemas/TopicIdSet'
-        meta:
-          $ref: '#/components/schemas/ResponseMeta'
-      required:
-      - data
+        limit:
+          type: number
+          format: double
+        offset:
+          type: number
+          format: double
+        totalCount:
+          type: number
+          format: double
+      type: object
+      additionalProperties: false
+    TSOAEmptyObject:
+      properties: {}
       type: object
       additionalProperties: false
     TopicIdSet:
@@ -130,6 +137,32 @@ components:
       - details
       type: object
       additionalProperties: false
+    ResponseBody_TopicIdSet_:
+      properties:
+        data:
+          $ref: '#/components/schemas/TopicIdSet'
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+      required:
+      - data
+      type: object
+      additionalProperties: false
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
     ValidateErrorJSON:
       properties:
         message:
@@ -146,45 +179,12 @@ components:
       - details
       type: object
       additionalProperties: false
-    TSOAEmptyObject:
-      properties: {}
-      type: object
-      additionalProperties: false
-    ResponseMeta:
-      properties:
-        limit:
-          type: number
-          format: double
-        offset:
-          type: number
-          format: double
-        totalCount:
-          type: number
-          format: double
-      type: object
-      additionalProperties: false
     ForbiddenError:
       properties:
         message:
           type: string
           enum:
           - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ServerError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Server Error
         details:
           properties: {}
           additionalProperties:

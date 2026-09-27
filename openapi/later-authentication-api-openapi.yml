@@ -980,78 +980,16 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    BasicAuthPostResponse:
-      properties:
-        token:
-          type: string
-        communityId:
-          type: string
-      required:
-      - token
-      - communityId
-      type: object
-    Blog:
-      properties:
-        globalUserId:
-          type:
-          - number
-          - 'null'
-          format: double
-        language:
-          type:
-          - string
-          - 'null'
-        name:
-          type:
-          - string
-          - 'null'
-        platform:
-          type:
-          - string
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
-      type: object
-      additionalProperties: false
-    PostRequestBody:
-      properties:
-        email:
-          type: string
-        password:
-          type: string
-        resetKey:
-          type: string
-      required:
-      - email
-      - password
-      - resetKey
-      type: object
-      additionalProperties: false
-    PinterestConnectionInfo:
-      type: object
-      properties:
-        expiresAt:
-          type: string
-          format: date-time
-          description: The date by which the client should re-prompt the Pinterest connection flow.
-        handle:
-          type: string
-          description: Client's Pinterest account handle
-        profilePicture:
-          type: string
-          description: Client's Pinterest profile picture
     TSOAEmptyObject:
       properties: {}
       type: object
       additionalProperties: false
-    SwapAppPostResponse:
+    SwapAppRequestBody:
       properties:
-        token:
+        communityId:
           type: string
       required:
-      - token
+      - communityId
       type: object
       additionalProperties: false
     BasicAuthPostRequest:
@@ -1064,28 +1002,6 @@ components:
       - password
       - email
       type: object
-    FacebookAccessCodeExchangeRequest:
-      properties:
-        redirectUri:
-          type: string
-        code:
-          type: string
-      required:
-      - redirectUri
-      - code
-      type: object
-    MembershipRejection:
-      type: object
-      description: Passed when an influencer does not meet the entrance criteria for the community.
-      properties:
-        redirectLink:
-          type: string
-        rejectReason:
-          type: string
-        missingCriteria:
-          type: array
-          items:
-            type: string
     NotFoundError:
       properties:
         message:
@@ -1102,82 +1018,92 @@ components:
       - details
       type: object
       additionalProperties: false
-    ValidateErrorJSON:
+    BasicAuthPostResponse:
       properties:
-        message:
+        token:
           type: string
-          enum:
-          - Validation failed
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
+        communityId:
+          type: string
       required:
-      - message
-      - details
+      - token
+      - communityId
       type: object
-      additionalProperties: false
-    FacebookConnectionInfo:
-      $ref: '#/components/schemas/FacebookProfileDeprecated'
-    FacebookProfileDeprecated:
+    InstagramConnectionInfo:
       type: object
       properties:
         id:
           type: integer
-        facebookExternalId:
-          type: string
-        name:
-          type: string
-        link:
-          type: string
-        picture:
-          type: string
-        reach:
-          type: integer
-        averageLikes:
-          type: integer
-        averageComments:
-          type: integer
-        averageEngagements:
-          type: integer
-        engagementRate:
-          type: number
-        type:
-          type: string
-        available:
-          type: boolean
-        active:
+          description: Instagram Profile Id
+        primaryAccount:
           type: boolean
         expiresAt:
           type: string
           format: date-time
-        facebookUser:
-          type: object
-          properties:
-            isExpired:
-              type: boolean
-    ForbiddenError:
-      properties:
-        message:
+          description: The date by which the client should re-prompt the either reconnection flow.
+        platformExpiresAt:
           type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
+          format: date-time
+          description: The date by which the client should re-prompt the Instagram Platform connection flow.
+        businessExpiresAt:
+          type: string
+          format: date-time
+          description: The date by which the client should re-prompt the Instagram Business connection flow.
+        handle:
+          type: string
+          description: Client's Instagram account handle
+        profilePicture:
+          type: string
+          description: Client's Instagram profile picture
+    PinterestConnectionInfo:
+      type: object
+      properties:
+        expiresAt:
+          type: string
+          format: date-time
+          description: The date by which the client should re-prompt the Pinterest connection flow.
+        handle:
+          type: string
+          description: Client's Pinterest account handle
+        profilePicture:
+          type: string
+          description: Client's Pinterest profile picture
+    SwapAppPostResponse:
+      properties:
+        token:
+          type: string
       required:
-      - message
-      - details
+      - token
       type: object
       additionalProperties: false
+    MembershipRejection:
+      type: object
+      description: Passed when an influencer does not meet the entrance criteria for the community.
+      properties:
+        redirectLink:
+          type: string
+        rejectReason:
+          type: string
+        missingCriteria:
+          type: array
+          items:
+            type: string
     EmailAccount:
       type: object
       properties:
         email:
           type: string
+    LinksDeprecated:
+      type: object
+      x-access:
+      - anonymous
+      - influencer
+      properties:
+        normal:
+          type: string
+          description: A normal link to an entity.
+        deep:
+          type: string
+          description: A deep link to the entity.
     TikTokConnectionInfo:
       type: object
       properties:
@@ -1193,17 +1119,20 @@ components:
         profilePicture:
           type: string
           description: Client's TikTok profile picture
-    SwapAppRequestBody:
+    PostRequestBody:
       properties:
-        communityId:
+        email:
+          type: string
+        password:
+          type: string
+        resetKey:
           type: string
       required:
-      - communityId
+      - email
+      - password
+      - resetKey
       type: object
       additionalProperties: false
-    EmptyObject:
-      type: object
-      properties: {}
     TwitterConnectionInfoDeprecated:
       type: object
       properties:
@@ -1217,6 +1146,47 @@ components:
         profilePicture:
           type: string
           description: Client's Twitter profile picture
+    FacebookAccessCodeExchangeRequest:
+      properties:
+        redirectUri:
+          type: string
+        code:
+          type: string
+      required:
+      - redirectUri
+      - code
+      type: object
+    Error:
+      type: object
+      properties:
+        type:
+          type: string
+          description: A key representing the type of error that has occurred.
+        error:
+          type: string
+          description: A static description of the type of error.
+        params:
+          type: array
+          description: For errors invovling parameters, this is an array containing the invalid parameters.
+          items:
+            type: string
+        keys:
+          type: array
+          items:
+            type:
+            - string
+            - object
+        artifactLinks:
+          $ref: '#/components/schemas/LinksDeprecated'
+        parent:
+          type: object
+          properties:
+            type:
+              type: string
+              description: A key representing the type of error generated by a request to an external API.
+            error:
+              type: string
+              description: A static description of the parent error.
     Profile:
       type: object
       properties:
@@ -1290,81 +1260,111 @@ components:
                 type: string
               ethnicGroupDescription:
                 type: string
-    Error:
-      type: object
-      properties:
-        type:
-          type: string
-          description: A key representing the type of error that has occurred.
-        error:
-          type: string
-          description: A static description of the type of error.
-        params:
-          type: array
-          description: For errors invovling parameters, this is an array containing the invalid parameters.
-          items:
-            type: string
-        keys:
-          type: array
-          items:
-            type:
-            - string
-            - object
-        artifactLinks:
-          $ref: '#/components/schemas/LinksDeprecated'
-        parent:
-          type: object
-          properties:
-            type:
-              type: string
-              description: A key representing the type of error generated by a request to an external API.
-            error:
-              type: string
-              description: A static description of the parent error.
-    LinksDeprecated:
-      type: object
-      x-access:
-      - anonymous
-      - influencer
-      properties:
-        normal:
-          type: string
-          description: A normal link to an entity.
-        deep:
-          type: string
-          description: A deep link to the entity.
-    InstagramConnectionInfo:
+    FacebookProfileDeprecated:
       type: object
       properties:
         id:
           type: integer
-          description: Instagram Profile Id
-        primaryAccount:
+        facebookExternalId:
+          type: string
+        name:
+          type: string
+        link:
+          type: string
+        picture:
+          type: string
+        reach:
+          type: integer
+        averageLikes:
+          type: integer
+        averageComments:
+          type: integer
+        averageEngagements:
+          type: integer
+        engagementRate:
+          type: number
+        type:
+          type: string
+        available:
+          type: boolean
+        active:
           type: boolean
         expiresAt:
           type: string
           format: date-time
-          description: The date by which the client should re-prompt the either reconnection flow.
-        platformExpiresAt:
-          type: string
-          format: date-time
-          description: The date by which the client should re-prompt the Instagram Platform connection flow.
-        businessExpiresAt:
-          type: string
-          format: date-time
-          description: The date by which the client should re-prompt the Instagram Business connection flow.
-        handle:
-          type: string
-          description: Client's Instagram account handle
-        profilePicture:
-          type: string
-          description: Client's Instagram profile picture
+        facebookUser:
+          type: object
+          properties:
+            isExpired:
+              type: boolean
     ServerError:
       properties:
         message:
           type: string
           enum:
           - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    Blog:
+      properties:
+        globalUserId:
+          type:
+          - number
+          - 'null'
+          format: double
+        language:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        platform:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+      type: object
+      additionalProperties: false
+    EmptyObject:
+      type: object
+      properties: {}
+    ValidateErrorJSON:
+      properties:
+        message:
+          type: string
+          enum:
+          - Validation failed
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    FacebookConnectionInfo:
+      $ref: '#/components/schemas/FacebookProfileDeprecated'
+    ForbiddenError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Access Forbidden
         details:
           properties: {}
           additionalProperties:

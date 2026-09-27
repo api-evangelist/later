@@ -109,22 +109,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    NotFoundError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Resource Not Found
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
     MetaBusinessAssetAuthorizationDto:
       properties:
         id:
@@ -169,13 +153,38 @@ components:
       - communityId
       type: object
       additionalProperties: false
-    UpdateBusinessAssetRequestBody:
+    ServerError:
       properties:
-        selected:
-          type: boolean
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
       required:
-      - selected
+      - message
+      - details
       type: object
+      additionalProperties: false
+    NotFoundError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Resource Not Found
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
     BadRequestError:
       properties:
         details:
@@ -191,28 +200,19 @@ components:
       - message
       type: object
       additionalProperties: false
+    UpdateBusinessAssetRequestBody:
+      properties:
+        selected:
+          type: boolean
+      required:
+      - selected
+      type: object
     ForbiddenError:
       properties:
         message:
           type: string
           enum:
           - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ServerError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Server Error
         details:
           properties: {}
           additionalProperties:

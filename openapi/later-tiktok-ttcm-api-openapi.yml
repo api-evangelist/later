@@ -87,24 +87,20 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Components.Schemas.PurgeQueueResponse:
+    ServerError:
       properties:
-        success:
-          type: boolean
-        queueName:
-          type: string
         message:
           type: string
-      type: object
-      additionalProperties: false
-    Components.Schemas.QueueStatsResponse:
-      properties:
-        mediaBinderQueue:
-          $ref: '#/components/schemas/QueueStats'
-        mediaUpdaterQueue:
-          $ref: '#/components/schemas/QueueStats'
-        creatorUpdaterQueue:
-          $ref: '#/components/schemas/QueueStats'
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
       type: object
       additionalProperties: false
     QueueStats:
@@ -125,6 +121,26 @@ components:
       - approximateNumberOfMessages
       - approximateNumberOfMessagesNotVisible
       - approximateNumberOfMessagesDelayed
+      type: object
+      additionalProperties: false
+    Components.Schemas.QueueStatsResponse:
+      properties:
+        mediaBinderQueue:
+          $ref: '#/components/schemas/QueueStats'
+        mediaUpdaterQueue:
+          $ref: '#/components/schemas/QueueStats'
+        creatorUpdaterQueue:
+          $ref: '#/components/schemas/QueueStats'
+      type: object
+      additionalProperties: false
+    Components.Schemas.PurgeQueueResponse:
+      properties:
+        success:
+          type: boolean
+        queueName:
+          type: string
+        message:
+          type: string
       type: object
       additionalProperties: false
     ValidateErrorJSON:
@@ -149,22 +165,6 @@ components:
           type: string
           enum:
           - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ServerError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Server Error
         details:
           properties: {}
           additionalProperties:

@@ -220,24 +220,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    SpecsPostRequest:
-      properties:
-        destinationUrl:
-          type: string
-        title:
-          type: string
-        laterInfluenceCampaignId:
-          type: number
-          format: double
-        provider:
-          type: string
-      required:
-      - destinationUrl
-      - title
-      - laterInfluenceCampaignId
-      - provider
-      type: object
-      additionalProperties: false
     SpecsGetResponse:
       properties:
         data:
@@ -246,6 +228,24 @@ components:
           type: array
         meta:
           $ref: '#/components/schemas/ResponseMetadata'
+      type: object
+      additionalProperties: false
+    ResponseMetadata:
+      properties:
+        limit:
+          type: number
+          format: double
+        offset:
+          type: number
+          format: double
+        status:
+          type: string
+          enum:
+          - failure
+          - success
+        totalCount:
+          type: number
+          format: double
       type: object
       additionalProperties: false
     Spec:
@@ -278,40 +278,30 @@ components:
       - deletedAt
       type: object
       additionalProperties: false
-    SpecsPutRequest:
+    SpecsPostRequest:
       properties:
         destinationUrl:
           type: string
         title:
           type: string
-      required:
-      - title
-      type: object
-      additionalProperties: false
-    ResponseMetadata:
-      properties:
-        limit:
+        laterInfluenceCampaignId:
           type: number
           format: double
-        offset:
-          type: number
-          format: double
-        status:
+        provider:
           type: string
-          enum:
-          - failure
-          - success
-        totalCount:
-          type: number
-          format: double
+      required:
+      - destinationUrl
+      - title
+      - laterInfluenceCampaignId
+      - provider
       type: object
       additionalProperties: false
-    ForbiddenError:
+    ServerError:
       properties:
         message:
           type: string
           enum:
-          - Access Forbidden
+          - Server Error
         details:
           properties: {}
           additionalProperties:
@@ -322,12 +312,22 @@ components:
       - details
       type: object
       additionalProperties: false
-    ServerError:
+    SpecsPutRequest:
+      properties:
+        destinationUrl:
+          type: string
+        title:
+          type: string
+      required:
+      - title
+      type: object
+      additionalProperties: false
+    ForbiddenError:
       properties:
         message:
           type: string
           enum:
-          - Server Error
+          - Access Forbidden
         details:
           properties: {}
           additionalProperties:

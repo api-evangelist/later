@@ -112,12 +112,53 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ForbiddenError:
+    MetaCreatePostPartnershipRequestBody:
+      properties:
+        activationId:
+          type: number
+          format: double
+      required:
+      - activationId
+      type: object
+    MetaPostPartnershipRequestStatus:
+      type: string
+      enum:
+      - pending
+      - granted
+      - denied
+    MetaPostPartnershipRequestDto:
+      properties:
+        id:
+          type: number
+          format: double
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        status:
+          $ref: '#/components/schemas/MetaPostPartnershipRequestStatus'
+        communityId:
+          type: string
+        activationId:
+          type: number
+          format: double
+      required:
+      - id
+      - createdAt
+      - updatedAt
+      - status
+      - communityId
+      - activationId
+      type: object
+      additionalProperties: false
+    ServerError:
       properties:
         message:
           type: string
           enum:
-          - Access Forbidden
+          - Server Error
         details:
           properties: {}
           additionalProperties:
@@ -159,53 +200,12 @@ components:
       - message
       type: object
       additionalProperties: false
-    MetaCreatePostPartnershipRequestBody:
-      properties:
-        activationId:
-          type: number
-          format: double
-      required:
-      - activationId
-      type: object
-    MetaPostPartnershipRequestDto:
-      properties:
-        id:
-          type: number
-          format: double
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-        status:
-          $ref: '#/components/schemas/MetaPostPartnershipRequestStatus'
-        communityId:
-          type: string
-        activationId:
-          type: number
-          format: double
-      required:
-      - id
-      - createdAt
-      - updatedAt
-      - status
-      - communityId
-      - activationId
-      type: object
-      additionalProperties: false
-    MetaPostPartnershipRequestStatus:
-      type: string
-      enum:
-      - pending
-      - granted
-      - denied
-    ServerError:
+    ForbiddenError:
       properties:
         message:
           type: string
           enum:
-          - Server Error
+          - Access Forbidden
         details:
           properties: {}
           additionalProperties:

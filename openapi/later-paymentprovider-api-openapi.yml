@@ -97,73 +97,28 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    PaymentProvider:
+    ServerError:
       properties:
-        externalDescription:
+        message:
           type: string
-        internalIdentifierCode:
-          type:
-          - string
-          - 'null'
-        provider:
-          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
       required:
-      - externalDescription
-      - internalIdentifierCode
-      - provider
+      - message
+      - details
       type: object
       additionalProperties: false
-    PaymentAccountType:
-      enum:
-      - CASH
-      - GIFT_CARD
-      type: string
     NotFoundError:
       properties:
         message:
           type: string
           enum:
           - Resource Not Found
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ValidateErrorJSON:
-      properties:
-        message:
-          type: string
-          enum:
-          - Validation failed
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    PaymentAppProvider:
-      enum:
-      - PAYPAL
-      - STRIPE
-      - TANGO_CARDS
-      - MAVELY
-      - TIPALTI
-      type: string
-    ForbiddenError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Access Forbidden
         details:
           properties: {}
           additionalProperties:
@@ -189,12 +144,57 @@ components:
       - provider
       type: object
       additionalProperties: false
-    ServerError:
+    PaymentAppProvider:
+      enum:
+      - PAYPAL
+      - STRIPE
+      - TANGO_CARDS
+      - MAVELY
+      - TIPALTI
+      type: string
+    PaymentAccountType:
+      enum:
+      - CASH
+      - GIFT_CARD
+      type: string
+    ValidateErrorJSON:
       properties:
         message:
           type: string
           enum:
-          - Server Error
+          - Validation failed
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    PaymentProvider:
+      properties:
+        externalDescription:
+          type: string
+        internalIdentifierCode:
+          type:
+          - string
+          - 'null'
+        provider:
+          type: string
+      required:
+      - externalDescription
+      - internalIdentifierCode
+      - provider
+      type: object
+      additionalProperties: false
+    ForbiddenError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Access Forbidden
         details:
           properties: {}
           additionalProperties:

@@ -118,44 +118,39 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    DBBazaarVoiceCommunityApp:
+      properties:
+        bazaarAppId:
+          type: number
+          format: double
+        communityId:
+          type: string
+      required:
+      - bazaarAppId
+      - communityId
+      type: object
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
     BazaarVoiceAppPostRequest:
       properties:
         data:
           $ref: '#/components/schemas/BazaarVoiceAppPostRequestBody'
       required:
       - data
-      type: object
-      additionalProperties: false
-    ForbiddenError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    NotFoundError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Resource Not Found
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
       type: object
       additionalProperties: false
     BazaarVoiceAppPostRequestBody:
@@ -178,19 +173,37 @@ components:
       - name
       - apiKey
       type: object
-    BazaarVoiceLocaleResponse:
-      $ref: '#/components/schemas/DBBazaarVoiceLocale'
-    DBBazaarVoiceCommunityApp:
+    NotFoundError:
       properties:
-        bazaarAppId:
-          type: number
-          format: double
-        communityId:
+        message:
+          type: string
+          enum:
+          - Resource Not Found
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    DBBazaarVoiceLocale:
+      properties:
+        country:
+          type: string
+        language:
+          type: string
+        code:
           type: string
       required:
-      - bazaarAppId
-      - communityId
+      - country
+      - language
+      - code
       type: object
+    BazaarVoiceAppResponse:
+      $ref: '#/components/schemas/DBBazaarVoiceApp'
     DBBazaarVoiceApp:
       properties:
         BazaarVoiceLocales:
@@ -218,27 +231,14 @@ components:
       - apiKey
       - id
       type: object
-    BazaarVoiceAppResponse:
-      $ref: '#/components/schemas/DBBazaarVoiceApp'
-    DBBazaarVoiceLocale:
-      properties:
-        country:
-          type: string
-        language:
-          type: string
-        code:
-          type: string
-      required:
-      - country
-      - language
-      - code
-      type: object
-    ServerError:
+    BazaarVoiceLocaleResponse:
+      $ref: '#/components/schemas/DBBazaarVoiceLocale'
+    ForbiddenError:
       properties:
         message:
           type: string
           enum:
-          - Server Error
+          - Access Forbidden
         details:
           properties: {}
           additionalProperties:

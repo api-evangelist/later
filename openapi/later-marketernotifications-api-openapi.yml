@@ -76,6 +76,58 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    NotificationUpdateFields:
+      properties:
+        windowIsClosed:
+          type: boolean
+        isUnread:
+          type: boolean
+      type: object
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    NotificationType:
+      enum:
+      - MESSAGE
+      - DRAFT
+      - CONTENT
+      - APPLICATION
+      - CONFIRMATION
+      - FAILED_PAYMENT
+      type: string
+    SetNotificationPreferenceBodyDefinition:
+      properties:
+        actionGroupId:
+          type: string
+        data:
+          $ref: '#/components/schemas/NotificationPreferenceFlags'
+      required:
+      - actionGroupId
+      - data
+      type: object
+    UpdateNotificationBodyDefinition:
+      properties:
+        data:
+          $ref: '#/components/schemas/NotificationUpdateFields'
+        params:
+          $ref: '#/components/schemas/NotificationQueryFields'
+      required:
+      - data
+      - params
+      type: object
     NotificationPreferenceFlags:
       properties:
         emailTimeframe:
@@ -144,22 +196,17 @@ components:
 
 
         Do not make these required until every client sends them.'
-    NotificationUpdateFields:
+    NotificationQueryFields:
       properties:
-        windowIsClosed:
-          type: boolean
-        isUnread:
-          type: boolean
-      type: object
-    UpdateNotificationBodyDefinition:
-      properties:
-        data:
-          $ref: '#/components/schemas/NotificationUpdateFields'
-        params:
-          $ref: '#/components/schemas/NotificationQueryFields'
-      required:
-      - data
-      - params
+        notificationTypes:
+          items:
+            $ref: '#/components/schemas/NotificationType'
+          type: array
+        actionGroupId:
+          type: number
+          format: double
+        notificationGroupId:
+          type: string
       type: object
     ValidateErrorJSON:
       properties:
@@ -177,59 +224,12 @@ components:
       - details
       type: object
       additionalProperties: false
-    NotificationType:
-      enum:
-      - MESSAGE
-      - DRAFT
-      - CONTENT
-      - APPLICATION
-      - CONFIRMATION
-      - FAILED_PAYMENT
-      type: string
     EmailNotificationTimeframe:
       enum:
       - TWO_H
       - FOUR_H
       - DAILY
       type: string
-    SetNotificationPreferenceBodyDefinition:
-      properties:
-        actionGroupId:
-          type: string
-        data:
-          $ref: '#/components/schemas/NotificationPreferenceFlags'
-      required:
-      - actionGroupId
-      - data
-      type: object
-    NotificationQueryFields:
-      properties:
-        notificationTypes:
-          items:
-            $ref: '#/components/schemas/NotificationType'
-          type: array
-        actionGroupId:
-          type: number
-          format: double
-        notificationGroupId:
-          type: string
-      type: object
-    ServerError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Server Error
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
   securitySchemes:
     apiKey:
       type: apiKey

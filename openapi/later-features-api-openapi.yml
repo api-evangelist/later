@@ -144,6 +144,13 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    UpdateFeatureResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/InferAttributes_Features_'
+      required:
+      - data
+      type: object
     GetFeaturesResponse:
       properties:
         data:
@@ -161,6 +168,70 @@ components:
       required:
       - data
       - meta
+      type: object
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    NotFoundError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Resource Not Found
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    UpdateFeatureRequest:
+      properties:
+        public:
+          type: boolean
+        defaultState:
+          type: boolean
+        label:
+          type: string
+      type: object
+    ValidateErrorJSON:
+      properties:
+        message:
+          type: string
+          enum:
+          - Validation failed
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    GetFeatureResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/InferAttributes_Features_'
+      required:
+      - data
       type: object
     InferAttributes_Features_:
       properties:
@@ -190,83 +261,12 @@ components:
         It cannot detect whether something is a getter or not, you should use the `Excluded`
 
         parameter to exclude getter & setters from the attribute list.'
-    GetFeatureResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/InferAttributes_Features_'
-      required:
-      - data
-      type: object
-    UpdateFeatureRequest:
-      properties:
-        public:
-          type: boolean
-        defaultState:
-          type: boolean
-        label:
-          type: string
-      type: object
-    NotFoundError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Resource Not Found
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ValidateErrorJSON:
-      properties:
-        message:
-          type: string
-          enum:
-          - Validation failed
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
     ForbiddenError:
       properties:
         message:
           type: string
           enum:
           - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    UpdateFeatureResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/InferAttributes_Features_'
-      required:
-      - data
-      type: object
-    ServerError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Server Error
         details:
           properties: {}
           additionalProperties:

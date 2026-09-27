@@ -289,22 +289,19 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Pick_NotificationComment.text-or-resourceType-or-resourceId_:
+    ResponseMeta:
       properties:
-        text:
-          type: string
-        resourceType:
-          type: string
-        resourceId:
-          type: string
-      required:
-      - text
-      - resourceType
-      - resourceId
+        limit:
+          type: number
+          format: double
+        offset:
+          type: number
+          format: double
+        totalCount:
+          type: number
+          format: double
       type: object
-      description: From T, pick a set of properties whose keys are in the union K
-    NotificationCommentPostBody:
-      $ref: '#/components/schemas/Pick_NotificationComment.text-or-resourceType-or-resourceId_'
+      additionalProperties: false
     IdObject:
       properties:
         id:
@@ -314,59 +311,24 @@ components:
       - id
       type: object
       additionalProperties: false
-    Administrator:
+    ResponseBody_NotificationComment-Array_:
       properties:
-        id:
-          type: number
-          format: double
-        email:
-          type: string
-        first_name:
-          type: string
-        last_name:
-          type:
-          - string
-          - 'null'
-        image:
-          type:
-          - string
-          - 'null'
-        approves:
+        data:
+          items:
+            $ref: '#/components/schemas/NotificationComment'
+          type: array
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+      required:
+      - data
+      type: object
+      additionalProperties: false
+    GlobalUserCommentPatchBody:
+      properties:
+        pinned:
           type: boolean
-        createdAt:
-          type: string
-      type: object
-      additionalProperties: false
-    NotFoundError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Resource Not Found
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
       required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ValidateErrorJSON:
-      properties:
-        message:
-          type: string
-          enum:
-          - Validation failed
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
+      - pinned
       type: object
       additionalProperties: false
     GlobalUserCommentPostBody:
@@ -390,16 +352,74 @@ components:
       - text
       type: object
       additionalProperties: false
-    ResponseBody_NotificationComment-Array_:
+    NotificationCommentPostBody:
+      $ref: '#/components/schemas/Pick_NotificationComment.text-or-resourceType-or-resourceId_'
+    ServerError:
       properties:
-        data:
-          items:
-            $ref: '#/components/schemas/NotificationComment'
-          type: array
-        meta:
-          $ref: '#/components/schemas/ResponseMeta'
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
       required:
-      - data
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    Pick_Comment.id_:
+      properties:
+        id:
+          type: number
+          format: double
+      type: object
+      description: From T, pick a set of properties whose keys are in the union K
+    NotFoundError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Resource Not Found
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    Pick_NotificationComment.text-or-resourceType-or-resourceId_:
+      properties:
+        text:
+          type: string
+        resourceType:
+          type: string
+        resourceId:
+          type: string
+      required:
+      - text
+      - resourceType
+      - resourceId
+      type: object
+      description: From T, pick a set of properties whose keys are in the union K
+    Comment:
+      properties:
+        author:
+          $ref: '#/components/schemas/Administrator'
+        createdAt:
+          type: string
+        id:
+          type: number
+          format: double
+        text:
+          type: string
+        pinned:
+          type: boolean
       type: object
       additionalProperties: false
     NotificationComment:
@@ -427,40 +447,12 @@ components:
       - text
       type: object
       additionalProperties: false
-    Pick_Comment.id_:
-      properties:
-        id:
-          type: number
-          format: double
-      type: object
-      description: From T, pick a set of properties whose keys are in the union K
-    ResponseMeta:
-      properties:
-        limit:
-          type: number
-          format: double
-        offset:
-          type: number
-          format: double
-        totalCount:
-          type: number
-          format: double
-      type: object
-      additionalProperties: false
-    GlobalUserCommentPatchBody:
-      properties:
-        pinned:
-          type: boolean
-      required:
-      - pinned
-      type: object
-      additionalProperties: false
-    ForbiddenError:
+    ValidateErrorJSON:
       properties:
         message:
           type: string
           enum:
-          - Access Forbidden
+          - Validation failed
         details:
           properties: {}
           additionalProperties:
@@ -471,27 +463,35 @@ components:
       - details
       type: object
       additionalProperties: false
-    Comment:
+    Administrator:
       properties:
-        author:
-          $ref: '#/components/schemas/Administrator'
-        createdAt:
-          type: string
         id:
           type: number
           format: double
-        text:
+        email:
           type: string
-        pinned:
+        first_name:
+          type: string
+        last_name:
+          type:
+          - string
+          - 'null'
+        image:
+          type:
+          - string
+          - 'null'
+        approves:
           type: boolean
+        createdAt:
+          type: string
       type: object
       additionalProperties: false
-    ServerError:
+    ForbiddenError:
       properties:
         message:
           type: string
           enum:
-          - Server Error
+          - Access Forbidden
         details:
           properties: {}
           additionalProperties:

@@ -204,28 +204,14 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ProviderEnvironment:
+    DBCashPaymentAppProvider:
       enum:
-      - LIVE
-      - SANDBOX
+      - PAYPAL
+      - STRIPE
+      - MAVELY
+      - TIPALTI
       type: string
-    ServerError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Server Error
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    CashPaymentAppUpdatePayload:
+    CashPaymentAppUpdateResponse:
       type: object
       properties: {}
     Partial_CashPaymentAppResponse_:
@@ -358,6 +344,22 @@ components:
           type: object
       type: object
       description: Make all properties in T optional
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
     NotFoundError:
       properties:
         message:
@@ -374,6 +376,11 @@ components:
       - details
       type: object
       additionalProperties: false
+    ProviderEnvironment:
+      enum:
+      - LIVE
+      - SANDBOX
+      type: string
     CreateCashPaymentAppBody:
       properties:
         tipaltiPayerEntityId:
@@ -434,7 +441,7 @@ components:
       - details
       type: object
       additionalProperties: false
-    CashPaymentAppUpdateResponse:
+    CashPaymentAppUpdatePayload:
       type: object
       properties: {}
     ForbiddenError:
@@ -453,13 +460,6 @@ components:
       - details
       type: object
       additionalProperties: false
-    DBCashPaymentAppProvider:
-      enum:
-      - PAYPAL
-      - STRIPE
-      - MAVELY
-      - TIPALTI
-      type: string
   securitySchemes:
     apiKey:
       type: apiKey

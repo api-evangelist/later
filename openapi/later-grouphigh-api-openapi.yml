@@ -46,18 +46,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    DemographicsGraphsResponse:
-      properties:
-        graphs:
-          items:
-            $ref: '#/components/schemas/DemographicsGraph'
-          type: array
-      required:
-      - graphs
-      type: object
-      description: '*
-
-        Demographics Pro Graphs'
     DemographicsGraph:
       properties:
         data:
@@ -70,6 +58,34 @@ components:
       - data
       - id
       type: object
+    DemographicsGraphsResponse:
+      properties:
+        graphs:
+          items:
+            $ref: '#/components/schemas/DemographicsGraph'
+          type: array
+      required:
+      - graphs
+      type: object
+      description: '*
+
+        Demographics Pro Graphs'
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
     GraphDatapoint:
       properties:
         value:
@@ -87,22 +103,6 @@ components:
           type: string
           enum:
           - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ServerError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Server Error
         details:
           properties: {}
           additionalProperties:

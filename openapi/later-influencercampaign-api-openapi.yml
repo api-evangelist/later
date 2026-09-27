@@ -113,18 +113,24 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    InfluencerCampaignHistory:
+    LegacyInfluencerCampaignGetResponse:
       type: object
-      properties: {}
-    InfluencerCampaignHistoryGetResponse:
+    ServerError:
       properties:
-        data:
-          items:
-            $ref: '#/components/schemas/InfluencerCampaignHistory'
-          type: array
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
       required:
-      - data
+      - message
+      - details
       type: object
+      additionalProperties: false
     NotFoundError:
       properties:
         message:
@@ -141,6 +147,18 @@ components:
       - details
       type: object
       additionalProperties: false
+    InfluencerCampaignHistory:
+      type: object
+      properties: {}
+    InfluencerCampaignHistoryGetResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/InfluencerCampaignHistory'
+          type: array
+      required:
+      - data
+      type: object
     ValidateErrorJSON:
       properties:
         message:
@@ -163,24 +181,6 @@ components:
           type: string
           enum:
           - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    LegacyInfluencerCampaignGetResponse:
-      type: object
-    ServerError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Server Error
         details:
           properties: {}
           additionalProperties:

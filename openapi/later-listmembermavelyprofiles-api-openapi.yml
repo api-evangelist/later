@@ -147,6 +147,22 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
     MavelyProfilesRequest:
       properties:
         mavelyListMembers:
@@ -155,19 +171,6 @@ components:
           type: array
       required:
       - mavelyListMembers
-      type: object
-    MavelyListMember:
-      properties:
-        actionGroupId:
-          type: number
-          format: double
-        globalUserId:
-          type: number
-          format: double
-        mavelyProfileId:
-          type: string
-      required:
-      - actionGroupId
       type: object
     ListMemberMavelyProfile:
       properties:
@@ -198,28 +201,25 @@ components:
       - mavelyProfileId
       type: object
       additionalProperties: false
+    MavelyListMember:
+      properties:
+        actionGroupId:
+          type: number
+          format: double
+        globalUserId:
+          type: number
+          format: double
+        mavelyProfileId:
+          type: string
+      required:
+      - actionGroupId
+      type: object
     ForbiddenError:
       properties:
         message:
           type: string
           enum:
           - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ServerError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Server Error
         details:
           properties: {}
           additionalProperties:
