@@ -213,6 +213,72 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    BackfillMetaAdInsightsJobPayload:
+      properties:
+        externalAdIdList:
+          items:
+            type: string
+          type: array
+        backfillOnlyNullEntries:
+          type: boolean
+        batchSize:
+          type: number
+          format: double
+        adAccountIds:
+          items:
+            type: number
+            format: double
+          type: array
+      type: object
+    ValidateErrorJSON:
+      properties:
+        message:
+          type: string
+          enum:
+          - Validation failed
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    MetaSystemUserPermissions:
+      properties:
+        data:
+          items:
+            properties:
+              status:
+                type: string
+              permission:
+                type: string
+            required:
+            - status
+            - permission
+            type: object
+          type: array
+      required:
+      - data
+      type: object
     PushMetaAdInsightsJobPayload:
       properties:
         endDate:
@@ -241,12 +307,12 @@ components:
       - details
       type: object
       additionalProperties: false
-    ServerError:
+    ForbiddenError:
       properties:
         message:
           type: string
           enum:
-          - Server Error
+          - Access Forbidden
         details:
           properties: {}
           additionalProperties:
@@ -257,23 +323,6 @@ components:
       - details
       type: object
       additionalProperties: false
-    BackfillMetaAdInsightsJobPayload:
-      properties:
-        externalAdIdList:
-          items:
-            type: string
-          type: array
-        backfillOnlyNullEntries:
-          type: boolean
-        batchSize:
-          type: number
-          format: double
-        adAccountIds:
-          items:
-            type: number
-            format: double
-          type: array
-      type: object
     MetaSystemUsersAdAccountsResponse:
       properties:
         adAccounts:
@@ -326,55 +375,6 @@ components:
       - name
       - id
       type: object
-    ValidateErrorJSON:
-      properties:
-        message:
-          type: string
-          enum:
-          - Validation failed
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    MetaSystemUserPermissions:
-      properties:
-        data:
-          items:
-            properties:
-              status:
-                type: string
-              permission:
-                type: string
-            required:
-            - status
-            - permission
-            type: object
-          type: array
-      required:
-      - data
-      type: object
-    ForbiddenError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
   securitySchemes:
     apiKey:
       type: apiKey

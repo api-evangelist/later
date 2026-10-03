@@ -132,26 +132,15 @@ paths:
                 reason:
                   type: string
 components:
-  parameters:
-    offsetParam:
-      in: query
-      description: Number of items to skip
-      name: offset
-      schema:
-        type: integer
-    limitParam:
-      in: query
-      description: Maximum number of items to return
-      name: limit
-      schema:
-        type: integer
-    orderByParam:
-      in: query
-      description: Attribute to order by.
-      name: orderBy
-      schema:
-        type: string
   schemas:
+    PointGrantURI:
+      type: object
+      required:
+      - sourceId
+      properties:
+        sourceId:
+          type: integer
+          description: Unique identifier representing the source of the point granted.
     LinksDeprecated:
       type: object
       x-access:
@@ -164,24 +153,6 @@ components:
         deep:
           type: string
           description: A deep link to the entity.
-    ResponseMetadata:
-      properties:
-        limit:
-          type: number
-          format: double
-        offset:
-          type: number
-          format: double
-        status:
-          type: string
-          enum:
-          - failure
-          - success
-        totalCount:
-          type: number
-          format: double
-      type: object
-      additionalProperties: false
     Error:
       type: object
       properties:
@@ -213,6 +184,24 @@ components:
             error:
               type: string
               description: A static description of the parent error.
+    ResponseMetadata:
+      properties:
+        limit:
+          type: number
+          format: double
+        offset:
+          type: number
+          format: double
+        status:
+          type: string
+          enum:
+          - failure
+          - success
+        totalCount:
+          type: number
+          format: double
+      type: object
+      additionalProperties: false
     PointTransaction:
       type: object
       properties:
@@ -244,14 +233,25 @@ components:
         incentiveClaimId:
           type: integer
           description: Incentive claim ID associated.
-    PointGrantURI:
-      type: object
-      required:
-      - sourceId
-      properties:
-        sourceId:
-          type: integer
-          description: Unique identifier representing the source of the point granted.
+  parameters:
+    limitParam:
+      in: query
+      description: Maximum number of items to return
+      name: limit
+      schema:
+        type: integer
+    offsetParam:
+      in: query
+      description: Number of items to skip
+      name: offset
+      schema:
+        type: integer
+    orderByParam:
+      in: query
+      description: Attribute to order by.
+      name: orderBy
+      schema:
+        type: string
   securitySchemes:
     apiKey:
       type: apiKey

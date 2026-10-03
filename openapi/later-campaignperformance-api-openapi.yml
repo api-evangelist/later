@@ -450,6 +450,94 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    ValidateErrorJSON:
+      properties:
+        message:
+          type: string
+          enum:
+          - Validation failed
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    Country:
+      properties:
+        country:
+          type: string
+        impressions:
+          type: number
+          format: double
+      required:
+      - country
+      - impressions
+      type: object
+      additionalProperties: false
+    GenderImpressions:
+      properties:
+        femaleImpressions:
+          type: number
+          format: double
+        maleImpressions:
+          type: number
+          format: double
+        totalImpressions:
+          type: number
+          format: double
+      required:
+      - femaleImpressions
+      - maleImpressions
+      - totalImpressions
+      type: object
+      additionalProperties: false
+    BadRequestError:
+      properties:
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+        message:
+          type: string
+          enum:
+          - Bad Request
+      required:
+      - message
+      type: object
+      additionalProperties: false
+    Age:
+      properties:
+        age:
+          type: string
+        percent:
+          type: number
+          format: double
+      required:
+      - age
+      - percent
+      type: object
+      additionalProperties: false
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
     CampaignAudienceInsights:
       properties:
         age:
@@ -477,16 +565,68 @@ components:
       - totalAudienceImpressions
       type: object
       additionalProperties: false
-    Age:
+    TopInfluencerMetrics:
       properties:
-        age:
+        firstName:
           type: string
-        percent:
+        lastName:
+          type: string
+        profilePhoto:
+          type:
+          - string
+          - 'null'
+        instagramHandle:
+          type:
+          - string
+          - 'null'
+        igProfilePhoto:
+          type:
+          - string
+          - 'null'
+        facebookAvatar:
+          type:
+          - string
+          - 'null'
+        globalUserId:
           type: number
           format: double
+        membershipId:
+          type: number
+          format: double
+        impressions:
+          type: number
+          format: double
+        engagements:
+          type: number
+          format: double
+        impressionsEngagementRate:
+          type: number
+          format: double
+        content:
+          type: number
+          format: double
+        emvValue:
+          type: number
+          format: double
+        roiValue:
+          type:
+          - number
+          - 'null'
+          format: double
       required:
-      - age
-      - percent
+      - firstName
+      - lastName
+      - profilePhoto
+      - instagramHandle
+      - igProfilePhoto
+      - facebookAvatar
+      - globalUserId
+      - membershipId
+      - impressions
+      - engagements
+      - impressionsEngagementRate
+      - content
+      - emvValue
       type: object
       additionalProperties: false
     PostMetric:
@@ -556,167 +696,12 @@ components:
       - emvValue
       type: object
       additionalProperties: false
-    ServerError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Server Error
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
     NotFoundError:
       properties:
         message:
           type: string
           enum:
           - Resource Not Found
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    City:
-      properties:
-        city:
-          type: string
-        cityState:
-          type: string
-        impressions:
-          type: number
-          format: double
-      required:
-      - city
-      - cityState
-      - impressions
-      type: object
-      additionalProperties: false
-    BadRequestError:
-      properties:
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-        message:
-          type: string
-          enum:
-          - Bad Request
-      required:
-      - message
-      type: object
-      additionalProperties: false
-    Country:
-      properties:
-        country:
-          type: string
-        impressions:
-          type: number
-          format: double
-      required:
-      - country
-      - impressions
-      type: object
-      additionalProperties: false
-    GenderImpressions:
-      properties:
-        femaleImpressions:
-          type: number
-          format: double
-        maleImpressions:
-          type: number
-          format: double
-        totalImpressions:
-          type: number
-          format: double
-      required:
-      - femaleImpressions
-      - maleImpressions
-      - totalImpressions
-      type: object
-      additionalProperties: false
-    TopInfluencerMetrics:
-      properties:
-        firstName:
-          type: string
-        lastName:
-          type: string
-        profilePhoto:
-          type:
-          - string
-          - 'null'
-        instagramHandle:
-          type:
-          - string
-          - 'null'
-        igProfilePhoto:
-          type:
-          - string
-          - 'null'
-        facebookAvatar:
-          type:
-          - string
-          - 'null'
-        globalUserId:
-          type: number
-          format: double
-        membershipId:
-          type: number
-          format: double
-        impressions:
-          type: number
-          format: double
-        engagements:
-          type: number
-          format: double
-        impressionsEngagementRate:
-          type: number
-          format: double
-        content:
-          type: number
-          format: double
-        emvValue:
-          type: number
-          format: double
-        roiValue:
-          type:
-          - number
-          - 'null'
-          format: double
-      required:
-      - firstName
-      - lastName
-      - profilePhoto
-      - instagramHandle
-      - igProfilePhoto
-      - facebookAvatar
-      - globalUserId
-      - membershipId
-      - impressions
-      - engagements
-      - impressionsEngagementRate
-      - content
-      - emvValue
-      type: object
-      additionalProperties: false
-    ValidateErrorJSON:
-      properties:
-        message:
-          type: string
-          enum:
-          - Validation failed
         details:
           properties: {}
           additionalProperties:
@@ -776,6 +761,21 @@ components:
       - clicks
       - conversions
       - conversionsValue
+      type: object
+      additionalProperties: false
+    City:
+      properties:
+        city:
+          type: string
+        cityState:
+          type: string
+        impressions:
+          type: number
+          format: double
+      required:
+      - city
+      - cityState
+      - impressions
       type: object
       additionalProperties: false
     ForbiddenError:

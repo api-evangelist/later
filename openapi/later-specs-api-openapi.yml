@@ -220,34 +220,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    SpecsGetResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/Spec'
-          type: array
-        meta:
-          $ref: '#/components/schemas/ResponseMetadata'
-      type: object
-      additionalProperties: false
-    ResponseMetadata:
-      properties:
-        limit:
-          type: number
-          format: double
-        offset:
-          type: number
-          format: double
-        status:
-          type: string
-          enum:
-          - failure
-          - success
-        totalCount:
-          type: number
-          format: double
-      type: object
-      additionalProperties: false
     Spec:
       properties:
         id:
@@ -312,6 +284,16 @@ components:
       - details
       type: object
       additionalProperties: false
+    SpecsGetResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/Spec'
+          type: array
+        meta:
+          $ref: '#/components/schemas/ResponseMetadata'
+      type: object
+      additionalProperties: false
     SpecsPutRequest:
       properties:
         destinationUrl:
@@ -320,6 +302,24 @@ components:
           type: string
       required:
       - title
+      type: object
+      additionalProperties: false
+    ResponseMetadata:
+      properties:
+        limit:
+          type: number
+          format: double
+        offset:
+          type: number
+          format: double
+        status:
+          type: string
+          enum:
+          - failure
+          - success
+        totalCount:
+          type: number
+          format: double
       type: object
       additionalProperties: false
     ForbiddenError:

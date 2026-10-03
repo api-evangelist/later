@@ -132,62 +132,42 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ResponseMetadata:
+    ValidateErrorJSON:
       properties:
-        limit:
-          type: number
-          format: double
-        offset:
-          type: number
-          format: double
-        status:
+        message:
           type: string
           enum:
-          - failure
-          - success
-        totalCount:
-          type: number
-          format: double
-      type: object
-      additionalProperties: false
-    SurveyResponseSummary:
-      properties:
-        id:
-          type: number
-          format: double
-        questionText:
-          type: string
-        order:
-          type: number
-          format: double
-        total:
-          type: number
-          format: double
-        options:
-          items:
-            properties:
-              percentage:
-                type: number
-                format: double
-              count:
-                type: number
-                format: double
-              value:
-                type: string
-            required:
-            - percentage
-            - count
-            - value
-            type: object
-          type: array
+          - Validation failed
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
       required:
-      - id
-      - questionText
-      - order
-      - total
-      - options
+      - message
+      - details
       type: object
       additionalProperties: false
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    Record_string.any_:
+      properties: {}
+      type: object
+      description: Construct a type with a set of properties K of type T
     SurveyResponse:
       properties:
         age:
@@ -266,20 +246,22 @@ components:
       - zip
       type: object
       additionalProperties: false
-    ServerError:
+    ResponseMetadata:
       properties:
-        message:
+        limit:
+          type: number
+          format: double
+        offset:
+          type: number
+          format: double
+        status:
           type: string
           enum:
-          - Server Error
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
+          - failure
+          - success
+        totalCount:
+          type: number
+          format: double
       type: object
       additionalProperties: false
     NotFoundError:
@@ -298,24 +280,42 @@ components:
       - details
       type: object
       additionalProperties: false
-    Record_string.any_:
-      properties: {}
-      type: object
-      description: Construct a type with a set of properties K of type T
-    ValidateErrorJSON:
+    SurveyResponseSummary:
       properties:
-        message:
+        id:
+          type: number
+          format: double
+        questionText:
           type: string
-          enum:
-          - Validation failed
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
+        order:
+          type: number
+          format: double
+        total:
+          type: number
+          format: double
+        options:
+          items:
+            properties:
+              percentage:
+                type: number
+                format: double
+              count:
+                type: number
+                format: double
+              value:
+                type: string
+            required:
+            - percentage
+            - count
+            - value
+            type: object
+          type: array
       required:
-      - message
-      - details
+      - id
+      - questionText
+      - order
+      - total
+      - options
       type: object
       additionalProperties: false
     ForbiddenError:

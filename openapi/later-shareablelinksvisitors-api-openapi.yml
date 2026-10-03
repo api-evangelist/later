@@ -113,14 +113,20 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ShareableLinksVisitorsListResponse:
+    ValidateErrorJSON:
       properties:
-        data:
-          items:
-            $ref: '#/components/schemas/ShareableLinksVisitorResponse'
-          type: array
+        message:
+          type: string
+          enum:
+          - Validation failed
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
       required:
-      - data
+      - message
+      - details
       type: object
       additionalProperties: false
     ServerError:
@@ -137,27 +143,6 @@ components:
       required:
       - message
       - details
-      type: object
-      additionalProperties: false
-    CreateShareableLinksVisitorBody:
-      properties:
-        firstName:
-          type: string
-        lastName:
-          type: string
-        email:
-          type: string
-        cipher:
-          type: string
-        dashboardType:
-          type:
-          - string
-          - 'null'
-      required:
-      - firstName
-      - lastName
-      - email
-      - cipher
       type: object
       additionalProperties: false
     ShareableLinksVisitorResponse:
@@ -206,20 +191,35 @@ components:
       - updatedAt
       type: object
       additionalProperties: false
-    ValidateErrorJSON:
+    ShareableLinksVisitorsListResponse:
       properties:
-        message:
-          type: string
-          enum:
-          - Validation failed
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
+        data:
+          items:
+            $ref: '#/components/schemas/ShareableLinksVisitorResponse'
+          type: array
       required:
-      - message
-      - details
+      - data
+      type: object
+      additionalProperties: false
+    CreateShareableLinksVisitorBody:
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        cipher:
+          type: string
+        dashboardType:
+          type:
+          - string
+          - 'null'
+      required:
+      - firstName
+      - lastName
+      - email
+      - cipher
       type: object
       additionalProperties: false
     ForbiddenError:

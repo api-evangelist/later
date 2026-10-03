@@ -90,17 +90,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    PinterestAuthPostRequestBody:
-      properties:
-        code:
-          type: string
-        redirectUri:
-          type: string
-      required:
-      - code
-      - redirectUri
-      type: object
-      additionalProperties: false
     ServerError:
       properties:
         message:
@@ -132,6 +121,17 @@ components:
       - message
       type: object
       additionalProperties: false
+    PinterestAuthPostResponse:
+      properties:
+        pinterest:
+          $ref: '#/components/schemas/AuthenticatedInfluencerSocialMediaProfile'
+        token:
+          type: string
+      required:
+      - pinterest
+      - token
+      type: object
+      additionalProperties: false
     AuthenticatedInfluencerSocialMediaProfile:
       properties:
         expiresAt:
@@ -145,15 +145,15 @@ components:
       - handle
       type: object
       additionalProperties: false
-    PinterestAuthPostResponse:
+    PinterestAuthPostRequestBody:
       properties:
-        pinterest:
-          $ref: '#/components/schemas/AuthenticatedInfluencerSocialMediaProfile'
-        token:
+        code:
+          type: string
+        redirectUri:
           type: string
       required:
-      - pinterest
-      - token
+      - code
+      - redirectUri
       type: object
       additionalProperties: false
     ForbiddenError:

@@ -194,28 +194,41 @@ components:
       required:
       - enabled
       type: object
+    MetaConnectBusinessIntegrationRequestBody:
+      properties:
+        code:
+          type: string
+      required:
+      - code
+      type: object
+    MetaBusinessIntegrationDto:
+      properties:
+        id:
+          type: number
+          format: double
+        communityId:
+          type: string
+        administratorId:
+          type: number
+          format: double
+        externalBusinessId:
+          type: string
+        enabled:
+          type: boolean
+      required:
+      - id
+      - communityId
+      - administratorId
+      - externalBusinessId
+      - enabled
+      type: object
+      additionalProperties: false
     ServerError:
       properties:
         message:
           type: string
           enum:
           - Server Error
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    NotFoundError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Resource Not Found
         details:
           properties: {}
           additionalProperties:
@@ -241,35 +254,22 @@ components:
       - message
       type: object
       additionalProperties: false
-    MetaBusinessIntegrationDto:
+    NotFoundError:
       properties:
-        id:
-          type: number
-          format: double
-        communityId:
+        message:
           type: string
-        administratorId:
-          type: number
-          format: double
-        externalBusinessId:
-          type: string
-        enabled:
-          type: boolean
+          enum:
+          - Resource Not Found
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
       required:
-      - id
-      - communityId
-      - administratorId
-      - externalBusinessId
-      - enabled
+      - message
+      - details
       type: object
       additionalProperties: false
-    MetaConnectBusinessIntegrationRequestBody:
-      properties:
-        code:
-          type: string
-      required:
-      - code
-      type: object
     ForbiddenError:
       properties:
         message:

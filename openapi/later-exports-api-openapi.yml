@@ -175,6 +175,22 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    ValidateErrorJSON:
+      properties:
+        message:
+          type: string
+          enum:
+          - Validation failed
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
     ExportBody:
       properties:
         type:
@@ -196,12 +212,6 @@ components:
       - type
       type: object
       additionalProperties: false
-    ExportType:
-      enum:
-      - ACTIONGROUPINFLUENCERS
-      - MEMBERINFLUENCERS
-      - PROGRAMPERFORMANCECAMPAIGN
-      type: string
     ServerError:
       properties:
         message:
@@ -218,22 +228,12 @@ components:
       - details
       type: object
       additionalProperties: false
-    NotFoundError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Resource Not Found
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
+    ExportType:
+      enum:
+      - ACTIONGROUPINFLUENCERS
+      - MEMBERINFLUENCERS
+      - PROGRAMPERFORMANCECAMPAIGN
+      type: string
     ContentExportBody:
       properties:
         actionGroupId:
@@ -286,12 +286,12 @@ components:
       - postsWithUGC
       type: object
       additionalProperties: false
-    ValidateErrorJSON:
+    NotFoundError:
       properties:
         message:
           type: string
           enum:
-          - Validation failed
+          - Resource Not Found
         details:
           properties: {}
           additionalProperties:

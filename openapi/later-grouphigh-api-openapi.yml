@@ -70,6 +70,17 @@ components:
       description: '*
 
         Demographics Pro Graphs'
+    GraphDatapoint:
+      properties:
+        value:
+          type: number
+          format: double
+        display:
+          type: string
+      required:
+      - value
+      - display
+      type: object
     ServerError:
       properties:
         message:
@@ -86,17 +97,6 @@ components:
       - details
       type: object
       additionalProperties: false
-    GraphDatapoint:
-      properties:
-        value:
-          type: number
-          format: double
-        display:
-          type: string
-      required:
-      - value
-      - display
-      type: object
     ForbiddenError:
       properties:
         message:

@@ -52,10 +52,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Readonly_any_:
-      properties: {}
-      type: object
-      description: Make all properties in T readonly
     ServerError:
       properties:
         message:
@@ -87,6 +83,10 @@ components:
       - message
       type: object
       additionalProperties: false
+    Readonly_any_:
+      properties: {}
+      type: object
+      description: Make all properties in T readonly
     NotFoundError:
       properties:
         message:

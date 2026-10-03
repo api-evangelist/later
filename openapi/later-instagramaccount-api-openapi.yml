@@ -94,18 +94,22 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    UpdateInstagramProfilePictureItem:
+    ValidateErrorJSON:
       properties:
-        imageUrl:
-          type:
-          - string
-          - 'null'
-        instagramProfileId:
-          type: number
-          format: double
+        message:
+          type: string
+          enum:
+          - Validation failed
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
       required:
-      - instagramProfileId
+      - message
+      - details
       type: object
+      additionalProperties: false
     ServerError:
       properties:
         message:
@@ -122,32 +126,28 @@ components:
       - details
       type: object
       additionalProperties: false
+    UpdateInstagramProfilePictureRequest:
+      items:
+        $ref: '#/components/schemas/UpdateInstagramProfilePictureItem'
+      type: array
+    UpdateInstagramProfilePictureItem:
+      properties:
+        imageUrl:
+          type:
+          - string
+          - 'null'
+        instagramProfileId:
+          type: number
+          format: double
+      required:
+      - instagramProfileId
+      type: object
     NotFoundError:
       properties:
         message:
           type: string
           enum:
           - Resource Not Found
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    UpdateInstagramProfilePictureRequest:
-      items:
-        $ref: '#/components/schemas/UpdateInstagramProfilePictureItem'
-      type: array
-    ValidateErrorJSON:
-      properties:
-        message:
-          type: string
-          enum:
-          - Validation failed
         details:
           properties: {}
           additionalProperties:

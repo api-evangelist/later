@@ -96,16 +96,7 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    TikTokBrandFields:
-      properties:
-        brandDescription:
-          type: string
-        brandName:
-          type: string
-      type: object
     CreateTikTokCampaignFieldsOrBrandInfoBody:
-      $ref: '#/components/schemas/TikTokBrandFields'
-    TikTokCampaignOrBrandInfoFieldsResponse:
       $ref: '#/components/schemas/TikTokBrandFields'
     ServerError:
       properties:
@@ -138,6 +129,8 @@ components:
       - message
       type: object
       additionalProperties: false
+    TikTokCampaignOrBrandInfoFieldsResponse:
+      $ref: '#/components/schemas/TikTokBrandFields'
     ForbiddenError:
       properties:
         message:
@@ -154,6 +147,13 @@ components:
       - details
       type: object
       additionalProperties: false
+    TikTokBrandFields:
+      properties:
+        brandDescription:
+          type: string
+        brandName:
+          type: string
+      type: object
   securitySchemes:
     apiKey:
       type: apiKey

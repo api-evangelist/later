@@ -163,15 +163,6 @@ components:
       - details
       type: object
       additionalProperties: false
-    MavelyProfilesRequest:
-      properties:
-        mavelyListMembers:
-          items:
-            $ref: '#/components/schemas/MavelyListMember'
-          type: array
-      required:
-      - mavelyListMembers
-      type: object
     ListMemberMavelyProfile:
       properties:
         id:
@@ -201,19 +192,6 @@ components:
       - mavelyProfileId
       type: object
       additionalProperties: false
-    MavelyListMember:
-      properties:
-        actionGroupId:
-          type: number
-          format: double
-        globalUserId:
-          type: number
-          format: double
-        mavelyProfileId:
-          type: string
-      required:
-      - actionGroupId
-      type: object
     ForbiddenError:
       properties:
         message:
@@ -230,6 +208,28 @@ components:
       - details
       type: object
       additionalProperties: false
+    MavelyListMember:
+      properties:
+        actionGroupId:
+          type: number
+          format: double
+        globalUserId:
+          type: number
+          format: double
+        mavelyProfileId:
+          type: string
+      required:
+      - actionGroupId
+      type: object
+    MavelyProfilesRequest:
+      properties:
+        mavelyListMembers:
+          items:
+            $ref: '#/components/schemas/MavelyListMember'
+          type: array
+      required:
+      - mavelyListMembers
+      type: object
   securitySchemes:
     apiKey:
       type: apiKey

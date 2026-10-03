@@ -109,13 +109,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    UpdateBusinessPortfolioRequestBody:
-      properties:
-        selected:
-          type: boolean
-      required:
-      - selected
-      type: object
     ServerError:
       properties:
         message:
@@ -132,22 +125,28 @@ components:
       - details
       type: object
       additionalProperties: false
-    NotFoundError:
+    BadRequestError:
       properties:
-        message:
-          type: string
-          enum:
-          - Resource Not Found
         details:
           properties: {}
           additionalProperties:
             additionalProperties: true
           type: object
+        message:
+          type: string
+          enum:
+          - Bad Request
       required:
       - message
-      - details
       type: object
       additionalProperties: false
+    UpdateBusinessPortfolioRequestBody:
+      properties:
+        selected:
+          type: boolean
+      required:
+      - selected
+      type: object
     MetaBusinessPortfolioAuthorizationDto:
       properties:
         id:
@@ -180,19 +179,20 @@ components:
       - administratorId
       type: object
       additionalProperties: false
-    BadRequestError:
+    NotFoundError:
       properties:
+        message:
+          type: string
+          enum:
+          - Resource Not Found
         details:
           properties: {}
           additionalProperties:
             additionalProperties: true
           type: object
-        message:
-          type: string
-          enum:
-          - Bad Request
       required:
       - message
+      - details
       type: object
       additionalProperties: false
     ForbiddenError:

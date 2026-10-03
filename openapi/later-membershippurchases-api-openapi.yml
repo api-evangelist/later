@@ -51,12 +51,12 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ServerError:
+    ValidateErrorJSON:
       properties:
         message:
           type: string
           enum:
-          - Server Error
+          - Validation failed
         details:
           properties: {}
           additionalProperties:
@@ -67,20 +67,12 @@ components:
       - details
       type: object
       additionalProperties: false
-    PostMembershipPurchaseResponse:
-      properties:
-        pointsAwarded:
-          type: string
-      required:
-      - pointsAwarded
-      type: object
-      additionalProperties: false
-    ValidateErrorJSON:
+    ServerError:
       properties:
         message:
           type: string
           enum:
-          - Validation failed
+          - Server Error
         details:
           properties: {}
           additionalProperties:
@@ -100,6 +92,14 @@ components:
       required:
       - orderId
       - purchaseValue
+      type: object
+      additionalProperties: false
+    PostMembershipPurchaseResponse:
+      properties:
+        pointsAwarded:
+          type: string
+      required:
+      - pointsAwarded
       type: object
       additionalProperties: false
     ForbiddenError:

@@ -62,9 +62,22 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Omit_DBWebPluginWidgets.id-or-createdAt-or-updatedAt-or-status_:
-      $ref: '#/components/schemas/Pick_DBWebPluginWidgets.Exclude_keyofDBWebPluginWidgets.id-or-createdAt-or-updatedAt-or-status__'
-      description: Construct a type with the properties of T except for those in type K.
+    ValidateErrorJSON:
+      properties:
+        message:
+          type: string
+          enum:
+          - Validation failed
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
     Pick_DBWebPluginWidgets.Exclude_keyofDBWebPluginWidgets.id-or-createdAt-or-updatedAt-or-status__:
       properties:
         actionGroupId:
@@ -98,6 +111,8 @@ components:
       - widgetType
       type: object
       description: From T, pick a set of properties whose keys are in the union K
+    FilteredWidget:
+      $ref: '#/components/schemas/Omit_DBWebPluginWidgets.id-or-createdAt-or-updatedAt-or-status_'
     ServerError:
       properties:
         message:
@@ -114,24 +129,6 @@ components:
       - details
       type: object
       additionalProperties: false
-    NotFoundError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Resource Not Found
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    FilteredWidget:
-      $ref: '#/components/schemas/Omit_DBWebPluginWidgets.id-or-createdAt-or-updatedAt-or-status_'
     GetWebPluginWidgetsResponse:
       properties:
         data:
@@ -142,12 +139,15 @@ components:
       - data
       type: object
       additionalProperties: false
-    ValidateErrorJSON:
+    Omit_DBWebPluginWidgets.id-or-createdAt-or-updatedAt-or-status_:
+      $ref: '#/components/schemas/Pick_DBWebPluginWidgets.Exclude_keyofDBWebPluginWidgets.id-or-createdAt-or-updatedAt-or-status__'
+      description: Construct a type with the properties of T except for those in type K.
+    NotFoundError:
       properties:
         message:
           type: string
           enum:
-          - Validation failed
+          - Resource Not Found
         details:
           properties: {}
           additionalProperties:

@@ -101,36 +101,12 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    UpdateContentActivationSummaryRequest:
-      properties:
-        entities:
-          items:
-            $ref: '#/components/schemas/UpdateContentActivationSummaryEntity'
-          type: array
-      required:
-      - entities
-      type: object
-    BackfillFollowersAtPostResponse:
-      properties:
-        message:
-          type: string
-        processedBatches:
-          type: number
-          format: double
-        updatedRecords:
-          type: number
-          format: double
-      required:
-      - message
-      - processedBatches
-      - updatedRecords
-      type: object
-    ServerError:
+    ValidateErrorJSON:
       properties:
         message:
           type: string
           enum:
-          - Server Error
+          - Validation failed
         details:
           properties: {}
           additionalProperties:
@@ -141,12 +117,21 @@ components:
       - details
       type: object
       additionalProperties: false
-    NotFoundError:
+    UpdateContentActivationSummaryRequest:
+      properties:
+        entities:
+          items:
+            $ref: '#/components/schemas/UpdateContentActivationSummaryEntity'
+          type: array
+      required:
+      - entities
+      type: object
+    ServerError:
       properties:
         message:
           type: string
           enum:
-          - Resource Not Found
+          - Server Error
         details:
           properties: {}
           additionalProperties:
@@ -189,6 +174,53 @@ components:
       - processedEntities
       - updatedRecords
       type: object
+    ForbiddenError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Access Forbidden
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    BackfillFollowersAtPostResponse:
+      properties:
+        message:
+          type: string
+        processedBatches:
+          type: number
+          format: double
+        updatedRecords:
+          type: number
+          format: double
+      required:
+      - message
+      - processedBatches
+      - updatedRecords
+      type: object
+    NotFoundError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Resource Not Found
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
     BackfillFollowersAtPostRequest:
       properties:
         batchSize:
@@ -215,38 +247,6 @@ components:
       required:
       - activationId
       type: object
-    ValidateErrorJSON:
-      properties:
-        message:
-          type: string
-          enum:
-          - Validation failed
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ForbiddenError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
   securitySchemes:
     apiKey:
       type: apiKey

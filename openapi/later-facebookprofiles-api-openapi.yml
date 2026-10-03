@@ -106,6 +106,9 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    EmptyObject:
+      type: object
+      properties: {}
     FacebookProfileDeprecated:
       type: object
       properties:
@@ -143,24 +146,6 @@ components:
           properties:
             isExpired:
               type: boolean
-    ResponseMetadata:
-      properties:
-        limit:
-          type: number
-          format: double
-        offset:
-          type: number
-          format: double
-        status:
-          type: string
-          enum:
-          - failure
-          - success
-        totalCount:
-          type: number
-          format: double
-      type: object
-      additionalProperties: false
     LinksDeprecated:
       type: object
       x-access:
@@ -204,9 +189,24 @@ components:
             error:
               type: string
               description: A static description of the parent error.
-    EmptyObject:
+    ResponseMetadata:
+      properties:
+        limit:
+          type: number
+          format: double
+        offset:
+          type: number
+          format: double
+        status:
+          type: string
+          enum:
+          - failure
+          - success
+        totalCount:
+          type: number
+          format: double
       type: object
-      properties: {}
+      additionalProperties: false
   securitySchemes:
     apiKey:
       type: apiKey

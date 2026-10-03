@@ -122,16 +122,12 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    TSOAEmptyObject:
-      properties: {}
-      type: object
-      additionalProperties: false
-    ServerError:
+    ValidateErrorJSON:
       properties:
         message:
           type: string
           enum:
-          - Server Error
+          - Validation failed
         details:
           properties: {}
           additionalProperties:
@@ -158,52 +154,24 @@ components:
       - details
       type: object
       additionalProperties: false
-    MembershipDataPointWithDefinitions:
-      properties:
-        lastEditedByAccountId:
-          type: number
-          format: double
-        isConfirmedByMember:
-          type: boolean
-        updatedAt:
-          type: string
-          format: date-time
-        createdAt:
-          type: string
-          format: date-time
-        dataPointDefinitionId:
-          type: number
-          format: double
-        membershipId:
-          type: number
-          format: double
-        value:
-          type: string
-        id:
-          type: number
-          format: double
-        dataPointDefinition:
-          $ref: '#/components/schemas/DBDataPointDefinition'
-      required:
-      - lastEditedByAccountId
-      - isConfirmedByMember
-      - updatedAt
-      - createdAt
-      - dataPointDefinitionId
-      - membershipId
-      - value
-      - id
-      - dataPointDefinition
+    TSOAEmptyObject:
+      properties: {}
       type: object
       additionalProperties: false
-    UpdateMembershipDataPointBody:
+    ServerError:
       properties:
-        value:
-          items:
-            type: string
-          type: array
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
       required:
-      - value
+      - message
+      - details
       type: object
       additionalProperties: false
     DBDataPointDefinition:
@@ -257,20 +225,52 @@ components:
       - key
       - id
       type: object
-    ValidateErrorJSON:
+    MembershipDataPointWithDefinitions:
       properties:
-        message:
+        lastEditedByAccountId:
+          type: number
+          format: double
+        isConfirmedByMember:
+          type: boolean
+        updatedAt:
           type: string
-          enum:
-          - Validation failed
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+        dataPointDefinitionId:
+          type: number
+          format: double
+        membershipId:
+          type: number
+          format: double
+        value:
+          type: string
+        id:
+          type: number
+          format: double
+        dataPointDefinition:
+          $ref: '#/components/schemas/DBDataPointDefinition'
       required:
-      - message
-      - details
+      - lastEditedByAccountId
+      - isConfirmedByMember
+      - updatedAt
+      - createdAt
+      - dataPointDefinitionId
+      - membershipId
+      - value
+      - id
+      - dataPointDefinition
+      type: object
+      additionalProperties: false
+    UpdateMembershipDataPointBody:
+      properties:
+        value:
+          items:
+            type: string
+          type: array
+      required:
+      - value
       type: object
       additionalProperties: false
     ForbiddenError:

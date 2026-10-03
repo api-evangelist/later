@@ -63,8 +63,6 @@ components:
       - details
       type: object
       additionalProperties: false
-    SocialProfileUpdateEvent:
-      type: object
     ValidateErrorJSON:
       properties:
         message:
@@ -97,6 +95,8 @@ components:
       - details
       type: object
       additionalProperties: false
+    SocialProfileUpdateEvent:
+      type: object
   securitySchemes:
     apiKey:
       type: apiKey

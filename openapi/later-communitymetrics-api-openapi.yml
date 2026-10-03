@@ -171,24 +171,27 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    ResponseMetadata:
-      properties:
-        limit:
-          type: number
-          format: double
-        offset:
-          type: number
-          format: double
-        status:
-          type: string
-          enum:
-          - failure
-          - success
-        totalCount:
-          type: number
-          format: double
+    EmptyObject:
       type: object
-      additionalProperties: false
+      properties: {}
+    Metric:
+      type: object
+      properties:
+        id:
+          type: integer
+        displayName:
+          type: string
+        name:
+          type: string
+    CommunityMetric:
+      type: object
+      properties:
+        metricId:
+          type: integer
+        enabled:
+          type: boolean
+        metric:
+          $ref: '#/components/schemas/Metric'
     LinksDeprecated:
       type: object
       x-access:
@@ -201,24 +204,6 @@ components:
         deep:
           type: string
           description: A deep link to the entity.
-    CommunityMetric:
-      type: object
-      properties:
-        metricId:
-          type: integer
-        enabled:
-          type: boolean
-        metric:
-          $ref: '#/components/schemas/Metric'
-    Metric:
-      type: object
-      properties:
-        id:
-          type: integer
-        displayName:
-          type: string
-        name:
-          type: string
     Error:
       type: object
       properties:
@@ -250,9 +235,24 @@ components:
             error:
               type: string
               description: A static description of the parent error.
-    EmptyObject:
+    ResponseMetadata:
+      properties:
+        limit:
+          type: number
+          format: double
+        offset:
+          type: number
+          format: double
+        status:
+          type: string
+          enum:
+          - failure
+          - success
+        totalCount:
+          type: number
+          format: double
       type: object
-      properties: {}
+      additionalProperties: false
   securitySchemes:
     apiKey:
       type: apiKey

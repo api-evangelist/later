@@ -558,6 +558,9 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    EmptyObject:
+      type: object
+      properties: {}
     WorkflowActionGroupPerformanceForecast:
       type: object
       properties:
@@ -579,47 +582,41 @@ components:
           type: number
         forecastedCPM:
           type: number
-    ConversationTemplateDeprecated:
+    ListCustomStatusDeprecated:
       type: object
+      required:
+      - label
       properties:
         id:
           type: integer
-        category:
+        label:
           type: string
-        title:
+        ctaLabel:
           type: string
-        subject:
-          type: string
-        html:
-          type: string
-        createdBy:
-          $ref: '#/components/schemas/AdministratorDeprecated'
-        lastModifiedBy:
-          $ref: '#/components/schemas/AdministratorDeprecated'
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-        deliveryMethod:
-          type: string
-        sendOnEvent:
-          type: string
-        sendOnDays:
-          type: integer
-        sendOnTimeframe:
-          type: string
-        sendOnStatusId:
-          type:
-          - integer
-          - 'null'
-        sendOnDate:
+        auxiliaryLabel:
           type: string
         slug:
           type: string
-        isArchived:
+        phase:
+          type: string
+        statusOrder:
+          type: integer
+        disabled:
           type: boolean
+        custom:
+          type: boolean
+        linkedStages:
+          type: array
+          items:
+            type: string
+        templates:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConversationTemplateDeprecated'
+        requirements:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkflowStatusRequirementDeprecated'
     LinksDeprecated:
       type: object
       x-access:
@@ -2452,71 +2449,70 @@ components:
                 type:
                 - integer
                 - string
-    WorkflowStatusRequirementDeprecated:
+    AdministratorDeprecated:
       type: object
-      properties:
-        satisfied:
-          type: boolean
-        incentiveId:
-          type: number
-        name:
-          type: string
-    ListCustomStatusDeprecated:
-      type: object
-      required:
-      - label
       properties:
         id:
           type: integer
-        label:
+        email:
           type: string
-        ctaLabel:
+        first_name:
           type: string
-        auxiliaryLabel:
-          type: string
-        slug:
-          type: string
-        phase:
-          type: string
-        statusOrder:
-          type: integer
-        disabled:
+        last_name:
+          type:
+          - string
+          - 'null'
+        image:
+          type:
+          - string
+          - 'null'
+        approves:
           type: boolean
-        custom:
-          type: boolean
-        linkedStages:
-          type: array
-          items:
-            type: string
-        templates:
-          type: array
-          items:
-            $ref: '#/components/schemas/ConversationTemplateDeprecated'
-        requirements:
-          type: array
-          items:
-            $ref: '#/components/schemas/WorkflowStatusRequirementDeprecated'
-    WorkflowStatusSummary:
+        createdAt:
+          format: date-time
+          type: string
+          description: The date and time that the assessment was created.
+    ConversationTemplateDeprecated:
       type: object
       properties:
+        id:
+          type: integer
+        category:
+          type: string
+        title:
+          type: string
+        subject:
+          type: string
+        html:
+          type: string
+        createdBy:
+          $ref: '#/components/schemas/AdministratorDeprecated'
+        lastModifiedBy:
+          $ref: '#/components/schemas/AdministratorDeprecated'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        deliveryMethod:
+          type: string
+        sendOnEvent:
+          type: string
+        sendOnDays:
+          type: integer
+        sendOnTimeframe:
+          type: string
+        sendOnStatusId:
+          type:
+          - integer
+          - 'null'
+        sendOnDate:
+          type: string
         slug:
           type: string
-        ctaLabel:
-          type: string
-        auxiliaryLabel:
-          type: string
-        label:
-          type: string
-        enabled:
-          type: string
-        count:
-          type: integer
-        sortOrder:
-          type: integer
-        statusId:
-          type: integer
-        phase:
-          type: string
+        isArchived:
+          type: boolean
     Error:
       type: object
       properties:
@@ -2548,32 +2544,36 @@ components:
             error:
               type: string
               description: A static description of the parent error.
-    AdministratorDeprecated:
+    WorkflowStatusSummary:
       type: object
       properties:
-        id:
+        slug:
+          type: string
+        ctaLabel:
+          type: string
+        auxiliaryLabel:
+          type: string
+        label:
+          type: string
+        enabled:
+          type: string
+        count:
           type: integer
-        email:
+        sortOrder:
+          type: integer
+        statusId:
+          type: integer
+        phase:
           type: string
-        first_name:
-          type: string
-        last_name:
-          type:
-          - string
-          - 'null'
-        image:
-          type:
-          - string
-          - 'null'
-        approves:
-          type: boolean
-        createdAt:
-          format: date-time
-          type: string
-          description: The date and time that the assessment was created.
-    EmptyObject:
+    WorkflowStatusRequirementDeprecated:
       type: object
-      properties: {}
+      properties:
+        satisfied:
+          type: boolean
+        incentiveId:
+          type: number
+        name:
+          type: string
     ActionGroupCandidateQueryFilter:
       type: object
       required:

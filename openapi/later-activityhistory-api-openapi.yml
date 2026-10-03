@@ -88,10 +88,10 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   parameters:
-    offsetParam:
+    limitParam:
       in: query
-      description: Number of items to skip
-      name: offset
+      description: Maximum number of items to return
+      name: limit
       schema:
         type: integer
     orderDirection:
@@ -103,10 +103,10 @@ components:
         enum:
         - ASC
         - DESC
-    limitParam:
+    offsetParam:
       in: query
-      description: Maximum number of items to return
-      name: limit
+      description: Number of items to skip
+      name: offset
       schema:
         type: integer
   schemas:
@@ -122,70 +122,6 @@ components:
         deep:
           type: string
           description: A deep link to the entity.
-    ActivityHistory:
-      type: object
-      properties:
-        eventType:
-          type: string
-        eventId:
-          type: string
-        activationId:
-          type: integer
-        title:
-          type: string
-        description:
-          type: string
-        eventAt:
-          type: string
-        actorType:
-          type: string
-        tiktokCampaignCode:
-          type: string
-        inviteLink:
-          type: string
-        actorName:
-          type: string
-        attachments:
-          type: array
-          items:
-            $ref: '#/components/schemas/Attachment'
-        markedAsUnread:
-          type: boolean
-        isArchived:
-          type: boolean
-        count:
-          type: integer
-        influencerInitiated:
-          type: boolean
-        scheduledFor:
-          type: string
-          format: date-time
-        scheduledMessageId:
-          type: integer
-        hasScheduledReply:
-          type: boolean
-        rate:
-          type: string
-        concept:
-          type: string
-    ResponseMetadata:
-      properties:
-        limit:
-          type: number
-          format: double
-        offset:
-          type: number
-          format: double
-        status:
-          type: string
-          enum:
-          - failure
-          - success
-        totalCount:
-          type: number
-          format: double
-      type: object
-      additionalProperties: false
     Attachment:
       type: object
       properties:
@@ -236,6 +172,70 @@ components:
             error:
               type: string
               description: A static description of the parent error.
+    ResponseMetadata:
+      properties:
+        limit:
+          type: number
+          format: double
+        offset:
+          type: number
+          format: double
+        status:
+          type: string
+          enum:
+          - failure
+          - success
+        totalCount:
+          type: number
+          format: double
+      type: object
+      additionalProperties: false
+    ActivityHistory:
+      type: object
+      properties:
+        eventType:
+          type: string
+        eventId:
+          type: string
+        activationId:
+          type: integer
+        title:
+          type: string
+        description:
+          type: string
+        eventAt:
+          type: string
+        actorType:
+          type: string
+        tiktokCampaignCode:
+          type: string
+        inviteLink:
+          type: string
+        actorName:
+          type: string
+        attachments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attachment'
+        markedAsUnread:
+          type: boolean
+        isArchived:
+          type: boolean
+        count:
+          type: integer
+        influencerInitiated:
+          type: boolean
+        scheduledFor:
+          type: string
+          format: date-time
+        scheduledMessageId:
+          type: integer
+        hasScheduledReply:
+          type: boolean
+        rate:
+          type: string
+        concept:
+          type: string
   securitySchemes:
     apiKey:
       type: apiKey

@@ -363,81 +363,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ActionGroupConversationTemplateReorderPutResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/ActionGroupConversationTemplate'
-          type: array
-      type: object
-      additionalProperties: false
-    ActionGroupConversationTemplateCopyPostResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/ActionGroupConversationTemplate'
-          type: array
-        copy:
-          $ref: '#/components/schemas/ActionGroupConversationTemplate'
-      required:
-      - data
-      - copy
-      type: object
-    ActionGroupConversationTemplatesGetResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/ActionGroupConversationTemplate'
-          type: array
-        defaultTemplates:
-          items:
-            $ref: '#/components/schemas/ActionGroupConversationTemplatePostBody'
-          type: array
-      required:
-      - defaultTemplates
-      type: object
-      additionalProperties: false
-    ActionGroupConversationTemplateCopyPostBody:
-      properties:
-        deliveryMethod:
-          type: string
-          enum:
-          - manual
-          - automatic
-      type: object
-      additionalProperties: false
-    ServerError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Server Error
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    NotFoundError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Resource Not Found
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
     ActionGroupConversationTemplate:
       properties:
         createdAt:
@@ -532,32 +457,6 @@ components:
       - title
       type: object
       additionalProperties: false
-    ActionGroupConversationTemplateReorderPutBody:
-      properties:
-        data:
-          items:
-            type: number
-            format: double
-          type: array
-      required:
-      - data
-      type: object
-      additionalProperties: false
-    BadRequestError:
-      properties:
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-        message:
-          type: string
-          enum:
-          - Bad Request
-      required:
-      - message
-      type: object
-      additionalProperties: false
     ActionGroupConversationTemplatePostResponse:
       properties:
         id:
@@ -630,6 +529,48 @@ components:
       - html
       - subject
       - title
+      type: object
+      additionalProperties: false
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    BadRequestError:
+      properties:
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+        message:
+          type: string
+          enum:
+          - Bad Request
+      required:
+      - message
+      type: object
+      additionalProperties: false
+    ActionGroupConversationTemplateReorderPutBody:
+      properties:
+        data:
+          items:
+            type: number
+            format: double
+          type: array
+      required:
+      - data
       type: object
       additionalProperties: false
     ActionGroupConversationTemplatePutBody:
@@ -722,6 +663,56 @@ components:
           type: string
       type: object
       additionalProperties: false
+    ActionGroupConversationTemplatesGetResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/ActionGroupConversationTemplate'
+          type: array
+        defaultTemplates:
+          items:
+            $ref: '#/components/schemas/ActionGroupConversationTemplatePostBody'
+          type: array
+      required:
+      - defaultTemplates
+      type: object
+      additionalProperties: false
+    ActionGroupConversationTemplateCopyPostResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/ActionGroupConversationTemplate'
+          type: array
+        copy:
+          $ref: '#/components/schemas/ActionGroupConversationTemplate'
+      required:
+      - data
+      - copy
+      type: object
+    ActionGroupConversationTemplateReorderPutResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/ActionGroupConversationTemplate'
+          type: array
+      type: object
+      additionalProperties: false
+    NotFoundError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Resource Not Found
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
     ForbiddenError:
       properties:
         message:
@@ -736,6 +727,15 @@ components:
       required:
       - message
       - details
+      type: object
+      additionalProperties: false
+    ActionGroupConversationTemplateCopyPostBody:
+      properties:
+        deliveryMethod:
+          type: string
+          enum:
+          - manual
+          - automatic
       type: object
       additionalProperties: false
   securitySchemes:

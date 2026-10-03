@@ -146,10 +146,10 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   parameters:
-    offsetParam:
+    limitParam:
       in: query
-      description: Number of items to skip
-      name: offset
+      description: Maximum number of items to return
+      name: limit
       schema:
         type: integer
     orderDirection:
@@ -161,31 +161,13 @@ components:
         enum:
         - ASC
         - DESC
-    limitParam:
+    offsetParam:
       in: query
-      description: Maximum number of items to return
-      name: limit
+      description: Number of items to skip
+      name: offset
       schema:
         type: integer
   schemas:
-    ResponseMetadata:
-      properties:
-        limit:
-          type: number
-          format: double
-        offset:
-          type: number
-          format: double
-        status:
-          type: string
-          enum:
-          - failure
-          - success
-        totalCount:
-          type: number
-          format: double
-      type: object
-      additionalProperties: false
     LinksDeprecated:
       type: object
       x-access:
@@ -229,6 +211,24 @@ components:
             error:
               type: string
               description: A static description of the parent error.
+    ResponseMetadata:
+      properties:
+        limit:
+          type: number
+          format: double
+        offset:
+          type: number
+          format: double
+        status:
+          type: string
+          enum:
+          - failure
+          - success
+        totalCount:
+          type: number
+          format: double
+      type: object
+      additionalProperties: false
   securitySchemes:
     apiKey:
       type: apiKey

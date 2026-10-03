@@ -74,32 +74,32 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Partial_GlobalUser_:
+    ValidateErrorJSON:
       properties:
-        id:
-          $ref: '#/components/schemas/GlobalUserId'
-        uuid:
+        message:
           type: string
-        instagram:
-          $ref: '#/components/schemas/MvkInstagramAccount'
-        pinterest:
-          $ref: '#/components/schemas/MvkPinterestAccount'
-        youtube:
-          $ref: '#/components/schemas/MvkYoutubeChannel'
-        twitter:
-          $ref: '#/components/schemas/MvkTwitterAccount'
-        facebook:
-          $ref: '#/components/schemas/MvkFacebookProfile'
-        blog:
-          $ref: '#/components/schemas/MvkBlog'
+          enum:
+          - Validation failed
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
       type: object
-      description: Make all properties in T optional
-    FraudLevel:
-      enum:
-      - low
-      - medium
-      - high
-      type: string
+      additionalProperties: false
+    RequestData:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/Partial_GlobalUser_'
+          type: array
+      required:
+      - data
+      type: object
+      additionalProperties: false
     MvkPinterestAccount:
       properties:
         id:
@@ -152,18 +152,45 @@ components:
       - details
       type: object
       additionalProperties: false
-    RequestData:
+    MvkYoutubeChannel:
       properties:
-        data:
-          items:
-            $ref: '#/components/schemas/Partial_GlobalUser_'
-          type: array
+        id:
+          type: number
+          format: double
+        username:
+          type: string
+        externalId:
+          type: string
+        bio:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        followersCount:
+          type: number
+          format: double
+        profilePicture:
+          type: string
+        primaryAccount:
+          type: boolean
+        userId:
+          type: number
+          format: double
+        videoCount:
+          type: number
+          format: double
+        commentCount:
+          type: number
+          format: double
+        viewCount:
+          type: number
+          format: double
       required:
-      - data
+      - username
+      - externalId
       type: object
       additionalProperties: false
-    MvkFacebookProfile:
-      $ref: '#/components/schemas/MvkSocialAccount'
     MvkBlog:
       properties:
         id:
@@ -178,16 +205,26 @@ components:
       - url
       type: object
       additionalProperties: false
-    Pick_GlobalUser.id-or-uuid_:
+    Partial_GlobalUser_:
       properties:
         id:
           $ref: '#/components/schemas/GlobalUserId'
         uuid:
           type: string
-      required:
-      - id
+        instagram:
+          $ref: '#/components/schemas/MvkInstagramAccount'
+        pinterest:
+          $ref: '#/components/schemas/MvkPinterestAccount'
+        youtube:
+          $ref: '#/components/schemas/MvkYoutubeChannel'
+        twitter:
+          $ref: '#/components/schemas/MvkTwitterAccount'
+        facebook:
+          $ref: '#/components/schemas/MvkFacebookProfile'
+        blog:
+          $ref: '#/components/schemas/MvkBlog'
       type: object
-      description: From T, pick a set of properties whose keys are in the union K
+      description: Make all properties in T optional
     MvkTwitterAccount:
       properties:
         id:
@@ -276,64 +313,17 @@ components:
       - externalId
       type: object
       additionalProperties: false
-    ValidateErrorJSON:
-      properties:
-        message:
-          type: string
-          enum:
-          - Validation failed
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
     GlobalUserId:
       type: number
       format: double
-    MvkYoutubeChannel:
-      properties:
-        id:
-          type: number
-          format: double
-        username:
-          type: string
-        externalId:
-          type: string
-        bio:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        followersCount:
-          type: number
-          format: double
-        profilePicture:
-          type: string
-        primaryAccount:
-          type: boolean
-        userId:
-          type: number
-          format: double
-        videoCount:
-          type: number
-          format: double
-        commentCount:
-          type: number
-          format: double
-        viewCount:
-          type: number
-          format: double
-      required:
-      - username
-      - externalId
-      type: object
-      additionalProperties: false
+    MvkFacebookProfile:
+      $ref: '#/components/schemas/MvkSocialAccount'
+    FraudLevel:
+      enum:
+      - low
+      - medium
+      - high
+      type: string
     MvkSocialAccount:
       properties:
         id:
@@ -361,6 +351,16 @@ components:
       - externalId
       type: object
       additionalProperties: false
+    Pick_GlobalUser.id-or-uuid_:
+      properties:
+        id:
+          $ref: '#/components/schemas/GlobalUserId'
+        uuid:
+          type: string
+      required:
+      - id
+      type: object
+      description: From T, pick a set of properties whose keys are in the union K
   securitySchemes:
     apiKey:
       type: apiKey

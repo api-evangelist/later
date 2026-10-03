@@ -892,168 +892,6 @@ components:
       - meta
       type: object
       additionalProperties: false
-    NotFoundError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Resource Not Found
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    UpdateFindingExclusionsRequest:
-      properties:
-        findings:
-          items:
-            $ref: '#/components/schemas/FindingExclusion'
-          type: array
-      required:
-      - findings
-      type: object
-      additionalProperties: false
-    BatchListItem:
-      properties:
-        batchId:
-          type: string
-        status:
-          $ref: '#/components/schemas/BatchStatus'
-        label:
-          type: string
-        communityName:
-          type: string
-        campaignId:
-          type: number
-          format: double
-        campaignTitle:
-          type: string
-        brandName:
-          type: string
-        total:
-          type: number
-          format: double
-        completed:
-          type: number
-          format: double
-        failed:
-          type: number
-          format: double
-        skipped:
-          type: number
-          format: double
-        createdAt:
-          type: string
-        updatedAt:
-          type: string
-      required:
-      - batchId
-      - status
-      - total
-      - completed
-      - failed
-      - skipped
-      - createdAt
-      - updatedAt
-      type: object
-      additionalProperties: false
-    GenerateReportResponse:
-      properties:
-        reportId:
-          type: string
-        status:
-          $ref: '#/components/schemas/BrandSuitabilityReportStatus'
-        data:
-          $ref: '#/components/schemas/BrandSuitabilityReport'
-      required:
-      - reportId
-      - status
-      type: object
-      additionalProperties: false
-    GetReportsForCreatorResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/BrandSuitabilityReportSummary'
-          type: array
-      required:
-      - data
-      type: object
-      additionalProperties: false
-    CreatorWithReports:
-      properties:
-        globalUserId:
-          type: number
-          format: double
-        latestReportDate:
-          type: string
-        creatorName:
-          type: string
-      required:
-      - globalUserId
-      - latestReportDate
-      type: object
-      additionalProperties: false
-    BrandSuitabilityReport:
-      type: object
-      properties: {}
-    FindingExclusion:
-      properties:
-        id:
-          type: string
-        excluded:
-          type: boolean
-      required:
-      - id
-      - excluded
-      type: object
-      additionalProperties: false
-    BatchMetricRisk:
-      properties:
-        summary:
-          type: string
-        score:
-          type: number
-          format: double
-        riskScore:
-          type: number
-          format: double
-        metricName:
-          type: string
-        metric:
-          type: string
-      required:
-      - summary
-      - riskScore
-      - metricName
-      - metric
-      type: object
-    BatchSummaryCounts:
-      properties:
-        total:
-          type: number
-          format: double
-        completed:
-          type: number
-          format: double
-        failed:
-          type: number
-          format: double
-        pending:
-          type: number
-          format: double
-      required:
-      - total
-      - completed
-      - failed
-      - pending
-      type: object
-      additionalProperties: false
     CreatorResearchRecord:
       properties:
         globalUserId:
@@ -1103,29 +941,115 @@ components:
       - metadata
       type: object
       additionalProperties: false
-    CreateBatchRequest:
+    BatchListItem:
       properties:
-        globalUserIds:
-          items:
-            type: number
-            format: double
-          type: array
-        queryFilter:
-          additionalProperties: true
-        actionGroupId:
-          type: number
-          format: double
+        batchId:
+          type: string
+        status:
+          $ref: '#/components/schemas/BatchStatus'
+        label:
+          type: string
+        communityName:
+          type: string
         campaignId:
           type: number
           format: double
+        campaignTitle:
+          type: string
         brandName:
           type: string
+        total:
+          type: number
+          format: double
+        completed:
+          type: number
+          format: double
+        failed:
+          type: number
+          format: double
+        skipped:
+          type: number
+          format: double
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required:
+      - batchId
+      - status
+      - total
+      - completed
+      - failed
+      - skipped
+      - createdAt
+      - updatedAt
+      type: object
+      additionalProperties: false
+    DeleteReportResponse:
+      properties:
+        success:
+          type: boolean
+        deletedReportId:
+          type: string
+      required:
+      - success
+      - deletedReportId
+      type: object
+      additionalProperties: false
+    BrandSuitabilityReportProgress:
+      enum:
+      - PENDING
+      - RESEARCHING
+      - ASSESSING
+      type: string
+    NotFoundError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Resource Not Found
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    AddCreatorsResponse:
+      properties:
+        batchId:
+          type: string
+      required:
+      - batchId
+      type: object
+      additionalProperties: false
+    GenerateReportRequest:
+      properties:
+        campaignId:
+          type: number
+          format: double
         assessments:
           items:
             type: string
           type: array
-        label:
+        brandName:
           type: string
+      type: object
+      additionalProperties: false
+    GenerateReportResponse:
+      properties:
+        reportId:
+          type: string
+        status:
+          $ref: '#/components/schemas/BrandSuitabilityReportStatus'
+        data:
+          $ref: '#/components/schemas/BrandSuitabilityReport'
+      required:
+      - reportId
+      - status
       type: object
       additionalProperties: false
     BatchDetailResponse:
@@ -1164,6 +1088,74 @@ components:
       - items
       type: object
       additionalProperties: false
+    BatchMetricRisk:
+      properties:
+        summary:
+          type: string
+        score:
+          type: number
+          format: double
+        riskScore:
+          type: number
+          format: double
+        metricName:
+          type: string
+        metric:
+          type: string
+      required:
+      - summary
+      - riskScore
+      - metricName
+      - metric
+      type: object
+    ForbiddenError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Access Forbidden
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    ValidateErrorJSON:
+      properties:
+        message:
+          type: string
+          enum:
+          - Validation failed
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
     GetBrandSuitabilityReportResponse:
       properties:
         data:
@@ -1172,66 +1164,6 @@ components:
           $ref: '#/components/schemas/BrandSuitabilityReportStatus'
       required:
       - status
-      type: object
-      additionalProperties: false
-    AddCreatorsResponse:
-      properties:
-        batchId:
-          type: string
-      required:
-      - batchId
-      type: object
-      additionalProperties: false
-    BatchStatus:
-      enum:
-      - IN_PROGRESS
-      - COMPLETED
-      - PARTIAL_FAILURE
-      - FAILED
-      type: string
-    DeleteReportResponse:
-      properties:
-        success:
-          type: boolean
-        deletedReportId:
-          type: string
-      required:
-      - success
-      - deletedReportId
-      type: object
-      additionalProperties: false
-    AddCreatorsRequest:
-      properties:
-        globalUserIds:
-          items:
-            type: number
-            format: double
-          type: array
-      required:
-      - globalUserIds
-      type: object
-      additionalProperties: false
-    ListBatchesResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/BatchListItem'
-          type: array
-      required:
-      - data
-      type: object
-      additionalProperties: false
-    GenerateReportRequest:
-      properties:
-        campaignId:
-          type: number
-          format: double
-        assessments:
-          items:
-            type: string
-          type: array
-        brandName:
-          type: string
       type: object
       additionalProperties: false
     BrandSuitabilityReportSummary:
@@ -1263,100 +1195,13 @@ components:
       - globalUserId
       - reportId
       type: object
-    BrandSuitabilityReportProgress:
+    BatchStatus:
       enum:
-      - PENDING
-      - RESEARCHING
-      - ASSESSING
+      - IN_PROGRESS
+      - COMPLETED
+      - PARTIAL_FAILURE
+      - FAILED
       type: string
-    DataScoreLevelDTO:
-      description: 'Brand Suitability LLM/assessment output DTOs.
-
-        `v0.3 UI:` notes track field consumption by the v0.3 report view. "unused" = not read by v0.3 (may be used by legacy/admin). Audited 2026-06-22.'
-      enum:
-      - HIGH
-      - MEDIUM
-      - LOW
-      - NONE
-      type: string
-    ExtractedAttributes:
-      properties:
-        names:
-          items:
-            type: string
-          type: array
-        handles:
-          items:
-            type: string
-          type: array
-        urls:
-          items:
-            type: string
-          type: array
-        profession:
-          type:
-          - string
-          - 'null'
-        location:
-          type:
-          - string
-          - 'null'
-        topics:
-          items:
-            type: string
-          type: array
-      required:
-      - names
-      - handles
-      - urls
-      - profession
-      - location
-      - topics
-      type: object
-      additionalProperties: false
-    StoredFinding:
-      properties:
-        id:
-          type: string
-        url:
-          type: string
-        detailedSummary:
-          type: string
-        keyQuotes:
-          items:
-            type: string
-          type: array
-        sourceDate:
-          type:
-          - string
-          - 'null'
-        dateFound:
-          type: string
-        sentiment:
-          type: string
-          enum:
-          - negative
-          - neutral
-          - positive
-          - ''
-        credibility:
-          type: string
-          enum:
-          - high
-          - medium
-          - low
-        relevance:
-          type: number
-          enum:
-          - 0
-          - 1
-          - 2
-        extractedAttributes:
-          $ref: '#/components/schemas/ExtractedAttributes'
-        excluded:
-          type: boolean
-      type: object
-      additionalProperties: false
     ReportStatsResponse:
       properties:
         totalReports:
@@ -1421,20 +1266,112 @@ components:
       - recentFailures
       type: object
       additionalProperties: false
-    ServerError:
+    DataScoreLevelDTO:
+      description: 'Brand Suitability LLM/assessment output DTOs.
+
+        `v0.3 UI:` notes track field consumption by the v0.3 report view. "unused" = not read by v0.3 (may be used by legacy/admin). Audited 2026-06-22.'
+      enum:
+      - HIGH
+      - MEDIUM
+      - LOW
+      - NONE
+      type: string
+    UpdateFindingExclusionsRequest:
       properties:
-        message:
-          type: string
-          enum:
-          - Server Error
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
+        findings:
+          items:
+            $ref: '#/components/schemas/FindingExclusion'
+          type: array
       required:
-      - message
-      - details
+      - findings
+      type: object
+      additionalProperties: false
+    GetReportsForCreatorResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/BrandSuitabilityReportSummary'
+          type: array
+      required:
+      - data
+      type: object
+      additionalProperties: false
+    BatchSummaryCounts:
+      properties:
+        total:
+          type: number
+          format: double
+        completed:
+          type: number
+          format: double
+        failed:
+          type: number
+          format: double
+        pending:
+          type: number
+          format: double
+      required:
+      - total
+      - completed
+      - failed
+      - pending
+      type: object
+      additionalProperties: false
+    ExtractedAttributes:
+      properties:
+        names:
+          items:
+            type: string
+          type: array
+        handles:
+          items:
+            type: string
+          type: array
+        urls:
+          items:
+            type: string
+          type: array
+        profession:
+          type:
+          - string
+          - 'null'
+        location:
+          type:
+          - string
+          - 'null'
+        topics:
+          items:
+            type: string
+          type: array
+      required:
+      - names
+      - handles
+      - urls
+      - profession
+      - location
+      - topics
+      type: object
+      additionalProperties: false
+    FindingExclusion:
+      properties:
+        id:
+          type: string
+        excluded:
+          type: boolean
+      required:
+      - id
+      - excluded
+      type: object
+      additionalProperties: false
+    CreateBatchResponse:
+      properties:
+        batchId:
+          type: string
+        status:
+          $ref: '#/components/schemas/BatchStatus'
+      required:
+      - batchId
+      - status
       type: object
       additionalProperties: false
     BatchReportItem:
@@ -1475,33 +1412,6 @@ components:
       - globalUserId
       type: object
       additionalProperties: false
-    CreateBatchResponse:
-      properties:
-        batchId:
-          type: string
-        status:
-          $ref: '#/components/schemas/BatchStatus'
-      required:
-      - batchId
-      - status
-      type: object
-      additionalProperties: false
-    ValidateErrorJSON:
-      properties:
-        message:
-          type: string
-          enum:
-          - Validation failed
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
     BrandSuitabilityReportStatus:
       enum:
       - COMPLETED
@@ -1509,20 +1419,110 @@ components:
       - FAILED
       - NOT_FOUND
       type: string
-    ForbiddenError:
+    CreatorWithReports:
       properties:
-        message:
+        globalUserId:
+          type: number
+          format: double
+        latestReportDate:
+          type: string
+        creatorName:
+          type: string
+      required:
+      - globalUserId
+      - latestReportDate
+      type: object
+      additionalProperties: false
+    CreateBatchRequest:
+      properties:
+        globalUserIds:
+          items:
+            type: number
+            format: double
+          type: array
+        queryFilter:
+          additionalProperties: true
+        actionGroupId:
+          type: number
+          format: double
+        campaignId:
+          type: number
+          format: double
+        brandName:
+          type: string
+        assessments:
+          items:
+            type: string
+          type: array
+        label:
+          type: string
+      type: object
+      additionalProperties: false
+    AddCreatorsRequest:
+      properties:
+        globalUserIds:
+          items:
+            type: number
+            format: double
+          type: array
+      required:
+      - globalUserIds
+      type: object
+      additionalProperties: false
+    StoredFinding:
+      properties:
+        id:
+          type: string
+        url:
+          type: string
+        detailedSummary:
+          type: string
+        keyQuotes:
+          items:
+            type: string
+          type: array
+        sourceDate:
+          type:
+          - string
+          - 'null'
+        dateFound:
+          type: string
+        sentiment:
           type: string
           enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
+          - negative
+          - neutral
+          - positive
+          - ''
+        credibility:
+          type: string
+          enum:
+          - high
+          - medium
+          - low
+        relevance:
+          type: number
+          enum:
+          - 0
+          - 1
+          - 2
+        extractedAttributes:
+          $ref: '#/components/schemas/ExtractedAttributes'
+        excluded:
+          type: boolean
+      type: object
+      additionalProperties: false
+    BrandSuitabilityReport:
+      type: object
+      properties: {}
+    ListBatchesResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/BatchListItem'
+          type: array
       required:
-      - message
-      - details
+      - data
       type: object
       additionalProperties: false
   securitySchemes:

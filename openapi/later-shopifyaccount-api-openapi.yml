@@ -394,6 +394,40 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    ShopifyAccountResponse:
+      properties:
+        updatedAt:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+        shopifyAccessToken:
+          type: string
+        shopName:
+          type: string
+        communityId:
+          type: string
+        id:
+          type: number
+          format: double
+      required:
+      - updatedAt
+      - createdAt
+      - shopifyAccessToken
+      - shopName
+      - communityId
+      - id
+      type: object
+    UninstallShopifyRequest:
+      properties:
+        shopId:
+          type: number
+          format: double
+      required:
+      - shopId
+      type: object
+      additionalProperties: false
     ConnectShopifyAccountBody:
       properties:
         token:
@@ -421,22 +455,6 @@ components:
       - details
       type: object
       additionalProperties: false
-    NotFoundError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Resource Not Found
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
     BadRequestError:
       properties:
         details:
@@ -450,56 +468,6 @@ components:
           - Bad Request
       required:
       - message
-      type: object
-      additionalProperties: false
-    UninstallShopifyRequest:
-      properties:
-        shopId:
-          type: number
-          format: double
-      required:
-      - shopId
-      type: object
-      additionalProperties: false
-    ShopifyAccountResponse:
-      properties:
-        updatedAt:
-          type: string
-          format: date-time
-        createdAt:
-          type: string
-          format: date-time
-        shopifyAccessToken:
-          type: string
-        shopName:
-          type: string
-        communityId:
-          type: string
-        id:
-          type: number
-          format: double
-      required:
-      - updatedAt
-      - createdAt
-      - shopifyAccessToken
-      - shopName
-      - communityId
-      - id
-      type: object
-    CreateShopifyAccountData:
-      properties:
-        communityId:
-          type: string
-        shopName:
-          type: string
-        apiKey:
-          type: string
-        shopifyAccessToken:
-          type: string
-      required:
-      - communityId
-      - shopName
-      - shopifyAccessToken
       type: object
       additionalProperties: false
     ForbiddenError:
@@ -516,6 +484,38 @@ components:
       required:
       - message
       - details
+      type: object
+      additionalProperties: false
+    NotFoundError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Resource Not Found
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    CreateShopifyAccountData:
+      properties:
+        communityId:
+          type: string
+        shopName:
+          type: string
+        apiKey:
+          type: string
+        shopifyAccessToken:
+          type: string
+      required:
+      - communityId
+      - shopName
+      - shopifyAccessToken
       type: object
       additionalProperties: false
   securitySchemes:

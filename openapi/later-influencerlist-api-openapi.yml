@@ -68,12 +68,68 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    ValidateErrorJSON:
+      properties:
+        message:
+          type: string
+          enum:
+          - Validation failed
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
     ServerError:
       properties:
         message:
           type: string
           enum:
           - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    GetInfluencerPerformanceListResponse:
+      properties:
+        meta:
+          properties:
+            offset:
+              type: number
+              format: double
+            limit:
+              type: number
+              format: double
+            totalCount:
+              type: number
+              format: double
+          required:
+          - totalCount
+          type: object
+        data:
+          items:
+            $ref: '#/components/schemas/GetInfluencerPerformanceListData'
+          type: array
+      required:
+      - meta
+      - data
+      type: object
+    ForbiddenError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Access Forbidden
         details:
           properties: {}
           additionalProperties:
@@ -145,62 +201,6 @@ components:
           type: number
           format: double
       type: object
-    GetInfluencerPerformanceListResponse:
-      properties:
-        meta:
-          properties:
-            offset:
-              type: number
-              format: double
-            limit:
-              type: number
-              format: double
-            totalCount:
-              type: number
-              format: double
-          required:
-          - totalCount
-          type: object
-        data:
-          items:
-            $ref: '#/components/schemas/GetInfluencerPerformanceListData'
-          type: array
-      required:
-      - meta
-      - data
-      type: object
-    ValidateErrorJSON:
-      properties:
-        message:
-          type: string
-          enum:
-          - Validation failed
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ForbiddenError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
   securitySchemes:
     apiKey:
       type: apiKey

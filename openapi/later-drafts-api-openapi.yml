@@ -619,11 +619,38 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    TSOAEmptyObject:
-      properties: {}
+    BadRequestError:
+      properties:
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+        message:
+          type: string
+          enum:
+          - Bad Request
+      required:
+      - message
       type: object
       additionalProperties: false
-    AdminDraftContentPostBody:
+    NotFoundError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Resource Not Found
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    InfluencerDraftContentPostBody:
       properties:
         contentType:
           $ref: '#/components/schemas/NetworkSlug'
@@ -645,12 +672,16 @@ components:
         campaignId:
           type: number
           format: double
-        internalComment:
-          type: string
       required:
       - contentType
-      - globalUserId
-      - campaignId
+      type: object
+      additionalProperties: false
+    InfluencerDraftContentGetResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/InfluencerDraftContentDto'
+          type: array
       type: object
       additionalProperties: false
     ResponseBody_DraftContentFeedbackEntry-Array_:
@@ -663,171 +694,6 @@ components:
           $ref: '#/components/schemas/ResponseMeta'
       required:
       - data
-      type: object
-      additionalProperties: false
-    InfluencerDraftContentDto:
-      type: object
-      properties: {}
-    NotFoundError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Resource Not Found
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    DraftContentUpdateBody:
-      properties:
-        notes:
-          type: string
-        text:
-          type: string
-        files:
-          items:
-            $ref: '#/components/schemas/InfluencerDraftContentPostFile'
-          type: array
-        isArchived:
-          type: boolean
-        feedback:
-          type: string
-        draftContentId:
-          type: number
-          format: double
-      required:
-      - draftContentId
-      type: object
-    InfluencerDraftContentGetResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/InfluencerDraftContentDto'
-          type: array
-      type: object
-      additionalProperties: false
-    DraftContentCommentPutBody:
-      properties:
-        isArchived:
-          type: boolean
-      required:
-      - isArchived
-      type: object
-      additionalProperties: false
-    DraftContentCommentPostResponse:
-      $ref: '#/components/schemas/InfluencerDraftContentComment'
-    draftContentFeedbackUpdateBody:
-      properties:
-        feedback:
-          type: string
-      required:
-      - feedback
-      type: object
-    ResponseMeta:
-      properties:
-        limit:
-          type: number
-          format: double
-        offset:
-          type: number
-          format: double
-        totalCount:
-          type: number
-          format: double
-      type: object
-      additionalProperties: false
-    InfluencerDraftContentPostFile:
-      properties:
-        originalFile:
-          properties:
-            path:
-              type: string
-          required:
-          - path
-          type: object
-        isUploaded:
-          type: boolean
-        lastModified:
-          type: number
-          format: double
-        url:
-          type: string
-        type:
-          type: string
-        size:
-          type: number
-          format: double
-        name:
-          type: string
-        code:
-          type: string
-      type: object
-    Pick_AdministratorAccount.email-or-first_name-or-image-or-last_name_:
-      properties:
-        image:
-          type:
-          - string
-          - 'null'
-        email:
-          type: string
-        first_name:
-          type: string
-        last_name:
-          type: string
-      required:
-      - email
-      type: object
-      description: From T, pick a set of properties whose keys are in the union K
-    InfluencerDraftContentComment:
-      properties:
-        accountId:
-          type: number
-          format: double
-        administratorAccount:
-          $ref: '#/components/schemas/Pick_AdministratorAccount.email-or-first_name-or-image-or-last_name_'
-        archivedByAccountId:
-          type: number
-          format: double
-        commenterName:
-          type: string
-        commenterType:
-          type: string
-        createdAt:
-          type: string
-          format: date-time
-        draftContentId:
-          type: number
-          format: double
-        id:
-          type: number
-          format: double
-        isArchived:
-          type: boolean
-        text:
-          type: string
-      required:
-      - commenterType
-      - createdAt
-      - draftContentId
-      - id
-      - isArchived
-      - text
-      type: object
-      additionalProperties: false
-    DraftContentCommentPostBody:
-      properties:
-        commenterName:
-          type: string
-        text:
-          type: string
-      required:
-      - text
       type: object
       additionalProperties: false
     DraftContentFeedbackEntry:
@@ -864,53 +730,56 @@ components:
       - isArchived
       type: object
       additionalProperties: false
-    BadRequestError:
+    DraftContentCommentPutBody:
       properties:
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-        message:
-          type: string
-          enum:
-          - Bad Request
+        isArchived:
+          type: boolean
       required:
-      - message
+      - isArchived
       type: object
       additionalProperties: false
-    InfluencerDraftContentPostBody:
+    InfluencerDraftContentComment:
       properties:
-        contentType:
-          $ref: '#/components/schemas/NetworkSlug'
-        contentUrl:
+        accountId:
+          type: number
+          format: double
+        administratorAccount:
+          $ref: '#/components/schemas/Pick_AdministratorAccount.email-or-first_name-or-image-or-last_name_'
+        archivedByAccountId:
+          type: number
+          format: double
+        commenterName:
           type: string
-        files:
-          items:
-            $ref: '#/components/schemas/InfluencerDraftContentPostFile'
-          type: array
-        notes:
+        commenterType:
           type: string
+        createdAt:
+          type: string
+          format: date-time
+        draftContentId:
+          type: number
+          format: double
+        id:
+          type: number
+          format: double
+        isArchived:
+          type: boolean
         text:
           type: string
-        threadId:
-          type: string
-        globalUserId:
-          type: number
-          format: double
-        campaignId:
-          type: number
-          format: double
       required:
-      - contentType
+      - commenterType
+      - createdAt
+      - draftContentId
+      - id
+      - isArchived
+      - text
       type: object
       additionalProperties: false
-    ServerError:
+    ForbiddenError:
       properties:
         message:
           type: string
           enum:
-          - Server Error
+          - Access Forbidden
         details:
           properties: {}
           additionalProperties:
@@ -921,27 +790,22 @@ components:
       - details
       type: object
       additionalProperties: false
-    NetworkSlug:
-      type: string
-      enum:
-      - blog
-      - facebook
-      - facebook_group
-      - facebook_live
-      - facebook_reel
-      - image
-      - instagram
-      - instagram_reel
-      - instagram_story
-      - linkedin
-      - pinterest
-      - snapchat_story
-      - tiktok
-      - twitch_stream
-      - twitter
-      - video
-      - youtube_video
-      - youtube_shorts
+    ValidateErrorJSON:
+      properties:
+        message:
+          type: string
+          enum:
+          - Validation failed
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
     DraftContentStatusUpdateBody:
       properties:
         draftContentId:
@@ -964,12 +828,16 @@ components:
       - data
       type: object
       additionalProperties: false
-    ValidateErrorJSON:
+    TSOAEmptyObject:
+      properties: {}
+      type: object
+      additionalProperties: false
+    ServerError:
       properties:
         message:
           type: string
           enum:
-          - Validation failed
+          - Server Error
         details:
           properties: {}
           additionalProperties:
@@ -980,20 +848,152 @@ components:
       - details
       type: object
       additionalProperties: false
-    ForbiddenError:
+    InfluencerDraftContentPostFile:
       properties:
-        message:
-          type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
+        originalFile:
+          properties:
+            path:
+              type: string
+          required:
+          - path
           type: object
+        isUploaded:
+          type: boolean
+        lastModified:
+          type: number
+          format: double
+        url:
+          type: string
+        type:
+          type: string
+        size:
+          type: number
+          format: double
+        name:
+          type: string
+        code:
+          type: string
+      type: object
+    NetworkSlug:
+      type: string
+      enum:
+      - blog
+      - facebook
+      - facebook_group
+      - facebook_live
+      - facebook_reel
+      - image
+      - instagram
+      - instagram_reel
+      - instagram_story
+      - linkedin
+      - pinterest
+      - snapchat_story
+      - tiktok
+      - twitch_stream
+      - twitter
+      - video
+      - youtube_video
+      - youtube_shorts
+    AdminDraftContentPostBody:
+      properties:
+        contentType:
+          $ref: '#/components/schemas/NetworkSlug'
+        contentUrl:
+          type: string
+        files:
+          items:
+            $ref: '#/components/schemas/InfluencerDraftContentPostFile'
+          type: array
+        notes:
+          type: string
+        text:
+          type: string
+        threadId:
+          type: string
+        globalUserId:
+          type: number
+          format: double
+        campaignId:
+          type: number
+          format: double
+        internalComment:
+          type: string
       required:
-      - message
-      - details
+      - contentType
+      - globalUserId
+      - campaignId
+      type: object
+      additionalProperties: false
+    DraftContentCommentPostResponse:
+      $ref: '#/components/schemas/InfluencerDraftContentComment'
+    Pick_AdministratorAccount.email-or-first_name-or-image-or-last_name_:
+      properties:
+        image:
+          type:
+          - string
+          - 'null'
+        email:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+      required:
+      - email
+      type: object
+      description: From T, pick a set of properties whose keys are in the union K
+    InfluencerDraftContentDto:
+      type: object
+      properties: {}
+    DraftContentUpdateBody:
+      properties:
+        notes:
+          type: string
+        text:
+          type: string
+        files:
+          items:
+            $ref: '#/components/schemas/InfluencerDraftContentPostFile'
+          type: array
+        isArchived:
+          type: boolean
+        feedback:
+          type: string
+        draftContentId:
+          type: number
+          format: double
+      required:
+      - draftContentId
+      type: object
+    draftContentFeedbackUpdateBody:
+      properties:
+        feedback:
+          type: string
+      required:
+      - feedback
+      type: object
+    DraftContentCommentPostBody:
+      properties:
+        commenterName:
+          type: string
+        text:
+          type: string
+      required:
+      - text
+      type: object
+      additionalProperties: false
+    ResponseMeta:
+      properties:
+        limit:
+          type: number
+          format: double
+        offset:
+          type: number
+          format: double
+        totalCount:
+          type: number
+          format: double
       type: object
       additionalProperties: false
   securitySchemes:

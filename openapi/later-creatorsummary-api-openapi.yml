@@ -121,6 +121,68 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    ValidateErrorJSON:
+      properties:
+        message:
+          type: string
+          enum:
+          - Validation failed
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    CachedCreatorSummaryResponse:
+      properties:
+        summary:
+          $ref: '#/components/schemas/CreatorSummaryDTO'
+          description: Structured, per-section summary object.
+        rendered:
+          type: string
+          description: Ready-to-read rendered summary with section headers.
+        wordCount:
+          type: number
+          format: double
+        generatedAt:
+          type: string
+          description: ISO date-time the summary was generated.
+        version:
+          type: number
+          format: double
+          description: Prompt/schema version the summary was generated with.
+        cached:
+          type: boolean
+          description: True when served from the creator-summary table, false when generated on this request.
+      required:
+      - summary
+      - rendered
+      - wordCount
+      - generatedAt
+      - version
+      - cached
+      type: object
+      additionalProperties: false
     CreatorSummaryDTO:
       properties:
         creatorPersona:
@@ -178,74 +240,12 @@ components:
       - brandPartnerships
       type: object
       additionalProperties: false
-    ServerError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Server Error
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
     NotFoundError:
       properties:
         message:
           type: string
           enum:
           - Resource Not Found
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    CachedCreatorSummaryResponse:
-      properties:
-        summary:
-          $ref: '#/components/schemas/CreatorSummaryDTO'
-          description: Structured, per-section summary object.
-        rendered:
-          type: string
-          description: Ready-to-read rendered summary with section headers.
-        wordCount:
-          type: number
-          format: double
-        generatedAt:
-          type: string
-          description: ISO date-time the summary was generated.
-        version:
-          type: number
-          format: double
-          description: Prompt/schema version the summary was generated with.
-        cached:
-          type: boolean
-          description: True when served from the creator-summary table, false when generated on this request.
-      required:
-      - summary
-      - rendered
-      - wordCount
-      - generatedAt
-      - version
-      - cached
-      type: object
-      additionalProperties: false
-    ValidateErrorJSON:
-      properties:
-        message:
-          type: string
-          enum:
-          - Validation failed
         details:
           properties: {}
           additionalProperties:

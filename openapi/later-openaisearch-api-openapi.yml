@@ -50,26 +50,28 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    OpenAISearchBody:
-      properties:
-        query:
-          type: string
-        city:
-          type: string
-        state:
-          type: string
-      required:
-      - query
-      - city
-      - state
-      type: object
-      additionalProperties: false
     ServerError:
       properties:
         message:
           type: string
           enum:
           - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    ForbiddenError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Access Forbidden
         details:
           properties: {}
           additionalProperties:
@@ -95,20 +97,18 @@ components:
       - message
       type: object
       additionalProperties: false
-    ForbiddenError:
+    OpenAISearchBody:
       properties:
-        message:
+        query:
           type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
+        city:
+          type: string
+        state:
+          type: string
       required:
-      - message
-      - details
+      - query
+      - city
+      - state
       type: object
       additionalProperties: false
   securitySchemes:

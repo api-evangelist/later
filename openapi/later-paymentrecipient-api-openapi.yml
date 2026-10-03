@@ -420,14 +420,28 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    TipaltiProviderStatus:
-      type: string
-      enum:
-      - ACTIVE
-      - BLOCKED
-      - SUSPENDED
-      - BLOCKED_BY_TIPALTI
-      - INTERNAL_VALUE
+    PaymentRecipientCreateRequest:
+      properties:
+        email:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        companyName:
+          type: string
+        country:
+          type: string
+        include:
+          items:
+            type: string
+            enum:
+            - TIPALTI_PAYEE
+          type: array
+      required:
+      - email
+      type: object
+      additionalProperties: false
     PayableEntity:
       properties:
         id:
@@ -455,6 +469,37 @@ components:
       - provider
       type: object
       additionalProperties: false
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    BadRequestError:
+      properties:
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+        message:
+          type: string
+          enum:
+          - Bad Request
+      required:
+      - message
+      type: object
+      additionalProperties: false
     PaymentRecipientLinksMutationResult:
       description: 'Result of a bulk clear/propagate. `memberships` is how many campaign
 
@@ -471,22 +516,6 @@ components:
       required:
       - memberships
       - affected
-      type: object
-      additionalProperties: false
-    PropagatePaymentRecipientLinksRequest:
-      description: 'Account-level reconnect. Re-links every active campaign membership of the given
-
-        creators to the newly connected recipient.'
-      properties:
-        creator_profile_ids:
-          items:
-            type: string
-          type: array
-        payment_recipient_uuid:
-          type: string
-      required:
-      - creator_profile_ids
-      - payment_recipient_uuid
       type: object
       additionalProperties: false
     TipaltiPayeeIframeUrlResponse:
@@ -506,64 +535,6 @@ components:
       required:
       - email
       - clientId
-      type: object
-      additionalProperties: false
-    OnboardingReminderRequestBody:
-      description: 'Domain types for payment-recipient creator notifications (onboarding reminder + payment
-
-        confirmation). These mirror the Stripe notification payloads but are provider-agnostic: the
-
-        creator only ever sees generic "payment information" copy, while the code refers to the
-
-        internal "payment recipient" concept.'
-      properties:
-        globalUserId:
-          type: number
-          format: double
-        actionGroupId:
-          type: number
-          format: double
-      required:
-      - globalUserId
-      - actionGroupId
-      type: object
-      additionalProperties: false
-    PaymentRecipientCreateRequest:
-      properties:
-        email:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        companyName:
-          type: string
-        country:
-          type: string
-        include:
-          items:
-            type: string
-            enum:
-            - TIPALTI_PAYEE
-          type: array
-      required:
-      - email
-      type: object
-      additionalProperties: false
-    ServerError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Server Error
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
       type: object
       additionalProperties: false
     PaymentRecipientView:
@@ -609,35 +580,24 @@ components:
       - payableEntities
       type: object
       additionalProperties: false
-    NotFoundError:
+    OnboardingReminderRequestBody:
+      description: 'Domain types for payment-recipient creator notifications (onboarding reminder + payment
+
+        confirmation). These mirror the Stripe notification payloads but are provider-agnostic: the
+
+        creator only ever sees generic "payment information" copy, while the code refers to the
+
+        internal "payment recipient" concept.'
       properties:
-        message:
-          type: string
-          enum:
-          - Resource Not Found
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
+        globalUserId:
+          type: number
+          format: double
+        actionGroupId:
+          type: number
+          format: double
       required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    BadRequestError:
-      properties:
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-        message:
-          type: string
-          enum:
-          - Bad Request
-      required:
-      - message
+      - globalUserId
+      - actionGroupId
       type: object
       additionalProperties: false
     ClearPaymentRecipientLinksRequest:
@@ -672,6 +632,38 @@ components:
       - creator_profile_ids
       type: object
       additionalProperties: false
+    PropagatePaymentRecipientLinksRequest:
+      description: 'Account-level reconnect. Re-links every active campaign membership of the given
+
+        creators to the newly connected recipient.'
+      properties:
+        creator_profile_ids:
+          items:
+            type: string
+          type: array
+        payment_recipient_uuid:
+          type: string
+      required:
+      - creator_profile_ids
+      - payment_recipient_uuid
+      type: object
+      additionalProperties: false
+    NotFoundError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Resource Not Found
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
     VerificationConfirmRequest:
       properties:
         email:
@@ -694,6 +686,14 @@ components:
       - code
       type: object
       additionalProperties: false
+    TipaltiProviderStatus:
+      type: string
+      enum:
+      - ACTIVE
+      - BLOCKED
+      - SUSPENDED
+      - BLOCKED_BY_TIPALTI
+      - INTERNAL_VALUE
     ForbiddenError:
       properties:
         message:

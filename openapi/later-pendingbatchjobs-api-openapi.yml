@@ -98,6 +98,21 @@ components:
       - details
       type: object
       additionalProperties: false
+    BadRequestError:
+      properties:
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+        message:
+          type: string
+          enum:
+          - Bad Request
+      required:
+      - message
+      type: object
+      additionalProperties: false
     GetPendingBatchJobsResponse:
       properties:
         data:
@@ -122,21 +137,6 @@ components:
       required:
       - message
       - details
-      type: object
-      additionalProperties: false
-    BadRequestError:
-      properties:
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-        message:
-          type: string
-          enum:
-          - Bad Request
-      required:
-      - message
       type: object
       additionalProperties: false
     ForbiddenError:

@@ -204,16 +204,41 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    DBCashPaymentAppProvider:
-      enum:
-      - PAYPAL
-      - STRIPE
-      - MAVELY
-      - TIPALTI
-      type: string
-    CashPaymentAppUpdateResponse:
+    ValidateErrorJSON:
+      properties:
+        message:
+          type: string
+          enum:
+          - Validation failed
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    CashPaymentAppUpdatePayload:
       type: object
       properties: {}
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
     Partial_CashPaymentAppResponse_:
       properties:
         id:
@@ -344,42 +369,12 @@ components:
           type: object
       type: object
       description: Make all properties in T optional
-    ServerError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Server Error
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    NotFoundError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Resource Not Found
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ProviderEnvironment:
+    DBCashPaymentAppProvider:
       enum:
-      - LIVE
-      - SANDBOX
+      - PAYPAL
+      - STRIPE
+      - MAVELY
+      - TIPALTI
       type: string
     CreateCashPaymentAppBody:
       properties:
@@ -425,12 +420,17 @@ components:
       - description
       - additionalCommunityIds
       type: object
-    ValidateErrorJSON:
+    ProviderEnvironment:
+      enum:
+      - LIVE
+      - SANDBOX
+      type: string
+    NotFoundError:
       properties:
         message:
           type: string
           enum:
-          - Validation failed
+          - Resource Not Found
         details:
           properties: {}
           additionalProperties:
@@ -441,9 +441,6 @@ components:
       - details
       type: object
       additionalProperties: false
-    CashPaymentAppUpdatePayload:
-      type: object
-      properties: {}
     ForbiddenError:
       properties:
         message:
@@ -460,6 +457,9 @@ components:
       - details
       type: object
       additionalProperties: false
+    CashPaymentAppUpdateResponse:
+      type: object
+      properties: {}
   securitySchemes:
     apiKey:
       type: apiKey

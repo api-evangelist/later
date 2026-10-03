@@ -328,49 +328,12 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ResponseMeta:
-      properties:
-        limit:
-          type: number
-          format: double
-        offset:
-          type: number
-          format: double
-        totalCount:
-          type: number
-          format: double
-      type: object
-      additionalProperties: false
-    AccountActivationPutRequestBody:
-      properties:
-        email:
-          type: string
-        inviteeRoleId:
-          type: number
-          format: double
-      type: object
-      additionalProperties: false
-    AccountActivationPostRequestBody:
-      properties:
-        communityId:
-          type: string
-        email:
-          type: string
-        inviteeRoleId:
-          type: number
-          format: double
-      required:
-      - communityId
-      - email
-      - inviteeRoleId
-      type: object
-      additionalProperties: false
-    NotFoundError:
+    ValidateErrorJSON:
       properties:
         message:
           type: string
           enum:
-          - Resource Not Found
+          - Validation failed
         details:
           properties: {}
           additionalProperties:
@@ -434,6 +397,30 @@ components:
       - updatedAt
       type: object
       additionalProperties: false
+    AccountActivationPostRequestBody:
+      properties:
+        communityId:
+          type: string
+        email:
+          type: string
+        inviteeRoleId:
+          type: number
+          format: double
+      required:
+      - communityId
+      - email
+      - inviteeRoleId
+      type: object
+      additionalProperties: false
+    AccountActivationPutRequestBody:
+      properties:
+        email:
+          type: string
+        inviteeRoleId:
+          type: number
+          format: double
+      type: object
+      additionalProperties: false
     ResponseBody_AccountInvitationDomain-Array_:
       properties:
         data:
@@ -446,12 +433,12 @@ components:
       - data
       type: object
       additionalProperties: false
-    ValidateErrorJSON:
+    NotFoundError:
       properties:
         message:
           type: string
           enum:
-          - Validation failed
+          - Resource Not Found
         details:
           properties: {}
           additionalProperties:
@@ -476,6 +463,19 @@ components:
       required:
       - message
       - details
+      type: object
+      additionalProperties: false
+    ResponseMeta:
+      properties:
+        limit:
+          type: number
+          format: double
+        offset:
+          type: number
+          format: double
+        totalCount:
+          type: number
+          format: double
       type: object
       additionalProperties: false
   securitySchemes:

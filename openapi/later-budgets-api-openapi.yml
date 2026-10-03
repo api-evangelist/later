@@ -265,6 +265,19 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    ActionGroupStatus:
+      type: string
+      enum:
+      - DRAFT
+      - READY
+      - PENDING
+      - LIVE
+      - PAUSED
+      - EXPIRED
+      - ARCHIVED
+    Omit_BudgetCreateRequest.communityId_:
+      $ref: '#/components/schemas/Pick_BudgetCreateRequest.Exclude_keyofBudgetCreateRequest.communityId__'
+      description: Construct a type with the properties of T except for those in type K.
     NotFoundError:
       properties:
         message:
@@ -281,34 +294,54 @@ components:
       - details
       type: object
       additionalProperties: false
-    BudgetReferenceIdType:
-      type: string
-      enum:
-      - IROF
-      - OPPORTUNITY
-    InfluencerBudgetsResponse:
+    Pick_BudgetCreateRequest.Exclude_keyofBudgetCreateRequest.communityId__:
       properties:
-        data:
-          items:
-            $ref: '#/components/schemas/InfluencerBudget'
-          type: array
-        meta:
-          properties:
-            offset:
-              type: number
-              format: double
-            limit:
-              type: number
-              format: double
-            totalCount:
-              type: number
-              format: double
-          required:
-          - totalCount
-          type: object
+        name:
+          type: string
+        budgetReferenceId:
+          type: string
+        budgetReferenceIdType:
+          $ref: '#/components/schemas/BudgetReferenceIdType'
       required:
-      - data
-      - meta
+      - name
+      - budgetReferenceId
+      - budgetReferenceIdType
+      type: object
+      description: From T, pick a set of properties whose keys are in the union K
+    BulkBudgetCreateResponse:
+      properties:
+        created:
+          items:
+            $ref: '#/components/schemas/BudgetEntity'
+          type: array
+        conflicts:
+          items:
+            properties:
+              message:
+                type: string
+              budgetReferenceId:
+                type: string
+            required:
+            - message
+            - budgetReferenceId
+            type: object
+          type: array
+        errors:
+          items:
+            properties:
+              error:
+                type: string
+              budgetReferenceId:
+                type: string
+            required:
+            - error
+            - budgetReferenceId
+            type: object
+          type: array
+      required:
+      - created
+      - conflicts
+      - errors
       type: object
       additionalProperties: false
     BudgetEntity:
@@ -345,14 +378,20 @@ components:
       - spentAmount
       type: object
       additionalProperties: false
-    CommunityBudgetsResponse:
+    ActionGroupBudgetsResponse:
       properties:
         data:
           items:
-            $ref: '#/components/schemas/BudgetEntity'
+            $ref: '#/components/schemas/ActionGroupBudget'
           type: array
         meta:
           properties:
+            offset:
+              type: number
+              format: double
+            limit:
+              type: number
+              format: double
             totalCount:
               type: number
               format: double
@@ -364,9 +403,6 @@ components:
       - meta
       type: object
       additionalProperties: false
-    Omit_BudgetCreateRequest.communityId_:
-      $ref: '#/components/schemas/Pick_BudgetCreateRequest.Exclude_keyofBudgetCreateRequest.communityId__'
-      description: Construct a type with the properties of T except for those in type K.
     DBRewardWinType:
       enum:
       - OTHER
@@ -376,6 +412,16 @@ components:
       - GIFT_CARD
       - SHOPIFY_DISCOUNT
       type: string
+    BulkBudgetCreateDTO:
+      properties:
+        budgets:
+          items:
+            $ref: '#/components/schemas/BudgetCreateRequest'
+          type: array
+      required:
+      - budgets
+      type: object
+      additionalProperties: false
     ActionGroupBudget:
       properties:
         id:
@@ -435,6 +481,62 @@ components:
       - status
       type: object
       additionalProperties: false
+    BudgetReferenceIdType:
+      type: string
+      enum:
+      - IROF
+      - OPPORTUNITY
+    ForbiddenError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Access Forbidden
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    CommunityBudgetsResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/BudgetEntity'
+          type: array
+        meta:
+          properties:
+            totalCount:
+              type: number
+              format: double
+          required:
+          - totalCount
+          type: object
+      required:
+      - data
+      - meta
+      type: object
+      additionalProperties: false
+    ValidateErrorJSON:
+      properties:
+        message:
+          type: string
+          enum:
+          - Validation failed
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
     BudgetCreateRequest:
       properties:
         budgetReferenceId:
@@ -452,14 +554,12 @@ components:
       - communityId
       type: object
       additionalProperties: false
-    BudgetCreateDTO:
-      $ref: '#/components/schemas/Omit_BudgetCreateRequest.communityId_'
-    ValidateErrorJSON:
+    ServerError:
       properties:
         message:
           type: string
           enum:
-          - Validation failed
+          - Server Error
         details:
           properties: {}
           additionalProperties:
@@ -468,72 +568,6 @@ components:
       required:
       - message
       - details
-      type: object
-      additionalProperties: false
-    BudgetCurrencyAmount:
-      properties:
-        currencyCode:
-          type: string
-        fundedAmount:
-          type: number
-          format: double
-        spentAmount:
-          type: number
-          format: double
-      required:
-      - currencyCode
-      - fundedAmount
-      - spentAmount
-      type: object
-      additionalProperties: false
-    Pick_BudgetCreateRequest.Exclude_keyofBudgetCreateRequest.communityId__:
-      properties:
-        name:
-          type: string
-        budgetReferenceId:
-          type: string
-        budgetReferenceIdType:
-          $ref: '#/components/schemas/BudgetReferenceIdType'
-      required:
-      - name
-      - budgetReferenceId
-      - budgetReferenceIdType
-      type: object
-      description: From T, pick a set of properties whose keys are in the union K
-    BulkBudgetCreateResponse:
-      properties:
-        created:
-          items:
-            $ref: '#/components/schemas/BudgetEntity'
-          type: array
-        conflicts:
-          items:
-            properties:
-              message:
-                type: string
-              budgetReferenceId:
-                type: string
-            required:
-            - message
-            - budgetReferenceId
-            type: object
-          type: array
-        errors:
-          items:
-            properties:
-              error:
-                type: string
-              budgetReferenceId:
-                type: string
-            required:
-            - error
-            - budgetReferenceId
-            type: object
-          type: array
-      required:
-      - created
-      - conflicts
-      - errors
       type: object
       additionalProperties: false
     InfluencerBudget:
@@ -598,37 +632,13 @@ components:
       - fulfilledCost
       type: object
       additionalProperties: false
-    BulkBudgetCreateDTO:
-      properties:
-        budgets:
-          items:
-            $ref: '#/components/schemas/BudgetCreateRequest'
-          type: array
-      required:
-      - budgets
-      type: object
-      additionalProperties: false
-    ServerError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Server Error
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ActionGroupBudgetsResponse:
+    BudgetCreateDTO:
+      $ref: '#/components/schemas/Omit_BudgetCreateRequest.communityId_'
+    InfluencerBudgetsResponse:
       properties:
         data:
           items:
-            $ref: '#/components/schemas/ActionGroupBudget'
+            $ref: '#/components/schemas/InfluencerBudget'
           type: array
         meta:
           properties:
@@ -649,30 +659,20 @@ components:
       - meta
       type: object
       additionalProperties: false
-    ActionGroupStatus:
-      type: string
-      enum:
-      - DRAFT
-      - READY
-      - PENDING
-      - LIVE
-      - PAUSED
-      - EXPIRED
-      - ARCHIVED
-    ForbiddenError:
+    BudgetCurrencyAmount:
       properties:
-        message:
+        currencyCode:
           type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
+        fundedAmount:
+          type: number
+          format: double
+        spentAmount:
+          type: number
+          format: double
       required:
-      - message
-      - details
+      - currencyCode
+      - fundedAmount
+      - spentAmount
       type: object
       additionalProperties: false
   securitySchemes:

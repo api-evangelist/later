@@ -214,50 +214,22 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ResponseMeta:
+    ConversionTagPostBody:
       properties:
-        limit:
-          type: number
-          format: double
-        offset:
-          type: number
-          format: double
-        totalCount:
-          type: number
-          format: double
-      type: object
-      additionalProperties: false
-    IdObject:
-      properties:
-        id:
-          type: number
-          format: double
+        name:
+          type: string
+        communityId:
+          type: string
       required:
-      - id
+      - name
       type: object
       additionalProperties: false
-    NotFoundError:
+    ValidateErrorJSON:
       properties:
         message:
           type: string
           enum:
-          - Resource Not Found
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ServerError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Server Error
+          - Validation failed
         details:
           properties: {}
           additionalProperties:
@@ -301,14 +273,20 @@ components:
       - data
       type: object
       additionalProperties: false
-    ConversionTagPostBody:
+    ServerError:
       properties:
-        name:
+        message:
           type: string
-        communityId:
-          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
       required:
-      - name
+      - message
+      - details
       type: object
       additionalProperties: false
     ConversionTagPutBody:
@@ -319,12 +297,25 @@ components:
       - name
       type: object
       additionalProperties: false
-    ValidateErrorJSON:
+    ResponseMeta:
+      properties:
+        limit:
+          type: number
+          format: double
+        offset:
+          type: number
+          format: double
+        totalCount:
+          type: number
+          format: double
+      type: object
+      additionalProperties: false
+    NotFoundError:
       properties:
         message:
           type: string
           enum:
-          - Validation failed
+          - Resource Not Found
         details:
           properties: {}
           additionalProperties:
@@ -349,6 +340,15 @@ components:
       required:
       - message
       - details
+      type: object
+      additionalProperties: false
+    IdObject:
+      properties:
+        id:
+          type: number
+          format: double
+      required:
+      - id
       type: object
       additionalProperties: false
   securitySchemes:

@@ -63,15 +63,22 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    MergeTagsCatalogResponse:
+    ValidateErrorJSON:
       properties:
-        groups:
-          items:
-            $ref: '#/components/schemas/CatalogResponseGroup'
-          type: array
+        message:
+          type: string
+          enum:
+          - Validation failed
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
       required:
-      - groups
+      - message
+      - details
       type: object
+      additionalProperties: false
     ServerError:
       properties:
         message:
@@ -88,22 +95,15 @@ components:
       - details
       type: object
       additionalProperties: false
-    NotFoundError:
+    MergeTagsCatalogResponse:
       properties:
-        message:
-          type: string
-          enum:
-          - Resource Not Found
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
+        groups:
+          items:
+            $ref: '#/components/schemas/CatalogResponseGroup'
+          type: array
       required:
-      - message
-      - details
+      - groups
       type: object
-      additionalProperties: false
     CatalogResponseGroup:
       properties:
         tags:
@@ -121,33 +121,12 @@ components:
       - titleI18nKey
       - key
       type: object
-    CatalogResponseTag:
-      properties:
-        subtitleI18nKey:
-          type: string
-        subtitle:
-          type: string
-        titleI18nKey:
-          type: string
-        title:
-          type: string
-        kind:
-          type: string
-          enum:
-          - data
-          - link
-        key:
-          type: string
-      required:
-      - kind
-      - key
-      type: object
-    ValidateErrorJSON:
+    NotFoundError:
       properties:
         message:
           type: string
           enum:
-          - Validation failed
+          - Resource Not Found
         details:
           properties: {}
           additionalProperties:
@@ -174,6 +153,27 @@ components:
       - details
       type: object
       additionalProperties: false
+    CatalogResponseTag:
+      properties:
+        subtitleI18nKey:
+          type: string
+        subtitle:
+          type: string
+        titleI18nKey:
+          type: string
+        title:
+          type: string
+        kind:
+          type: string
+          enum:
+          - data
+          - link
+        key:
+          type: string
+      required:
+      - kind
+      - key
+      type: object
   securitySchemes:
     apiKey:
       type: apiKey

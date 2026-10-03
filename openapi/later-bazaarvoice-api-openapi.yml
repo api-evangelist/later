@@ -118,6 +118,41 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    BazaarVoiceAppPostRequest:
+      properties:
+        data:
+          $ref: '#/components/schemas/BazaarVoiceAppPostRequestBody'
+      required:
+      - data
+      type: object
+      additionalProperties: false
+    DBBazaarVoiceApp:
+      properties:
+        BazaarVoiceLocales:
+          items:
+            $ref: '#/components/schemas/DBBazaarVoiceLocale'
+          type: array
+        BazaarVoiceCommunityApps:
+          items:
+            $ref: '#/components/schemas/DBBazaarVoiceCommunityApp'
+          type: array
+        name:
+          type: string
+        secret:
+          type: string
+        environment:
+          type: string
+        apiKey:
+          type: string
+        id:
+          type: number
+          format: double
+      required:
+      - name
+      - secret
+      - apiKey
+      - id
+      type: object
     DBBazaarVoiceCommunityApp:
       properties:
         bazaarAppId:
@@ -129,6 +164,8 @@ components:
       - bazaarAppId
       - communityId
       type: object
+    BazaarVoiceLocaleResponse:
+      $ref: '#/components/schemas/DBBazaarVoiceLocale'
     ServerError:
       properties:
         message:
@@ -145,14 +182,8 @@ components:
       - details
       type: object
       additionalProperties: false
-    BazaarVoiceAppPostRequest:
-      properties:
-        data:
-          $ref: '#/components/schemas/BazaarVoiceAppPostRequestBody'
-      required:
-      - data
-      type: object
-      additionalProperties: false
+    BazaarVoiceAppResponse:
+      $ref: '#/components/schemas/DBBazaarVoiceApp'
     BazaarVoiceAppPostRequestBody:
       properties:
         locales:
@@ -189,50 +220,6 @@ components:
       - details
       type: object
       additionalProperties: false
-    DBBazaarVoiceLocale:
-      properties:
-        country:
-          type: string
-        language:
-          type: string
-        code:
-          type: string
-      required:
-      - country
-      - language
-      - code
-      type: object
-    BazaarVoiceAppResponse:
-      $ref: '#/components/schemas/DBBazaarVoiceApp'
-    DBBazaarVoiceApp:
-      properties:
-        BazaarVoiceLocales:
-          items:
-            $ref: '#/components/schemas/DBBazaarVoiceLocale'
-          type: array
-        BazaarVoiceCommunityApps:
-          items:
-            $ref: '#/components/schemas/DBBazaarVoiceCommunityApp'
-          type: array
-        name:
-          type: string
-        secret:
-          type: string
-        environment:
-          type: string
-        apiKey:
-          type: string
-        id:
-          type: number
-          format: double
-      required:
-      - name
-      - secret
-      - apiKey
-      - id
-      type: object
-    BazaarVoiceLocaleResponse:
-      $ref: '#/components/schemas/DBBazaarVoiceLocale'
     ForbiddenError:
       properties:
         message:
@@ -249,6 +236,19 @@ components:
       - details
       type: object
       additionalProperties: false
+    DBBazaarVoiceLocale:
+      properties:
+        country:
+          type: string
+        language:
+          type: string
+        code:
+          type: string
+      required:
+      - country
+      - language
+      - code
+      type: object
   securitySchemes:
     apiKey:
       type: apiKey

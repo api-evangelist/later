@@ -94,39 +94,12 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ResponseMeta:
-      properties:
-        limit:
-          type: number
-          format: double
-        offset:
-          type: number
-          format: double
-        totalCount:
-          type: number
-          format: double
-      type: object
-      additionalProperties: false
-    TSOAEmptyObject:
-      properties: {}
-      type: object
-      additionalProperties: false
-    TopicIdSet:
-      properties:
-        topicIds:
-          items:
-            type: string
-          type: array
-      required:
-      - topicIds
-      type: object
-      additionalProperties: false
-    NotFoundError:
+    ValidateErrorJSON:
       properties:
         message:
           type: string
           enum:
-          - Resource Not Found
+          - Validation failed
         details:
           properties: {}
           additionalProperties:
@@ -137,14 +110,8 @@ components:
       - details
       type: object
       additionalProperties: false
-    ResponseBody_TopicIdSet_:
-      properties:
-        data:
-          $ref: '#/components/schemas/TopicIdSet'
-        meta:
-          $ref: '#/components/schemas/ResponseMeta'
-      required:
-      - data
+    TSOAEmptyObject:
+      properties: {}
       type: object
       additionalProperties: false
     ServerError:
@@ -163,12 +130,12 @@ components:
       - details
       type: object
       additionalProperties: false
-    ValidateErrorJSON:
+    NotFoundError:
       properties:
         message:
           type: string
           enum:
-          - Validation failed
+          - Resource Not Found
         details:
           properties: {}
           additionalProperties:
@@ -177,6 +144,26 @@ components:
       required:
       - message
       - details
+      type: object
+      additionalProperties: false
+    TopicIdSet:
+      properties:
+        topicIds:
+          items:
+            type: string
+          type: array
+      required:
+      - topicIds
+      type: object
+      additionalProperties: false
+    ResponseBody_TopicIdSet_:
+      properties:
+        data:
+          $ref: '#/components/schemas/TopicIdSet'
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+      required:
+      - data
       type: object
       additionalProperties: false
     ForbiddenError:
@@ -193,6 +180,19 @@ components:
       required:
       - message
       - details
+      type: object
+      additionalProperties: false
+    ResponseMeta:
+      properties:
+        limit:
+          type: number
+          format: double
+        offset:
+          type: number
+          format: double
+        totalCount:
+          type: number
+          format: double
       type: object
       additionalProperties: false
   securitySchemes:

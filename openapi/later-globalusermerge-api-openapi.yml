@@ -139,44 +139,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    GlobalUserMergeSearchRequest:
-      properties:
-        globalUserId:
-          type: number
-          format: double
-      required:
-      - globalUserId
-      type: object
-    GlobalUserMergeRequest:
-      properties:
-        source:
-          type: string
-        newId:
-          type: number
-          format: double
-        oldId:
-          type: number
-          format: double
-      required:
-      - newId
-      - oldId
-      type: object
-    ServerError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Server Error
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
     ValidateErrorJSON:
       properties:
         message:
@@ -193,6 +155,44 @@ components:
       - details
       type: object
       additionalProperties: false
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    GlobalUserMergeRequest:
+      properties:
+        source:
+          type: string
+        newId:
+          type: number
+          format: double
+        oldId:
+          type: number
+          format: double
+      required:
+      - newId
+      - oldId
+      type: object
+    GlobalUserMergeSearchRequest:
+      properties:
+        globalUserId:
+          type: number
+          format: double
+      required:
+      - globalUserId
+      type: object
     ForbiddenError:
       properties:
         message:

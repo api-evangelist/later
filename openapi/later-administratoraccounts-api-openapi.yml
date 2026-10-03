@@ -132,42 +132,34 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ForbiddenError:
+    AdministratorAccount:
       properties:
-        message:
+        email:
           type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
+        first_name:
+          type: string
+        id:
           type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ResponseMeta:
-      properties:
-        limit:
-          type: number
-          format: double
-        offset:
-          type: number
-          format: double
-        totalCount:
-          type: number
-          format: double
-      type: object
-      additionalProperties: false
-    ValidatePasswordBody:
-      properties:
-        password:
+        image:
+          type:
+          - string
+          - 'null'
+        last_name:
           type: string
+        roles:
+          items:
+            $ref: '#/components/schemas/Role'
+          type: array
+          x-deprecated: true
+        communityRoles:
+          items:
+            $ref: '#/components/schemas/CommunityRole'
+          type: array
       required:
-      - password
+      - email
+      - id
       type: object
+      additionalProperties: false
     ServerError:
       properties:
         message:
@@ -184,16 +176,24 @@ components:
       - details
       type: object
       additionalProperties: false
-    CommunityRole:
+    ResponseBody_AdministratorAccount-Array_:
       properties:
-        roleId:
-          type: number
-          format: double
-        communityId:
+        data:
+          items:
+            $ref: '#/components/schemas/AdministratorAccount'
+          type: array
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+      required:
+      - data
+      type: object
+      additionalProperties: false
+    ValidatePasswordBody:
+      properties:
+        password:
           type: string
       required:
-      - roleId
-      - communityId
+      - password
       type: object
     Role:
       properties:
@@ -229,44 +229,44 @@ components:
       - email
       - attributes
       type: object
-    AdministratorAccount:
+    CommunityRole:
       properties:
-        email:
+        roleId:
+          type: number
+          format: double
+        communityId:
           type: string
-        first_name:
-          type: string
-        id:
-          type: object
-        image:
-          type:
-          - string
-          - 'null'
-        last_name:
-          type: string
-        roles:
-          items:
-            $ref: '#/components/schemas/Role'
-          type: array
-          x-deprecated: true
-        communityRoles:
-          items:
-            $ref: '#/components/schemas/CommunityRole'
-          type: array
       required:
-      - email
-      - id
+      - roleId
+      - communityId
+      type: object
+    ForbiddenError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Access Forbidden
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
       type: object
       additionalProperties: false
-    ResponseBody_AdministratorAccount-Array_:
+    ResponseMeta:
       properties:
-        data:
-          items:
-            $ref: '#/components/schemas/AdministratorAccount'
-          type: array
-        meta:
-          $ref: '#/components/schemas/ResponseMeta'
-      required:
-      - data
+        limit:
+          type: number
+          format: double
+        offset:
+          type: number
+          format: double
+        totalCount:
+          type: number
+          format: double
       type: object
       additionalProperties: false
   securitySchemes:

@@ -62,37 +62,19 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   parameters:
-    offsetParam:
-      in: query
-      description: Number of items to skip
-      name: offset
-      schema:
-        type: integer
     limitParam:
       in: query
       description: Maximum number of items to return
       name: limit
       schema:
         type: integer
+    offsetParam:
+      in: query
+      description: Number of items to skip
+      name: offset
+      schema:
+        type: integer
   schemas:
-    ResponseMetadata:
-      properties:
-        limit:
-          type: number
-          format: double
-        offset:
-          type: number
-          format: double
-        status:
-          type: string
-          enum:
-          - failure
-          - success
-        totalCount:
-          type: number
-          format: double
-      type: object
-      additionalProperties: false
     LinksDeprecated:
       type: object
       x-access:
@@ -136,6 +118,24 @@ components:
             error:
               type: string
               description: A static description of the parent error.
+    ResponseMetadata:
+      properties:
+        limit:
+          type: number
+          format: double
+        offset:
+          type: number
+          format: double
+        status:
+          type: string
+          enum:
+          - failure
+          - success
+        totalCount:
+          type: number
+          format: double
+      type: object
+      additionalProperties: false
     InfluencerPreview:
       type: object
       properties:

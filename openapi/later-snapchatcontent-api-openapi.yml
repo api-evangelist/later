@@ -111,13 +111,6 @@ components:
       - details
       type: object
       additionalProperties: false
-    RefreshSnapchatContentResponse:
-      properties:
-        result:
-          type: string
-      required:
-      - result
-      type: object
     ForbiddenError:
       properties:
         message:
@@ -134,6 +127,13 @@ components:
       - details
       type: object
       additionalProperties: false
+    RefreshSnapchatContentResponse:
+      properties:
+        result:
+          type: string
+      required:
+      - result
+      type: object
   securitySchemes:
     apiKey:
       type: apiKey

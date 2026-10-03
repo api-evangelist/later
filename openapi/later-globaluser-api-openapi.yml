@@ -1280,82 +1280,16 @@ components:
           type: array
       type: object
       additionalProperties: false
-    Activation:
+    DataPointDefinitionActionGroup:
       properties:
-        actionId:
-          type: string
-        approvalStatus:
-          type: string
-        associatedAccount:
-          $ref: '#/components/schemas/NetworkAccount'
-        communityId:
-          type: string
-        content:
-          $ref: '#/components/schemas/ActivationContent'
-        createdAt:
-          type: string
-          format: date-time
-        createdByAccountId:
-          type: number
-          format: double
-        globalUserId:
-          type: number
-          format: double
         id:
           type: number
           format: double
-        isApproved:
-          type: boolean
-        membershipId:
-          type: number
-          format: double
-        selfReported:
-          type: boolean
-        ugcPhoto:
+        title:
           type: string
-        ugcText:
-          type: string
-        updatedAt:
-          type: string
-          format: date-time
-        updatedByAccountId:
-          type: number
-          format: double
-        tags:
-          items:
-            type: string
-          type: array
-      required:
-      - actionId
-      - approvalStatus
-      - communityId
-      - globalUserId
-      - id
-      - isApproved
-      - membershipId
-      - ugcPhoto
-      - ugcText
       type: object
       additionalProperties: false
-    Gender:
-      enum:
-      - describe
-      - female
-      - male
-      - non_bin
-      - other
-      type: string
-    GlobalUserSearchAllSocialProfilesByIdsPostParams:
-      properties:
-        globalUserIds:
-          items:
-            type: number
-            format: double
-          type: array
-      required:
-      - globalUserIds
-      type: object
-    GlobalUserRepairPostParams:
+    GlobalUserGetInconsistenciesPostParams:
       properties:
         plugins:
           items:
@@ -1371,736 +1305,6 @@ components:
       required:
       - globalUserIds
       type: object
-    DataPointDefinitionActionGroup:
-      properties:
-        id:
-          type: number
-          format: double
-        title:
-          type: string
-      type: object
-      additionalProperties: false
-    BulkActionsBody:
-      properties:
-        globalUserIds:
-          items:
-            type: number
-            format: double
-          type: array
-        action:
-          type: string
-          enum:
-          - reindex
-          - refreshAudienceDemographics
-        options:
-          properties:
-            concurrency:
-              type: number
-              format: double
-            platforms:
-              items:
-                type: string
-                enum:
-                - instagram
-                - tiktok
-              type: array
-          type: object
-      required:
-      - globalUserIds
-      - action
-      type: object
-      additionalProperties: false
-    IncentiveRecommendations:
-      properties:
-        ttPost:
-          $ref: '#/components/schemas/Int64Range'
-        igStory:
-          $ref: '#/components/schemas/Int64Range'
-        igPost:
-          $ref: '#/components/schemas/Int64Range'
-        igReel:
-          $ref: '#/components/schemas/Int64Range'
-      required:
-      - ttPost
-      - igStory
-      - igPost
-      - igReel
-      type: object
-    SnapchatAccount:
-      description: Snapchat account profile data.
-      properties:
-        bio:
-          type:
-          - string
-          - 'null'
-        followersCount:
-          type:
-          - number
-          - 'null'
-          format: double
-        id:
-          type:
-          - string
-          - 'null'
-        primaryAccount:
-          type:
-          - boolean
-          - 'null'
-        profilePicture:
-          type:
-          - string
-          - 'null'
-        username:
-          type:
-          - string
-          - 'null'
-        snapchatExternalId:
-          type:
-          - string
-          - 'null'
-        handle:
-          type:
-          - string
-          - 'null'
-        averageEngagements:
-          type:
-          - number
-          - 'null'
-          format: double
-        engagementRate:
-          type:
-          - number
-          - 'null'
-          format: double
-      type: object
-      additionalProperties: false
-    GenerateBrandSuitabilityReportRequest:
-      properties:
-        campaignId:
-          type: number
-          format: double
-        brandName:
-          type: string
-        assessments:
-          items:
-            type: string
-          type: array
-      type: object
-      additionalProperties: false
-    TikTokVideoViewsBySource:
-      properties:
-        source:
-          type:
-          - string
-          - 'null'
-        videoViews:
-          type:
-          - number
-          - 'null'
-          format: double
-      required:
-      - videoViews
-      type: object
-      additionalProperties: false
-    GenerateBrandSuitabilityReportResponse:
-      properties:
-        reportId:
-          type: string
-        status:
-          $ref: '#/components/schemas/BrandSuitabilityReportStatus'
-        data:
-          $ref: '#/components/schemas/BrandSuitabilityReport'
-        message:
-          type: string
-      required:
-      - reportId
-      - status
-      type: object
-      additionalProperties: false
-    GlobalUserRepairPostResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/GlobalUserFixes'
-          type: array
-      required:
-      - data
-      type: object
-    CreatorProfileFields:
-      properties:
-        isDiscovered:
-          type: boolean
-        isPrivate:
-          type:
-          - boolean
-          - 'null'
-        phoneNumber:
-          type:
-          - string
-          - 'null'
-        zipCode:
-          type:
-          - string
-          - 'null'
-        addressLine2:
-          type:
-          - string
-          - 'null'
-        addressLine1:
-          type:
-          - string
-          - 'null'
-        state:
-          type:
-          - string
-          - 'null'
-        city:
-          type:
-          - string
-          - 'null'
-        country:
-          type:
-          - string
-          - 'null'
-        gender:
-          type: object
-        birthday:
-          type:
-          - string
-          - 'null'
-        fullName:
-          type:
-          - string
-          - 'null'
-        lastName:
-          type:
-          - string
-          - 'null'
-        firstName:
-          type:
-          - string
-          - 'null'
-        email:
-          type:
-          - string
-          - 'null'
-      required:
-      - isDiscovered
-      - isPrivate
-      - phoneNumber
-      - zipCode
-      - addressLine2
-      - addressLine1
-      - state
-      - city
-      - country
-      - gender
-      - birthday
-      - fullName
-      - lastName
-      - firstName
-      - email
-      type: object
-      description: Identity/profile fields produced by `CreatorRepository.buildProfile` from CDS V2.
-    SocialPresenceInput:
-      properties:
-        platform:
-          type: string
-        username:
-          type: string
-      required:
-      - platform
-      - username
-      type: object
-      additionalProperties: false
-    GlobalUserUpsertAction:
-      enum:
-      - created
-      - existing
-      - conflict
-      - error
-      type: string
-    GlobalUserAudienceDemographicsResponse:
-      $ref: '#/components/schemas/DynamoGlobalUserAudienceDemographics'
-      description: '***************
-
-        Response Body *
-
-        **************'
-    GlobalUserAudienceCountriesQueryResult:
-      properties:
-        meta:
-          $ref: '#/components/schemas/ResponseMetadata'
-        data:
-          items:
-            $ref: '#/components/schemas/AudienceCountry'
-          type: array
-      required:
-      - meta
-      - data
-      type: object
-      additionalProperties: false
-    ContentPost:
-      properties:
-        id:
-          type: string
-        createdAt:
-          type:
-          - string
-          - 'null'
-        updatedAt:
-          type:
-          - string
-          - 'null'
-        deletedAt:
-          type:
-          - string
-          - 'null'
-        publishedAt:
-          type:
-          - string
-          - 'null'
-        socialPresenceId:
-          type: string
-        platform:
-          type: string
-        platformId:
-          type: string
-        permalink:
-          type: string
-        context:
-          type: string
-        mediaFormat:
-          type: string
-        caption:
-          type: string
-        mediaThumbnail:
-          type: string
-        sponsor:
-          type: string
-        taggedBrands:
-          items:
-            type: string
-          type: array
-        clicksCount:
-          type: number
-          format: double
-        commentsCount:
-          type: number
-          format: double
-        viewsCount:
-          type: number
-          format: double
-        reachCount:
-          type: number
-          format: double
-        reactionsCount:
-          type: number
-          format: double
-        sharesCount:
-          type: number
-          format: double
-        reachFollowersRate:
-          type: number
-          format: double
-        reachNonFollowersRate:
-          type: number
-          format: double
-        viewsFollowersRate:
-          type: number
-          format: double
-        viewsNonFollowersRate:
-          type: number
-          format: double
-      required:
-      - id
-      - createdAt
-      - updatedAt
-      - deletedAt
-      - publishedAt
-      - socialPresenceId
-      - platform
-      - platformId
-      - permalink
-      - context
-      - mediaFormat
-      - caption
-      - mediaThumbnail
-      - sponsor
-      - taggedBrands
-      - clicksCount
-      - commentsCount
-      - viewsCount
-      - reachCount
-      - reactionsCount
-      - sharesCount
-      - reachFollowersRate
-      - reachNonFollowersRate
-      - viewsFollowersRate
-      - viewsNonFollowersRate
-      type: object
-      additionalProperties: false
-    RetrieveCurrentUserResponse:
-      $ref: '#/components/schemas/GlobalUser'
-    PinterestAccount:
-      properties:
-        averageEngagements:
-          type: number
-          format: double
-        bio:
-          type: string
-        boardsCount:
-          type: number
-          format: double
-        engagementRate:
-          type: number
-          format: double
-        firstName:
-          type: string
-        followersCount:
-          type: number
-          format: double
-        followingCount:
-          type: number
-          format: double
-        id:
-          type: object
-        lastName:
-          type: string
-        monthlyViewers:
-          type: number
-          format: double
-        pinsCount:
-          type: number
-          format: double
-        pinterestAccessGrant:
-          properties:
-            isExpired:
-              type: boolean
-          type: object
-        primaryAccount:
-          type: boolean
-        profilePicture:
-          type: string
-        username:
-          type: string
-      type: object
-      additionalProperties: false
-    GlobalUserSocialProfile:
-      properties:
-        username:
-          type:
-          - string
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
-        type:
-          type: string
-          enum:
-          - facebook_user
-          - facebook_page
-        socialPresenceData:
-          additionalProperties: false
-          type: object
-        profileImage:
-          type:
-          - string
-          - 'null'
-        platformId:
-          type:
-          - string
-          - 'null'
-        platform:
-          type: string
-        isPrivate:
-          type: boolean
-        isPrimary:
-          type: boolean
-        isDiscovered:
-          type: boolean
-        globalUserId:
-          type: number
-          format: double
-        followersCount:
-          type: number
-          format: double
-        displayName:
-          type:
-          - string
-          - 'null'
-        bio:
-          type:
-          - string
-          - 'null'
-      required:
-      - username
-      - platform
-      - isPrimary
-      - isDiscovered
-      - globalUserId
-      - followersCount
-      type: object
-    FacebookProfile:
-      properties:
-        active:
-          type: boolean
-        available:
-          type: boolean
-        averageComments:
-          type: number
-          format: double
-        averageEngagements:
-          type: number
-          format: double
-        averageLikes:
-          type: number
-          format: double
-        engagementRate:
-          type: number
-          format: double
-        expiresAt:
-          type: string
-        facebookUser:
-          properties:
-            isExpired:
-              type: boolean
-          type: object
-        facebookExternalId:
-          type: string
-        id:
-          type: number
-          format: double
-        link:
-          type: string
-        name:
-          type: string
-        username:
-          type: string
-        picture:
-          type: string
-        reach:
-          type: number
-          format: double
-        type:
-          type: string
-      type: object
-      additionalProperties: false
-    TikTokCreator:
-      properties:
-        displayName:
-          type: string
-        followersCount:
-          type: number
-          format: double
-        globalUserId:
-          type: number
-          format: double
-        handleName:
-          type: string
-        insightsUpdatedAt:
-          type: string
-        isActive:
-          type: boolean
-        profileImage:
-          type: string
-        status:
-          type: string
-        tiktokAccessGrant:
-          additionalProperties: false
-          type: object
-        engagements:
-          type: number
-          format: double
-        engagementRate:
-          type: number
-          format: double
-        likes:
-          type: number
-          format: double
-        shares:
-          type: number
-          format: double
-        videoViews:
-          type: number
-          format: double
-      type: object
-      additionalProperties: false
-    ImportInfluencerCsvRow:
-      properties:
-        Mavely Handle:
-          type: string
-        Blog Handle:
-          type: string
-        Snapchat Handle:
-          type: string
-        YouTube Handle:
-          type: string
-        Twitter Handle:
-          type: string
-        Pinterest Handle:
-          type: string
-        Facebook Handle:
-          type: string
-        TikTok Handle:
-          type: string
-        Instagram Handle:
-          type: string
-        Email:
-          type: string
-        Last Name:
-          type: string
-        First Name:
-          type: string
-      required:
-      - First Name
-      type: object
-    GlobalUserFields:
-      properties:
-        phone:
-          type: string
-        zip:
-          type: string
-        mavelyHandle:
-          type: string
-        blogHandle:
-          type: string
-        snapchatHandle:
-          type: string
-        facebookHandle:
-          type: string
-        youtubeHandle:
-          type: string
-        twitterHandle:
-          type: string
-        tiktokHandle:
-          type: string
-        talentManagerEmail:
-          type: string
-        state:
-          type: string
-        pinterestHandle:
-          type: string
-        loadSource:
-          type: string
-        lastName:
-          type: string
-        isCreateNewMyMember:
-          type: boolean
-        addToInfluencerIndex:
-          type: boolean
-        instagramHandle:
-          type: string
-        gender:
-          $ref: '#/components/schemas/Gender'
-        fullName:
-          type: string
-        firstName:
-          type: string
-        facebookUrl:
-          type: string
-        email:
-          type: string
-        deletedCreatedAt:
-          type: string
-          format: date-time
-        deleted:
-          type: boolean
-        country:
-          $ref: '#/components/schemas/CountryShortName'
-        city:
-          type: string
-        blogUrl:
-          type: string
-        birthday:
-          type: string
-          format: date-time
-        apt:
-          type: string
-        street:
-          type: string
-      type: object
-    TikTokAudienceCountriesDistribution:
-      properties:
-        country:
-          type:
-          - string
-          - 'null'
-        percentage:
-          type:
-          - number
-          - 'null'
-          format: double
-      required:
-      - country
-      - percentage
-      type: object
-      additionalProperties: false
-    DynamoGlobalUserAudienceDemographics:
-      properties:
-        audienceDemographics:
-          properties:
-            snapchat:
-              $ref: '#/components/schemas/DynamoGlobalUserAudienceDemographicsPayload'
-            facebook:
-              $ref: '#/components/schemas/DynamoGlobalUserAudienceDemographicsPayload'
-            youtubeShorts:
-              $ref: '#/components/schemas/DynamoGlobalUserAudienceDemographicsPayload'
-            youtubeVideos:
-              $ref: '#/components/schemas/DynamoGlobalUserAudienceDemographicsPayload'
-            youtube:
-              $ref: '#/components/schemas/DynamoGlobalUserAudienceDemographicsPayload'
-            tiktok:
-              $ref: '#/components/schemas/DynamoGlobalUserAudienceDemographicsPayload'
-            instagram:
-              $ref: '#/components/schemas/DynamoGlobalUserAudienceDemographicsPayload'
-          type: object
-        globalUserId:
-          type: number
-          format: double
-      required:
-      - globalUserId
-      type: object
-    DataPointDefinitionSetElement:
-      items:
-        properties:
-          key:
-            type: string
-          id:
-            type: number
-            format: double
-          markUpDisplayLabel:
-            type: string
-          displayLabel:
-            type: string
-        required:
-        - key
-        - id
-        - displayLabel
-        type: object
-      type: array
-    ResponseMetadata:
-      properties:
-        limit:
-          type: number
-          format: double
-        offset:
-          type: number
-          format: double
-        status:
-          type: string
-          enum:
-          - failure
-          - success
-        totalCount:
-          type: number
-          format: double
-      type: object
-      additionalProperties: false
-    BrandSuitabilityReport:
-      type: object
-      properties: {}
     DataPointDefinition:
       properties:
         actionGroups:
@@ -2144,552 +1348,6 @@ components:
       - type
       type: object
       additionalProperties: false
-    GlobalUserFix:
-      properties:
-        status:
-          type: string
-          enum:
-          - fixed
-          - skipped
-          - failed
-        affectedEntities:
-          items:
-            type: string
-          type: array
-        type:
-          type: string
-      required:
-      - status
-      - affectedEntities
-      - type
-      type: object
-    BrandSafetyRequestReponse:
-      properties:
-        audienceAuthenticity:
-          properties:
-            message:
-              type: string
-            status:
-              type: string
-          required:
-          - message
-          - status
-          type: object
-        contentWarning:
-          items:
-            properties:
-              postId:
-                type: string
-              status:
-                type: string
-            required:
-            - postId
-            - status
-            type: object
-          type: array
-      type: object
-      additionalProperties: false
-    TwitterAccount:
-      properties:
-        averageEngagements:
-          type: number
-          format: double
-        averageFavorites:
-          type: number
-          format: double
-        averageRetweets:
-          type: number
-          format: double
-        description:
-          type: string
-        engagementRate:
-          type: number
-          format: double
-        followersCount:
-          type: number
-          format: double
-        followingCount:
-          type: number
-          format: double
-        fullName:
-          type: string
-        handle:
-          type: string
-        id:
-          type: object
-        listedCount:
-          type: number
-          format: double
-        primaryAccount:
-          type: boolean
-        profilePicture:
-          type: string
-        twitterAccessGrant:
-          properties:
-            isExpired:
-              type: boolean
-          type: object
-      type: object
-      additionalProperties: false
-    GetBrandSuitabilityReportResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/BrandSuitabilityReport'
-        status:
-          $ref: '#/components/schemas/BrandSuitabilityReportStatus'
-      required:
-      - status
-      type: object
-      additionalProperties: false
-    UnprocessableContent:
-      properties:
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-        message:
-          type: string
-          enum:
-          - Unprocessable Content
-      required:
-      - message
-      type: object
-      additionalProperties: false
-    GlobalUserAudienceGraphDatapoint:
-      properties:
-        value:
-          type: number
-          format: double
-        display:
-          type: string
-      required:
-      - value
-      - display
-      type: object
-    TextSafeSearch:
-      properties:
-        profanityWordCount:
-          type: number
-          format: double
-      type: object
-      additionalProperties: false
-    MembershipCostAndPerformance:
-      properties:
-        activations:
-          type: number
-          format: double
-        clicks:
-          type: number
-          format: double
-        conversionValue:
-          type: number
-          format: double
-        conversions:
-          type: number
-          format: double
-        cost:
-          type: number
-          format: double
-        cpa:
-          type: number
-          format: double
-        cpe:
-          type: number
-          format: double
-        cpm:
-          type: number
-          format: double
-        cpp:
-          type: number
-          format: double
-        engagements:
-          type: number
-          format: double
-        impressions:
-          type: number
-          format: double
-        membershipId:
-          type: number
-          format: double
-        posts:
-          type: number
-          format: double
-        rewards:
-          type: number
-          format: double
-        value:
-          type: number
-          format: double
-      type: object
-      additionalProperties: false
-    TikTokAudienceGendersDistribution:
-      properties:
-        gender:
-          type:
-          - string
-          - 'null'
-        percentage:
-          type:
-          - number
-          - 'null'
-          format: double
-      required:
-      - percentage
-      type: object
-      additionalProperties: false
-    YoutubeChannelTierStats:
-      properties:
-        likes:
-          type: number
-          format: double
-        views:
-          type: number
-          format: double
-        comments:
-          type: number
-          format: double
-        engagedViews:
-          type: number
-          format: double
-        uniqueViewers:
-          type: number
-          format: double
-        engagementRate:
-          type: number
-          format: double
-        averageLikesPerVideo:
-          type: number
-          format: double
-        averageReachPerVideo:
-          type: number
-          format: double
-        averageViewsPerVideo:
-          type: number
-          format: double
-        averageCommentsPerVideo:
-          type: number
-          format: double
-        averageVideosAddedPlaylist:
-          type: number
-          format: double
-        averageEngagedViewsPerVideo:
-          type: number
-          format: double
-      type: object
-      additionalProperties: false
-    GlobalUserGetRandomGlobalUsersResponse:
-      properties:
-        data:
-          items:
-            type: number
-            format: double
-          type: array
-      required:
-      - data
-      type: object
-    ActivationContent:
-      properties:
-        ytbcLinkState:
-          type: string
-          enum:
-          - PENDING
-          - ACTIVE
-          - DECLINED
-          description: 'CMP-1107: BrandConnect VideoCollaboration consent state for a YouTube video
-
-            (PENDING / ACTIVE / DECLINED). Absent for non-YouTube content or videos whose
-
-            link state has not been synced. Populated by ActivationService::appendYtbcLinkState.'
-        emvValue:
-          type:
-          - number
-          - 'null'
-          format: double
-        followersAtPostDate:
-          type: number
-          format: double
-        viewsPaid:
-          type: number
-          format: double
-        viewsOrganic:
-          type: number
-          format: double
-        views:
-          type: number
-          format: double
-        videoViewsBySource:
-          items:
-            $ref: '#/components/schemas/TikTokVideoViewsBySource'
-          type:
-          - array
-          - 'null'
-        videoViewTotalTime:
-          type: number
-          format: double
-        videoCompletionRate:
-          type: number
-          format: double
-        video:
-          type: string
-        verifiedImpressions:
-          type: number
-          format: double
-        updatedAt:
-          type: string
-          format: date-time
-        text:
-          type: string
-        sharesPaid:
-          type: number
-          format: double
-        sharesOrganic:
-          type: number
-          format: double
-        shares:
-          type: number
-          format: double
-        reach:
-          type: number
-          format: double
-        privacy:
-          type: string
-        postLink:
-          type: string
-        postDate:
-          type: string
-        network:
-          $ref: '#/components/schemas/ActivationContentNetwork'
-        manuallyEnteredImpressions:
-          type: number
-          format: double
-        likesPaid:
-          type: number
-          format: double
-        likesOrganic:
-          type: number
-          format: double
-        likes:
-          type: number
-          format: double
-        influencerReportedImpressions:
-          type: number
-          format: double
-        impressionsSource:
-          type: string
-        image:
-          type: string
-        isDeleted:
-          type: boolean
-        engagements:
-          type: number
-          format: double
-        estimatedImpressionsUpdatedAt:
-          type: string
-          format: date-time
-        estimatedImpressions:
-          type: number
-          format: double
-        conversions:
-          type: number
-          format: double
-        conversionValue:
-          type: number
-          format: double
-        commentsPaid:
-          type:
-          - number
-          - 'null'
-          format: double
-        commentsOrganic:
-          type:
-          - number
-          - 'null'
-          format: double
-        comments:
-          type: number
-          format: double
-        clicks:
-          type: number
-          format: double
-        carouselPosts:
-          items:
-            additionalProperties: true
-          type: array
-        canonicalUrlId:
-          type: number
-          format: double
-        benchmarkEngagementRate:
-          type: number
-          format: double
-        benchmarkAverageEngagements:
-          type: number
-          format: double
-        algorithmicImpressions:
-          type: number
-          format: double
-        activationId:
-          type: number
-          format: double
-        audienceInterestDistribution:
-          items:
-            $ref: '#/components/schemas/TikTokAudienceInterestDistribution'
-          type:
-          - array
-          - 'null'
-        audienceGendersDistribution:
-          items:
-            $ref: '#/components/schemas/TikTokAudienceGendersDistribution'
-          type:
-          - array
-          - 'null'
-        audienceCountriesDistribution:
-          items:
-            $ref: '#/components/schemas/TikTokAudienceCountriesDistribution'
-          type:
-          - array
-          - 'null'
-        audienceAgeDistribution:
-          items:
-            $ref: '#/components/schemas/TikTokAudienceAgeDistribution'
-          type:
-          - array
-          - 'null'
-      required:
-      - emvValue
-      - video
-      - text
-      - shares
-      - privacy
-      - postLink
-      - network
-      - likes
-      - image
-      - engagements
-      - estimatedImpressions
-      - conversions
-      - conversionValue
-      - comments
-      - clicks
-      - activationId
-      type: object
-    Membership:
-      properties:
-        blacklisted:
-          type: boolean
-        contactInfo:
-          $ref: '#/components/schemas/MembershipContactInfoDeprecated'
-        createdAt:
-          type: string
-        id:
-          type: number
-          format: double
-        imageUrl:
-          type: string
-        lifetimeClicks:
-          type: number
-          format: double
-        lifetimeConversions:
-          type: number
-          format: double
-        lifetimeConversionsValue:
-          type: number
-          format: double
-        membershipId:
-          type: number
-          format: double
-        membershipType:
-          type: string
-        mostRecentActivationDate:
-          type: string
-        pointsCurrentBalance:
-          properties:
-            amount:
-              type: number
-              format: double
-          type: object
-        status:
-          type: string
-        totalImpressions:
-          type: number
-          format: double
-        totalPoints:
-          type: number
-          format: double
-        updatedAt:
-          type: string
-        utmCampaign:
-          type: string
-        utmContent:
-          type: string
-        fullName:
-          type: string
-      type: object
-      additionalProperties: false
-    ServerError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Server Error
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    Blog:
-      properties:
-        globalUserId:
-          type:
-          - number
-          - 'null'
-          format: double
-        language:
-          type:
-          - string
-          - 'null'
-        name:
-          type:
-          - string
-          - 'null'
-        platform:
-          type:
-          - string
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
-      type: object
-      additionalProperties: false
-    AudienceCountry:
-      properties:
-        country:
-          type: string
-        percentage:
-          type: number
-          format: double
-      required:
-      - country
-      - percentage
-      type: object
-      additionalProperties: false
-    BrandSuitabilityReportStatus:
-      enum:
-      - COMPLETED
-      - PROCESSING
-      - FAILED
-      - NOT_FOUND
-      type: string
-    TSOAEmptyObject:
-      properties: {}
-      type: object
-      additionalProperties: false
     NotFoundError:
       properties:
         message:
@@ -2706,219 +1364,26 @@ components:
       - details
       type: object
       additionalProperties: false
-    Int64Range:
-      properties:
-        middle:
-          type:
-          - number
-          - 'null'
-          format: double
-        high:
-          type:
-          - number
-          - 'null'
-          format: double
-        low:
-          type:
-          - number
-          - 'null'
-          format: double
-      required:
-      - middle
-      - high
-      - low
-      type: object
-    TikTokAudienceInterestDistribution:
-      properties:
-        interestTag:
-          type:
-          - string
-          - 'null'
-        percentage:
-          type:
-          - number
-          - 'null'
-          format: double
-      required:
-      - interestTag
-      - percentage
-      type: object
-      additionalProperties: false
-    GlobalUserAudienceDemographicsGraph:
+    GlobalUserGetInconsistenciesPostResponse:
       properties:
         data:
           items:
-            $ref: '#/components/schemas/GlobalUserAudienceGraphDatapoint'
+            $ref: '#/components/schemas/GlobalUserInconsistencies'
           type: array
-        id:
-          type: string
       required:
       - data
+      type: object
+    LaterInfluencerInfo:
+      properties:
+        adminUrl:
+          type: string
+        id:
+          type: number
+          format: double
+      required:
+      - adminUrl
       - id
       type: object
-    InstagramProfile:
-      properties:
-        accessGrant:
-          properties:
-            type:
-              type: string
-              enum:
-              - basic
-              - business
-            isExpired:
-              type: boolean
-          type: object
-        audienceAuthenticity:
-          $ref: '#/components/schemas/InstagramAudienceAuthenticityRequest'
-        audienceFakeCommentersLevel:
-          type: string
-        audienceFakeCommentersPercentage:
-          type: number
-          format: double
-        audienceFakeEngagersLevel:
-          type: string
-        audienceFakeFollowersLevel:
-          type: string
-        audienceFakeFollowersPercentage:
-          type: number
-          format: double
-        audienceFakeLikersLevel:
-          type: string
-        audienceFakeLikersPercentage:
-          type: number
-          format: double
-        audienceFraudLevel:
-          type: string
-        audiencePercentageFemale:
-          type: number
-          format: double
-        audiencePercentage_13_17:
-          type: number
-          format: double
-        audiencePercentage_18_24:
-          type: number
-          format: double
-        audiencePercentage_25_34:
-          type: number
-          format: double
-        audiencePercentage_35_44:
-          type: number
-          format: double
-        audiencePercentage_45_54:
-          type: number
-          format: double
-        audiencePercentage_55_64:
-          type: number
-          format: double
-        audiencePercentage_65_plus:
-          type: number
-          format: double
-        audiencePredominantAgeRange:
-          type: string
-        audiencePredominantCity:
-          type: string
-        audiencePredominantCountry:
-          type: string
-        averageComments:
-          type: number
-          format: double
-        averageEngagements:
-          type: number
-          format: double
-        averageLikes:
-          type: number
-          format: double
-        bio:
-          type: string
-        boughtFollowers:
-          type: boolean
-        contentWarning:
-          items:
-            $ref: '#/components/schemas/InstagramContentWarningRequest'
-          type: array
-        engagementRate:
-          type: number
-          format: double
-        followersCount:
-          type: number
-          format: double
-        followingCount:
-          type: number
-          format: double
-        fullName:
-          type: string
-        handle:
-          type: string
-        id:
-          type: number
-          format: double
-        isBusiness:
-          type: boolean
-        isPrivate:
-          type: boolean
-        mediaCount:
-          type: number
-          format: double
-        nudityLevel:
-          type: string
-        previewPostsLastUpdatedAt:
-          type: string
-          format: date-time
-        profanityLevel:
-          type: string
-        profilePicture:
-          type: string
-        profileType:
-          type: string
-          enum:
-          - business
-          - platform
-        lastAnalyzedAt:
-          type: string
-          format: date-time
-        sponsoredPostRate:
-          type: number
-          format: double
-        website:
-          type: string
-      required:
-      - lastAnalyzedAt
-      type: object
-      additionalProperties: false
-    InstagramContentWarningRequest:
-      properties:
-        id:
-          type: number
-          format: double
-        instagramExternalId:
-          type: string
-        instagramProfileId:
-          type: number
-          format: double
-        postId:
-          type: string
-        displayUrl:
-          type: string
-        requestStatus:
-          type: string
-        requestErrorCode:
-          type: string
-        requestResponse:
-          additionalProperties: false
-          type: object
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-        caption:
-          type: string
-        postedTime:
-          type: string
-          format: date-time
-      type: object
-      additionalProperties: false
     GlobalUserSearchAllSocialProfilesByIdsPostResponse:
       properties:
         data:
@@ -2928,37 +1393,24 @@ components:
       required:
       - data
       type: object
-    MavelyUser:
+    ValidateErrorJSON:
       properties:
-        mavelyUserId:
-          type:
-          - string
-          - 'null'
-        globalUserId:
-          type: number
-          format: double
-        displayName:
-          type:
-          - string
-          - 'null'
-        username:
-          type:
-          - string
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
-        profileImage:
-          type:
-          - string
-          - 'null'
-        bio:
-          type:
-          - string
-          - 'null'
+        message:
+          type: string
+          enum:
+          - Validation failed
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
       required:
-      - mavelyUserId
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    TSOAEmptyObject:
+      properties: {}
       type: object
       additionalProperties: false
     GlobalUserPerformanceMetrics:
@@ -3021,409 +1473,93 @@ components:
           type: boolean
       type: object
       additionalProperties: false
-    GlobalUserInconsistency:
+    InstagramAccount:
       properties:
-        affectedEntities:
-          items:
-            type: string
-          type: array
-        message:
-          type: string
-        type:
-          type: string
-      required:
-      - affectedEntities
-      - message
-      - type
-      type: object
-    CountryShortName:
-      enum:
-      - Afghanistan
-      - Albania
-      - Algeria
-      - American Samoa
-      - Andorra
-      - Angola
-      - Anguilla
-      - Antarctica
-      - Antigua and Barbuda
-      - Argentina
-      - Armenia
-      - Aruba
-      - Australia
-      - Austria
-      - Azerbaijan
-      - Bahrain
-      - Bangladesh
-      - Barbados
-      - Belarus
-      - Belgium
-      - Belize
-      - Benin
-      - Bermuda
-      - Bhutan
-      - Bolivia
-      - Bosnia and Herzegovina
-      - Botswana
-      - Bouvet Island
-      - Brazil
-      - British Indian Ocean Territory
-      - British Virgin Islands
-      - Brunei
-      - Bulgaria
-      - Burkina Faso
-      - Burundi
-      - Cambodia
-      - Cameroon
-      - Canada
-      - Cape Verde
-      - Caribbean Netherlands
-      - Cayman Islands
-      - Central African Republic
-      - Chad
-      - Chile
-      - China
-      - Christmas Island
-      - Cocos (Keeling) Islands
-      - Collectivity of Saint Martin
-      - Colombia
-      - Comoros
-      - Cook Islands
-      - Costa Rica
-      - Croatia
-      - Cuba
-      - Curaçao
-      - Cyprus
-      - Czechia
-      - Côte d'Ivoire
-      - Democratic Republic of the Congo
-      - Denmark
-      - Djibouti
-      - Dominica
-      - Dominican Republic
-      - Ecuador
-      - Egypt
-      - El Salvador
-      - Equatorial Guinea
-      - Eritrea
-      - Estonia
-      - Ethiopia
-      - Falkland Islands (Malvinas)
-      - Faroe Islands
-      - Federated States of Micronesia
-      - Fiji
-      - Finland
-      - France
-      - French Guiana
-      - French Polynesia
-      - French Southern Territories
-      - Gabon
-      - Georgia
-      - Germany
-      - Ghana
-      - Gibraltar
-      - Greece
-      - Greenland
-      - Grenada
-      - Guadeloupe
-      - Guam
-      - Guatemala
-      - Guernsey
-      - Guinea
-      - Guinea-Bissau
-      - Guyana
-      - Haiti
-      - Heard Island and McDonald Islands
-      - Holy See (Vatican City)
-      - Honduras
-      - Hong Kong
-      - Hungary
-      - Iceland
-      - India
-      - Indonesia
-      - Iran
-      - Iraq
-      - Ireland
-      - Isle of Man
-      - Israel
-      - Italy
-      - Jamaica
-      - Japan
-      - Jersey
-      - Jordan
-      - Kazakhstan
-      - Kenya
-      - Kiribati
-      - Kuwait
-      - Kyrgyzstan
-      - Laos
-      - Latvia
-      - Lebanon
-      - Lesotho
-      - Liberia
-      - Libya
-      - Liechtenstein
-      - Lithuania
-      - Luxembourg
-      - Macau
-      - Macedonia (FYROM)
-      - Madagascar
-      - Malawi
-      - Malaysia
-      - Maldives
-      - Mali
-      - Malta
-      - Marshall Islands
-      - Martinique
-      - Mauritania
-      - Mauritius
-      - Mayotte
-      - Mexico
-      - Moldova
-      - Monaco
-      - Mongolia
-      - Montenegro
-      - Montserrat
-      - Morocco
-      - Mozambique
-      - Myanmar (Burma)
-      - Namibia
-      - Nauru
-      - Nepal
-      - Netherlands
-      - New Caledonia
-      - New Zealand
-      - Nicaragua
-      - Niger
-      - Nigeria
-      - Niue
-      - Norfolk Island
-      - North Korea
-      - Northern Mariana Islands
-      - Norway
-      - Oman
-      - Pakistan
-      - Palau
-      - Palestine
-      - Panama
-      - Papua New Guinea
-      - Paraguay
-      - Peru
-      - Philippines
-      - Pitcairn
-      - Poland
-      - Portugal
-      - Puerto Rico
-      - Qatar
-      - Republic of Indonesia
-      - Republic of the Congo
-      - Reunion
-      - Romania
-      - Russia
-      - Rwanda
-      - Saint Helena, Ascension and Tristan da Cunha
-      - Saint Kitts and Nevis
-      - Saint Lucia
-      - Saint Pierre and Miquelon
-      - Saint Vincent and the Grenadines
-      - Saint-Barthélemy
-      - Samoa
-      - San Marino
-      - Sao Tome and Principe
-      - Saudi Arabia
-      - Senegal
-      - Serbia
-      - Seychelles
-      - Sierra Leone
-      - Singapore
-      - Sint Maarten (Dutch part)
-      - Slovakia
-      - Slovenia
-      - Solomon Islands
-      - Somalia
-      - South Africa
-      - South Georgia and the South Sandwich Islands
-      - South Korea
-      - South Sudan
-      - Spain
-      - Sri Lanka
-      - Sudan
-      - Suriname
-      - Svalbard and Jan Mayen
-      - Swaziland
-      - Sweden
-      - Switzerland
-      - Syria
-      - Taiwan
-      - Tajikistan
-      - Tanzania
-      - Thailand
-      - The Bahamas
-      - The Gambia
-      - Timor-Leste
-      - Togo
-      - Tokelau
-      - Tonga
-      - Trinidad and Tobago
-      - Tunisia
-      - Turkey
-      - Turkmenistan
-      - Turks and Caicos Islands
-      - Tuvalu
-      - U.S. Virgin Islands
-      - Uganda
-      - Ukraine
-      - United Arab Emirates
-      - United Kingdom
-      - United States
-      - United States Minor Outlying Islands
-      - Uruguay
-      - Uzbekistan
-      - Vanuatu
-      - Venezuela
-      - Vietnam
-      - Wallis and Futuna
-      - Western Sahara
-      - Yemen
-      - Zambia
-      - Zimbabwe
-      - Åland Islands
-      type: string
-    GetGlobalUserResponse:
-      $ref: '#/components/schemas/GlobalUser'
-    BadRequestError:
-      properties:
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-        message:
-          type: string
-          enum:
-          - Bad Request
-      required:
-      - message
-      type: object
-      additionalProperties: false
-    ValidateErrorJSON:
-      properties:
-        message:
-          type: string
-          enum:
-          - Validation failed
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    NetworkAccount:
-      properties:
+        averageComments:
+          type: number
+          format: double
         averageEngagements:
           type: number
           format: double
+        averageLikes:
+          type: number
+          format: double
+        bio:
+          type: string
         engagementRate:
           type: number
           format: double
-        firstName:
-          type: string
         followersCount:
           type: number
           format: double
+        followingCount:
+          type: number
+          format: double
+        fullName:
+          type: string
+        handle:
+          type: string
         id:
+          type: string
+          enum:
+          - number
+        instagramAccessGrant:
+          properties:
+            type:
+              type: string
+            businessIsExpired:
+              type: boolean
+            platformIsExpired:
+              type: boolean
+            isExpired:
+              type: boolean
+          type: object
+        accessGrant:
+          properties:
+            type:
+              type: string
+            isExpired:
+              type: boolean
+          type: object
+        isBusiness:
+          type: boolean
+        isPrivate:
+          type: boolean
+        mediaCount:
           type: number
           format: double
         primaryAccount:
           type: boolean
         profilePicture:
           type: string
-        reach:
+        profileType:
+          type: string
+          enum:
+          - platform
+          - business
+        sponsoredPostRate:
           type: number
           format: double
-        username:
-          type: string
-      required:
-      - id
-      type: object
-      additionalProperties: false
-    GlobalUserProfile:
-      properties:
-        socialProfiles:
-          items:
-            $ref: '#/components/schemas/GlobalUserSocialProfile'
-          type: array
-        zipCode:
-          type: string
-        state:
-          type: string
-        phoneNumber:
-          type: string
-        lastName:
-          type: string
-        isContactable:
-          type: boolean
-        globalUserId:
-          type: number
-          format: double
-        gender:
-          type: string
-        firstName:
-          type: string
-        ethnicities:
-          items:
-            type: string
-          type: array
-        email:
-          type: string
-        country:
-          type: string
-        city:
-          type: string
-        birthday:
-          type: string
-        address:
-          type: string
-      required:
-      - socialProfiles
-      - globalUserId
-      type: object
-    LaterInfluencerInfo:
-      properties:
-        adminUrl:
-          type: string
-        id:
-          type: number
-          format: double
-      required:
-      - adminUrl
-      - id
-      type: object
-    Topic:
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        slug:
+        website:
           type: string
       type: object
       additionalProperties: false
-    InstagramAudienceAuthenticityRequest:
+    GetGlobalUserResponse:
+      $ref: '#/components/schemas/GlobalUser'
+    InstagramContentWarningRequest:
       properties:
         id:
           type: number
           format: double
+        instagramExternalId:
+          type: string
         instagramProfileId:
           type: number
           format: double
-        requestId:
-          type: number
-          format: double
+        postId:
+          type: string
+        displayUrl:
+          type: string
         requestStatus:
           type: string
         requestErrorCode:
@@ -3435,6 +1571,11 @@ components:
           type: string
           format: date-time
         updatedAt:
+          type: string
+          format: date-time
+        caption:
+          type: string
+        postedTime:
           type: string
           format: date-time
       type: object
@@ -3454,35 +1595,59 @@ components:
       - addToInfluencerIndex
       - addToMyMembers
       type: object
-    GlobalUserFixes:
+    Membership:
       properties:
-        fixes:
-          items:
-            $ref: '#/components/schemas/GlobalUserFix'
-          type: array
-        globalUserId:
+        blacklisted:
+          type: boolean
+        contactInfo:
+          $ref: '#/components/schemas/MembershipContactInfoDeprecated'
+        createdAt:
+          type: string
+        id:
           type: number
           format: double
-      required:
-      - fixes
-      - globalUserId
+        imageUrl:
+          type: string
+        lifetimeClicks:
+          type: number
+          format: double
+        lifetimeConversions:
+          type: number
+          format: double
+        lifetimeConversionsValue:
+          type: number
+          format: double
+        membershipId:
+          type: number
+          format: double
+        membershipType:
+          type: string
+        mostRecentActivationDate:
+          type: string
+        pointsCurrentBalance:
+          properties:
+            amount:
+              type: number
+              format: double
+          type: object
+        status:
+          type: string
+        totalImpressions:
+          type: number
+          format: double
+        totalPoints:
+          type: number
+          format: double
+        updatedAt:
+          type: string
+        utmCampaign:
+          type: string
+        utmContent:
+          type: string
+        fullName:
+          type: string
       type: object
-    GlobalUserGetInconsistenciesPostParams:
-      properties:
-        plugins:
-          items:
-            type: string
-          type: array
-          description: If no plugins are provided, all plugins will be used
-        globalUserIds:
-          items:
-            type: number
-            format: double
-          type: array
-          minItems: 1
-      required:
-      - globalUserIds
-      type: object
+      additionalProperties: false
     GlobalUser:
       properties:
         activations:
@@ -3785,80 +1950,82 @@ components:
           $ref: '#/components/schemas/IncentiveRecommendations'
       type: object
       additionalProperties: false
-    InstagramAccount:
+    RetrieveCurrentUserResponse:
+      $ref: '#/components/schemas/GlobalUser'
+    BrandSuitabilityReport:
+      type: object
+      properties: {}
+    MembershipContactInfoDeprecated:
       properties:
-        averageComments:
+        age:
           type: number
           format: double
-        averageEngagements:
-          type: number
-          format: double
-        averageLikes:
-          type: number
-          format: double
-        bio:
+        apt:
           type: string
-        engagementRate:
-          type: number
-          format: double
-        followersCount:
-          type: number
-          format: double
-        followingCount:
-          type: number
-          format: double
+        birthday:
+          type: object
+        city:
+          type: string
+        country:
+          type: string
+        email:
+          type: string
+        emailIsVerified:
+          type: boolean
+        firstName:
+          type: string
         fullName:
           type: string
-        handle:
+        gender:
+          $ref: '#/components/schemas/Gender'
+        genderDescription:
           type: string
-        id:
+        lastName:
           type: string
-          enum:
-          - number
-        instagramAccessGrant:
-          properties:
-            type:
-              type: string
-            businessIsExpired:
-              type: boolean
-            platformIsExpired:
-              type: boolean
-            isExpired:
-              type: boolean
-          type: object
-        accessGrant:
-          properties:
-            type:
-              type: string
-            isExpired:
-              type: boolean
-          type: object
-        isBusiness:
-          type: boolean
-        isPrivate:
-          type: boolean
-        mediaCount:
-          type: number
-          format: double
-        primaryAccount:
-          type: boolean
-        profilePicture:
+        phone:
           type: string
-        profileType:
+        state:
           type: string
-          enum:
-          - platform
-          - business
-        sponsoredPostRate:
-          type: number
-          format: double
-        website:
+        street:
+          type: string
+        zip:
+          type: string
+        talentManagerEmail:
           type: string
       type: object
       additionalProperties: false
-    TikTokAudienceAgeDistribution:
+    ImportInfluencerCsvRow:
       properties:
-        age:
+        Mavely Handle:
+          type: string
+        Blog Handle:
+          type: string
+        Snapchat Handle:
+          type: string
+        YouTube Handle:
+          type: string
+        Twitter Handle:
+          type: string
+        Pinterest Handle:
+          type: string
+        Facebook Handle:
+          type: string
+        TikTok Handle:
+          type: string
+        Instagram Handle:
+          type: string
+        Email:
+          type: string
+        Last Name:
+          type: string
+        First Name:
+          type: string
+      required:
+      - First Name
+      type: object
+    TikTokAudienceCountriesDistribution:
+      properties:
+        country:
           type:
           - string
           - 'null'
@@ -3868,69 +2035,189 @@ components:
           - 'null'
           format: double
       required:
-      - age
+      - country
       - percentage
       type: object
       additionalProperties: false
-    ActivationContentNetwork:
-      type: string
-      enum:
-      - blog
-      - facebook
-      - facebook_live
-      - facebook_reel
-      - facebook_group
-      - image
-      - instagram
-      - instagram_reel
-      - instagram_story
-      - linkedin
-      - musical_ly
-      - pinterest
-      - snapchat_story
-      - tiktok
-      - twitch_stream
-      - twitter
-      - youtube_video
-      - youtube_shorts
-      - video
-    GlobalUserGetInconsistenciesPostResponse:
+    BadRequestError:
       properties:
-        data:
-          items:
-            $ref: '#/components/schemas/GlobalUserInconsistencies'
-          type: array
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+        message:
+          type: string
+          enum:
+          - Bad Request
       required:
-      - data
-      type: object
-    RefreshAudienceDemographicsBody:
-      properties:
-        platforms:
-          items:
-            type: string
-          type: array
-      type: object
-    GetGlobalUsersResponse:
-      properties:
-        meta:
-          $ref: '#/components/schemas/ResponseMetadata'
-        data:
-          items:
-            $ref: '#/components/schemas/GlobalUser'
-          type: array
-      required:
-      - meta
-      - data
+      - message
       type: object
       additionalProperties: false
-    YoutubeChannelStats:
+    FacebookProfile:
       properties:
-        overall:
-          $ref: '#/components/schemas/YoutubeChannelTierStats'
-        video:
-          $ref: '#/components/schemas/YoutubeChannelTierStats'
-        shorts:
-          $ref: '#/components/schemas/YoutubeChannelTierStats'
+        active:
+          type: boolean
+        available:
+          type: boolean
+        averageComments:
+          type: number
+          format: double
+        averageEngagements:
+          type: number
+          format: double
+        averageLikes:
+          type: number
+          format: double
+        engagementRate:
+          type: number
+          format: double
+        expiresAt:
+          type: string
+        facebookUser:
+          properties:
+            isExpired:
+              type: boolean
+          type: object
+        facebookExternalId:
+          type: string
+        id:
+          type: number
+          format: double
+        link:
+          type: string
+        name:
+          type: string
+        username:
+          type: string
+        picture:
+          type: string
+        reach:
+          type: number
+          format: double
+        type:
+          type: string
+      type: object
+      additionalProperties: false
+    MavelyUser:
+      properties:
+        mavelyUserId:
+          type:
+          - string
+          - 'null'
+        globalUserId:
+          type: number
+          format: double
+        displayName:
+          type:
+          - string
+          - 'null'
+        username:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+        profileImage:
+          type:
+          - string
+          - 'null'
+        bio:
+          type:
+          - string
+          - 'null'
+      required:
+      - mavelyUserId
+      type: object
+      additionalProperties: false
+    SnapchatAccount:
+      description: Snapchat account profile data.
+      properties:
+        bio:
+          type:
+          - string
+          - 'null'
+        followersCount:
+          type:
+          - number
+          - 'null'
+          format: double
+        id:
+          type:
+          - string
+          - 'null'
+        primaryAccount:
+          type:
+          - boolean
+          - 'null'
+        profilePicture:
+          type:
+          - string
+          - 'null'
+        username:
+          type:
+          - string
+          - 'null'
+        snapchatExternalId:
+          type:
+          - string
+          - 'null'
+        handle:
+          type:
+          - string
+          - 'null'
+        averageEngagements:
+          type:
+          - number
+          - 'null'
+          format: double
+        engagementRate:
+          type:
+          - number
+          - 'null'
+          format: double
+      type: object
+      additionalProperties: false
+    GenerateBrandSuitabilityReportResponse:
+      properties:
+        reportId:
+          type: string
+        status:
+          $ref: '#/components/schemas/BrandSuitabilityReportStatus'
+        data:
+          $ref: '#/components/schemas/BrandSuitabilityReport'
+        message:
+          type: string
+      required:
+      - reportId
+      - status
+      type: object
+      additionalProperties: false
+    GlobalUserRepairPostResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/GlobalUserFixes'
+          type: array
+      required:
+      - data
+      type: object
+    ForbiddenError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Access Forbidden
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
       type: object
       additionalProperties: false
     DynamoGlobalUserAudienceDemographicsPayload:
@@ -3972,6 +2259,65 @@ components:
         DynamoDB *
 
         **********'
+    GlobalUserFix:
+      properties:
+        status:
+          type: string
+          enum:
+          - fixed
+          - skipped
+          - failed
+        affectedEntities:
+          items:
+            type: string
+          type: array
+        type:
+          type: string
+      required:
+      - status
+      - affectedEntities
+      - type
+      type: object
+    BrandSafetyRequestReponse:
+      properties:
+        audienceAuthenticity:
+          properties:
+            message:
+              type: string
+            status:
+              type: string
+          required:
+          - message
+          - status
+          type: object
+        contentWarning:
+          items:
+            properties:
+              postId:
+                type: string
+              status:
+                type: string
+            required:
+            - postId
+            - status
+            type: object
+          type: array
+      type: object
+      additionalProperties: false
+    VisualSafeSearch:
+      properties:
+        adult:
+          type: string
+        medical:
+          type: string
+        racy:
+          type: string
+        spoof:
+          type: string
+        violence:
+          type: string
+      type: object
+      additionalProperties: false
     GlobalUserInconsistencies:
       properties:
         inconsistencies:
@@ -3985,18 +2331,493 @@ components:
       - inconsistencies
       - globalUserId
       type: object
-    VisualSafeSearch:
+    Activation:
       properties:
-        adult:
+        actionId:
           type: string
-        medical:
+        approvalStatus:
           type: string
-        racy:
+        associatedAccount:
+          $ref: '#/components/schemas/NetworkAccount'
+        communityId:
           type: string
-        spoof:
+        content:
+          $ref: '#/components/schemas/ActivationContent'
+        createdAt:
           type: string
-        violence:
+          format: date-time
+        createdByAccountId:
+          type: number
+          format: double
+        globalUserId:
+          type: number
+          format: double
+        id:
+          type: number
+          format: double
+        isApproved:
+          type: boolean
+        membershipId:
+          type: number
+          format: double
+        selfReported:
+          type: boolean
+        ugcPhoto:
           type: string
+        ugcText:
+          type: string
+        updatedAt:
+          type: string
+          format: date-time
+        updatedByAccountId:
+          type: number
+          format: double
+        tags:
+          items:
+            type: string
+          type: array
+      required:
+      - actionId
+      - approvalStatus
+      - communityId
+      - globalUserId
+      - id
+      - isApproved
+      - membershipId
+      - ugcPhoto
+      - ugcText
+      type: object
+      additionalProperties: false
+    GlobalUserGetRandomGlobalUsersResponse:
+      properties:
+        data:
+          items:
+            type: number
+            format: double
+          type: array
+      required:
+      - data
+      type: object
+    IncentiveRecommendations:
+      properties:
+        ttPost:
+          $ref: '#/components/schemas/Int64Range'
+        igStory:
+          $ref: '#/components/schemas/Int64Range'
+        igPost:
+          $ref: '#/components/schemas/Int64Range'
+        igReel:
+          $ref: '#/components/schemas/Int64Range'
+      required:
+      - ttPost
+      - igStory
+      - igPost
+      - igReel
+      type: object
+    Int64Range:
+      properties:
+        middle:
+          type:
+          - number
+          - 'null'
+          format: double
+        high:
+          type:
+          - number
+          - 'null'
+          format: double
+        low:
+          type:
+          - number
+          - 'null'
+          format: double
+      required:
+      - middle
+      - high
+      - low
+      type: object
+    CreatorProfileFields:
+      properties:
+        isDiscovered:
+          type: boolean
+        isPrivate:
+          type:
+          - boolean
+          - 'null'
+        phoneNumber:
+          type:
+          - string
+          - 'null'
+        zipCode:
+          type:
+          - string
+          - 'null'
+        addressLine2:
+          type:
+          - string
+          - 'null'
+        addressLine1:
+          type:
+          - string
+          - 'null'
+        state:
+          type:
+          - string
+          - 'null'
+        city:
+          type:
+          - string
+          - 'null'
+        country:
+          type:
+          - string
+          - 'null'
+        gender:
+          type: object
+        birthday:
+          type:
+          - string
+          - 'null'
+        fullName:
+          type:
+          - string
+          - 'null'
+        lastName:
+          type:
+          - string
+          - 'null'
+        firstName:
+          type:
+          - string
+          - 'null'
+        email:
+          type:
+          - string
+          - 'null'
+      required:
+      - isDiscovered
+      - isPrivate
+      - phoneNumber
+      - zipCode
+      - addressLine2
+      - addressLine1
+      - state
+      - city
+      - country
+      - gender
+      - birthday
+      - fullName
+      - lastName
+      - firstName
+      - email
+      type: object
+      description: Identity/profile fields produced by `CreatorRepository.buildProfile` from CDS V2.
+    BrandSuitabilityReportStatus:
+      enum:
+      - COMPLETED
+      - PROCESSING
+      - FAILED
+      - NOT_FOUND
+      type: string
+    GlobalUserSearchAllSocialProfilesByIdsPostParams:
+      properties:
+        globalUserIds:
+          items:
+            type: number
+            format: double
+          type: array
+      required:
+      - globalUserIds
+      type: object
+    Gender:
+      enum:
+      - describe
+      - female
+      - male
+      - non_bin
+      - other
+      type: string
+    CountryShortName:
+      enum:
+      - Afghanistan
+      - Albania
+      - Algeria
+      - American Samoa
+      - Andorra
+      - Angola
+      - Anguilla
+      - Antarctica
+      - Antigua and Barbuda
+      - Argentina
+      - Armenia
+      - Aruba
+      - Australia
+      - Austria
+      - Azerbaijan
+      - Bahrain
+      - Bangladesh
+      - Barbados
+      - Belarus
+      - Belgium
+      - Belize
+      - Benin
+      - Bermuda
+      - Bhutan
+      - Bolivia
+      - Bosnia and Herzegovina
+      - Botswana
+      - Bouvet Island
+      - Brazil
+      - British Indian Ocean Territory
+      - British Virgin Islands
+      - Brunei
+      - Bulgaria
+      - Burkina Faso
+      - Burundi
+      - Cambodia
+      - Cameroon
+      - Canada
+      - Cape Verde
+      - Caribbean Netherlands
+      - Cayman Islands
+      - Central African Republic
+      - Chad
+      - Chile
+      - China
+      - Christmas Island
+      - Cocos (Keeling) Islands
+      - Collectivity of Saint Martin
+      - Colombia
+      - Comoros
+      - Cook Islands
+      - Costa Rica
+      - Croatia
+      - Cuba
+      - Curaçao
+      - Cyprus
+      - Czechia
+      - Côte d'Ivoire
+      - Democratic Republic of the Congo
+      - Denmark
+      - Djibouti
+      - Dominica
+      - Dominican Republic
+      - Ecuador
+      - Egypt
+      - El Salvador
+      - Equatorial Guinea
+      - Eritrea
+      - Estonia
+      - Ethiopia
+      - Falkland Islands (Malvinas)
+      - Faroe Islands
+      - Federated States of Micronesia
+      - Fiji
+      - Finland
+      - France
+      - French Guiana
+      - French Polynesia
+      - French Southern Territories
+      - Gabon
+      - Georgia
+      - Germany
+      - Ghana
+      - Gibraltar
+      - Greece
+      - Greenland
+      - Grenada
+      - Guadeloupe
+      - Guam
+      - Guatemala
+      - Guernsey
+      - Guinea
+      - Guinea-Bissau
+      - Guyana
+      - Haiti
+      - Heard Island and McDonald Islands
+      - Holy See (Vatican City)
+      - Honduras
+      - Hong Kong
+      - Hungary
+      - Iceland
+      - India
+      - Indonesia
+      - Iran
+      - Iraq
+      - Ireland
+      - Isle of Man
+      - Israel
+      - Italy
+      - Jamaica
+      - Japan
+      - Jersey
+      - Jordan
+      - Kazakhstan
+      - Kenya
+      - Kiribati
+      - Kuwait
+      - Kyrgyzstan
+      - Laos
+      - Latvia
+      - Lebanon
+      - Lesotho
+      - Liberia
+      - Libya
+      - Liechtenstein
+      - Lithuania
+      - Luxembourg
+      - Macau
+      - Macedonia (FYROM)
+      - Madagascar
+      - Malawi
+      - Malaysia
+      - Maldives
+      - Mali
+      - Malta
+      - Marshall Islands
+      - Martinique
+      - Mauritania
+      - Mauritius
+      - Mayotte
+      - Mexico
+      - Moldova
+      - Monaco
+      - Mongolia
+      - Montenegro
+      - Montserrat
+      - Morocco
+      - Mozambique
+      - Myanmar (Burma)
+      - Namibia
+      - Nauru
+      - Nepal
+      - Netherlands
+      - New Caledonia
+      - New Zealand
+      - Nicaragua
+      - Niger
+      - Nigeria
+      - Niue
+      - Norfolk Island
+      - North Korea
+      - Northern Mariana Islands
+      - Norway
+      - Oman
+      - Pakistan
+      - Palau
+      - Palestine
+      - Panama
+      - Papua New Guinea
+      - Paraguay
+      - Peru
+      - Philippines
+      - Pitcairn
+      - Poland
+      - Portugal
+      - Puerto Rico
+      - Qatar
+      - Republic of Indonesia
+      - Republic of the Congo
+      - Reunion
+      - Romania
+      - Russia
+      - Rwanda
+      - Saint Helena, Ascension and Tristan da Cunha
+      - Saint Kitts and Nevis
+      - Saint Lucia
+      - Saint Pierre and Miquelon
+      - Saint Vincent and the Grenadines
+      - Saint-Barthélemy
+      - Samoa
+      - San Marino
+      - Sao Tome and Principe
+      - Saudi Arabia
+      - Senegal
+      - Serbia
+      - Seychelles
+      - Sierra Leone
+      - Singapore
+      - Sint Maarten (Dutch part)
+      - Slovakia
+      - Slovenia
+      - Solomon Islands
+      - Somalia
+      - South Africa
+      - South Georgia and the South Sandwich Islands
+      - South Korea
+      - South Sudan
+      - Spain
+      - Sri Lanka
+      - Sudan
+      - Suriname
+      - Svalbard and Jan Mayen
+      - Swaziland
+      - Sweden
+      - Switzerland
+      - Syria
+      - Taiwan
+      - Tajikistan
+      - Tanzania
+      - Thailand
+      - The Bahamas
+      - The Gambia
+      - Timor-Leste
+      - Togo
+      - Tokelau
+      - Tonga
+      - Trinidad and Tobago
+      - Tunisia
+      - Turkey
+      - Turkmenistan
+      - Turks and Caicos Islands
+      - Tuvalu
+      - U.S. Virgin Islands
+      - Uganda
+      - Ukraine
+      - United Arab Emirates
+      - United Kingdom
+      - United States
+      - United States Minor Outlying Islands
+      - Uruguay
+      - Uzbekistan
+      - Vanuatu
+      - Venezuela
+      - Vietnam
+      - Wallis and Futuna
+      - Western Sahara
+      - Yemen
+      - Zambia
+      - Zimbabwe
+      - Åland Islands
+      type: string
+    BulkActionsBody:
+      properties:
+        globalUserIds:
+          items:
+            type: number
+            format: double
+          type: array
+        action:
+          type: string
+          enum:
+          - reindex
+          - refreshAudienceDemographics
+        options:
+          properties:
+            concurrency:
+              type: number
+              format: double
+            platforms:
+              items:
+                type: string
+                enum:
+                - instagram
+                - tiktok
+              type: array
+          type: object
+      required:
+      - globalUserIds
+      - action
       type: object
       additionalProperties: false
     YoutubeChannel:
@@ -4075,43 +2896,181 @@ components:
           type: string
       type: object
       additionalProperties: false
-    MembershipContactInfoDeprecated:
+    Topic:
       properties:
-        age:
+        id:
+          type: string
+        name:
+          type: string
+        slug:
+          type: string
+      type: object
+      additionalProperties: false
+    PinterestAccount:
+      properties:
+        averageEngagements:
           type: number
           format: double
-        apt:
+        bio:
           type: string
-        birthday:
-          type: object
-        city:
-          type: string
-        country:
-          type: string
-        email:
-          type: string
-        emailIsVerified:
-          type: boolean
+        boardsCount:
+          type: number
+          format: double
+        engagementRate:
+          type: number
+          format: double
         firstName:
           type: string
-        fullName:
-          type: string
-        gender:
-          $ref: '#/components/schemas/Gender'
-        genderDescription:
-          type: string
+        followersCount:
+          type: number
+          format: double
+        followingCount:
+          type: number
+          format: double
+        id:
+          type: object
         lastName:
           type: string
-        phone:
+        monthlyViewers:
+          type: number
+          format: double
+        pinsCount:
+          type: number
+          format: double
+        pinterestAccessGrant:
+          properties:
+            isExpired:
+              type: boolean
+          type: object
+        primaryAccount:
+          type: boolean
+        profilePicture:
           type: string
-        state:
+        username:
           type: string
-        street:
+      type: object
+      additionalProperties: false
+    DynamoGlobalUserAudienceDemographics:
+      properties:
+        audienceDemographics:
+          properties:
+            snapchat:
+              $ref: '#/components/schemas/DynamoGlobalUserAudienceDemographicsPayload'
+            facebook:
+              $ref: '#/components/schemas/DynamoGlobalUserAudienceDemographicsPayload'
+            youtubeShorts:
+              $ref: '#/components/schemas/DynamoGlobalUserAudienceDemographicsPayload'
+            youtubeVideos:
+              $ref: '#/components/schemas/DynamoGlobalUserAudienceDemographicsPayload'
+            youtube:
+              $ref: '#/components/schemas/DynamoGlobalUserAudienceDemographicsPayload'
+            tiktok:
+              $ref: '#/components/schemas/DynamoGlobalUserAudienceDemographicsPayload'
+            instagram:
+              $ref: '#/components/schemas/DynamoGlobalUserAudienceDemographicsPayload'
+          type: object
+        globalUserId:
+          type: number
+          format: double
+      required:
+      - globalUserId
+      type: object
+    NetworkAccount:
+      properties:
+        averageEngagements:
+          type: number
+          format: double
+        engagementRate:
+          type: number
+          format: double
+        firstName:
           type: string
-        zip:
+        followersCount:
+          type: number
+          format: double
+        id:
+          type: number
+          format: double
+        primaryAccount:
+          type: boolean
+        profilePicture:
           type: string
-        talentManagerEmail:
+        reach:
+          type: number
+          format: double
+        username:
           type: string
+      required:
+      - id
+      type: object
+      additionalProperties: false
+    GetGlobalUsersResponse:
+      properties:
+        meta:
+          $ref: '#/components/schemas/ResponseMetadata'
+        data:
+          items:
+            $ref: '#/components/schemas/GlobalUser'
+          type: array
+      required:
+      - meta
+      - data
+      type: object
+      additionalProperties: false
+    RefreshAudienceDemographicsBody:
+      properties:
+        platforms:
+          items:
+            type: string
+          type: array
+      type: object
+    MembershipCostAndPerformance:
+      properties:
+        activations:
+          type: number
+          format: double
+        clicks:
+          type: number
+          format: double
+        conversionValue:
+          type: number
+          format: double
+        conversions:
+          type: number
+          format: double
+        cost:
+          type: number
+          format: double
+        cpa:
+          type: number
+          format: double
+        cpe:
+          type: number
+          format: double
+        cpm:
+          type: number
+          format: double
+        cpp:
+          type: number
+          format: double
+        engagements:
+          type: number
+          format: double
+        impressions:
+          type: number
+          format: double
+        membershipId:
+          type: number
+          format: double
+        posts:
+          type: number
+          format: double
+        rewards:
+          type: number
+          format: double
+        value:
+          type: number
+          format: double
       type: object
       additionalProperties: false
     UpdateGlobalUserBodyDefinition:
@@ -4125,12 +3084,984 @@ components:
       required:
       - data
       type: object
-    ForbiddenError:
+    InstagramProfile:
+      properties:
+        accessGrant:
+          properties:
+            type:
+              type: string
+              enum:
+              - basic
+              - business
+            isExpired:
+              type: boolean
+          type: object
+        audienceAuthenticity:
+          $ref: '#/components/schemas/InstagramAudienceAuthenticityRequest'
+        audienceFakeCommentersLevel:
+          type: string
+        audienceFakeCommentersPercentage:
+          type: number
+          format: double
+        audienceFakeEngagersLevel:
+          type: string
+        audienceFakeFollowersLevel:
+          type: string
+        audienceFakeFollowersPercentage:
+          type: number
+          format: double
+        audienceFakeLikersLevel:
+          type: string
+        audienceFakeLikersPercentage:
+          type: number
+          format: double
+        audienceFraudLevel:
+          type: string
+        audiencePercentageFemale:
+          type: number
+          format: double
+        audiencePercentage_13_17:
+          type: number
+          format: double
+        audiencePercentage_18_24:
+          type: number
+          format: double
+        audiencePercentage_25_34:
+          type: number
+          format: double
+        audiencePercentage_35_44:
+          type: number
+          format: double
+        audiencePercentage_45_54:
+          type: number
+          format: double
+        audiencePercentage_55_64:
+          type: number
+          format: double
+        audiencePercentage_65_plus:
+          type: number
+          format: double
+        audiencePredominantAgeRange:
+          type: string
+        audiencePredominantCity:
+          type: string
+        audiencePredominantCountry:
+          type: string
+        averageComments:
+          type: number
+          format: double
+        averageEngagements:
+          type: number
+          format: double
+        averageLikes:
+          type: number
+          format: double
+        bio:
+          type: string
+        boughtFollowers:
+          type: boolean
+        contentWarning:
+          items:
+            $ref: '#/components/schemas/InstagramContentWarningRequest'
+          type: array
+        engagementRate:
+          type: number
+          format: double
+        followersCount:
+          type: number
+          format: double
+        followingCount:
+          type: number
+          format: double
+        fullName:
+          type: string
+        handle:
+          type: string
+        id:
+          type: number
+          format: double
+        isBusiness:
+          type: boolean
+        isPrivate:
+          type: boolean
+        mediaCount:
+          type: number
+          format: double
+        nudityLevel:
+          type: string
+        previewPostsLastUpdatedAt:
+          type: string
+          format: date-time
+        profanityLevel:
+          type: string
+        profilePicture:
+          type: string
+        profileType:
+          type: string
+          enum:
+          - business
+          - platform
+        lastAnalyzedAt:
+          type: string
+          format: date-time
+        sponsoredPostRate:
+          type: number
+          format: double
+        website:
+          type: string
+      required:
+      - lastAnalyzedAt
+      type: object
+      additionalProperties: false
+    InstagramAudienceAuthenticityRequest:
+      properties:
+        id:
+          type: number
+          format: double
+        instagramProfileId:
+          type: number
+          format: double
+        requestId:
+          type: number
+          format: double
+        requestStatus:
+          type: string
+        requestErrorCode:
+          type: string
+        requestResponse:
+          additionalProperties: false
+          type: object
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      type: object
+      additionalProperties: false
+    GlobalUserSocialProfile:
+      properties:
+        username:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+        type:
+          type: string
+          enum:
+          - facebook_user
+          - facebook_page
+        socialPresenceData:
+          additionalProperties: false
+          type: object
+        profileImage:
+          type:
+          - string
+          - 'null'
+        platformId:
+          type:
+          - string
+          - 'null'
+        platform:
+          type: string
+        isPrivate:
+          type: boolean
+        isPrimary:
+          type: boolean
+        isDiscovered:
+          type: boolean
+        globalUserId:
+          type: number
+          format: double
+        followersCount:
+          type: number
+          format: double
+        displayName:
+          type:
+          - string
+          - 'null'
+        bio:
+          type:
+          - string
+          - 'null'
+      required:
+      - username
+      - platform
+      - isPrimary
+      - isDiscovered
+      - globalUserId
+      - followersCount
+      type: object
+    GlobalUserAudienceCountriesQueryResult:
+      properties:
+        meta:
+          $ref: '#/components/schemas/ResponseMetadata'
+        data:
+          items:
+            $ref: '#/components/schemas/AudienceCountry'
+          type: array
+      required:
+      - meta
+      - data
+      type: object
+      additionalProperties: false
+    ResponseMetadata:
+      properties:
+        limit:
+          type: number
+          format: double
+        offset:
+          type: number
+          format: double
+        status:
+          type: string
+          enum:
+          - failure
+          - success
+        totalCount:
+          type: number
+          format: double
+      type: object
+      additionalProperties: false
+    AudienceCountry:
+      properties:
+        country:
+          type: string
+        percentage:
+          type: number
+          format: double
+      required:
+      - country
+      - percentage
+      type: object
+      additionalProperties: false
+    YoutubeChannelTierStats:
+      properties:
+        likes:
+          type: number
+          format: double
+        views:
+          type: number
+          format: double
+        comments:
+          type: number
+          format: double
+        engagedViews:
+          type: number
+          format: double
+        uniqueViewers:
+          type: number
+          format: double
+        engagementRate:
+          type: number
+          format: double
+        averageLikesPerVideo:
+          type: number
+          format: double
+        averageReachPerVideo:
+          type: number
+          format: double
+        averageViewsPerVideo:
+          type: number
+          format: double
+        averageCommentsPerVideo:
+          type: number
+          format: double
+        averageVideosAddedPlaylist:
+          type: number
+          format: double
+        averageEngagedViewsPerVideo:
+          type: number
+          format: double
+      type: object
+      additionalProperties: false
+    TikTokAudienceAgeDistribution:
+      properties:
+        age:
+          type:
+          - string
+          - 'null'
+        percentage:
+          type:
+          - number
+          - 'null'
+          format: double
+      required:
+      - age
+      - percentage
+      type: object
+      additionalProperties: false
+    GetBrandSuitabilityReportResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/BrandSuitabilityReport'
+        status:
+          $ref: '#/components/schemas/BrandSuitabilityReportStatus'
+      required:
+      - status
+      type: object
+      additionalProperties: false
+    ContentPost:
+      properties:
+        id:
+          type: string
+        createdAt:
+          type:
+          - string
+          - 'null'
+        updatedAt:
+          type:
+          - string
+          - 'null'
+        deletedAt:
+          type:
+          - string
+          - 'null'
+        publishedAt:
+          type:
+          - string
+          - 'null'
+        socialPresenceId:
+          type: string
+        platform:
+          type: string
+        platformId:
+          type: string
+        permalink:
+          type: string
+        context:
+          type: string
+        mediaFormat:
+          type: string
+        caption:
+          type: string
+        mediaThumbnail:
+          type: string
+        sponsor:
+          type: string
+        taggedBrands:
+          items:
+            type: string
+          type: array
+        clicksCount:
+          type: number
+          format: double
+        commentsCount:
+          type: number
+          format: double
+        viewsCount:
+          type: number
+          format: double
+        reachCount:
+          type: number
+          format: double
+        reactionsCount:
+          type: number
+          format: double
+        sharesCount:
+          type: number
+          format: double
+        reachFollowersRate:
+          type: number
+          format: double
+        reachNonFollowersRate:
+          type: number
+          format: double
+        viewsFollowersRate:
+          type: number
+          format: double
+        viewsNonFollowersRate:
+          type: number
+          format: double
+      required:
+      - id
+      - createdAt
+      - updatedAt
+      - deletedAt
+      - publishedAt
+      - socialPresenceId
+      - platform
+      - platformId
+      - permalink
+      - context
+      - mediaFormat
+      - caption
+      - mediaThumbnail
+      - sponsor
+      - taggedBrands
+      - clicksCount
+      - commentsCount
+      - viewsCount
+      - reachCount
+      - reactionsCount
+      - sharesCount
+      - reachFollowersRate
+      - reachNonFollowersRate
+      - viewsFollowersRate
+      - viewsNonFollowersRate
+      type: object
+      additionalProperties: false
+    GlobalUserInconsistency:
+      properties:
+        affectedEntities:
+          items:
+            type: string
+          type: array
+        message:
+          type: string
+        type:
+          type: string
+      required:
+      - affectedEntities
+      - message
+      - type
+      type: object
+    GlobalUserAudienceGraphDatapoint:
+      properties:
+        value:
+          type: number
+          format: double
+        display:
+          type: string
+      required:
+      - value
+      - display
+      type: object
+    ActivationContent:
+      properties:
+        ytbcLinkState:
+          type: string
+          enum:
+          - PENDING
+          - ACTIVE
+          - DECLINED
+          description: 'CMP-1107: BrandConnect VideoCollaboration consent state for a YouTube video
+
+            (PENDING / ACTIVE / DECLINED). Absent for non-YouTube content or videos whose
+
+            link state has not been synced. Populated by ActivationService::appendYtbcLinkState.'
+        emvValue:
+          type:
+          - number
+          - 'null'
+          format: double
+        followersAtPostDate:
+          type: number
+          format: double
+        viewsPaid:
+          type: number
+          format: double
+        viewsOrganic:
+          type: number
+          format: double
+        views:
+          type: number
+          format: double
+        videoViewsBySource:
+          items:
+            $ref: '#/components/schemas/TikTokVideoViewsBySource'
+          type:
+          - array
+          - 'null'
+        videoViewTotalTime:
+          type: number
+          format: double
+        videoCompletionRate:
+          type: number
+          format: double
+        video:
+          type: string
+        verifiedImpressions:
+          type: number
+          format: double
+        updatedAt:
+          type: string
+          format: date-time
+        text:
+          type: string
+        sharesPaid:
+          type: number
+          format: double
+        sharesOrganic:
+          type: number
+          format: double
+        shares:
+          type: number
+          format: double
+        reach:
+          type: number
+          format: double
+        privacy:
+          type: string
+        postLink:
+          type: string
+        postDate:
+          type: string
+        network:
+          $ref: '#/components/schemas/ActivationContentNetwork'
+        manuallyEnteredImpressions:
+          type: number
+          format: double
+        likesPaid:
+          type: number
+          format: double
+        likesOrganic:
+          type: number
+          format: double
+        likes:
+          type: number
+          format: double
+        influencerReportedImpressions:
+          type: number
+          format: double
+        impressionsSource:
+          type: string
+        image:
+          type: string
+        isDeleted:
+          type: boolean
+        engagements:
+          type: number
+          format: double
+        estimatedImpressionsUpdatedAt:
+          type: string
+          format: date-time
+        estimatedImpressions:
+          type: number
+          format: double
+        conversions:
+          type: number
+          format: double
+        conversionValue:
+          type: number
+          format: double
+        commentsPaid:
+          type:
+          - number
+          - 'null'
+          format: double
+        commentsOrganic:
+          type:
+          - number
+          - 'null'
+          format: double
+        comments:
+          type: number
+          format: double
+        clicks:
+          type: number
+          format: double
+        carouselPosts:
+          items:
+            additionalProperties: true
+          type: array
+        canonicalUrlId:
+          type: number
+          format: double
+        benchmarkEngagementRate:
+          type: number
+          format: double
+        benchmarkAverageEngagements:
+          type: number
+          format: double
+        algorithmicImpressions:
+          type: number
+          format: double
+        activationId:
+          type: number
+          format: double
+        audienceInterestDistribution:
+          items:
+            $ref: '#/components/schemas/TikTokAudienceInterestDistribution'
+          type:
+          - array
+          - 'null'
+        audienceGendersDistribution:
+          items:
+            $ref: '#/components/schemas/TikTokAudienceGendersDistribution'
+          type:
+          - array
+          - 'null'
+        audienceCountriesDistribution:
+          items:
+            $ref: '#/components/schemas/TikTokAudienceCountriesDistribution'
+          type:
+          - array
+          - 'null'
+        audienceAgeDistribution:
+          items:
+            $ref: '#/components/schemas/TikTokAudienceAgeDistribution'
+          type:
+          - array
+          - 'null'
+      required:
+      - emvValue
+      - video
+      - text
+      - shares
+      - privacy
+      - postLink
+      - network
+      - likes
+      - image
+      - engagements
+      - estimatedImpressions
+      - conversions
+      - conversionValue
+      - comments
+      - clicks
+      - activationId
+      type: object
+    YoutubeChannelStats:
+      properties:
+        overall:
+          $ref: '#/components/schemas/YoutubeChannelTierStats'
+        video:
+          $ref: '#/components/schemas/YoutubeChannelTierStats'
+        shorts:
+          $ref: '#/components/schemas/YoutubeChannelTierStats'
+      type: object
+      additionalProperties: false
+    TikTokAudienceGendersDistribution:
+      properties:
+        gender:
+          type:
+          - string
+          - 'null'
+        percentage:
+          type:
+          - number
+          - 'null'
+          format: double
+      required:
+      - percentage
+      type: object
+      additionalProperties: false
+    GlobalUserFields:
+      properties:
+        phone:
+          type: string
+        zip:
+          type: string
+        mavelyHandle:
+          type: string
+        blogHandle:
+          type: string
+        snapchatHandle:
+          type: string
+        facebookHandle:
+          type: string
+        youtubeHandle:
+          type: string
+        twitterHandle:
+          type: string
+        tiktokHandle:
+          type: string
+        talentManagerEmail:
+          type: string
+        state:
+          type: string
+        pinterestHandle:
+          type: string
+        loadSource:
+          type: string
+        lastName:
+          type: string
+        isCreateNewMyMember:
+          type: boolean
+        addToInfluencerIndex:
+          type: boolean
+        instagramHandle:
+          type: string
+        gender:
+          $ref: '#/components/schemas/Gender'
+        fullName:
+          type: string
+        firstName:
+          type: string
+        facebookUrl:
+          type: string
+        email:
+          type: string
+        deletedCreatedAt:
+          type: string
+          format: date-time
+        deleted:
+          type: boolean
+        country:
+          $ref: '#/components/schemas/CountryShortName'
+        city:
+          type: string
+        blogUrl:
+          type: string
+        birthday:
+          type: string
+          format: date-time
+        apt:
+          type: string
+        street:
+          type: string
+      type: object
+    DataPointDefinitionSetElement:
+      items:
+        properties:
+          key:
+            type: string
+          id:
+            type: number
+            format: double
+          markUpDisplayLabel:
+            type: string
+          displayLabel:
+            type: string
+        required:
+        - key
+        - id
+        - displayLabel
+        type: object
+      type: array
+    ActivationContentNetwork:
+      type: string
+      enum:
+      - blog
+      - facebook
+      - facebook_live
+      - facebook_reel
+      - facebook_group
+      - image
+      - instagram
+      - instagram_reel
+      - instagram_story
+      - linkedin
+      - musical_ly
+      - pinterest
+      - snapchat_story
+      - tiktok
+      - twitch_stream
+      - twitter
+      - youtube_video
+      - youtube_shorts
+      - video
+    GlobalUserFixes:
+      properties:
+        fixes:
+          items:
+            $ref: '#/components/schemas/GlobalUserFix'
+          type: array
+        globalUserId:
+          type: number
+          format: double
+      required:
+      - fixes
+      - globalUserId
+      type: object
+    Blog:
+      properties:
+        globalUserId:
+          type:
+          - number
+          - 'null'
+          format: double
+        language:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        platform:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+      type: object
+      additionalProperties: false
+    TikTokCreator:
+      properties:
+        displayName:
+          type: string
+        followersCount:
+          type: number
+          format: double
+        globalUserId:
+          type: number
+          format: double
+        handleName:
+          type: string
+        insightsUpdatedAt:
+          type: string
+        isActive:
+          type: boolean
+        profileImage:
+          type: string
+        status:
+          type: string
+        tiktokAccessGrant:
+          additionalProperties: false
+          type: object
+        engagements:
+          type: number
+          format: double
+        engagementRate:
+          type: number
+          format: double
+        likes:
+          type: number
+          format: double
+        shares:
+          type: number
+          format: double
+        videoViews:
+          type: number
+          format: double
+      type: object
+      additionalProperties: false
+    GlobalUserRepairPostParams:
+      properties:
+        plugins:
+          items:
+            type: string
+          type: array
+          description: If no plugins are provided, all plugins will be used
+        globalUserIds:
+          items:
+            type: number
+            format: double
+          type: array
+          minItems: 1
+      required:
+      - globalUserIds
+      type: object
+    SocialPresenceInput:
+      properties:
+        platform:
+          type: string
+        username:
+          type: string
+      required:
+      - platform
+      - username
+      type: object
+      additionalProperties: false
+    GenerateBrandSuitabilityReportRequest:
+      properties:
+        campaignId:
+          type: number
+          format: double
+        brandName:
+          type: string
+        assessments:
+          items:
+            type: string
+          type: array
+      type: object
+      additionalProperties: false
+    TikTokAudienceInterestDistribution:
+      properties:
+        interestTag:
+          type:
+          - string
+          - 'null'
+        percentage:
+          type:
+          - number
+          - 'null'
+          format: double
+      required:
+      - interestTag
+      - percentage
+      type: object
+      additionalProperties: false
+    TikTokVideoViewsBySource:
+      properties:
+        source:
+          type:
+          - string
+          - 'null'
+        videoViews:
+          type:
+          - number
+          - 'null'
+          format: double
+      required:
+      - videoViews
+      type: object
+      additionalProperties: false
+    GlobalUserProfile:
+      properties:
+        socialProfiles:
+          items:
+            $ref: '#/components/schemas/GlobalUserSocialProfile'
+          type: array
+        zipCode:
+          type: string
+        state:
+          type: string
+        phoneNumber:
+          type: string
+        lastName:
+          type: string
+        isContactable:
+          type: boolean
+        globalUserId:
+          type: number
+          format: double
+        gender:
+          type: string
+        firstName:
+          type: string
+        ethnicities:
+          items:
+            type: string
+          type: array
+        email:
+          type: string
+        country:
+          type: string
+        city:
+          type: string
+        birthday:
+          type: string
+        address:
+          type: string
+      required:
+      - socialProfiles
+      - globalUserId
+      type: object
+    TextSafeSearch:
+      properties:
+        profanityWordCount:
+          type: number
+          format: double
+      type: object
+      additionalProperties: false
+    GlobalUserUpsertAction:
+      enum:
+      - created
+      - existing
+      - conflict
+      - error
+      type: string
+    GlobalUserAudienceDemographicsResponse:
+      $ref: '#/components/schemas/DynamoGlobalUserAudienceDemographics'
+      description: '***************
+
+        Response Body *
+
+        **************'
+    ServerError:
       properties:
         message:
           type: string
           enum:
-          - Access Forbidden
+          - Server Error
         details:
           properties: {}
           additionalProperties:
@@ -4139,6 +4070,75 @@ components:
       required:
       - message
       - details
+      type: object
+      additionalProperties: false
+    GlobalUserAudienceDemographicsGraph:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/GlobalUserAudienceGraphDatapoint'
+          type: array
+        id:
+          type: string
+      required:
+      - data
+      - id
+      type: object
+    UnprocessableContent:
+      properties:
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+        message:
+          type: string
+          enum:
+          - Unprocessable Content
+      required:
+      - message
+      type: object
+      additionalProperties: false
+    TwitterAccount:
+      properties:
+        averageEngagements:
+          type: number
+          format: double
+        averageFavorites:
+          type: number
+          format: double
+        averageRetweets:
+          type: number
+          format: double
+        description:
+          type: string
+        engagementRate:
+          type: number
+          format: double
+        followersCount:
+          type: number
+          format: double
+        followingCount:
+          type: number
+          format: double
+        fullName:
+          type: string
+        handle:
+          type: string
+        id:
+          type: object
+        listedCount:
+          type: number
+          format: double
+        primaryAccount:
+          type: boolean
+        profilePicture:
+          type: string
+        twitterAccessGrant:
+          properties:
+            isExpired:
+              type: boolean
+          type: object
       type: object
       additionalProperties: false
   securitySchemes:
