@@ -63,12 +63,12 @@ components:
       - details
       type: object
       additionalProperties: false
-    ValidateErrorJSON:
+    NotFoundError:
       properties:
         message:
           type: string
           enum:
-          - Validation failed
+          - Resource Not Found
         details:
           properties: {}
           additionalProperties:
@@ -79,12 +79,12 @@ components:
       - details
       type: object
       additionalProperties: false
-    NotFoundError:
+    ValidateErrorJSON:
       properties:
         message:
           type: string
           enum:
-          - Resource Not Found
+          - Validation failed
         details:
           properties: {}
           additionalProperties:

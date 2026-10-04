@@ -69,22 +69,6 @@ components:
       - details
       type: object
       additionalProperties: false
-    ValidateErrorJSON:
-      properties:
-        message:
-          type: string
-          enum:
-          - Validation failed
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
     InstanceBrandListItem:
       properties:
         id:
@@ -100,6 +84,22 @@ components:
       - id
       - name
       - youtubeChannelId
+      type: object
+      additionalProperties: false
+    ValidateErrorJSON:
+      properties:
+        message:
+          type: string
+          enum:
+          - Validation failed
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
       type: object
       additionalProperties: false
     ForbiddenError:

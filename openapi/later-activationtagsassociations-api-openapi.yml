@@ -144,12 +144,64 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ValidateErrorJSON:
+    ResponseBody__disassociations-ActivationTagAssociation-Array--disassociatedCount-number--__:
+      properties:
+        data:
+          properties:
+            disassociatedCount:
+              type: number
+              format: double
+            disassociations:
+              items:
+                $ref: '#/components/schemas/ActivationTagAssociation'
+              type: array
+          required:
+          - disassociatedCount
+          - disassociations
+          type: object
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+      required:
+      - data
+      type: object
+      additionalProperties: false
+    ResponseMeta:
+      properties:
+        limit:
+          type: number
+          format: double
+        offset:
+          type: number
+          format: double
+        totalCount:
+          type: number
+          format: double
+      type: object
+      additionalProperties: false
+    ServerError:
       properties:
         message:
           type: string
           enum:
-          - Validation failed
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    ActivationTagDisassociationDeleteResponse:
+      $ref: '#/components/schemas/ResponseBody__disassociations-ActivationTagAssociation-Array--disassociatedCount-number--__'
+    ForbiddenError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Access Forbidden
         details:
           properties: {}
           additionalProperties:
@@ -241,30 +293,12 @@ components:
           type:
           - array
           - 'null'
-    ServerError:
+    ValidateErrorJSON:
       properties:
         message:
           type: string
           enum:
-          - Server Error
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ActivationTagDisassociationDeleteResponse:
-      $ref: '#/components/schemas/ResponseBody__disassociations-ActivationTagAssociation-Array--disassociatedCount-number--__'
-    ForbiddenError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Access Forbidden
+          - Validation failed
         details:
           properties: {}
           additionalProperties:
@@ -291,40 +325,6 @@ components:
       - createdAt
       - activationId
       type: object
-    ResponseMeta:
-      properties:
-        limit:
-          type: number
-          format: double
-        offset:
-          type: number
-          format: double
-        totalCount:
-          type: number
-          format: double
-      type: object
-      additionalProperties: false
-    ResponseBody__disassociations-ActivationTagAssociation-Array--disassociatedCount-number--__:
-      properties:
-        data:
-          properties:
-            disassociatedCount:
-              type: number
-              format: double
-            disassociations:
-              items:
-                $ref: '#/components/schemas/ActivationTagAssociation'
-              type: array
-          required:
-          - disassociatedCount
-          - disassociations
-          type: object
-        meta:
-          $ref: '#/components/schemas/ResponseMeta'
-      required:
-      - data
-      type: object
-      additionalProperties: false
   securitySchemes:
     apiKey:
       type: apiKey

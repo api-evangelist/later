@@ -58,29 +58,6 @@ components:
       - data
       - id
       type: object
-    DemographicsGraphsResponse:
-      properties:
-        graphs:
-          items:
-            $ref: '#/components/schemas/DemographicsGraph'
-          type: array
-      required:
-      - graphs
-      type: object
-      description: '*
-
-        Demographics Pro Graphs'
-    GraphDatapoint:
-      properties:
-        value:
-          type: number
-          format: double
-        display:
-          type: string
-      required:
-      - value
-      - display
-      type: object
     ServerError:
       properties:
         message:
@@ -113,6 +90,29 @@ components:
       - details
       type: object
       additionalProperties: false
+    DemographicsGraphsResponse:
+      properties:
+        graphs:
+          items:
+            $ref: '#/components/schemas/DemographicsGraph'
+          type: array
+      required:
+      - graphs
+      type: object
+      description: '*
+
+        Demographics Pro Graphs'
+    GraphDatapoint:
+      properties:
+        value:
+          type: number
+          format: double
+        display:
+          type: string
+      required:
+      - value
+      - display
+      type: object
   securitySchemes:
     apiKey:
       type: apiKey

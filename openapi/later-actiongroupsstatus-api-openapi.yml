@@ -51,19 +51,18 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    BadRequestError:
+    ActionGroupStatusQueryRequest:
       properties:
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-        message:
-          type: string
-          enum:
-          - Bad Request
+        actionGroupIds:
+          items:
+            type: integer
+            format: int32
+          type: array
+          description: Array of action group IDs to query (max 100)
+          minItems: 1
+          maxItems: 100
       required:
-      - message
+      - actionGroupIds
       type: object
       additionalProperties: false
     ServerError:
@@ -87,20 +86,6 @@ components:
       type: object
       additionalProperties:
         type: string
-    ActionGroupStatusQueryRequest:
-      properties:
-        actionGroupIds:
-          items:
-            type: integer
-            format: int32
-          type: array
-          description: Array of action group IDs to query (max 100)
-          minItems: 1
-          maxItems: 100
-      required:
-      - actionGroupIds
-      type: object
-      additionalProperties: false
     ForbiddenError:
       properties:
         message:
@@ -115,6 +100,21 @@ components:
       required:
       - message
       - details
+      type: object
+      additionalProperties: false
+    BadRequestError:
+      properties:
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+        message:
+          type: string
+          enum:
+          - Bad Request
+      required:
+      - message
       type: object
       additionalProperties: false
   securitySchemes:

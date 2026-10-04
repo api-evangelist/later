@@ -41,6 +41,22 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
     ValidateErrorJSON:
       properties:
         message:
@@ -57,15 +73,6 @@ components:
       - details
       type: object
       additionalProperties: false
-    InstanceUserMaterializedViewRequestBody:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/ViewQueryParam'
-          type: array
-      required:
-      - data
-      type: object
     ViewQueryParam:
       properties:
         globalUserId:
@@ -87,22 +94,15 @@ components:
           format: double
       type: object
       additionalProperties: false
-    ServerError:
+    InstanceUserMaterializedViewRequestBody:
       properties:
-        message:
-          type: string
-          enum:
-          - Server Error
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
+        data:
+          items:
+            $ref: '#/components/schemas/ViewQueryParam'
+          type: array
       required:
-      - message
-      - details
+      - data
       type: object
-      additionalProperties: false
   securitySchemes:
     apiKey:
       type: apiKey

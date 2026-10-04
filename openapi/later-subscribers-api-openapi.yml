@@ -186,12 +186,28 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ValidateErrorJSON:
+    ServerError:
       properties:
         message:
           type: string
           enum:
-          - Validation failed
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    NotFoundError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Resource Not Found
         details:
           properties: {}
           additionalProperties:
@@ -222,12 +238,12 @@ components:
       - url
       type: object
       additionalProperties: false
-    ServerError:
+    ForbiddenError:
       properties:
         message:
           type: string
           enum:
-          - Server Error
+          - Access Forbidden
         details:
           properties: {}
           additionalProperties:
@@ -236,14 +252,6 @@ components:
       required:
       - message
       - details
-      type: object
-      additionalProperties: false
-    UpdateSubscriberBody:
-      properties:
-        isEnabled:
-          type: boolean
-      required:
-      - isEnabled
       type: object
       additionalProperties: false
     SubscriberPingResponse:
@@ -259,6 +267,22 @@ components:
       - testResult
       type: object
       additionalProperties: false
+    ValidateErrorJSON:
+      properties:
+        message:
+          type: string
+          enum:
+          - Validation failed
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
     CreateSubscriberBody:
       properties:
         url:
@@ -267,36 +291,12 @@ components:
       - url
       type: object
       additionalProperties: false
-    NotFoundError:
+    UpdateSubscriberBody:
       properties:
-        message:
-          type: string
-          enum:
-          - Resource Not Found
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
+        isEnabled:
+          type: boolean
       required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ForbiddenError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
+      - isEnabled
       type: object
       additionalProperties: false
   securitySchemes:

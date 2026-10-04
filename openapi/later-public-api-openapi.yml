@@ -68,25 +68,6 @@ components:
       - details
       type: object
       additionalProperties: false
-    UnprocessableContent:
-      properties:
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-        message:
-          type: string
-          enum:
-          - Unprocessable Content
-      required:
-      - message
-      type: object
-      additionalProperties: false
-    Readonly_any_:
-      properties: {}
-      type: object
-      description: Make all properties in T readonly
     NotFoundError:
       properties:
         message:
@@ -101,6 +82,25 @@ components:
       required:
       - message
       - details
+      type: object
+      additionalProperties: false
+    Readonly_any_:
+      properties: {}
+      type: object
+      description: Make all properties in T readonly
+    UnprocessableContent:
+      properties:
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+        message:
+          type: string
+          enum:
+          - Unprocessable Content
+      required:
+      - message
       type: object
       additionalProperties: false
   securitySchemes:

@@ -61,32 +61,40 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 components:
-  parameters:
-    limitParam:
-      in: query
-      description: Maximum number of items to return
-      name: limit
-      schema:
-        type: integer
-    offsetParam:
-      in: query
-      description: Number of items to skip
-      name: offset
-      schema:
-        type: integer
   schemas:
-    LinksDeprecated:
+    InfluencerPreview:
       type: object
-      x-access:
-      - anonymous
-      - influencer
       properties:
-        normal:
+        id:
+          type: integer
+        globalUserId:
+          type: integer
+        profilePic:
           type: string
-          description: A normal link to an entity.
-        deep:
+        firstName:
           type: string
-          description: A deep link to the entity.
+        lastName:
+          type: string
+        email:
+          type: string
+    ResponseMetadata:
+      properties:
+        limit:
+          type: number
+          format: double
+        offset:
+          type: number
+          format: double
+        status:
+          type: string
+          enum:
+          - failure
+          - success
+        totalCount:
+          type: number
+          format: double
+      type: object
+      additionalProperties: false
     Error:
       type: object
       properties:
@@ -118,39 +126,31 @@ components:
             error:
               type: string
               description: A static description of the parent error.
-    ResponseMetadata:
-      properties:
-        limit:
-          type: number
-          format: double
-        offset:
-          type: number
-          format: double
-        status:
-          type: string
-          enum:
-          - failure
-          - success
-        totalCount:
-          type: number
-          format: double
+    LinksDeprecated:
       type: object
-      additionalProperties: false
-    InfluencerPreview:
-      type: object
+      x-access:
+      - anonymous
+      - influencer
       properties:
-        id:
-          type: integer
-        globalUserId:
-          type: integer
-        profilePic:
+        normal:
           type: string
-        firstName:
+          description: A normal link to an entity.
+        deep:
           type: string
-        lastName:
-          type: string
-        email:
-          type: string
+          description: A deep link to the entity.
+  parameters:
+    offsetParam:
+      in: query
+      description: Number of items to skip
+      name: offset
+      schema:
+        type: integer
+    limitParam:
+      in: query
+      description: Maximum number of items to return
+      name: limit
+      schema:
+        type: integer
   securitySchemes:
     apiKey:
       type: apiKey

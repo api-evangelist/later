@@ -63,47 +63,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ValidateErrorJSON:
-      properties:
-        message:
-          type: string
-          enum:
-          - Validation failed
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ServerError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Server Error
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    MergeTagsCatalogResponse:
-      properties:
-        groups:
-          items:
-            $ref: '#/components/schemas/CatalogResponseGroup'
-          type: array
-      required:
-      - groups
-      type: object
     CatalogResponseGroup:
       properties:
         tags:
@@ -121,12 +80,12 @@ components:
       - titleI18nKey
       - key
       type: object
-    NotFoundError:
+    ServerError:
       properties:
         message:
           type: string
           enum:
-          - Resource Not Found
+          - Server Error
         details:
           properties: {}
           additionalProperties:
@@ -137,12 +96,12 @@ components:
       - details
       type: object
       additionalProperties: false
-    ForbiddenError:
+    NotFoundError:
       properties:
         message:
           type: string
           enum:
-          - Access Forbidden
+          - Resource Not Found
         details:
           properties: {}
           additionalProperties:
@@ -174,6 +133,47 @@ components:
       - kind
       - key
       type: object
+    ForbiddenError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Access Forbidden
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    MergeTagsCatalogResponse:
+      properties:
+        groups:
+          items:
+            $ref: '#/components/schemas/CatalogResponseGroup'
+          type: array
+      required:
+      - groups
+      type: object
+    ValidateErrorJSON:
+      properties:
+        message:
+          type: string
+          enum:
+          - Validation failed
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
   securitySchemes:
     apiKey:
       type: apiKey

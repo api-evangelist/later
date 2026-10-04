@@ -220,54 +220,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Spec:
-      properties:
-        id:
-          type: number
-          format: double
-        title:
-          type: string
-        destinationUrl:
-          type: string
-        laterInfluenceCampaignId:
-          type: number
-          format: double
-        provider:
-          type: string
-        isDeleted:
-          type: boolean
-        deletedAt:
-          type:
-          - string
-          - 'null'
-      required:
-      - id
-      - title
-      - destinationUrl
-      - laterInfluenceCampaignId
-      - provider
-      - isDeleted
-      - deletedAt
-      type: object
-      additionalProperties: false
-    SpecsPostRequest:
-      properties:
-        destinationUrl:
-          type: string
-        title:
-          type: string
-        laterInfluenceCampaignId:
-          type: number
-          format: double
-        provider:
-          type: string
-      required:
-      - destinationUrl
-      - title
-      - laterInfluenceCampaignId
-      - provider
-      type: object
-      additionalProperties: false
     ServerError:
       properties:
         message:
@@ -282,26 +234,6 @@ components:
       required:
       - message
       - details
-      type: object
-      additionalProperties: false
-    SpecsGetResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/Spec'
-          type: array
-        meta:
-          $ref: '#/components/schemas/ResponseMetadata'
-      type: object
-      additionalProperties: false
-    SpecsPutRequest:
-      properties:
-        destinationUrl:
-          type: string
-        title:
-          type: string
-      required:
-      - title
       type: object
       additionalProperties: false
     ResponseMetadata:
@@ -336,6 +268,74 @@ components:
       required:
       - message
       - details
+      type: object
+      additionalProperties: false
+    SpecsPutRequest:
+      properties:
+        destinationUrl:
+          type: string
+        title:
+          type: string
+      required:
+      - title
+      type: object
+      additionalProperties: false
+    SpecsPostRequest:
+      properties:
+        destinationUrl:
+          type: string
+        title:
+          type: string
+        laterInfluenceCampaignId:
+          type: number
+          format: double
+        provider:
+          type: string
+      required:
+      - destinationUrl
+      - title
+      - laterInfluenceCampaignId
+      - provider
+      type: object
+      additionalProperties: false
+    Spec:
+      properties:
+        id:
+          type: number
+          format: double
+        title:
+          type: string
+        destinationUrl:
+          type: string
+        laterInfluenceCampaignId:
+          type: number
+          format: double
+        provider:
+          type: string
+        isDeleted:
+          type: boolean
+        deletedAt:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - title
+      - destinationUrl
+      - laterInfluenceCampaignId
+      - provider
+      - isDeleted
+      - deletedAt
+      type: object
+      additionalProperties: false
+    SpecsGetResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/Spec'
+          type: array
+        meta:
+          $ref: '#/components/schemas/ResponseMetadata'
       type: object
       additionalProperties: false
   securitySchemes:

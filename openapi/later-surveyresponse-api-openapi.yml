@@ -132,12 +132,12 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ValidateErrorJSON:
+    ServerError:
       properties:
         message:
           type: string
           enum:
-          - Validation failed
+          - Server Error
         details:
           properties: {}
           additionalProperties:
@@ -148,12 +148,46 @@ components:
       - details
       type: object
       additionalProperties: false
-    ServerError:
+    NotFoundError:
       properties:
         message:
           type: string
           enum:
-          - Server Error
+          - Resource Not Found
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    ResponseMetadata:
+      properties:
+        limit:
+          type: number
+          format: double
+        offset:
+          type: number
+          format: double
+        status:
+          type: string
+          enum:
+          - failure
+          - success
+        totalCount:
+          type: number
+          format: double
+      type: object
+      additionalProperties: false
+    ForbiddenError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Access Forbidden
         details:
           properties: {}
           additionalProperties:
@@ -246,30 +280,12 @@ components:
       - zip
       type: object
       additionalProperties: false
-    ResponseMetadata:
-      properties:
-        limit:
-          type: number
-          format: double
-        offset:
-          type: number
-          format: double
-        status:
-          type: string
-          enum:
-          - failure
-          - success
-        totalCount:
-          type: number
-          format: double
-      type: object
-      additionalProperties: false
-    NotFoundError:
+    ValidateErrorJSON:
       properties:
         message:
           type: string
           enum:
-          - Resource Not Found
+          - Validation failed
         details:
           properties: {}
           additionalProperties:
@@ -316,22 +332,6 @@ components:
       - order
       - total
       - options
-      type: object
-      additionalProperties: false
-    ForbiddenError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
       type: object
       additionalProperties: false
   securitySchemes:

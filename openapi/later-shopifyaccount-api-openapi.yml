@@ -394,6 +394,22 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    CreateShopifyAccountData:
+      properties:
+        communityId:
+          type: string
+        shopName:
+          type: string
+        apiKey:
+          type: string
+        shopifyAccessToken:
+          type: string
+      required:
+      - communityId
+      - shopName
+      - shopifyAccessToken
+      type: object
+      additionalProperties: false
     ShopifyAccountResponse:
       properties:
         updatedAt:
@@ -428,54 +444,12 @@ components:
       - shopId
       type: object
       additionalProperties: false
-    ConnectShopifyAccountBody:
-      properties:
-        token:
-          type: string
-        shop:
-          type: string
-      required:
-      - token
-      - shop
-      type: object
-      additionalProperties: false
     ServerError:
       properties:
         message:
           type: string
           enum:
           - Server Error
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    BadRequestError:
-      properties:
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-        message:
-          type: string
-          enum:
-          - Bad Request
-      required:
-      - message
-      type: object
-      additionalProperties: false
-    ForbiddenError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Access Forbidden
         details:
           properties: {}
           additionalProperties:
@@ -502,20 +476,46 @@ components:
       - details
       type: object
       additionalProperties: false
-    CreateShopifyAccountData:
+    ForbiddenError:
       properties:
-        communityId:
+        message:
           type: string
-        shopName:
+          enum:
+          - Access Forbidden
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    BadRequestError:
+      properties:
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+        message:
           type: string
-        apiKey:
+          enum:
+          - Bad Request
+      required:
+      - message
+      type: object
+      additionalProperties: false
+    ConnectShopifyAccountBody:
+      properties:
+        token:
           type: string
-        shopifyAccessToken:
+        shop:
           type: string
       required:
-      - communityId
-      - shopName
-      - shopifyAccessToken
+      - token
+      - shop
       type: object
       additionalProperties: false
   securitySchemes:

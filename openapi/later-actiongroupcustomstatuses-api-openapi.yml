@@ -346,171 +346,6 @@ components:
     EmptyObject:
       type: object
       properties: {}
-    ValidateErrorJSON:
-      properties:
-        message:
-          type: string
-          enum:
-          - Validation failed
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ListCustomStatus:
-      properties:
-        templates:
-          items:
-            $ref: '#/components/schemas/ConversationTemplate'
-          type: array
-        statusOrder:
-          type: number
-          format: double
-        slug:
-          type: string
-        phase:
-          type: string
-        linkedStages:
-          items:
-            type: string
-          type: array
-        label:
-          type: string
-        id:
-          type: number
-          format: double
-        enabled:
-          type: boolean
-        disabled:
-          type: boolean
-        custom:
-          type: boolean
-        ctaLabel:
-          type: string
-        auxiliaryLabel:
-          type: string
-        actionGroupId:
-          type: number
-          format: double
-      type: object
-    TSOAEmptyObject:
-      properties: {}
-      type: object
-      additionalProperties: false
-    Partial_ListCustomStatus_:
-      properties:
-        actionGroupId:
-          type: number
-          format: double
-        auxiliaryLabel:
-          type: string
-        ctaLabel:
-          type: string
-        custom:
-          type: boolean
-        disabled:
-          type: boolean
-        enabled:
-          type: boolean
-        id:
-          type: number
-          format: double
-        label:
-          type: string
-        linkedStages:
-          items:
-            type: string
-          type: array
-        phase:
-          type: string
-        slug:
-          type: string
-        statusOrder:
-          type: number
-          format: double
-        templates:
-          items:
-            $ref: '#/components/schemas/ConversationTemplate'
-          type: array
-      type: object
-      description: Make all properties in T optional
-    ServerError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Server Error
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ForbiddenError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ConversationTemplate:
-      properties:
-        category:
-          type: string
-        createdAt:
-          type: string
-          format: date-time
-        createdBy:
-          $ref: '#/components/schemas/Administrator'
-        communityId:
-          type: string
-        html:
-          type: string
-        id:
-          type: number
-          format: double
-        isArchived:
-          type: boolean
-        lastModifiedBy:
-          $ref: '#/components/schemas/Administrator'
-        subject:
-          type: string
-        title:
-          type: string
-        updatedAt:
-          type: string
-          format: date-time
-        version:
-          type: number
-          format: double
-      required:
-      - category
-      - createdAt
-      - html
-      - id
-      - isArchived
-      - title
-      - updatedAt
-      type: object
-      additionalProperties: false
     UserSearch:
       type: object
       additionalProperties: false
@@ -2331,18 +2166,92 @@ components:
                 type:
                 - integer
                 - string
-    LinksDeprecated:
-      type: object
-      x-access:
-      - anonymous
-      - influencer
+    ServerError:
       properties:
-        normal:
+        message:
           type: string
-          description: A normal link to an entity.
-        deep:
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    NotFoundError:
+      properties:
+        message:
           type: string
-          description: A deep link to the entity.
+          enum:
+          - Resource Not Found
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    ListCustomStatus:
+      properties:
+        templates:
+          items:
+            $ref: '#/components/schemas/ConversationTemplate'
+          type: array
+        statusOrder:
+          type: number
+          format: double
+        slug:
+          type: string
+        phase:
+          type: string
+        linkedStages:
+          items:
+            type: string
+          type: array
+        label:
+          type: string
+        id:
+          type: number
+          format: double
+        enabled:
+          type: boolean
+        disabled:
+          type: boolean
+        custom:
+          type: boolean
+        ctaLabel:
+          type: string
+        auxiliaryLabel:
+          type: string
+        actionGroupId:
+          type: number
+          format: double
+      type: object
+    ResponseMetadata:
+      properties:
+        limit:
+          type: number
+          format: double
+        offset:
+          type: number
+          format: double
+        status:
+          type: string
+          enum:
+          - failure
+          - success
+        totalCount:
+          type: number
+          format: double
+      type: object
+      additionalProperties: false
     Administrator:
       properties:
         id:
@@ -2366,87 +2275,6 @@ components:
           type: string
       type: object
       additionalProperties: false
-    ActionGroupCustomStatusDeleteResponse:
-      properties:
-        operation:
-          type: string
-      type: object
-    Error:
-      type: object
-      properties:
-        type:
-          type: string
-          description: A key representing the type of error that has occurred.
-        error:
-          type: string
-          description: A static description of the type of error.
-        params:
-          type: array
-          description: For errors invovling parameters, this is an array containing the invalid parameters.
-          items:
-            type: string
-        keys:
-          type: array
-          items:
-            type:
-            - string
-            - object
-        artifactLinks:
-          $ref: '#/components/schemas/LinksDeprecated'
-        parent:
-          type: object
-          properties:
-            type:
-              type: string
-              description: A key representing the type of error generated by a request to an external API.
-            error:
-              type: string
-              description: A static description of the parent error.
-    ResponseMetadata:
-      properties:
-        limit:
-          type: number
-          format: double
-        offset:
-          type: number
-          format: double
-        status:
-          type: string
-          enum:
-          - failure
-          - success
-        totalCount:
-          type: number
-          format: double
-      type: object
-      additionalProperties: false
-    NotFoundError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Resource Not Found
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ActionGroupCustomStatusesGetResponse:
-      properties:
-        meta:
-          $ref: '#/components/schemas/ResponseMetadata'
-        data:
-          items:
-            $ref: '#/components/schemas/ListCustomStatus'
-          type: array
-      required:
-      - data
-      type: object
     ActionGroupCandidateQueryFilter:
       type: object
       required:
@@ -2705,6 +2533,178 @@ components:
           - draftContent.uploaderGlobalUserId
           - user.tiktokCreator.followersCount
           - user.tiktokCreator.engagementRate
+    ForbiddenError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Access Forbidden
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    Error:
+      type: object
+      properties:
+        type:
+          type: string
+          description: A key representing the type of error that has occurred.
+        error:
+          type: string
+          description: A static description of the type of error.
+        params:
+          type: array
+          description: For errors invovling parameters, this is an array containing the invalid parameters.
+          items:
+            type: string
+        keys:
+          type: array
+          items:
+            type:
+            - string
+            - object
+        artifactLinks:
+          $ref: '#/components/schemas/LinksDeprecated'
+        parent:
+          type: object
+          properties:
+            type:
+              type: string
+              description: A key representing the type of error generated by a request to an external API.
+            error:
+              type: string
+              description: A static description of the parent error.
+    ActionGroupCustomStatusDeleteResponse:
+      properties:
+        operation:
+          type: string
+      type: object
+    ValidateErrorJSON:
+      properties:
+        message:
+          type: string
+          enum:
+          - Validation failed
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    LinksDeprecated:
+      type: object
+      x-access:
+      - anonymous
+      - influencer
+      properties:
+        normal:
+          type: string
+          description: A normal link to an entity.
+        deep:
+          type: string
+          description: A deep link to the entity.
+    TSOAEmptyObject:
+      properties: {}
+      type: object
+      additionalProperties: false
+    ConversationTemplate:
+      properties:
+        category:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        createdBy:
+          $ref: '#/components/schemas/Administrator'
+        communityId:
+          type: string
+        html:
+          type: string
+        id:
+          type: number
+          format: double
+        isArchived:
+          type: boolean
+        lastModifiedBy:
+          $ref: '#/components/schemas/Administrator'
+        subject:
+          type: string
+        title:
+          type: string
+        updatedAt:
+          type: string
+          format: date-time
+        version:
+          type: number
+          format: double
+      required:
+      - category
+      - createdAt
+      - html
+      - id
+      - isArchived
+      - title
+      - updatedAt
+      type: object
+      additionalProperties: false
+    ActionGroupCustomStatusesGetResponse:
+      properties:
+        meta:
+          $ref: '#/components/schemas/ResponseMetadata'
+        data:
+          items:
+            $ref: '#/components/schemas/ListCustomStatus'
+          type: array
+      required:
+      - data
+      type: object
+    Partial_ListCustomStatus_:
+      properties:
+        actionGroupId:
+          type: number
+          format: double
+        auxiliaryLabel:
+          type: string
+        ctaLabel:
+          type: string
+        custom:
+          type: boolean
+        disabled:
+          type: boolean
+        enabled:
+          type: boolean
+        id:
+          type: number
+          format: double
+        label:
+          type: string
+        linkedStages:
+          items:
+            type: string
+          type: array
+        phase:
+          type: string
+        slug:
+          type: string
+        statusOrder:
+          type: number
+          format: double
+        templates:
+          items:
+            $ref: '#/components/schemas/ConversationTemplate'
+          type: array
+      type: object
+      description: Make all properties in T optional
   securitySchemes:
     apiKey:
       type: apiKey

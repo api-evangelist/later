@@ -561,74 +561,6 @@ components:
     EmptyObject:
       type: object
       properties: {}
-    WorkflowActionGroupPerformanceForecast:
-      type: object
-      properties:
-        count:
-          type: integer
-        forecastedImpressions:
-          type: integer
-        forecastedEngagements:
-          type: integer
-        forecastedFollowers:
-          type: integer
-        forecastedImpressionEngagementRate:
-          type: number
-        forecastedFollowerEngagementRate:
-          type: number
-        forecastedCost:
-          type: number
-        forecastedCPE:
-          type: number
-        forecastedCPM:
-          type: number
-    ListCustomStatusDeprecated:
-      type: object
-      required:
-      - label
-      properties:
-        id:
-          type: integer
-        label:
-          type: string
-        ctaLabel:
-          type: string
-        auxiliaryLabel:
-          type: string
-        slug:
-          type: string
-        phase:
-          type: string
-        statusOrder:
-          type: integer
-        disabled:
-          type: boolean
-        custom:
-          type: boolean
-        linkedStages:
-          type: array
-          items:
-            type: string
-        templates:
-          type: array
-          items:
-            $ref: '#/components/schemas/ConversationTemplateDeprecated'
-        requirements:
-          type: array
-          items:
-            $ref: '#/components/schemas/WorkflowStatusRequirementDeprecated'
-    LinksDeprecated:
-      type: object
-      x-access:
-      - anonymous
-      - influencer
-      properties:
-        normal:
-          type: string
-          description: A normal link to an entity.
-        deep:
-          type: string
-          description: A deep link to the entity.
     UserSearch:
       type: object
       additionalProperties: false
@@ -2449,6 +2381,62 @@ components:
                 type:
                 - integer
                 - string
+    WorkflowStatusSummary:
+      type: object
+      properties:
+        slug:
+          type: string
+        ctaLabel:
+          type: string
+        auxiliaryLabel:
+          type: string
+        label:
+          type: string
+        enabled:
+          type: string
+        count:
+          type: integer
+        sortOrder:
+          type: integer
+        statusId:
+          type: integer
+        phase:
+          type: string
+    ListCustomStatusDeprecated:
+      type: object
+      required:
+      - label
+      properties:
+        id:
+          type: integer
+        label:
+          type: string
+        ctaLabel:
+          type: string
+        auxiliaryLabel:
+          type: string
+        slug:
+          type: string
+        phase:
+          type: string
+        statusOrder:
+          type: integer
+        disabled:
+          type: boolean
+        custom:
+          type: boolean
+        linkedStages:
+          type: array
+          items:
+            type: string
+        templates:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConversationTemplateDeprecated'
+        requirements:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkflowStatusRequirementDeprecated'
     AdministratorDeprecated:
       type: object
       properties:
@@ -2544,36 +2532,39 @@ components:
             error:
               type: string
               description: A static description of the parent error.
-    WorkflowStatusSummary:
+    LinksDeprecated:
+      type: object
+      x-access:
+      - anonymous
+      - influencer
+      properties:
+        normal:
+          type: string
+          description: A normal link to an entity.
+        deep:
+          type: string
+          description: A deep link to the entity.
+    WorkflowActionGroupPerformanceForecast:
       type: object
       properties:
-        slug:
-          type: string
-        ctaLabel:
-          type: string
-        auxiliaryLabel:
-          type: string
-        label:
-          type: string
-        enabled:
-          type: string
         count:
           type: integer
-        sortOrder:
+        forecastedImpressions:
           type: integer
-        statusId:
+        forecastedEngagements:
           type: integer
-        phase:
-          type: string
-    WorkflowStatusRequirementDeprecated:
-      type: object
-      properties:
-        satisfied:
-          type: boolean
-        incentiveId:
+        forecastedFollowers:
+          type: integer
+        forecastedImpressionEngagementRate:
           type: number
-        name:
-          type: string
+        forecastedFollowerEngagementRate:
+          type: number
+        forecastedCost:
+          type: number
+        forecastedCPE:
+          type: number
+        forecastedCPM:
+          type: number
     ActionGroupCandidateQueryFilter:
       type: object
       required:
@@ -2832,6 +2823,15 @@ components:
           - draftContent.uploaderGlobalUserId
           - user.tiktokCreator.followersCount
           - user.tiktokCreator.engagementRate
+    WorkflowStatusRequirementDeprecated:
+      type: object
+      properties:
+        satisfied:
+          type: boolean
+        incentiveId:
+          type: number
+        name:
+          type: string
   securitySchemes:
     apiKey:
       type: apiKey

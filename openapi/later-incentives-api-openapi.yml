@@ -595,227 +595,28 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    IncentivesGetResponse:
+      properties:
+        meta:
+          properties:
+            totalCount:
+              type: number
+              format: double
+          required:
+          - totalCount
+          type: object
+        data:
+          items:
+            $ref: '#/components/schemas/Incentive'
+          type: array
+      required:
+      - meta
+      - data
+      type: object
+      additionalProperties: false
     EmptyObject:
       type: object
       properties: {}
-    TermsAndConditionsTemplate:
-      properties:
-        customParams:
-          items:
-            type: string
-          type: array
-        template:
-          type: string
-      required:
-      - customParams
-      - template
-      type: object
-    MavrckSupportedCurrencies:
-      type: object
-    IncentiveUnlockEvent:
-      type: string
-      enum:
-      - acceptance
-      - completion
-      - pending_shipment
-      - pending_payment
-    IncentiveURI:
-      properties:
-        id:
-          type: number
-          format: double
-      required:
-      - id
-      type: object
-      additionalProperties: false
-    LinksDeprecated:
-      type: object
-      x-access:
-      - anonymous
-      - influencer
-      properties:
-        normal:
-          type: string
-          description: A normal link to an entity.
-        deep:
-          type: string
-          description: A deep link to the entity.
-    IncentiveUnlockPostBody:
-      properties:
-        claims:
-          type: number
-          format: double
-      type: object
-      additionalProperties: false
-    NotFoundError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Resource Not Found
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    DBRewardWinType:
-      enum:
-      - OTHER
-      - CASH
-      - PRODUCT
-      - PROMO_CODE
-      - GIFT_CARD
-      - SHOPIFY_DISCOUNT
-      type: string
-    ResponseMetadata:
-      properties:
-        limit:
-          type: number
-          format: double
-        offset:
-          type: number
-          format: double
-        status:
-          type: string
-          enum:
-          - failure
-          - success
-        totalCount:
-          type: number
-          format: double
-      type: object
-      additionalProperties: false
-    ForbiddenError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    IncentiveClaimDeprecated:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Unique identifier for the incentive claim.
-        membershipId:
-          type: integer
-          x-access:
-          - administrator
-          - root
-        globalUserId:
-          type: integer
-          x-access:
-          - administrator
-          - root
-        promocode:
-          type: string
-          description: The issuance of a promo code. This is derived either from a static promo code configured as a property of the incentive resource or dynamically from a uploaded list of codes.
-        createdAt:
-          format: date-time
-          type: string
-        profilePictureLink:
-          type: string
-          x-access:
-          - administrator
-          - root
-        firstName:
-          type: string
-          x-access:
-          - administrator
-          - root
-        lastName:
-          type: string
-          x-access:
-          - administrator
-          - root
-        email:
-          type: string
-          x-access:
-          - administrator
-          - root
-        address:
-          type: string
-          x-access:
-          - administrator
-          - root
-        age:
-          type: integer
-          x-access:
-          - administrator
-          - root
-        gender:
-          type: string
-          x-access:
-          - administrator
-          - root
-        facebookFriendCount:
-          type: integer
-          x-access:
-          - administrator
-          - root
-        mostRecentRewardFulfilledAt:
-          type: string
-          format: date-time
-          x-access:
-          - administrator
-          - root
-        engagementCount:
-          type: integer
-        clickCount:
-          type: integer
-        conversionCount:
-          type: integer
-    ValidateErrorJSON:
-      properties:
-        message:
-          type: string
-          enum:
-          - Validation failed
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    TSOAEmptyObject:
-      properties: {}
-      type: object
-      additionalProperties: false
-    ServerError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Server Error
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
     IncentiveWinner:
       type: object
       required:
@@ -862,56 +663,73 @@ components:
         rewardIsFulfilled:
           type: boolean
           description: Indicates whether the reward win has been fulfilled. An incentive winner cannot be disqualified if his/her reward has already been fulfilled.
-    Error:
+    IncentiveTermsAndConditions:
+      properties:
+        params:
+          additionalProperties: false
+          type: object
+        preview:
+          type: string
+        template:
+          type: string
       type: object
+      additionalProperties: false
+    BonusTier:
+      description: 'Swagger 2 representation of a tiered bonus entry.
+
+
+        `upperBound` is required for `BOUNDED` tiers and must be omitted for
+
+        `OPEN_ENDED` tiers. The bonus-tier validator enforces that conditional rule.
+
+
+        Validation rules:
+
+        - `bonusTiers` may contain at most 5 tiers.
+
+        - Tiers must be sorted by `lowerBound`.
+
+        - Adjacent tiers must be contiguous.
+
+        - The final tier must be `OPEN_ENDED`.
+
+        - `bonusTierCurrencyCode` is required when `bonusTiers` is non-empty.'
       properties:
         type:
           type: string
-          description: A key representing the type of error that has occurred.
-        error:
-          type: string
-          description: A static description of the type of error.
-        params:
-          type: array
-          description: For errors invovling parameters, this is an array containing the invalid parameters.
-          items:
-            type: string
-        keys:
-          type: array
-          items:
-            type:
-            - string
-            - object
-        artifactLinks:
-          $ref: '#/components/schemas/LinksDeprecated'
-        parent:
-          type: object
-          properties:
-            type:
-              type: string
-              description: A key representing the type of error generated by a request to an external API.
-            error:
-              type: string
-              description: A static description of the parent error.
-    IncentivesGetResponse:
-      properties:
-        meta:
-          properties:
-            totalCount:
-              type: number
-              format: double
-          required:
-          - totalCount
-          type: object
-        data:
-          items:
-            $ref: '#/components/schemas/Incentive'
-          type: array
+          enum:
+          - BOUNDED
+          - OPEN_ENDED
+        lowerBound:
+          type: number
+          format: double
+          description: Inclusive lower conversion/order bound for this payout tier. Must be non-negative.
+        upperBound:
+          type: number
+          format: double
+          description: Exclusive upper conversion/order bound for a `BOUNDED` tier.
+        bonusAmount:
+          type: number
+          format: double
+          description: Bonus payout amount in `bonusTierCurrencyCode`. Must be positive.
       required:
-      - meta
-      - data
+      - type
+      - lowerBound
+      - bonusAmount
       type: object
       additionalProperties: false
+    TermsAndConditionsTemplate:
+      properties:
+        customParams:
+          items:
+            type: string
+          type: array
+        template:
+          type: string
+      required:
+      - customParams
+      - template
+      type: object
     Incentive:
       properties:
         actionGroupId:
@@ -1044,107 +862,6 @@ components:
           type: string
       type: object
       additionalProperties: false
-    BonusTier:
-      description: 'Swagger 2 representation of a tiered bonus entry.
-
-
-        `upperBound` is required for `BOUNDED` tiers and must be omitted for
-
-        `OPEN_ENDED` tiers. The bonus-tier validator enforces that conditional rule.
-
-
-        Validation rules:
-
-        - `bonusTiers` may contain at most 5 tiers.
-
-        - Tiers must be sorted by `lowerBound`.
-
-        - Adjacent tiers must be contiguous.
-
-        - The final tier must be `OPEN_ENDED`.
-
-        - `bonusTierCurrencyCode` is required when `bonusTiers` is non-empty.'
-      properties:
-        type:
-          type: string
-          enum:
-          - BOUNDED
-          - OPEN_ENDED
-        lowerBound:
-          type: number
-          format: double
-          description: Inclusive lower conversion/order bound for this payout tier. Must be non-negative.
-        upperBound:
-          type: number
-          format: double
-          description: Exclusive upper conversion/order bound for a `BOUNDED` tier.
-        bonusAmount:
-          type: number
-          format: double
-          description: Bonus payout amount in `bonusTierCurrencyCode`. Must be positive.
-      required:
-      - type
-      - lowerBound
-      - bonusAmount
-      type: object
-      additionalProperties: false
-    IncentiveTermsAndConditions:
-      properties:
-        params:
-          additionalProperties: false
-          type: object
-        preview:
-          type: string
-        template:
-          type: string
-      type: object
-      additionalProperties: false
-    IncentiveClaim:
-      properties:
-        address:
-          type: string
-        age:
-          type: number
-          format: double
-        clickCount:
-          type: number
-          format: double
-        conversionCount:
-          type: number
-          format: double
-        createdAt:
-          type: string
-        email:
-          type: string
-        engagementCount:
-          type: number
-          format: double
-        facebookFriendCount:
-          type: number
-          format: double
-        firstName:
-          type: string
-        gender:
-          type: string
-        globalUserId:
-          type: number
-          format: double
-        id:
-          type: number
-          format: double
-        lastName:
-          type: string
-        membershipId:
-          type: number
-          format: double
-        mostRecentRewardFulfilledAt:
-          type: string
-        profilePictureLink:
-          type: string
-        promocode:
-          type: string
-      type: object
-      additionalProperties: false
     NullableBonusTierCurrencyCode:
       type:
       - string
@@ -1156,85 +873,79 @@ components:
       - AUD
       - CAD
       - null
-    CreateIncentivePostBody:
+    MavrckSupportedCurrencies:
+      type: object
+    DBRewardWinType:
+      enum:
+      - OTHER
+      - CASH
+      - PRODUCT
+      - PROMO_CODE
+      - GIFT_CARD
+      - SHOPIFY_DISCOUNT
+      type: string
+    NotFoundError:
       properties:
-        incentiveTitle:
+        message:
           type: string
-        incentiveStatus:
-          type: string
-        quantity:
-          type: number
-          format: double
-        image:
-          type: string
-        multipleClaims:
-          type: boolean
-        termsAndConditions:
-          $ref: '#/components/schemas/IncentiveTermsAndConditions'
-        dynamicPromoCodesToAdd:
-          items:
-            type: string
-          type: array
-        rewardWinType:
-          $ref: '#/components/schemas/DBRewardWinType'
-        approximateRetailValue:
-          type: number
-          format: double
-        cost:
-          type: number
-          format: double
-        valueCurrencyCode:
-          $ref: '#/components/schemas/MavrckSupportedCurrencies'
-        type:
-          type: string
-        unlockEvent:
-          $ref: '#/components/schemas/IncentiveUnlockEvent'
-        unlockType:
-          type: string
-        cashPaymentAppId:
-          type:
-          - number
-          - 'null'
-          format: double
-        cashPaymentAppProvider:
-          type:
-          - string
-          - 'null'
-        giftCardEmailTemplateId:
-          type:
-          - string
-          - 'null'
-        giftCardOptionId:
-          type:
-          - number
-          - 'null'
-          format: double
-        costCurrencyCode:
-          type: object
-        bonusTierCurrencyCode:
-          $ref: '#/components/schemas/NullableBonusTierCurrencyCode'
-          description: Currency code used for all tiered bonus amounts. Required when `bonusTiers` is non-empty.
-        bonusTiers:
-          items:
-            $ref: '#/components/schemas/BonusTier'
-          type:
-          - array
-          - 'null'
-          description: Tiered bonus payout ladder. Must be sorted, contiguous, contain at most 5 tiers, and end with one `OPEN_ENDED` tier.
-        shopify:
+          enum:
+          - Resource Not Found
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
           type: object
       required:
-      - incentiveTitle
-      - quantity
+      - message
+      - details
       type: object
       additionalProperties: false
-    IdObject:
+    ForbiddenError:
       properties:
-        id:
-          type: number
-          format: double
+        message:
+          type: string
+          enum:
+          - Access Forbidden
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
       required:
-      - id
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    ValidateErrorJSON:
+      properties:
+        message:
+          type: string
+          enum:
+          - Validation failed
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    LinksDeprecated:
+      type: object
+      x-access:
+      - anonymous
+      - influencer
+      properties:
+        normal:
+          type: string
+          description: A normal link to an entity.
+        deep:
+          type: string
+          description: A deep link to the entity.
+    TSOAEmptyObject:
+      properties: {}
       type: object
       additionalProperties: false
     UpdateIncentivePutBody:
@@ -1339,11 +1050,300 @@ components:
       - valueCurrencyCode
       type: object
       additionalProperties: false
+    IncentiveURI:
+      properties:
+        id:
+          type: number
+          format: double
+      required:
+      - id
+      type: object
+      additionalProperties: false
+    CreateIncentivePostBody:
+      properties:
+        incentiveTitle:
+          type: string
+        incentiveStatus:
+          type: string
+        quantity:
+          type: number
+          format: double
+        image:
+          type: string
+        multipleClaims:
+          type: boolean
+        termsAndConditions:
+          $ref: '#/components/schemas/IncentiveTermsAndConditions'
+        dynamicPromoCodesToAdd:
+          items:
+            type: string
+          type: array
+        rewardWinType:
+          $ref: '#/components/schemas/DBRewardWinType'
+        approximateRetailValue:
+          type: number
+          format: double
+        cost:
+          type: number
+          format: double
+        valueCurrencyCode:
+          $ref: '#/components/schemas/MavrckSupportedCurrencies'
+        type:
+          type: string
+        unlockEvent:
+          $ref: '#/components/schemas/IncentiveUnlockEvent'
+        unlockType:
+          type: string
+        cashPaymentAppId:
+          type:
+          - number
+          - 'null'
+          format: double
+        cashPaymentAppProvider:
+          type:
+          - string
+          - 'null'
+        giftCardEmailTemplateId:
+          type:
+          - string
+          - 'null'
+        giftCardOptionId:
+          type:
+          - number
+          - 'null'
+          format: double
+        costCurrencyCode:
+          type: object
+        bonusTierCurrencyCode:
+          $ref: '#/components/schemas/NullableBonusTierCurrencyCode'
+          description: Currency code used for all tiered bonus amounts. Required when `bonusTiers` is non-empty.
+        bonusTiers:
+          items:
+            $ref: '#/components/schemas/BonusTier'
+          type:
+          - array
+          - 'null'
+          description: Tiered bonus payout ladder. Must be sorted, contiguous, contain at most 5 tiers, and end with one `OPEN_ENDED` tier.
+        shopify:
+          type: object
+      required:
+      - incentiveTitle
+      - quantity
+      type: object
+      additionalProperties: false
+    IdObject:
+      properties:
+        id:
+          type: number
+          format: double
+      required:
+      - id
+      type: object
+      additionalProperties: false
+    ResponseMetadata:
+      properties:
+        limit:
+          type: number
+          format: double
+        offset:
+          type: number
+          format: double
+        status:
+          type: string
+          enum:
+          - failure
+          - success
+        totalCount:
+          type: number
+          format: double
+      type: object
+      additionalProperties: false
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    IncentiveClaimDeprecated:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the incentive claim.
+        membershipId:
+          type: integer
+          x-access:
+          - administrator
+          - root
+        globalUserId:
+          type: integer
+          x-access:
+          - administrator
+          - root
+        promocode:
+          type: string
+          description: The issuance of a promo code. This is derived either from a static promo code configured as a property of the incentive resource or dynamically from a uploaded list of codes.
+        createdAt:
+          format: date-time
+          type: string
+        profilePictureLink:
+          type: string
+          x-access:
+          - administrator
+          - root
+        firstName:
+          type: string
+          x-access:
+          - administrator
+          - root
+        lastName:
+          type: string
+          x-access:
+          - administrator
+          - root
+        email:
+          type: string
+          x-access:
+          - administrator
+          - root
+        address:
+          type: string
+          x-access:
+          - administrator
+          - root
+        age:
+          type: integer
+          x-access:
+          - administrator
+          - root
+        gender:
+          type: string
+          x-access:
+          - administrator
+          - root
+        facebookFriendCount:
+          type: integer
+          x-access:
+          - administrator
+          - root
+        mostRecentRewardFulfilledAt:
+          type: string
+          format: date-time
+          x-access:
+          - administrator
+          - root
+        engagementCount:
+          type: integer
+        clickCount:
+          type: integer
+        conversionCount:
+          type: integer
+    IncentiveUnlockPostBody:
+      properties:
+        claims:
+          type: number
+          format: double
+      type: object
+      additionalProperties: false
+    IncentiveUnlockEvent:
+      type: string
+      enum:
+      - acceptance
+      - completion
+      - pending_shipment
+      - pending_payment
+    Error:
+      type: object
+      properties:
+        type:
+          type: string
+          description: A key representing the type of error that has occurred.
+        error:
+          type: string
+          description: A static description of the type of error.
+        params:
+          type: array
+          description: For errors invovling parameters, this is an array containing the invalid parameters.
+          items:
+            type: string
+        keys:
+          type: array
+          items:
+            type:
+            - string
+            - object
+        artifactLinks:
+          $ref: '#/components/schemas/LinksDeprecated'
+        parent:
+          type: object
+          properties:
+            type:
+              type: string
+              description: A key representing the type of error generated by a request to an external API.
+            error:
+              type: string
+              description: A static description of the parent error.
+    IncentiveClaim:
+      properties:
+        address:
+          type: string
+        age:
+          type: number
+          format: double
+        clickCount:
+          type: number
+          format: double
+        conversionCount:
+          type: number
+          format: double
+        createdAt:
+          type: string
+        email:
+          type: string
+        engagementCount:
+          type: number
+          format: double
+        facebookFriendCount:
+          type: number
+          format: double
+        firstName:
+          type: string
+        gender:
+          type: string
+        globalUserId:
+          type: number
+          format: double
+        id:
+          type: number
+          format: double
+        lastName:
+          type: string
+        membershipId:
+          type: number
+          format: double
+        mostRecentRewardFulfilledAt:
+          type: string
+        profilePictureLink:
+          type: string
+        promocode:
+          type: string
+      type: object
+      additionalProperties: false
   parameters:
-    limitParam:
+    offsetParam:
       in: query
-      description: Maximum number of items to return
-      name: limit
+      description: Number of items to skip
+      name: offset
       schema:
         type: integer
     orderByParam:
@@ -1352,10 +1352,10 @@ components:
       name: orderBy
       schema:
         type: string
-    offsetParam:
+    limitParam:
       in: query
-      description: Number of items to skip
-      name: offset
+      description: Maximum number of items to return
+      name: limit
       schema:
         type: integer
   securitySchemes:

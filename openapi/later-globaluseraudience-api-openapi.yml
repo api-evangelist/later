@@ -146,12 +146,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   parameters:
-    limitParam:
-      in: query
-      description: Maximum number of items to return
-      name: limit
-      schema:
-        type: integer
     orderDirection:
       in: query
       description: Select the direction by which the data will be ordered, ascending or descending.
@@ -167,19 +161,31 @@ components:
       name: offset
       schema:
         type: integer
+    limitParam:
+      in: query
+      description: Maximum number of items to return
+      name: limit
+      schema:
+        type: integer
   schemas:
-    LinksDeprecated:
-      type: object
-      x-access:
-      - anonymous
-      - influencer
+    ResponseMetadata:
       properties:
-        normal:
+        limit:
+          type: number
+          format: double
+        offset:
+          type: number
+          format: double
+        status:
           type: string
-          description: A normal link to an entity.
-        deep:
-          type: string
-          description: A deep link to the entity.
+          enum:
+          - failure
+          - success
+        totalCount:
+          type: number
+          format: double
+      type: object
+      additionalProperties: false
     Error:
       type: object
       properties:
@@ -211,24 +217,18 @@ components:
             error:
               type: string
               description: A static description of the parent error.
-    ResponseMetadata:
-      properties:
-        limit:
-          type: number
-          format: double
-        offset:
-          type: number
-          format: double
-        status:
-          type: string
-          enum:
-          - failure
-          - success
-        totalCount:
-          type: number
-          format: double
+    LinksDeprecated:
       type: object
-      additionalProperties: false
+      x-access:
+      - anonymous
+      - influencer
+      properties:
+        normal:
+          type: string
+          description: A normal link to an entity.
+        deep:
+          type: string
+          description: A deep link to the entity.
   securitySchemes:
     apiKey:
       type: apiKey

@@ -94,12 +94,12 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ValidateErrorJSON:
+    ServerError:
       properties:
         message:
           type: string
           enum:
-          - Validation failed
+          - Server Error
         details:
           properties: {}
           additionalProperties:
@@ -110,12 +110,28 @@ components:
       - details
       type: object
       additionalProperties: false
-    ServerError:
+    NotFoundError:
       properties:
         message:
           type: string
           enum:
-          - Server Error
+          - Resource Not Found
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    ForbiddenError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Access Forbidden
         details:
           properties: {}
           additionalProperties:
@@ -142,28 +158,12 @@ components:
       required:
       - instagramProfileId
       type: object
-    NotFoundError:
+    ValidateErrorJSON:
       properties:
         message:
           type: string
           enum:
-          - Resource Not Found
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ForbiddenError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Access Forbidden
+          - Validation failed
         details:
           properties: {}
           additionalProperties:

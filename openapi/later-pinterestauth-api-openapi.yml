@@ -90,12 +90,41 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    AuthenticatedInfluencerSocialMediaProfile:
+      properties:
+        expiresAt:
+          type: string
+        handle:
+          type: string
+        profilePicture:
+          type: string
+      required:
+      - expiresAt
+      - handle
+      type: object
+      additionalProperties: false
     ServerError:
       properties:
         message:
           type: string
           enum:
           - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    ForbiddenError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Access Forbidden
         details:
           properties: {}
           additionalProperties:
@@ -121,30 +150,6 @@ components:
       - message
       type: object
       additionalProperties: false
-    PinterestAuthPostResponse:
-      properties:
-        pinterest:
-          $ref: '#/components/schemas/AuthenticatedInfluencerSocialMediaProfile'
-        token:
-          type: string
-      required:
-      - pinterest
-      - token
-      type: object
-      additionalProperties: false
-    AuthenticatedInfluencerSocialMediaProfile:
-      properties:
-        expiresAt:
-          type: string
-        handle:
-          type: string
-        profilePicture:
-          type: string
-      required:
-      - expiresAt
-      - handle
-      type: object
-      additionalProperties: false
     PinterestAuthPostRequestBody:
       properties:
         code:
@@ -156,20 +161,15 @@ components:
       - redirectUri
       type: object
       additionalProperties: false
-    ForbiddenError:
+    PinterestAuthPostResponse:
       properties:
-        message:
+        pinterest:
+          $ref: '#/components/schemas/AuthenticatedInfluencerSocialMediaProfile'
+        token:
           type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
       required:
-      - message
-      - details
+      - pinterest
+      - token
       type: object
       additionalProperties: false
   securitySchemes:

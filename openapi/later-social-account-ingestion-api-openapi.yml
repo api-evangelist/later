@@ -74,137 +74,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ValidateErrorJSON:
-      properties:
-        message:
-          type: string
-          enum:
-          - Validation failed
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    RequestData:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/Partial_GlobalUser_'
-          type: array
-      required:
-      - data
-      type: object
-      additionalProperties: false
-    MvkPinterestAccount:
-      properties:
-        id:
-          type: number
-          format: double
-        username:
-          type: string
-        externalId:
-          type: string
-        bio:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        followersCount:
-          type: number
-          format: double
-        profilePicture:
-          type: string
-        primaryAccount:
-          type: boolean
-        boardsCount:
-          type: number
-          format: double
-        pinsCount:
-          type: number
-          format: double
-        monthlyViewers:
-          type: number
-          format: double
-      required:
-      - username
-      - externalId
-      type: object
-      additionalProperties: false
-    ServerError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Server Error
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    MvkYoutubeChannel:
-      properties:
-        id:
-          type: number
-          format: double
-        username:
-          type: string
-        externalId:
-          type: string
-        bio:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        followersCount:
-          type: number
-          format: double
-        profilePicture:
-          type: string
-        primaryAccount:
-          type: boolean
-        userId:
-          type: number
-          format: double
-        videoCount:
-          type: number
-          format: double
-        commentCount:
-          type: number
-          format: double
-        viewCount:
-          type: number
-          format: double
-      required:
-      - username
-      - externalId
-      type: object
-      additionalProperties: false
-    MvkBlog:
-      properties:
-        id:
-          type: number
-          format: double
-        url:
-          type: string
-        name:
-          type: string
-      required:
-      - id
-      - url
-      type: object
-      additionalProperties: false
     Partial_GlobalUser_:
       properties:
         id:
@@ -225,43 +94,6 @@ components:
           $ref: '#/components/schemas/MvkBlog'
       type: object
       description: Make all properties in T optional
-    MvkTwitterAccount:
-      properties:
-        id:
-          type: number
-          format: double
-        username:
-          type: string
-        externalId:
-          type: string
-        bio:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        followersCount:
-          type: number
-          format: double
-        profilePicture:
-          type: string
-        primaryAccount:
-          type: boolean
-        description:
-          type: string
-        verified:
-          type: boolean
-        averageFavorites:
-          type: number
-          format: double
-        averageRetweets:
-          type: number
-          format: double
-      required:
-      - username
-      - externalId
-      type: object
-      additionalProperties: false
     MvkInstagramAccount:
       properties:
         id:
@@ -313,17 +145,124 @@ components:
       - externalId
       type: object
       additionalProperties: false
-    GlobalUserId:
-      type: number
-      format: double
+    MvkBlog:
+      properties:
+        id:
+          type: number
+          format: double
+        url:
+          type: string
+        name:
+          type: string
+      required:
+      - id
+      - url
+      type: object
+      additionalProperties: false
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    RequestData:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/Partial_GlobalUser_'
+          type: array
+      required:
+      - data
+      type: object
+      additionalProperties: false
+    MvkYoutubeChannel:
+      properties:
+        id:
+          type: number
+          format: double
+        username:
+          type: string
+        externalId:
+          type: string
+        bio:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        followersCount:
+          type: number
+          format: double
+        profilePicture:
+          type: string
+        primaryAccount:
+          type: boolean
+        userId:
+          type: number
+          format: double
+        videoCount:
+          type: number
+          format: double
+        commentCount:
+          type: number
+          format: double
+        viewCount:
+          type: number
+          format: double
+      required:
+      - username
+      - externalId
+      type: object
+      additionalProperties: false
+    MvkTwitterAccount:
+      properties:
+        id:
+          type: number
+          format: double
+        username:
+          type: string
+        externalId:
+          type: string
+        bio:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        followersCount:
+          type: number
+          format: double
+        profilePicture:
+          type: string
+        primaryAccount:
+          type: boolean
+        description:
+          type: string
+        verified:
+          type: boolean
+        averageFavorites:
+          type: number
+          format: double
+        averageRetweets:
+          type: number
+          format: double
+      required:
+      - username
+      - externalId
+      type: object
+      additionalProperties: false
     MvkFacebookProfile:
       $ref: '#/components/schemas/MvkSocialAccount'
-    FraudLevel:
-      enum:
-      - low
-      - medium
-      - high
-      type: string
     MvkSocialAccount:
       properties:
         id:
@@ -346,6 +285,67 @@ components:
           type: string
         primaryAccount:
           type: boolean
+      required:
+      - username
+      - externalId
+      type: object
+      additionalProperties: false
+    GlobalUserId:
+      type: number
+      format: double
+    FraudLevel:
+      enum:
+      - low
+      - medium
+      - high
+      type: string
+    ValidateErrorJSON:
+      properties:
+        message:
+          type: string
+          enum:
+          - Validation failed
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    MvkPinterestAccount:
+      properties:
+        id:
+          type: number
+          format: double
+        username:
+          type: string
+        externalId:
+          type: string
+        bio:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        followersCount:
+          type: number
+          format: double
+        profilePicture:
+          type: string
+        primaryAccount:
+          type: boolean
+        boardsCount:
+          type: number
+          format: double
+        pinsCount:
+          type: number
+          format: double
+        monthlyViewers:
+          type: number
+          format: double
       required:
       - username
       - externalId

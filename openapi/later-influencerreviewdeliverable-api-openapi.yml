@@ -94,35 +94,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ValidateErrorJSON:
-      properties:
-        message:
-          type: string
-          enum:
-          - Validation failed
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    InfluencerReviewDeliverablePostBody:
-      properties:
-        count:
-          type: number
-          format: double
-        listId:
-          type: number
-          format: double
-      required:
-      - count
-      - listId
-      type: object
-      additionalProperties: false
     ServerError:
       properties:
         message:
@@ -169,6 +140,35 @@ components:
       required:
       - message
       - details
+      type: object
+      additionalProperties: false
+    ValidateErrorJSON:
+      properties:
+        message:
+          type: string
+          enum:
+          - Validation failed
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    InfluencerReviewDeliverablePostBody:
+      properties:
+        count:
+          type: number
+          format: double
+        listId:
+          type: number
+          format: double
+      required:
+      - count
+      - listId
       type: object
       additionalProperties: false
   securitySchemes:

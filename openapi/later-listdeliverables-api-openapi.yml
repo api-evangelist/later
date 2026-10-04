@@ -163,53 +163,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    NetworkName:
-      type: string
-      enum:
-      - Blog
-      - Facebook
-      - Facebook Group
-      - Facebook Live
-      - Facebook Reel
-      - Image
-      - Instagram
-      - Instagram Reel
-      - Instagram Story
-      - LinkedIn
-      - Pinterest
-      - Snapchat Story
-      - TikTok
-      - Twitch Stream
-      - Twitter
-      - Video
-      - YouTube Video
-      - YouTube Shorts
-    ListDeliverable:
-      properties:
-        contentType:
-          $ref: '#/components/schemas/NetworkSlug'
-        contentTypeName:
-          $ref: '#/components/schemas/NetworkName'
-        count:
-          type: number
-          format: double
-        id:
-          type: number
-          format: double
-        listId:
-          type: number
-          format: double
-        updatedBy:
-          type: number
-          format: double
-      required:
-      - contentType
-      - contentTypeName
-      - count
-      - id
-      - listId
-      type: object
-      additionalProperties: false
     ServerError:
       properties:
         message:
@@ -226,45 +179,6 @@ components:
       - details
       type: object
       additionalProperties: false
-    BadRequestError:
-      properties:
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-        message:
-          type: string
-          enum:
-          - Bad Request
-      required:
-      - message
-      type: object
-      additionalProperties: false
-    NetworkSlug:
-      type: string
-      enum:
-      - blog
-      - facebook
-      - facebook_group
-      - facebook_live
-      - facebook_reel
-      - image
-      - instagram
-      - instagram_reel
-      - instagram_story
-      - linkedin
-      - pinterest
-      - snapchat_story
-      - tiktok
-      - twitch_stream
-      - twitter
-      - video
-      - youtube_video
-      - youtube_shorts
-    ListDeliverableRequest:
-      type: object
-      properties: {}
     NotFoundError:
       properties:
         message:
@@ -297,6 +211,92 @@ components:
       - details
       type: object
       additionalProperties: false
+    BadRequestError:
+      properties:
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+        message:
+          type: string
+          enum:
+          - Bad Request
+      required:
+      - message
+      type: object
+      additionalProperties: false
+    ListDeliverableRequest:
+      type: object
+      properties: {}
+    ListDeliverable:
+      properties:
+        contentType:
+          $ref: '#/components/schemas/NetworkSlug'
+        contentTypeName:
+          $ref: '#/components/schemas/NetworkName'
+        count:
+          type: number
+          format: double
+        id:
+          type: number
+          format: double
+        listId:
+          type: number
+          format: double
+        updatedBy:
+          type: number
+          format: double
+      required:
+      - contentType
+      - contentTypeName
+      - count
+      - id
+      - listId
+      type: object
+      additionalProperties: false
+    NetworkSlug:
+      type: string
+      enum:
+      - blog
+      - facebook
+      - facebook_group
+      - facebook_live
+      - facebook_reel
+      - image
+      - instagram
+      - instagram_reel
+      - instagram_story
+      - linkedin
+      - pinterest
+      - snapchat_story
+      - tiktok
+      - twitch_stream
+      - twitter
+      - video
+      - youtube_video
+      - youtube_shorts
+    NetworkName:
+      type: string
+      enum:
+      - Blog
+      - Facebook
+      - Facebook Group
+      - Facebook Live
+      - Facebook Reel
+      - Image
+      - Instagram
+      - Instagram Reel
+      - Instagram Story
+      - LinkedIn
+      - Pinterest
+      - Snapchat Story
+      - TikTok
+      - Twitch Stream
+      - Twitter
+      - Video
+      - YouTube Video
+      - YouTube Shorts
   securitySchemes:
     apiKey:
       type: apiKey

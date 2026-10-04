@@ -132,27 +132,44 @@ paths:
                 reason:
                   type: string
 components:
+  parameters:
+    limitParam:
+      in: query
+      description: Maximum number of items to return
+      name: limit
+      schema:
+        type: integer
+    orderByParam:
+      in: query
+      description: Attribute to order by.
+      name: orderBy
+      schema:
+        type: string
+    offsetParam:
+      in: query
+      description: Number of items to skip
+      name: offset
+      schema:
+        type: integer
   schemas:
-    PointGrantURI:
-      type: object
-      required:
-      - sourceId
+    ResponseMetadata:
       properties:
-        sourceId:
-          type: integer
-          description: Unique identifier representing the source of the point granted.
-    LinksDeprecated:
+        limit:
+          type: number
+          format: double
+        offset:
+          type: number
+          format: double
+        status:
+          type: string
+          enum:
+          - failure
+          - success
+        totalCount:
+          type: number
+          format: double
       type: object
-      x-access:
-      - anonymous
-      - influencer
-      properties:
-        normal:
-          type: string
-          description: A normal link to an entity.
-        deep:
-          type: string
-          description: A deep link to the entity.
+      additionalProperties: false
     Error:
       type: object
       properties:
@@ -184,24 +201,26 @@ components:
             error:
               type: string
               description: A static description of the parent error.
-    ResponseMetadata:
-      properties:
-        limit:
-          type: number
-          format: double
-        offset:
-          type: number
-          format: double
-        status:
-          type: string
-          enum:
-          - failure
-          - success
-        totalCount:
-          type: number
-          format: double
+    LinksDeprecated:
       type: object
-      additionalProperties: false
+      x-access:
+      - anonymous
+      - influencer
+      properties:
+        normal:
+          type: string
+          description: A normal link to an entity.
+        deep:
+          type: string
+          description: A deep link to the entity.
+    PointGrantURI:
+      type: object
+      required:
+      - sourceId
+      properties:
+        sourceId:
+          type: integer
+          description: Unique identifier representing the source of the point granted.
     PointTransaction:
       type: object
       properties:
@@ -233,25 +252,6 @@ components:
         incentiveClaimId:
           type: integer
           description: Incentive claim ID associated.
-  parameters:
-    limitParam:
-      in: query
-      description: Maximum number of items to return
-      name: limit
-      schema:
-        type: integer
-    offsetParam:
-      in: query
-      description: Number of items to skip
-      name: offset
-      schema:
-        type: integer
-    orderByParam:
-      in: query
-      description: Attribute to order by.
-      name: orderBy
-      schema:
-        type: string
   securitySchemes:
     apiKey:
       type: apiKey

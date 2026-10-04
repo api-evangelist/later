@@ -204,12 +204,12 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ValidateErrorJSON:
+    ServerError:
       properties:
         message:
           type: string
           enum:
-          - Validation failed
+          - Server Error
         details:
           properties: {}
           additionalProperties:
@@ -223,12 +223,35 @@ components:
     CashPaymentAppUpdatePayload:
       type: object
       properties: {}
-    ServerError:
+    NotFoundError:
       properties:
         message:
           type: string
           enum:
-          - Server Error
+          - Resource Not Found
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    DBCashPaymentAppProvider:
+      enum:
+      - PAYPAL
+      - STRIPE
+      - MAVELY
+      - TIPALTI
+      type: string
+    ForbiddenError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Access Forbidden
         details:
           properties: {}
           additionalProperties:
@@ -369,13 +392,6 @@ components:
           type: object
       type: object
       description: Make all properties in T optional
-    DBCashPaymentAppProvider:
-      enum:
-      - PAYPAL
-      - STRIPE
-      - MAVELY
-      - TIPALTI
-      type: string
     CreateCashPaymentAppBody:
       properties:
         tipaltiPayerEntityId:
@@ -420,43 +436,27 @@ components:
       - description
       - additionalCommunityIds
       type: object
+    ValidateErrorJSON:
+      properties:
+        message:
+          type: string
+          enum:
+          - Validation failed
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
     ProviderEnvironment:
       enum:
       - LIVE
       - SANDBOX
       type: string
-    NotFoundError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Resource Not Found
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ForbiddenError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
     CashPaymentAppUpdateResponse:
       type: object
       properties: {}

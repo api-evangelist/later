@@ -144,31 +144,24 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    UpdateFeatureRequest:
+    GetFeaturesResponse:
       properties:
-        public:
-          type: boolean
-        defaultState:
-          type: boolean
-        label:
-          type: string
-      type: object
-    ValidateErrorJSON:
-      properties:
-        message:
-          type: string
-          enum:
-          - Validation failed
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
+        data:
+          items:
+            $ref: '#/components/schemas/InferAttributes_Features_'
+          type: array
+        meta:
+          properties:
+            totalCount:
+              type: number
+              format: double
+          required:
+          - totalCount
           type: object
       required:
-      - message
-      - details
+      - data
+      - meta
       type: object
-      additionalProperties: false
     UpdateFeatureResponse:
       properties:
         data:
@@ -192,24 +185,54 @@ components:
       - details
       type: object
       additionalProperties: false
-    GetFeaturesResponse:
+    NotFoundError:
       properties:
-        data:
-          items:
-            $ref: '#/components/schemas/InferAttributes_Features_'
-          type: array
-        meta:
-          properties:
-            totalCount:
-              type: number
-              format: double
-          required:
-          - totalCount
+        message:
+          type: string
+          enum:
+          - Resource Not Found
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
           type: object
       required:
-      - data
-      - meta
+      - message
+      - details
       type: object
+      additionalProperties: false
+    ForbiddenError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Access Forbidden
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    ValidateErrorJSON:
+      properties:
+        message:
+          type: string
+          enum:
+          - Validation failed
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
     InferAttributes_Features_:
       properties:
         featureId:
@@ -238,22 +261,15 @@ components:
         It cannot detect whether something is a getter or not, you should use the `Excluded`
 
         parameter to exclude getter & setters from the attribute list.'
-    NotFoundError:
+    UpdateFeatureRequest:
       properties:
-        message:
+        public:
+          type: boolean
+        defaultState:
+          type: boolean
+        label:
           type: string
-          enum:
-          - Resource Not Found
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
       type: object
-      additionalProperties: false
     GetFeatureResponse:
       properties:
         data:
@@ -261,22 +277,6 @@ components:
       required:
       - data
       type: object
-    ForbiddenError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
   securitySchemes:
     apiKey:
       type: apiKey

@@ -175,43 +175,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ValidateErrorJSON:
-      properties:
-        message:
-          type: string
-          enum:
-          - Validation failed
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ExportBody:
-      properties:
-        type:
-          $ref: '#/components/schemas/ExportType'
-        actionGroupId:
-          type: number
-          format: double
-        userFilter:
-          additionalProperties: true
-        communityId:
-          type: string
-        customStatusSlug:
-          type: string
-        filter:
-          additionalProperties: true
-        q:
-          type: string
-      required:
-      - type
-      type: object
-      additionalProperties: false
     ServerError:
       properties:
         message:
@@ -228,12 +191,38 @@ components:
       - details
       type: object
       additionalProperties: false
-    ExportType:
-      enum:
-      - ACTIONGROUPINFLUENCERS
-      - MEMBERINFLUENCERS
-      - PROGRAMPERFORMANCECAMPAIGN
-      type: string
+    NotFoundError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Resource Not Found
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    ForbiddenError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Access Forbidden
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
     ContentExportBody:
       properties:
         actionGroupId:
@@ -286,12 +275,12 @@ components:
       - postsWithUGC
       type: object
       additionalProperties: false
-    NotFoundError:
+    ValidateErrorJSON:
       properties:
         message:
           type: string
           enum:
-          - Resource Not Found
+          - Validation failed
         details:
           properties: {}
           additionalProperties:
@@ -302,20 +291,31 @@ components:
       - details
       type: object
       additionalProperties: false
-    ForbiddenError:
+    ExportType:
+      enum:
+      - ACTIONGROUPINFLUENCERS
+      - MEMBERINFLUENCERS
+      - PROGRAMPERFORMANCECAMPAIGN
+      type: string
+    ExportBody:
       properties:
-        message:
+        type:
+          $ref: '#/components/schemas/ExportType'
+        actionGroupId:
+          type: number
+          format: double
+        userFilter:
+          additionalProperties: true
+        communityId:
           type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
+        customStatusSlug:
+          type: string
+        filter:
+          additionalProperties: true
+        q:
+          type: string
       required:
-      - message
-      - details
+      - type
       type: object
       additionalProperties: false
   securitySchemes:

@@ -112,20 +112,50 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    MetaCreatePostPartnershipRequestBody:
-      properties:
-        activationId:
-          type: number
-          format: double
-      required:
-      - activationId
-      type: object
+    MetaPostPartnershipRequestStatus:
+      type: string
+      enum:
+      - pending
+      - granted
+      - denied
     ServerError:
       properties:
         message:
           type: string
           enum:
           - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    NotFoundError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Resource Not Found
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    ForbiddenError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Access Forbidden
         details:
           properties: {}
           additionalProperties:
@@ -178,44 +208,14 @@ components:
       - activationId
       type: object
       additionalProperties: false
-    MetaPostPartnershipRequestStatus:
-      type: string
-      enum:
-      - pending
-      - granted
-      - denied
-    NotFoundError:
+    MetaCreatePostPartnershipRequestBody:
       properties:
-        message:
-          type: string
-          enum:
-          - Resource Not Found
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
+        activationId:
+          type: number
+          format: double
       required:
-      - message
-      - details
+      - activationId
       type: object
-      additionalProperties: false
-    ForbiddenError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
   securitySchemes:
     apiKey:
       type: apiKey

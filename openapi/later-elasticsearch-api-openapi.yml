@@ -173,22 +173,14 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ValidateErrorJSON:
-      properties:
-        message:
-          type: string
-          enum:
-          - Validation failed
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
+    Gender:
+      enum:
+      - describe
+      - female
+      - male
+      - non_bin
+      - other
+      type: string
     ServerError:
       properties:
         message:
@@ -205,14 +197,6 @@ components:
       - details
       type: object
       additionalProperties: false
-    Gender:
-      enum:
-      - describe
-      - female
-      - male
-      - non_bin
-      - other
-      type: string
     NotFoundError:
       properties:
         message:
@@ -229,33 +213,20 @@ components:
       - details
       type: object
       additionalProperties: false
-    RetrieveGlobalUserElasticsearchDocumentsRequestBody:
+    ForbiddenError:
       properties:
-        facebookProfileIds:
-          items:
-            type: number
-            format: double
-          type: array
-        globalUserIds:
-          items:
-            type: number
-            format: double
-          type: array
-        instagramProfileIds:
-          items:
-            type: number
-            format: double
-          type: array
-        membershipIds:
-          items:
-            type: number
-            format: double
-          type: array
-        options:
-          properties:
-            index:
-              type: string
+        message:
+          type: string
+          enum:
+          - Access Forbidden
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
           type: object
+      required:
+      - message
+      - details
       type: object
       additionalProperties: false
     GlobalUserElasticsearchDocument:
@@ -489,12 +460,12 @@ components:
           additionalProperties: true
       type: object
       additionalProperties: false
-    ForbiddenError:
+    ValidateErrorJSON:
       properties:
         message:
           type: string
           enum:
-          - Access Forbidden
+          - Validation failed
         details:
           properties: {}
           additionalProperties:
@@ -503,6 +474,35 @@ components:
       required:
       - message
       - details
+      type: object
+      additionalProperties: false
+    RetrieveGlobalUserElasticsearchDocumentsRequestBody:
+      properties:
+        facebookProfileIds:
+          items:
+            type: number
+            format: double
+          type: array
+        globalUserIds:
+          items:
+            type: number
+            format: double
+          type: array
+        instagramProfileIds:
+          items:
+            type: number
+            format: double
+          type: array
+        membershipIds:
+          items:
+            type: number
+            format: double
+          type: array
+        options:
+          properties:
+            index:
+              type: string
+          type: object
       type: object
       additionalProperties: false
   securitySchemes:

@@ -47,6 +47,24 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    CreatorProfileUpsertEvent:
+      type: object
     ValidateErrorJSON:
       properties:
         message:
@@ -63,30 +81,12 @@ components:
       - details
       type: object
       additionalProperties: false
-    CreatorProfileUpsertEvent:
-      type: object
     ForbiddenError:
       properties:
         message:
           type: string
           enum:
           - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ServerError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Server Error
         details:
           properties: {}
           additionalProperties:

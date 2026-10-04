@@ -143,31 +143,6 @@ components:
         deep:
           type: string
           description: A deep link to the entity.
-    BatchJob:
-      type: object
-      properties:
-        status:
-          type: string
-        name:
-          type: string
-        createdAt:
-          type: string
-        beganProcessingAt:
-          type: string
-        completedAt:
-          type: string
-        failedAt:
-          type: string
-        requester:
-          type: string
-        messagesProcessed:
-          type: integer
-        params:
-          type: string
-        total:
-          type: integer
-        type:
-          type: string
     Error:
       type: object
       properties:
@@ -199,6 +174,31 @@ components:
             error:
               type: string
               description: A static description of the parent error.
+    BatchJob:
+      type: object
+      properties:
+        status:
+          type: string
+        name:
+          type: string
+        createdAt:
+          type: string
+        beganProcessingAt:
+          type: string
+        completedAt:
+          type: string
+        failedAt:
+          type: string
+        requester:
+          type: string
+        messagesProcessed:
+          type: integer
+        params:
+          type: string
+        total:
+          type: integer
+        type:
+          type: string
     ResponseMetadata:
       properties:
         limit:

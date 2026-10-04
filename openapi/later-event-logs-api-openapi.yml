@@ -140,46 +140,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    EventLogPostRequestBody:
-      properties:
-        resourceId:
-          type: number
-          format: double
-      required:
-      - resourceId
-      type: object
-      additionalProperties: false
-    BadRequestError:
-      properties:
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-        message:
-          type: string
-          enum:
-          - Bad Request
-      required:
-      - message
-      type: object
-      additionalProperties: false
-    ServerError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Server Error
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
     EventLog:
       properties:
         communityId:
@@ -220,6 +180,22 @@ components:
       - resourceType
       type: object
       additionalProperties: false
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
     NotFoundError:
       properties:
         message:
@@ -234,6 +210,37 @@ components:
       required:
       - message
       - details
+      type: object
+      additionalProperties: false
+    ForbiddenError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Access Forbidden
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    BadRequestError:
+      properties:
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+        message:
+          type: string
+          enum:
+          - Bad Request
+      required:
+      - message
       type: object
       additionalProperties: false
     EventLogGetResponse:
@@ -260,20 +267,13 @@ components:
       - data
       - meta
       type: object
-    ForbiddenError:
+    EventLogPostRequestBody:
       properties:
-        message:
-          type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
+        resourceId:
+          type: number
+          format: double
       required:
-      - message
-      - details
+      - resourceId
       type: object
       additionalProperties: false
   securitySchemes:

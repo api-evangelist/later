@@ -188,38 +188,19 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ValidateErrorJSON:
-      properties:
-        message:
-          type: string
-          enum:
-          - Validation failed
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
+    PostEmailSettingsResponse:
+      properties: {}
       type: object
       additionalProperties: false
-    EmailSmtpDTO:
+    PostEmailSettingsRequest:
       properties:
         id:
-          type: number
-          format: double
-        communityId:
           type: string
-        fromEmail:
-          type: string
-        fromName:
-          type: string
+        subscribed:
+          type: boolean
       required:
       - id
-      - communityId
-      - fromEmail
-      - fromName
+      - subscribed
       type: object
       additionalProperties: false
     ServerError:
@@ -238,19 +219,27 @@ components:
       - details
       type: object
       additionalProperties: false
-    PostEmailSettingsResponse:
-      properties: {}
-      type: object
-      additionalProperties: false
-    PostEmailSettingsRequest:
+    ValidationError:
       properties:
-        id:
+        property:
           type: string
-        subscribed:
-          type: boolean
+        message:
+          type: string
+        schema:
+          type: object
+        instance:
+          additionalProperties: true
+        name:
+          type: string
+        argument:
+          additionalProperties: true
       required:
-      - id
-      - subscribed
+      - property
+      - message
+      - schema
+      - instance
+      - name
+      - argument
       type: object
       additionalProperties: false
     NotFoundError:
@@ -299,27 +288,38 @@ components:
       - isGloballyDeleted
       type: object
       additionalProperties: false
-    ValidationError:
+    EmailSmtpDTO:
       properties:
-        property:
+        id:
+          type: number
+          format: double
+        communityId:
           type: string
+        fromEmail:
+          type: string
+        fromName:
+          type: string
+      required:
+      - id
+      - communityId
+      - fromEmail
+      - fromName
+      type: object
+      additionalProperties: false
+    ValidateErrorJSON:
+      properties:
         message:
           type: string
-        schema:
+          enum:
+          - Validation failed
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
           type: object
-        instance:
-          additionalProperties: true
-        name:
-          type: string
-        argument:
-          additionalProperties: true
       required:
-      - property
       - message
-      - schema
-      - instance
-      - name
-      - argument
+      - details
       type: object
       additionalProperties: false
   securitySchemes:

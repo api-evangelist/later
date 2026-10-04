@@ -983,6 +983,262 @@ components:
     EmptyObject:
       type: object
       properties: {}
+    InstagramConnectionInfo:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Instagram Profile Id
+        primaryAccount:
+          type: boolean
+        expiresAt:
+          type: string
+          format: date-time
+          description: The date by which the client should re-prompt the either reconnection flow.
+        platformExpiresAt:
+          type: string
+          format: date-time
+          description: The date by which the client should re-prompt the Instagram Platform connection flow.
+        businessExpiresAt:
+          type: string
+          format: date-time
+          description: The date by which the client should re-prompt the Instagram Business connection flow.
+        handle:
+          type: string
+          description: Client's Instagram account handle
+        profilePicture:
+          type: string
+          description: Client's Instagram profile picture
+    TikTokConnectionInfo:
+      type: object
+      properties:
+        primaryAccount:
+          type: boolean
+        expiresAt:
+          type: string
+          format: date-time
+          description: The date by which the client should re-prompt the TikTok connection flow.
+        handle:
+          type: string
+          description: Client's TikTok account handle
+        profilePicture:
+          type: string
+          description: Client's TikTok profile picture
+    SwapAppPostResponse:
+      properties:
+        token:
+          type: string
+      required:
+      - token
+      type: object
+      additionalProperties: false
+    TwitterConnectionInfoDeprecated:
+      type: object
+      properties:
+        expiresAt:
+          type: string
+          format: date-time
+          description: The date by which the client should re-prompt the Twitter connection flow.
+        handle:
+          type: string
+          description: Client's Twitter account handle
+        profilePicture:
+          type: string
+          description: Client's Twitter profile picture
+    NotFoundError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Resource Not Found
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    FacebookProfileDeprecated:
+      type: object
+      properties:
+        id:
+          type: integer
+        facebookExternalId:
+          type: string
+        name:
+          type: string
+        link:
+          type: string
+        picture:
+          type: string
+        reach:
+          type: integer
+        averageLikes:
+          type: integer
+        averageComments:
+          type: integer
+        averageEngagements:
+          type: integer
+        engagementRate:
+          type: number
+        type:
+          type: string
+        available:
+          type: boolean
+        active:
+          type: boolean
+        expiresAt:
+          type: string
+          format: date-time
+        facebookUser:
+          type: object
+          properties:
+            isExpired:
+              type: boolean
+    FacebookAccessCodeExchangeRequest:
+      properties:
+        redirectUri:
+          type: string
+        code:
+          type: string
+      required:
+      - redirectUri
+      - code
+      type: object
+    ForbiddenError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Access Forbidden
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    PinterestConnectionInfo:
+      type: object
+      properties:
+        expiresAt:
+          type: string
+          format: date-time
+          description: The date by which the client should re-prompt the Pinterest connection flow.
+        handle:
+          type: string
+          description: Client's Pinterest account handle
+        profilePicture:
+          type: string
+          description: Client's Pinterest profile picture
+    BasicAuthPostRequest:
+      properties:
+        password:
+          type: string
+        email:
+          type: string
+      required:
+      - password
+      - email
+      type: object
+    ValidateErrorJSON:
+      properties:
+        message:
+          type: string
+          enum:
+          - Validation failed
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    LinksDeprecated:
+      type: object
+      x-access:
+      - anonymous
+      - influencer
+      properties:
+        normal:
+          type: string
+          description: A normal link to an entity.
+        deep:
+          type: string
+          description: A deep link to the entity.
+    TSOAEmptyObject:
+      properties: {}
+      type: object
+      additionalProperties: false
+    EmailAccount:
+      type: object
+      properties:
+        email:
+          type: string
+    Blog:
+      properties:
+        globalUserId:
+          type:
+          - number
+          - 'null'
+          format: double
+        language:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        platform:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+      type: object
+      additionalProperties: false
+    MembershipRejection:
+      type: object
+      description: Passed when an influencer does not meet the entrance criteria for the community.
+      properties:
+        redirectLink:
+          type: string
+        rejectReason:
+          type: string
+        missingCriteria:
+          type: array
+          items:
+            type: string
+    SwapAppRequestBody:
+      properties:
+        communityId:
+          type: string
+      required:
+      - communityId
+      type: object
+      additionalProperties: false
+    BasicAuthPostResponse:
+      properties:
+        token:
+          type: string
+        communityId:
+          type: string
+      required:
+      - token
+      - communityId
+      type: object
     Profile:
       type: object
       properties:
@@ -1070,138 +1326,6 @@ components:
       - resetKey
       type: object
       additionalProperties: false
-    Blog:
-      properties:
-        globalUserId:
-          type:
-          - number
-          - 'null'
-          format: double
-        language:
-          type:
-          - string
-          - 'null'
-        name:
-          type:
-          - string
-          - 'null'
-        platform:
-          type:
-          - string
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
-      type: object
-      additionalProperties: false
-    LinksDeprecated:
-      type: object
-      x-access:
-      - anonymous
-      - influencer
-      properties:
-        normal:
-          type: string
-          description: A normal link to an entity.
-        deep:
-          type: string
-          description: A deep link to the entity.
-    TwitterConnectionInfoDeprecated:
-      type: object
-      properties:
-        expiresAt:
-          type: string
-          format: date-time
-          description: The date by which the client should re-prompt the Twitter connection flow.
-        handle:
-          type: string
-          description: Client's Twitter account handle
-        profilePicture:
-          type: string
-          description: Client's Twitter profile picture
-    NotFoundError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Resource Not Found
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    EmailAccount:
-      type: object
-      properties:
-        email:
-          type: string
-    BasicAuthPostRequest:
-      properties:
-        password:
-          type: string
-        email:
-          type: string
-      required:
-      - password
-      - email
-      type: object
-    TikTokConnectionInfo:
-      type: object
-      properties:
-        primaryAccount:
-          type: boolean
-        expiresAt:
-          type: string
-          format: date-time
-          description: The date by which the client should re-prompt the TikTok connection flow.
-        handle:
-          type: string
-          description: Client's TikTok account handle
-        profilePicture:
-          type: string
-          description: Client's TikTok profile picture
-    ForbiddenError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ValidateErrorJSON:
-      properties:
-        message:
-          type: string
-          enum:
-          - Validation failed
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    TSOAEmptyObject:
-      properties: {}
-      type: object
-      additionalProperties: false
     ServerError:
       properties:
         message:
@@ -1218,81 +1342,8 @@ components:
       - details
       type: object
       additionalProperties: false
-    FacebookProfileDeprecated:
-      type: object
-      properties:
-        id:
-          type: integer
-        facebookExternalId:
-          type: string
-        name:
-          type: string
-        link:
-          type: string
-        picture:
-          type: string
-        reach:
-          type: integer
-        averageLikes:
-          type: integer
-        averageComments:
-          type: integer
-        averageEngagements:
-          type: integer
-        engagementRate:
-          type: number
-        type:
-          type: string
-        available:
-          type: boolean
-        active:
-          type: boolean
-        expiresAt:
-          type: string
-          format: date-time
-        facebookUser:
-          type: object
-          properties:
-            isExpired:
-              type: boolean
-    InstagramConnectionInfo:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Instagram Profile Id
-        primaryAccount:
-          type: boolean
-        expiresAt:
-          type: string
-          format: date-time
-          description: The date by which the client should re-prompt the either reconnection flow.
-        platformExpiresAt:
-          type: string
-          format: date-time
-          description: The date by which the client should re-prompt the Instagram Platform connection flow.
-        businessExpiresAt:
-          type: string
-          format: date-time
-          description: The date by which the client should re-prompt the Instagram Business connection flow.
-        handle:
-          type: string
-          description: Client's Instagram account handle
-        profilePicture:
-          type: string
-          description: Client's Instagram profile picture
-    MembershipRejection:
-      type: object
-      description: Passed when an influencer does not meet the entrance criteria for the community.
-      properties:
-        redirectLink:
-          type: string
-        rejectReason:
-          type: string
-        missingCriteria:
-          type: array
-          items:
-            type: string
+    FacebookConnectionInfo:
+      $ref: '#/components/schemas/FacebookProfileDeprecated'
     Error:
       type: object
       properties:
@@ -1324,57 +1375,6 @@ components:
             error:
               type: string
               description: A static description of the parent error.
-    FacebookAccessCodeExchangeRequest:
-      properties:
-        redirectUri:
-          type: string
-        code:
-          type: string
-      required:
-      - redirectUri
-      - code
-      type: object
-    BasicAuthPostResponse:
-      properties:
-        token:
-          type: string
-        communityId:
-          type: string
-      required:
-      - token
-      - communityId
-      type: object
-    SwapAppPostResponse:
-      properties:
-        token:
-          type: string
-      required:
-      - token
-      type: object
-      additionalProperties: false
-    FacebookConnectionInfo:
-      $ref: '#/components/schemas/FacebookProfileDeprecated'
-    SwapAppRequestBody:
-      properties:
-        communityId:
-          type: string
-      required:
-      - communityId
-      type: object
-      additionalProperties: false
-    PinterestConnectionInfo:
-      type: object
-      properties:
-        expiresAt:
-          type: string
-          format: date-time
-          description: The date by which the client should re-prompt the Pinterest connection flow.
-        handle:
-          type: string
-          description: Client's Pinterest account handle
-        profilePicture:
-          type: string
-          description: Client's Pinterest profile picture
   securitySchemes:
     apiKey:
       type: apiKey

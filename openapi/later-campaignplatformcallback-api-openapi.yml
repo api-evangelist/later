@@ -57,10 +57,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    TSOAEmptyObject:
-      properties: {}
-      type: object
-      additionalProperties: false
     ServerError:
       properties:
         message:
@@ -77,24 +73,6 @@ components:
       - details
       type: object
       additionalProperties: false
-    BadRequestError:
-      properties:
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-        message:
-          type: string
-          enum:
-          - Bad Request
-      required:
-      - message
-      type: object
-      additionalProperties: false
-    CampaignPlatformSubscriptionCallbackPayload:
-      type: object
-      properties: {}
     NotFoundError:
       properties:
         message:
@@ -125,6 +103,28 @@ components:
       required:
       - message
       - details
+      type: object
+      additionalProperties: false
+    BadRequestError:
+      properties:
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+        message:
+          type: string
+          enum:
+          - Bad Request
+      required:
+      - message
+      type: object
+      additionalProperties: false
+    CampaignPlatformSubscriptionCallbackPayload:
+      type: object
+      properties: {}
+    TSOAEmptyObject:
+      properties: {}
       type: object
       additionalProperties: false
   securitySchemes:

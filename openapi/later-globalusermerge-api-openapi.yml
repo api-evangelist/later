@@ -139,12 +139,12 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ValidateErrorJSON:
+    ServerError:
       properties:
         message:
           type: string
           enum:
-          - Validation failed
+          - Server Error
         details:
           properties: {}
           additionalProperties:
@@ -155,12 +155,20 @@ components:
       - details
       type: object
       additionalProperties: false
-    ServerError:
+    GlobalUserMergeSearchRequest:
+      properties:
+        globalUserId:
+          type: number
+          format: double
+      required:
+      - globalUserId
+      type: object
+    ForbiddenError:
       properties:
         message:
           type: string
           enum:
-          - Server Error
+          - Access Forbidden
         details:
           properties: {}
           additionalProperties:
@@ -185,20 +193,12 @@ components:
       - newId
       - oldId
       type: object
-    GlobalUserMergeSearchRequest:
-      properties:
-        globalUserId:
-          type: number
-          format: double
-      required:
-      - globalUserId
-      type: object
-    ForbiddenError:
+    ValidateErrorJSON:
       properties:
         message:
           type: string
           enum:
-          - Access Forbidden
+          - Validation failed
         details:
           properties: {}
           additionalProperties:

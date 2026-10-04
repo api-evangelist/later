@@ -236,12 +236,29 @@ components:
           type: string
       type: object
       additionalProperties: false
-    ValidateErrorJSON:
+    AdministratorAccountPostBody:
+      properties:
+        roleId:
+          type: number
+          format: double
+        password:
+          type: string
+        lastName:
+          type: string
+        firstName:
+          type: string
+        email:
+          type: string
+      required:
+      - password
+      - email
+      type: object
+    ServerError:
       properties:
         message:
           type: string
           enum:
-          - Validation failed
+          - Server Error
         details:
           properties: {}
           additionalProperties:
@@ -252,6 +269,131 @@ components:
       - details
       type: object
       additionalProperties: false
+    GlobalUserSocialAccounts:
+      properties:
+        facebookProfiles:
+          items:
+            $ref: '#/components/schemas/FacebookProfile'
+          type: array
+        instagramAccounts:
+          items:
+            $ref: '#/components/schemas/InstagramAccount'
+          type: array
+        pinterestAccounts:
+          items:
+            $ref: '#/components/schemas/PinterestAccount'
+          type: array
+        twitterAccounts:
+          items:
+            $ref: '#/components/schemas/TwitterAccount'
+          type: array
+      type: object
+      additionalProperties: false
+    FacebookProfile:
+      properties:
+        active:
+          type: boolean
+        available:
+          type: boolean
+        averageComments:
+          type: number
+          format: double
+        averageEngagements:
+          type: number
+          format: double
+        averageLikes:
+          type: number
+          format: double
+        engagementRate:
+          type: number
+          format: double
+        expiresAt:
+          type: string
+        facebookUser:
+          properties:
+            isExpired:
+              type: boolean
+          type: object
+        facebookExternalId:
+          type: string
+        id:
+          type: number
+          format: double
+        link:
+          type: string
+        name:
+          type: string
+        username:
+          type: string
+        picture:
+          type: string
+        reach:
+          type: number
+          format: double
+        type:
+          type: string
+      type: object
+      additionalProperties: false
+    NotFoundError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Resource Not Found
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    TwitterAccount:
+      properties:
+        averageEngagements:
+          type: number
+          format: double
+        averageFavorites:
+          type: number
+          format: double
+        averageRetweets:
+          type: number
+          format: double
+        description:
+          type: string
+        engagementRate:
+          type: number
+          format: double
+        followersCount:
+          type: number
+          format: double
+        followingCount:
+          type: number
+          format: double
+        fullName:
+          type: string
+        handle:
+          type: string
+        id:
+          type: object
+        listedCount:
+          type: number
+          format: double
+        primaryAccount:
+          type: boolean
+        profilePicture:
+          type: string
+        twitterAccessGrant:
+          properties:
+            isExpired:
+              type: boolean
+          type: object
+      type: object
+      additionalProperties: false
+    GlobalUserSocialAccountsResponse:
+      $ref: '#/components/schemas/GlobalUserSocialAccounts'
     AdministratorAccountPutBody:
       properties:
         newPassword:
@@ -265,16 +407,12 @@ components:
         existingPassword:
           type: string
       type: object
-    TSOAEmptyObject:
-      properties: {}
-      type: object
-      additionalProperties: false
-    ServerError:
+    ForbiddenError:
       properties:
         message:
           type: string
           enum:
-          - Server Error
+          - Access Forbidden
         details:
           properties: {}
           additionalProperties:
@@ -341,91 +479,24 @@ components:
       - configurePaymentProvider
       - community_id
       type: object
-    TwitterAccount:
+    ValidateErrorJSON:
       properties:
-        averageEngagements:
-          type: number
-          format: double
-        averageFavorites:
-          type: number
-          format: double
-        averageRetweets:
-          type: number
-          format: double
-        description:
+        message:
           type: string
-        engagementRate:
-          type: number
-          format: double
-        followersCount:
-          type: number
-          format: double
-        followingCount:
-          type: number
-          format: double
-        fullName:
-          type: string
-        handle:
-          type: string
-        id:
+          enum:
+          - Validation failed
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
           type: object
-        listedCount:
-          type: number
-          format: double
-        primaryAccount:
-          type: boolean
-        profilePicture:
-          type: string
-        twitterAccessGrant:
-          properties:
-            isExpired:
-              type: boolean
-          type: object
+      required:
+      - message
+      - details
       type: object
       additionalProperties: false
-    FacebookProfile:
-      properties:
-        active:
-          type: boolean
-        available:
-          type: boolean
-        averageComments:
-          type: number
-          format: double
-        averageEngagements:
-          type: number
-          format: double
-        averageLikes:
-          type: number
-          format: double
-        engagementRate:
-          type: number
-          format: double
-        expiresAt:
-          type: string
-        facebookUser:
-          properties:
-            isExpired:
-              type: boolean
-          type: object
-        facebookExternalId:
-          type: string
-        id:
-          type: number
-          format: double
-        link:
-          type: string
-        name:
-          type: string
-        username:
-          type: string
-        picture:
-          type: string
-        reach:
-          type: number
-          format: double
-        type:
-          type: string
+    TSOAEmptyObject:
+      properties: {}
       type: object
       additionalProperties: false
     PinterestAccount:
@@ -470,77 +541,6 @@ components:
           type: string
         username:
           type: string
-      type: object
-      additionalProperties: false
-    GlobalUserSocialAccountsResponse:
-      $ref: '#/components/schemas/GlobalUserSocialAccounts'
-    NotFoundError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Resource Not Found
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    AdministratorAccountPostBody:
-      properties:
-        roleId:
-          type: number
-          format: double
-        password:
-          type: string
-        lastName:
-          type: string
-        firstName:
-          type: string
-        email:
-          type: string
-      required:
-      - password
-      - email
-      type: object
-    ForbiddenError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    GlobalUserSocialAccounts:
-      properties:
-        facebookProfiles:
-          items:
-            $ref: '#/components/schemas/FacebookProfile'
-          type: array
-        instagramAccounts:
-          items:
-            $ref: '#/components/schemas/InstagramAccount'
-          type: array
-        pinterestAccounts:
-          items:
-            $ref: '#/components/schemas/PinterestAccount'
-          type: array
-        twitterAccounts:
-          items:
-            $ref: '#/components/schemas/TwitterAccount'
-          type: array
       type: object
       additionalProperties: false
   securitySchemes:

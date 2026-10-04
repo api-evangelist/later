@@ -57,27 +57,91 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    NetworkName:
-      type: string
-      enum:
-      - Blog
-      - Facebook
-      - Facebook Group
-      - Facebook Live
-      - Facebook Reel
-      - Image
-      - Instagram
-      - Instagram Reel
-      - Instagram Story
-      - LinkedIn
-      - Pinterest
-      - Snapchat Story
-      - TikTok
-      - Twitch Stream
-      - Twitter
-      - Video
-      - YouTube Video
-      - YouTube Shorts
+    MetaInformation:
+      properties:
+        description:
+          type: string
+        ftcHashtag:
+          type: string
+        image:
+          type: string
+        title:
+          type: string
+      type: object
+      additionalProperties: false
+    DataPointDefinitionSetElement:
+      items:
+        properties:
+          key:
+            type: string
+          id:
+            type: number
+            format: double
+          markUpDisplayLabel:
+            type: string
+          displayLabel:
+            type: string
+        required:
+        - key
+        - id
+        - displayLabel
+        type: object
+      type: array
+    IncentiveTermsAndConditions:
+      properties:
+        params:
+          additionalProperties: false
+          type: object
+        preview:
+          type: string
+        template:
+          type: string
+      type: object
+      additionalProperties: false
+    BonusTier:
+      description: 'Swagger 2 representation of a tiered bonus entry.
+
+
+        `upperBound` is required for `BOUNDED` tiers and must be omitted for
+
+        `OPEN_ENDED` tiers. The bonus-tier validator enforces that conditional rule.
+
+
+        Validation rules:
+
+        - `bonusTiers` may contain at most 5 tiers.
+
+        - Tiers must be sorted by `lowerBound`.
+
+        - Adjacent tiers must be contiguous.
+
+        - The final tier must be `OPEN_ENDED`.
+
+        - `bonusTierCurrencyCode` is required when `bonusTiers` is non-empty.'
+      properties:
+        type:
+          type: string
+          enum:
+          - BOUNDED
+          - OPEN_ENDED
+        lowerBound:
+          type: number
+          format: double
+          description: Inclusive lower conversion/order bound for this payout tier. Must be non-negative.
+        upperBound:
+          type: number
+          format: double
+          description: Exclusive upper conversion/order bound for a `BOUNDED` tier.
+        bonusAmount:
+          type: number
+          format: double
+          description: Bonus payout amount in `bonusTierCurrencyCode`. Must be positive.
+      required:
+      - type
+      - lowerBound
+      - bonusAmount
+      type: object
+      additionalProperties: false
     Product:
       properties:
         bazaarVoiceAppProduct:
@@ -99,57 +163,11 @@ components:
           $ref: '#/components/schemas/YotpoAppProduct'
       type: object
       additionalProperties: false
-    YotpoAppProduct:
+    Links:
       properties:
-        reviewProductId:
-          type: number
-          format: double
-        youtpoProductId:
+        deep:
           type: string
-      type: object
-      additionalProperties: false
-    DataPointDefinitionActionGroup:
-      properties:
-        id:
-          type: number
-          format: double
-        title:
-          type: string
-      type: object
-      additionalProperties: false
-    Artifact:
-      properties:
-        before:
-          type: string
-        example:
-          type: string
-        hashtag:
-          type: string
-        key:
-          type: string
-        link:
-          $ref: '#/components/schemas/TrackingLink'
-        linkReference:
-          type: string
-        metaInformation:
-          $ref: '#/components/schemas/MetaInformation'
-        placeholder:
-          type: string
-        resourceId:
-          type: string
-        resourceUrl:
-          type: string
-      type: object
-      additionalProperties: false
-    MetaInformation:
-      properties:
-        description:
-          type: string
-        ftcHashtag:
-          type: string
-        image:
-          type: string
-        title:
+        normal:
           type: string
       type: object
       additionalProperties: false
@@ -414,233 +432,103 @@ components:
       - id
       type: object
       additionalProperties: false
-    IncentiveUnlockEvent:
-      type: string
-      enum:
-      - acceptance
-      - completion
-      - pending_shipment
-      - pending_payment
-    MavrckSupportedCurrencies:
-      type: object
-    Omit_ReviewForm.responses-or-product_:
-      $ref: '#/components/schemas/Pick_ReviewForm.Exclude_keyofReviewForm.responses-or-product__'
-      description: Construct a type with the properties of T except for those in type K.
-    DataPointDefinition:
+    Action:
       properties:
-        actionGroups:
+        ActionGroup:
+          $ref: '#/components/schemas/ActionGroup'
+        actionGroupId:
+          type: number
+          format: double
+        actionGroupTitle:
+          type: string
+        actionGroupType:
+          type: string
+        activations:
           items:
-            $ref: '#/components/schemas/DataPointDefinitionActionGroup'
+            properties:
+              id:
+                type: number
+                format: double
+            type: object
           type: array
-        archived:
-          type: boolean
+        article:
+          properties:
+            html:
+              type: string
+          type: object
+        brand:
+          $ref: '#/components/schemas/Brand'
         communityId:
           type: string
-        createdAt:
+        conversion:
+          $ref: '#/components/schemas/ConversionTag'
+        conversionAssignedAt:
           type: string
-        customSet:
-          type: boolean
         description:
           type: string
         id:
-          type: number
-          format: double
-        key:
           type: string
-        markUpDescription:
+        image:
           type: string
-        mergeTag:
-          type: boolean
-        multi:
-          type: boolean
-        name:
+        instructions:
           type: string
-        setElements:
-          $ref: '#/components/schemas/DataPointDefinitionSetElement'
-        type:
+        label:
           type: string
-        updatedAt:
-          type: string
-      required:
-      - customSet
-      - id
-      - multi
-      - name
-      - type
-      type: object
-      additionalProperties: false
-    Network:
-      properties:
-        clicks:
-          type: boolean
-        comments:
-          type: boolean
-        impressions:
-          type: boolean
-        key:
-          type: string
-        likes:
-          type: boolean
-        reach:
-          type: boolean
-        shares:
-          type: boolean
-      type: object
-      additionalProperties: false
-    ReviewForm:
-      properties:
-        id:
-          type: number
-          format: double
-        reviewProductId:
-          type: number
-          format: double
-        action:
-          $ref: '#/components/schemas/Action'
-        product:
-          $ref: '#/components/schemas/Product'
-        questions:
-          items:
-            $ref: '#/components/schemas/Question'
-          type: array
-        incentivized:
-          type: boolean
-        responses:
-          items:
-            properties:
-              questionResponses:
-                items:
-                  additionalProperties: false
-                  type: object
-                type: array
-              membership:
-                $ref: '#/components/schemas/Membership'
-            type: object
-          type: array
-      type: object
-      additionalProperties: false
-    PowerReviewsApp:
-      properties:
-        apiKey:
-          type: string
-        communityId:
-          type: string
-        environment:
-          type: string
-        id:
-          type: number
-          format: double
-        locale:
-          type: string
-        merchantId:
-          type: string
-        name:
-          type: string
-      required:
-      - apiKey
-      - communityId
-      - id
-      - locale
-      - merchantId
-      - name
-      type: object
-      additionalProperties: false
-    NotFoundError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Resource Not Found
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    BazaarVoiceAppProduct:
-      properties:
-        reviewProductId:
-          type: number
-          format: double
-        externalBazaarProductId:
-          type: string
-      type: object
-      additionalProperties: false
-    TrackingLink:
-      properties:
-        action:
-          $ref: '#/components/schemas/Action'
-        communityId:
-          type: string
-        conversionId:
-          type: string
-        conversions:
-          type: number
-          format: double
-        conversionsValue:
-          type: number
-          format: double
-        destinationUrl:
-          type: string
-        domain:
-          type: string
-        domainId:
-          type: string
-        id:
-          type: number
-          format: double
-        parentId:
-          type: number
-          format: double
-        isAffiliate:
-          type: boolean
-        isDeleted:
-          type: string
-        lastUpdated:
+        link:
+          $ref: '#/components/schemas/TrackingLink'
+        linkReference:
           type: string
         membershipId:
-          type: string
-        metaInformation:
-          $ref: '#/components/schemas/MetaInformation'
-        name:
-          type: string
-        numClicks:
           type: number
           format: double
-        providerCode:
+        multipleActivations:
+          type: boolean
+        needsModeration:
+          type: boolean
+        networkOperation:
+          $ref: '#/components/schemas/NetworkOperation'
+        pendingActivation:
+          items:
+            properties:
+              id:
+                type: number
+                format: double
+            type: object
+          type: array
+        points:
+          type: number
+          format: double
+        previewContentType:
           type: string
-        providerName:
+        product:
+          $ref: '#/components/schemas/Product'
+        productId:
+          type: number
+          format: double
+        required:
+          type: boolean
+        reviewFormId:
+          type: number
+          format: double
+        routing:
+          $ref: '#/components/schemas/Routing'
+        submit:
           type: string
-        shortLink:
-          type: string
+        survey:
+          $ref: '#/components/schemas/ReviewForm'
         title:
-          type: string
-        trackingPixelCode:
           type: string
         type:
           type: string
         url:
           type: string
-        isArchived:
-          type: boolean
-        archivedAt:
-          type: string
-          format: date-time
+        video:
+          properties:
+            url:
+              type: string
+          type: object
       required:
-      - isArchived
-      - archivedAt
-      type: object
-      additionalProperties: false
-    Routing:
-      properties:
-        not_eligible:
-          $ref: '#/components/schemas/RoutingOptions'
-        success:
-          $ref: '#/components/schemas/RoutingOptions'
+      - type
       type: object
       additionalProperties: false
     Pick_ReviewForm.Exclude_keyofReviewForm.responses-or-product__:
@@ -661,276 +549,6 @@ components:
           type: boolean
       type: object
       description: From T, pick a set of properties whose keys are in the union K
-    ForbiddenError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Access Forbidden
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    Brand:
-      properties:
-        accentColor:
-          type: string
-        buttonColor:
-          type: string
-        id:
-          type: number
-          format: double
-        logo:
-          type: string
-        associatedWithCampaign:
-          type: boolean
-        name:
-          type: string
-      required:
-      - id
-      - name
-      type: object
-      additionalProperties: false
-    ValidateErrorJSON:
-      properties:
-        message:
-          type: string
-          enum:
-          - Validation failed
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    ListCustomStatus:
-      properties:
-        templates:
-          items:
-            $ref: '#/components/schemas/ConversationTemplate'
-          type: array
-        statusOrder:
-          type: number
-          format: double
-        slug:
-          type: string
-        phase:
-          type: string
-        linkedStages:
-          items:
-            type: string
-          type: array
-        label:
-          type: string
-        id:
-          type: number
-          format: double
-        enabled:
-          type: boolean
-        disabled:
-          type: boolean
-        custom:
-          type: boolean
-        ctaLabel:
-          type: string
-        auxiliaryLabel:
-          type: string
-        actionGroupId:
-          type: number
-          format: double
-      type: object
-    ListDeliverable:
-      properties:
-        contentType:
-          $ref: '#/components/schemas/NetworkSlug'
-        contentTypeName:
-          $ref: '#/components/schemas/NetworkName'
-        count:
-          type: number
-          format: double
-        id:
-          type: number
-          format: double
-        listId:
-          type: number
-          format: double
-        updatedBy:
-          type: number
-          format: double
-      required:
-      - contentType
-      - contentTypeName
-      - count
-      - id
-      - listId
-      type: object
-      additionalProperties: false
-    ConversionTag:
-      properties:
-        code:
-          type: string
-        id:
-          type: string
-        name:
-          type: string
-        type:
-          type: string
-        isActive:
-          type: boolean
-        isConversionValueEnabled:
-          type: boolean
-      required:
-      - id
-      - name
-      - isActive
-      - isConversionValueEnabled
-      type: object
-      additionalProperties: false
-    ServerError:
-      properties:
-        message:
-          type: string
-          enum:
-          - Server Error
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    PowerReviewsPage:
-      properties:
-        PowerReviewsApp:
-          items:
-            $ref: '#/components/schemas/PowerReviewsApp'
-          type: array
-        externalPageId:
-          type: string
-        id:
-          type: number
-          format: double
-        powerReviewsAppId:
-          type: string
-        reviewProductId:
-          type: number
-          format: double
-      type: object
-      additionalProperties: false
-    Audience:
-      properties:
-        id:
-          type: number
-          format: double
-        name:
-          type: string
-        criteria:
-          items:
-            $ref: '#/components/schemas/InfluencerDataPointCriteria'
-          type: array
-      required:
-      - id
-      - name
-      - criteria
-      type: object
-      additionalProperties: false
-    RoutingOptions:
-      properties:
-        cta:
-          type: string
-        mode:
-          type: string
-        redirect_url:
-          type: string
-      type: object
-      additionalProperties: false
-    NetworkSlug:
-      type: string
-      enum:
-      - blog
-      - facebook
-      - facebook_group
-      - facebook_live
-      - facebook_reel
-      - image
-      - instagram
-      - instagram_reel
-      - instagram_story
-      - linkedin
-      - pinterest
-      - snapchat_story
-      - tiktok
-      - twitch_stream
-      - twitter
-      - video
-      - youtube_video
-      - youtube_shorts
-    NetworkOperation:
-      properties:
-        links:
-          $ref: '#/components/schemas/Links'
-        network:
-          $ref: '#/components/schemas/Network'
-        artifact:
-          $ref: '#/components/schemas/Artifact'
-      type: object
-      additionalProperties: false
-    Administrator:
-      properties:
-        id:
-          type: number
-          format: double
-        email:
-          type: string
-        first_name:
-          type: string
-        last_name:
-          type:
-          - string
-          - 'null'
-        image:
-          type:
-          - string
-          - 'null'
-        approves:
-          type: boolean
-        createdAt:
-          type: string
-      type: object
-      additionalProperties: false
-    InfluencerDataPointCriteria:
-      properties:
-        key:
-          type: string
-        value:
-          type: object
-        values:
-          items:
-            type: string
-          type: array
-        minValue:
-          type: number
-          format: double
-        maxValue:
-          type: number
-          format: double
-      required:
-      - key
-      type: object
-      additionalProperties: false
     Incentive:
       properties:
         actionGroupId:
@@ -1063,208 +681,352 @@ components:
           type: string
       type: object
       additionalProperties: false
-    BonusTier:
-      description: 'Swagger 2 representation of a tiered bonus entry.
-
-
-        `upperBound` is required for `BOUNDED` tiers and must be omitted for
-
-        `OPEN_ENDED` tiers. The bonus-tier validator enforces that conditional rule.
-
-
-        Validation rules:
-
-        - `bonusTiers` may contain at most 5 tiers.
-
-        - Tiers must be sorted by `lowerBound`.
-
-        - Adjacent tiers must be contiguous.
-
-        - The final tier must be `OPEN_ENDED`.
-
-        - `bonusTierCurrencyCode` is required when `bonusTiers` is non-empty.'
+    NetworkSlug:
+      type: string
+      enum:
+      - blog
+      - facebook
+      - facebook_group
+      - facebook_live
+      - facebook_reel
+      - image
+      - instagram
+      - instagram_reel
+      - instagram_story
+      - linkedin
+      - pinterest
+      - snapchat_story
+      - tiktok
+      - twitch_stream
+      - twitter
+      - video
+      - youtube_video
+      - youtube_shorts
+    TrackingLink:
       properties:
-        type:
-          type: string
-          enum:
-          - BOUNDED
-          - OPEN_ENDED
-        lowerBound:
-          type: number
-          format: double
-          description: Inclusive lower conversion/order bound for this payout tier. Must be non-negative.
-        upperBound:
-          type: number
-          format: double
-          description: Exclusive upper conversion/order bound for a `BOUNDED` tier.
-        bonusAmount:
-          type: number
-          format: double
-          description: Bonus payout amount in `bonusTierCurrencyCode`. Must be positive.
-      required:
-      - type
-      - lowerBound
-      - bonusAmount
-      type: object
-      additionalProperties: false
-    Action:
-      properties:
-        ActionGroup:
-          $ref: '#/components/schemas/ActionGroup'
-        actionGroupId:
-          type: number
-          format: double
-        actionGroupTitle:
-          type: string
-        actionGroupType:
-          type: string
-        activations:
-          items:
-            properties:
-              id:
-                type: number
-                format: double
-            type: object
-          type: array
-        article:
-          properties:
-            html:
-              type: string
-          type: object
-        brand:
-          $ref: '#/components/schemas/Brand'
+        action:
+          $ref: '#/components/schemas/Action'
         communityId:
           type: string
-        conversion:
-          $ref: '#/components/schemas/ConversionTag'
-        conversionAssignedAt:
+        conversionId:
           type: string
-        description:
+        conversions:
+          type: number
+          format: double
+        conversionsValue:
+          type: number
+          format: double
+        destinationUrl:
+          type: string
+        domain:
+          type: string
+        domainId:
           type: string
         id:
+          type: number
+          format: double
+        parentId:
+          type: number
+          format: double
+        isAffiliate:
+          type: boolean
+        isDeleted:
           type: string
-        image:
-          type: string
-        instructions:
-          type: string
-        label:
-          type: string
-        link:
-          $ref: '#/components/schemas/TrackingLink'
-        linkReference:
+        lastUpdated:
           type: string
         membershipId:
-          type: number
-          format: double
-        multipleActivations:
-          type: boolean
-        needsModeration:
-          type: boolean
-        networkOperation:
-          $ref: '#/components/schemas/NetworkOperation'
-        pendingActivation:
-          items:
-            properties:
-              id:
-                type: number
-                format: double
-            type: object
-          type: array
-        points:
-          type: number
-          format: double
-        previewContentType:
           type: string
-        product:
-          $ref: '#/components/schemas/Product'
-        productId:
-          type: number
-          format: double
-        required:
-          type: boolean
-        reviewFormId:
-          type: number
-          format: double
-        routing:
-          $ref: '#/components/schemas/Routing'
-        submit:
+        metaInformation:
+          $ref: '#/components/schemas/MetaInformation'
+        name:
           type: string
-        survey:
-          $ref: '#/components/schemas/ReviewForm'
+        numClicks:
+          type: number
+          format: double
+        providerCode:
+          type: string
+        providerName:
+          type: string
+        shortLink:
+          type: string
         title:
+          type: string
+        trackingPixelCode:
           type: string
         type:
           type: string
         url:
           type: string
-        video:
-          properties:
-            url:
-              type: string
-          type: object
+        isArchived:
+          type: boolean
+        archivedAt:
+          type: string
+          format: date-time
       required:
-      - type
+      - isArchived
+      - archivedAt
       type: object
       additionalProperties: false
-    Membership:
+    NullableBonusTierCurrencyCode:
+      type:
+      - string
+      - 'null'
+      enum:
+      - USD
+      - EUR
+      - GBP
+      - AUD
+      - CAD
+      - null
+    YotpoAppProduct:
       properties:
-        blacklisted:
-          type: boolean
-        contactInfo:
-          $ref: '#/components/schemas/MembershipContactInfoDeprecated'
-        createdAt:
+        reviewProductId:
+          type: number
+          format: double
+        youtpoProductId:
+          type: string
+      type: object
+      additionalProperties: false
+    PowerReviewsPage:
+      properties:
+        PowerReviewsApp:
+          items:
+            $ref: '#/components/schemas/PowerReviewsApp'
+          type: array
+        externalPageId:
           type: string
         id:
           type: number
           format: double
-        imageUrl:
+        powerReviewsAppId:
           type: string
-        lifetimeClicks:
+        reviewProductId:
           type: number
           format: double
-        lifetimeConversions:
+      type: object
+      additionalProperties: false
+    MavrckSupportedCurrencies:
+      type: object
+    Audience:
+      properties:
+        id:
           type: number
           format: double
-        lifetimeConversionsValue:
-          type: number
-          format: double
-        membershipId:
-          type: number
-          format: double
-        membershipType:
+        name:
           type: string
-        mostRecentActivationDate:
+        criteria:
+          items:
+            $ref: '#/components/schemas/InfluencerDataPointCriteria'
+          type: array
+      required:
+      - id
+      - name
+      - criteria
+      type: object
+      additionalProperties: false
+    Gender:
+      enum:
+      - describe
+      - female
+      - male
+      - non_bin
+      - other
+      type: string
+    NotFoundError:
+      properties:
+        message:
           type: string
-        pointsCurrentBalance:
-          properties:
-            amount:
-              type: number
-              format: double
+          enum:
+          - Resource Not Found
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
           type: object
-        status:
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    DataPointDefinition:
+      properties:
+        actionGroups:
+          items:
+            $ref: '#/components/schemas/DataPointDefinitionActionGroup'
+          type: array
+        archived:
+          type: boolean
+        communityId:
           type: string
-        totalImpressions:
+        createdAt:
+          type: string
+        customSet:
+          type: boolean
+        description:
+          type: string
+        id:
           type: number
           format: double
-        totalPoints:
-          type: number
-          format: double
+        key:
+          type: string
+        markUpDescription:
+          type: string
+        mergeTag:
+          type: boolean
+        multi:
+          type: boolean
+        name:
+          type: string
+        setElements:
+          $ref: '#/components/schemas/DataPointDefinitionSetElement'
+        type:
+          type: string
         updatedAt:
           type: string
-        utmCampaign:
+      required:
+      - customSet
+      - id
+      - multi
+      - name
+      - type
+      type: object
+      additionalProperties: false
+    Artifact:
+      properties:
+        before:
           type: string
-        utmContent:
+        example:
           type: string
-        fullName:
+        hashtag:
+          type: string
+        key:
+          type: string
+        link:
+          $ref: '#/components/schemas/TrackingLink'
+        linkReference:
+          type: string
+        metaInformation:
+          $ref: '#/components/schemas/MetaInformation'
+        placeholder:
+          type: string
+        resourceId:
+          type: string
+        resourceUrl:
           type: string
       type: object
       additionalProperties: false
-    Links:
+    BazaarVoiceAppProduct:
       properties:
-        deep:
+        reviewProductId:
+          type: number
+          format: double
+        externalBazaarProductId:
           type: string
-        normal:
+      type: object
+      additionalProperties: false
+    RoutingOptions:
+      properties:
+        cta:
           type: string
+        mode:
+          type: string
+        redirect_url:
+          type: string
+      type: object
+      additionalProperties: false
+    ForbiddenError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Access Forbidden
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    Omit_ReviewForm.responses-or-product_:
+      $ref: '#/components/schemas/Pick_ReviewForm.Exclude_keyofReviewForm.responses-or-product__'
+      description: Construct a type with the properties of T except for those in type K.
+    ValidateErrorJSON:
+      properties:
+        message:
+          type: string
+          enum:
+          - Validation failed
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    InfluencerDataPointCriteria:
+      properties:
+        key:
+          type: string
+        value:
+          type: object
+        values:
+          items:
+            type: string
+          type: array
+        minValue:
+          type: number
+          format: double
+        maxValue:
+          type: number
+          format: double
+      required:
+      - key
+      type: object
+      additionalProperties: false
+    ReviewForm:
+      properties:
+        id:
+          type: number
+          format: double
+        reviewProductId:
+          type: number
+          format: double
+        action:
+          $ref: '#/components/schemas/Action'
+        product:
+          $ref: '#/components/schemas/Product'
+        questions:
+          items:
+            $ref: '#/components/schemas/Question'
+          type: array
+        incentivized:
+          type: boolean
+        responses:
+          items:
+            properties:
+              questionResponses:
+                items:
+                  additionalProperties: false
+                  type: object
+                type: array
+              membership:
+                $ref: '#/components/schemas/Membership'
+            type: object
+          type: array
+      type: object
+      additionalProperties: false
+    Routing:
+      properties:
+        not_eligible:
+          $ref: '#/components/schemas/RoutingOptions'
+        success:
+          $ref: '#/components/schemas/RoutingOptions'
       type: object
       additionalProperties: false
     Question:
@@ -1346,17 +1108,203 @@ components:
           type: string
       type: object
       additionalProperties: false
-    GetSurveyByActionIdResponse:
-      $ref: '#/components/schemas/Omit_ReviewForm.responses-or-product_'
-    IncentiveTermsAndConditions:
+    Network:
       properties:
-        params:
-          additionalProperties: false
+        clicks:
+          type: boolean
+        comments:
+          type: boolean
+        impressions:
+          type: boolean
+        key:
+          type: string
+        likes:
+          type: boolean
+        reach:
+          type: boolean
+        shares:
+          type: boolean
+      type: object
+      additionalProperties: false
+    ConversionTag:
+      properties:
+        code:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        isActive:
+          type: boolean
+        isConversionValueEnabled:
+          type: boolean
+      required:
+      - id
+      - name
+      - isActive
+      - isConversionValueEnabled
+      type: object
+      additionalProperties: false
+    ListCustomStatus:
+      properties:
+        templates:
+          items:
+            $ref: '#/components/schemas/ConversationTemplate'
+          type: array
+        statusOrder:
+          type: number
+          format: double
+        slug:
+          type: string
+        phase:
+          type: string
+        linkedStages:
+          items:
+            type: string
+          type: array
+        label:
+          type: string
+        id:
+          type: number
+          format: double
+        enabled:
+          type: boolean
+        disabled:
+          type: boolean
+        custom:
+          type: boolean
+        ctaLabel:
+          type: string
+        auxiliaryLabel:
+          type: string
+        actionGroupId:
+          type: number
+          format: double
+      type: object
+    Administrator:
+      properties:
+        id:
+          type: number
+          format: double
+        email:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type:
+          - string
+          - 'null'
+        image:
+          type:
+          - string
+          - 'null'
+        approves:
+          type: boolean
+        createdAt:
+          type: string
+      type: object
+      additionalProperties: false
+    DataPointDefinitionActionGroup:
+      properties:
+        id:
+          type: number
+          format: double
+        title:
+          type: string
+      type: object
+      additionalProperties: false
+    Campaign:
+      properties:
+        id:
+          type: number
+          format: double
+        name:
+          type: string
+        description:
+          type: string
+        brand:
+          $ref: '#/components/schemas/Brand'
+        actionGroups:
+          items:
+            $ref: '#/components/schemas/ActionGroup'
+          type: array
+        hasActivations:
+          type: boolean
+        createdAt:
+          type: string
+      required:
+      - name
+      type: object
+      additionalProperties: false
+    NetworkOperation:
+      properties:
+        links:
+          $ref: '#/components/schemas/Links'
+        network:
+          $ref: '#/components/schemas/Network'
+        artifact:
+          $ref: '#/components/schemas/Artifact'
+      type: object
+      additionalProperties: false
+    MembershipContactInfoDeprecated:
+      properties:
+        age:
+          type: number
+          format: double
+        apt:
+          type: string
+        birthday:
           type: object
-        preview:
+        city:
           type: string
-        template:
+        country:
           type: string
+        email:
+          type: string
+        emailIsVerified:
+          type: boolean
+        firstName:
+          type: string
+        fullName:
+          type: string
+        gender:
+          $ref: '#/components/schemas/Gender'
+        genderDescription:
+          type: string
+        lastName:
+          type: string
+        phone:
+          type: string
+        state:
+          type: string
+        street:
+          type: string
+        zip:
+          type: string
+        talentManagerEmail:
+          type: string
+      type: object
+      additionalProperties: false
+    Brand:
+      properties:
+        accentColor:
+          type: string
+        buttonColor:
+          type: string
+        id:
+          type: number
+          format: double
+        logo:
+          type: string
+        associatedWithCampaign:
+          type: boolean
+        name:
+          type: string
+      required:
+      - id
+      - name
       type: object
       additionalProperties: false
     ConversationTemplate:
@@ -1397,6 +1345,129 @@ components:
       - isArchived
       - title
       - updatedAt
+      type: object
+      additionalProperties: false
+    NetworkName:
+      type: string
+      enum:
+      - Blog
+      - Facebook
+      - Facebook Group
+      - Facebook Live
+      - Facebook Reel
+      - Image
+      - Instagram
+      - Instagram Reel
+      - Instagram Story
+      - LinkedIn
+      - Pinterest
+      - Snapchat Story
+      - TikTok
+      - Twitch Stream
+      - Twitter
+      - Video
+      - YouTube Video
+      - YouTube Shorts
+    PowerReviewsApp:
+      properties:
+        apiKey:
+          type: string
+        communityId:
+          type: string
+        environment:
+          type: string
+        id:
+          type: number
+          format: double
+        locale:
+          type: string
+        merchantId:
+          type: string
+        name:
+          type: string
+      required:
+      - apiKey
+      - communityId
+      - id
+      - locale
+      - merchantId
+      - name
+      type: object
+      additionalProperties: false
+    ServerError:
+      properties:
+        message:
+          type: string
+          enum:
+          - Server Error
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    IncentiveUnlockEvent:
+      type: string
+      enum:
+      - acceptance
+      - completion
+      - pending_shipment
+      - pending_payment
+    Membership:
+      properties:
+        blacklisted:
+          type: boolean
+        contactInfo:
+          $ref: '#/components/schemas/MembershipContactInfoDeprecated'
+        createdAt:
+          type: string
+        id:
+          type: number
+          format: double
+        imageUrl:
+          type: string
+        lifetimeClicks:
+          type: number
+          format: double
+        lifetimeConversions:
+          type: number
+          format: double
+        lifetimeConversionsValue:
+          type: number
+          format: double
+        membershipId:
+          type: number
+          format: double
+        membershipType:
+          type: string
+        mostRecentActivationDate:
+          type: string
+        pointsCurrentBalance:
+          properties:
+            amount:
+              type: number
+              format: double
+          type: object
+        status:
+          type: string
+        totalImpressions:
+          type: number
+          format: double
+        totalPoints:
+          type: number
+          format: double
+        updatedAt:
+          type: string
+        utmCampaign:
+          type: string
+        utmContent:
+          type: string
+        fullName:
+          type: string
       type: object
       additionalProperties: false
     IncentiveClaim:
@@ -1445,105 +1516,34 @@ components:
           type: string
       type: object
       additionalProperties: false
-    NullableBonusTierCurrencyCode:
-      type:
-      - string
-      - 'null'
-      enum:
-      - USD
-      - EUR
-      - GBP
-      - AUD
-      - CAD
-      - null
-    Campaign:
+    ListDeliverable:
       properties:
+        contentType:
+          $ref: '#/components/schemas/NetworkSlug'
+        contentTypeName:
+          $ref: '#/components/schemas/NetworkName'
+        count:
+          type: number
+          format: double
         id:
           type: number
           format: double
-        name:
-          type: string
-        description:
-          type: string
-        brand:
-          $ref: '#/components/schemas/Brand'
-        actionGroups:
-          items:
-            $ref: '#/components/schemas/ActionGroup'
-          type: array
-        hasActivations:
-          type: boolean
-        createdAt:
-          type: string
-      required:
-      - name
-      type: object
-      additionalProperties: false
-    Gender:
-      enum:
-      - describe
-      - female
-      - male
-      - non_bin
-      - other
-      type: string
-    MembershipContactInfoDeprecated:
-      properties:
-        age:
+        listId:
           type: number
           format: double
-        apt:
-          type: string
-        birthday:
-          type: object
-        city:
-          type: string
-        country:
-          type: string
-        email:
-          type: string
-        emailIsVerified:
-          type: boolean
-        firstName:
-          type: string
-        fullName:
-          type: string
-        gender:
-          $ref: '#/components/schemas/Gender'
-        genderDescription:
-          type: string
-        lastName:
-          type: string
-        phone:
-          type: string
-        state:
-          type: string
-        street:
-          type: string
-        zip:
-          type: string
-        talentManagerEmail:
-          type: string
+        updatedBy:
+          type: number
+          format: double
+      required:
+      - contentType
+      - contentTypeName
+      - count
+      - id
+      - listId
       type: object
       additionalProperties: false
-    DataPointDefinitionSetElement:
-      items:
-        properties:
-          key:
-            type: string
-          id:
-            type: number
-            format: double
-          markUpDisplayLabel:
-            type: string
-          displayLabel:
-            type: string
-        required:
-        - key
-        - id
-        - displayLabel
-        type: object
-      type: array
+    GetSurveyByActionIdResponse:
+      $ref: '#/components/schemas/Omit_ReviewForm.responses-or-product_'
   securitySchemes:
     apiKey:
       type: apiKey

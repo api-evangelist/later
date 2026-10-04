@@ -101,12 +101,24 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ValidateErrorJSON:
+    DashboardTypesResponse:
+      properties:
+        dashboardTypes:
+          items:
+            type: string
+          type: array
+        instanceId:
+          type: string
+      required:
+      - dashboardTypes
+      - instanceId
+      type: object
+    ServerError:
       properties:
         message:
           type: string
           enum:
-          - Validation failed
+          - Server Error
         details:
           properties: {}
           additionalProperties:
@@ -117,12 +129,12 @@ components:
       - details
       type: object
       additionalProperties: false
-    ServerError:
+    NotFoundError:
       properties:
         message:
           type: string
           enum:
-          - Server Error
+          - Resource Not Found
         details:
           properties: {}
           additionalProperties:
@@ -140,12 +152,12 @@ components:
       required:
       - embed_url
       type: object
-    NotFoundError:
+    ForbiddenError:
       properties:
         message:
           type: string
           enum:
-          - Resource Not Found
+          - Access Forbidden
         details:
           properties: {}
           additionalProperties:
@@ -156,24 +168,12 @@ components:
       - details
       type: object
       additionalProperties: false
-    DashboardTypesResponse:
-      properties:
-        dashboardTypes:
-          items:
-            type: string
-          type: array
-        instanceId:
-          type: string
-      required:
-      - dashboardTypes
-      - instanceId
-      type: object
-    ForbiddenError:
+    ValidateErrorJSON:
       properties:
         message:
           type: string
           enum:
-          - Access Forbidden
+          - Validation failed
         details:
           properties: {}
           additionalProperties:

@@ -112,46 +112,26 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    RoleDeprecated:
+    InfluencerContractCommunityTemplate:
       type: object
       properties:
         id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-    AdministratorAccountsDeprecated:
-      type: object
-      properties:
-        first_name:
-          type: string
-        last_name:
-          type: string
-        email:
-          type: string
+          type: integer
+          description: Unique integer identifying a single community-level influencer contract template.
         communityId:
           type: string
-        id:
+          description: Unique string identifying a single community.
+        template:
           type: string
-        image:
+          description: Community-level influencer contract template.
+        createdAt:
           type: string
-        roles:
-          type: array
-          items:
-            $ref: '#/components/schemas/RoleDeprecated'
-    LinksDeprecated:
-      type: object
-      x-access:
-      - anonymous
-      - influencer
-      properties:
-        normal:
+          format: date-time
+        updatedAt:
           type: string
-          description: A normal link to an entity.
-        deep:
-          type: string
-          description: A deep link to the entity.
+          format: date-time
+        updatedBy:
+          $ref: '#/components/schemas/AdministratorAccountsDeprecated'
     Error:
       type: object
       properties:
@@ -183,26 +163,46 @@ components:
             error:
               type: string
               description: A static description of the parent error.
-    InfluencerContractCommunityTemplate:
+    LinksDeprecated:
+      type: object
+      x-access:
+      - anonymous
+      - influencer
+      properties:
+        normal:
+          type: string
+          description: A normal link to an entity.
+        deep:
+          type: string
+          description: A deep link to the entity.
+    AdministratorAccountsDeprecated:
+      type: object
+      properties:
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+        communityId:
+          type: string
+        id:
+          type: string
+        image:
+          type: string
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/RoleDeprecated'
+    RoleDeprecated:
       type: object
       properties:
         id:
-          type: integer
-          description: Unique integer identifying a single community-level influencer contract template.
-        communityId:
           type: string
-          description: Unique string identifying a single community.
-        template:
+        name:
           type: string
-          description: Community-level influencer contract template.
-        createdAt:
+        description:
           type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-        updatedBy:
-          $ref: '#/components/schemas/AdministratorAccountsDeprecated'
   parameters:
     InfluencerContractCommunityTemplate:
       name: data

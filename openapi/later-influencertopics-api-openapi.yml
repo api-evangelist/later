@@ -94,24 +94,17 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ValidateErrorJSON:
+    ResponseMeta:
       properties:
-        message:
-          type: string
-          enum:
-          - Validation failed
-        details:
-          properties: {}
-          additionalProperties:
-            additionalProperties: true
-          type: object
-      required:
-      - message
-      - details
-      type: object
-      additionalProperties: false
-    TSOAEmptyObject:
-      properties: {}
+        limit:
+          type: number
+          format: double
+        offset:
+          type: number
+          format: double
+        totalCount:
+          type: number
+          format: double
       type: object
       additionalProperties: false
     ServerError:
@@ -146,16 +139,6 @@ components:
       - details
       type: object
       additionalProperties: false
-    TopicIdSet:
-      properties:
-        topicIds:
-          items:
-            type: string
-          type: array
-      required:
-      - topicIds
-      type: object
-      additionalProperties: false
     ResponseBody_TopicIdSet_:
       properties:
         data:
@@ -182,17 +165,34 @@ components:
       - details
       type: object
       additionalProperties: false
-    ResponseMeta:
+    ValidateErrorJSON:
       properties:
-        limit:
-          type: number
-          format: double
-        offset:
-          type: number
-          format: double
-        totalCount:
-          type: number
-          format: double
+        message:
+          type: string
+          enum:
+          - Validation failed
+        details:
+          properties: {}
+          additionalProperties:
+            additionalProperties: true
+          type: object
+      required:
+      - message
+      - details
+      type: object
+      additionalProperties: false
+    TSOAEmptyObject:
+      properties: {}
+      type: object
+      additionalProperties: false
+    TopicIdSet:
+      properties:
+        topicIds:
+          items:
+            type: string
+          type: array
+      required:
+      - topicIds
       type: object
       additionalProperties: false
   securitySchemes:
